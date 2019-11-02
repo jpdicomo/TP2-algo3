@@ -1,4 +1,4 @@
 package Modelo.Errores;
 
-public class CasilleroOcupado extends Exception {
+public class CasilleroOcupado extends RuntimeException {
 }
