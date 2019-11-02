@@ -1,16 +1,15 @@
-package Modelo.Unidad;
+package fiuba.AlgoChess.Modelo.Unidad;
 
-import Modelo.Tablero.Casillero;
+import fiuba.AlgoChess.Modelo.Tablero.Casillero;
 
 public class Curandero extends Entidad {
+
     private int vida = 100;
     private int danioDistancia;
     private int danioMelee;
 
     public Curandero(Casillero casillero){
-        this.casillero = casillero;
+        super(casillero);
     }
-
-
 
 }
