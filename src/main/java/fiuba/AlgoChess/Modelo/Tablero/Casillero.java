@@ -1,9 +1,10 @@
-package Modelo.Tablero;
+package fiuba.AlgoChess.Modelo.Tablero;
 
-import Modelo.Errores.CasilleroOcupado;
-import Modelo.Unidad.Entidad;
+import fiuba.AlgoChess.Modelo.Errores.CasilleroOcupadoException;
+import fiuba.AlgoChess.Modelo.Unidad.Entidad;
 
 public class Casillero {
+
     private int x;
     private int y;
     private Estado estado;
@@ -18,10 +19,9 @@ public class Casillero {
             estado.agregarEntidad(entidad, this);
             estado = new Ocupado();
         }
-        catch(CasilleroOcupado error){
+        catch(CasilleroOcupadoException error){
             return false;
         }
         return true;
     }
 }
-
