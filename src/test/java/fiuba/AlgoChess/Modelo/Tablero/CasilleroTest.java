@@ -1,7 +1,10 @@
 package test.java.fiuba.AlgoChess.Modelo.Tablero;
 
-import fiuba.AlgoChess.Modelo.Unidad.Entidad;
-import fiuba.AlgoChess.Modelo.Unidad.Jinete;
+import fiuba.AlgoChess.Modelo.Tablero.Jinete;
+
+import main.java.fiuba.AlgoChess.Modelo.Tablero.Casillero;
+
+
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -17,7 +17,4 @@ public abstract class Entidad {
         this.casillero = casillero;
     }
 
-    public abstract <string>  getEstatus();
-
-
 }

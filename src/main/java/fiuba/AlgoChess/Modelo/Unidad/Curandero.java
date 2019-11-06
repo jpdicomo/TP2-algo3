@@ -1,6 +1,8 @@
-package main.java.fiuba.AlgoChess.Modelo.Unidad;
+package fiuba.AlgoChess.Modelo.Tablero;
+
 
 import main.java.fiuba.AlgoChess.Modelo.Tablero.Casillero;
+import main.java.fiuba.AlgoChess.Modelo.Unidad.Entidad;
 
 public class Curandero extends Entidad {
 
@@ -12,8 +14,5 @@ public class Curandero extends Entidad {
         super(casillero);
     }
 
-    void curar(Aliada aliada){
 
-        aliada.recibirCura();
-    }
 }
