@@ -8,10 +8,10 @@ public class Jugador {
 
     private int puntos = 20;
 
-    public boolean colocarEntidad(){
+    public boolean colocarEntidad(Entidad unaEntidad){
 
 
-        if(this.puntos > 0){ //precioentidad
+        if(this.puntos >= unaEntidad.getCosto()){ //precioentidad
             return true;
 
         }else{

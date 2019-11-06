@@ -15,7 +15,7 @@ public class CasilleroTest {
     public void Test01SeColocaEntidadEnCasilleroLibre() {
 
         Casillero casillero = new Casillero(1,1);
-        Jinete jinete = new Jinete(casillero);
+        Jinete jinete = new Jinete(casillero, 3);
 
         casillero.agregarEntidad(jinete);
 
@@ -26,10 +26,10 @@ public class CasilleroTest {
     public void Test02NoSeColocaEntidadEnCasilleroOcupado() {
 
         Casillero casillero = new Casillero(1,1);
-        Jinete jinete = new Jinete(casillero);
+        Jinete jinete = new Jinete(casillero,3);
         casillero.agregarEntidad(jinete);
 
-        Jinete otroJinete = new Jinete(casillero);
+        Jinete otroJinete = new Jinete(casillero,3);
         casillero.agregarEntidad(otroJinete);
 
         Assert.assertEquals(false, false);

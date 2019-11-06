@@ -10,8 +10,8 @@ public class Curandero extends Entidad {
     private int danioDistancia;
     private int danioMelee;
 
-    public Curandero(Casillero casillero){
-        super(casillero);
+    public Curandero(Casillero casillero,int costo){
+        super(casillero, 2);
     }
 
 
