@@ -40,4 +40,28 @@ public class JugadorTest {
 
         Assert.assertEquals(false, jugador.colocarEntidad(jinete));
     }
+    @Test
+    public void Test03JugadorPierdeSiSeQuedaSinEntidades(){
+
+        //se altera el valor del costo de la entidad para ver verificación más rápido
+
+        Jugador jugador = new Jugador();
+
+        Assert.assertEquals(false, jugador.sigueJugando());
+
+    }
+    @Test
+    public void Test04JugadorSigueJugandoSiTieneEntidades(){
+
+        //se altera el valor del costo de la entidad para ver verificación más rápido
+
+        Jugador jugador = new Jugador();
+        Casillero casillero = new Casillero(1,1);
+        Jinete jinete = new Jinete(casillero);
+        jugador.colocarEntidad(jinete);
+
+        Assert.assertEquals(true, jugador.sigueJugando());
+
+    }
+
 }
