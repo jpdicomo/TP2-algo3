@@ -1,6 +1,7 @@
 package fiuba.AlgoChess.Modelo.Unidad;
 
-import fiuba.AlgoChess.Modelo.Errores;
+
+import fiuba.AlgoChess.Modelo.Errores.CuranderoNoPuedeAtacarException;
 import fiuba.AlgoChess.Modelo.Tablero.Casillero;
 
 public class Curandero extends Entidad {
@@ -27,7 +28,7 @@ public class Curandero extends Entidad {
     /*
      * PRE:  La unidadAliada no es una catapulta.
      * POST: Aumenta la vida de la unidadAliada tanto como le permita
-     * 		 su poder de curación.
+     * 		 su poder de curaciÃ³n.
      */
     public void curarA(Entidad unidadAliada) {
     	

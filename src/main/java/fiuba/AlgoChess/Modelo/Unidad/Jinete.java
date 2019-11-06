@@ -1,17 +1,26 @@
-package main.java.fiuba.AlgoChess.Modelo.Unidad;
+package fiuba.AlgoChess.Modelo.Unidad;
 
 
-import main.java.fiuba.AlgoChess.Modelo.Tablero.Casillero;
+import fiuba.AlgoChess.Modelo.Tablero.Casillero;
 
-public class Jinete extends Entidad {
+public class Jinete extends Entidad implements Atacante{
 
-    private int vida = 100;
+    private TipoAtaque tipoAtaque;
     private int danioDistancia = 15;
-    private int danioMelee = 5;
 
     public Jinete(Casillero casillero){
-
         super(casillero);
+        this.tipoAtaque = new AtaqueMelee(5);
+        this.vida = 100;
+
     }
 
+    @Override
+    public void atacarA(Entidad entidad) {
+        tipoAtaque.atacarA(entidad);
+    }
+
+    public void setAtaqueADistancia() {
+        this.tipoAtaque = new AtaqueADistancia(15);
+    }
 }

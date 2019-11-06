@@ -1,7 +1,7 @@
-package main.java.fiuba.AlgoChess.Modelo.Tablero;
+package fiuba.AlgoChess.Modelo.Tablero;
 
-import main.java.fiuba.AlgoChess.Modelo.Errores.CasilleroOcupadoException;
-import main.java.fiuba.AlgoChess.Modelo.Unidad.Entidad;
+import fiuba.AlgoChess.Modelo.Errores.CasilleroOcupadoException;
+import fiuba.AlgoChess.Modelo.Unidad.Entidad;
 
 public class Ocupado extends Estado {
 
