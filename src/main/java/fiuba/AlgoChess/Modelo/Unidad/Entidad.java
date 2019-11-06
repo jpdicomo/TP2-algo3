@@ -6,12 +6,11 @@ public abstract class Entidad {
 
 
     private Casillero casillero;
-    private int costo;
 
-    public Entidad(Casillero casillero, int costo) {
+    public Entidad(Casillero casillero) {
 
         this.setCasillero(casillero);
-        this.setCosto(costo);
+
     }
 
 
@@ -20,14 +19,7 @@ public abstract class Entidad {
         this.casillero = casillero;
     }
 
-    public void setCosto(int costoEntidad){
-        this.costo = costoEntidad;
-    }
-
-    public int getCosto(){
-        return (this.costo);
-    }
-
+    public abstract int getCosto();
 
 
 }

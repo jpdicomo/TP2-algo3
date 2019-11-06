@@ -14,11 +14,14 @@ public class SoldadoDeInfanteria extends Entidad{
     private int costo = 1;
 
 
-    public SoldadoDeInfanteria(Casillero casillero,int costo) {
-        super(casillero,1);
+    public SoldadoDeInfanteria(Casillero casillero) {
+        super(casillero);
     }
 
 
-
+    @Override
+    public int getCosto() {
+        return this.costo;
+    }
 }
 

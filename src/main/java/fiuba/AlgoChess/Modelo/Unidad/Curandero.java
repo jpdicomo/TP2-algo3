@@ -9,10 +9,14 @@ public class Curandero extends Entidad {
     private int vida = 100;
     private int danioDistancia;
     private int danioMelee;
+    private int costo = 2;
 
-    public Curandero(Casillero casillero,int costo){
-        super(casillero, 2);
+    public Curandero(Casillero casillero){
+        super(casillero);
     }
 
-
+    @Override
+    public int getCosto() {
+        return this.costo;
+    }
 }

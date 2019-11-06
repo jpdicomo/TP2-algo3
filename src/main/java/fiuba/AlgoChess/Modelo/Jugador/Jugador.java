@@ -12,6 +12,7 @@ public class Jugador {
 
 
         if(this.puntos >= unaEntidad.getCosto()){ //precioentidad
+            this.puntos-= unaEntidad.getCosto();
             return true;
 
         }else{

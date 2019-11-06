@@ -11,12 +11,16 @@ public class Jinete extends Entidad{
     private int vida = 100;
     private int danioDistancia = 15;
     private int danioMelee = 5;
-   //rivate int costo = 3;
+    private int costo = 3;
 
-    public Jinete(Casillero casillero, int costo){
+    public Jinete(Casillero casillero){
 
-        super(casillero, 3);
+        super(casillero);
     }
 
-
+    @Override
+    public int getCosto() {
+        return this.costo;
+    }
 }
+
