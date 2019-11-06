@@ -1,4 +1,4 @@
-package fiuba.AlgoChess.Modelo.Tablero;
+package test.java.fiuba.AlgoChess.Modelo.Tablero;
 
 import fiuba.AlgoChess.Modelo.Unidad.Entidad;
 import fiuba.AlgoChess.Modelo.Unidad.Jinete;

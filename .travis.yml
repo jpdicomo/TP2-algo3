@@ -1,0 +1,18 @@
+language: java
+jdk:
+  - openjdk8
+
+script:
+  - mvn test
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+script: "mvn cobertura:cobertura"
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+notifications:
+  email:
+    recipients:
+      - fpratto@fi.uba.ar
+    on_failure: always

@@ -1,6 +1,7 @@
-package fiuba.AlgoChess.Modelo.Unidad;
+package main.java.fiuba.AlgoChess.Modelo.Unidad;
 
-import fiuba.AlgoChess.Modelo.Tablero.Casillero;
+
+import main.java.fiuba.AlgoChess.Modelo.Tablero.Casillero;
 
 public class Jinete extends Entidad {
 
