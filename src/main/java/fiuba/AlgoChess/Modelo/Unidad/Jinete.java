@@ -5,7 +5,7 @@ import fiuba.AlgoChess.Modelo.Tablero.Casillero;
 
 public class Jinete extends Entidad {
 
-    private final TipoAtaque tipoAtaque;
+    private TipoAtaque tipoAtaque;
     private int danioDistancia = 15;
 
     public Jinete(Casillero casillero){
@@ -20,4 +20,7 @@ public class Jinete extends Entidad {
         tipoAtaque.atacarA(entidad);
     }
 
+    public void setAtaqueADistancia() {
+        this.tipoAtaque = new AtaqueADistancia(15);
+    }
 }
