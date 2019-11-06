@@ -1,6 +1,6 @@
 package fiuba.AlgoChess.Modelo.Unidad;
 
-public abstract class TipoAtaque {
+public abstract class TipoAtaque{
     protected int danio;
 
     public TipoAtaque(int danio){

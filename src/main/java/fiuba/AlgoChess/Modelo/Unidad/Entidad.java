@@ -18,8 +18,6 @@ public abstract class Entidad {
         this.casillero = casillero;
     }
 
-    public abstract void atacarA(Entidad entidad);
-
     public void recibirDanio(int danio){
         this.vida -= danio;
     }

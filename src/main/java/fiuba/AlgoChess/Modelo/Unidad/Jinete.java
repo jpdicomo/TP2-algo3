@@ -3,7 +3,7 @@ package fiuba.AlgoChess.Modelo.Unidad;
 
 import fiuba.AlgoChess.Modelo.Tablero.Casillero;
 
-public class Jinete extends Entidad {
+public class Jinete extends Entidad implements Atacante{
 
     private TipoAtaque tipoAtaque;
     private int danioDistancia = 15;
