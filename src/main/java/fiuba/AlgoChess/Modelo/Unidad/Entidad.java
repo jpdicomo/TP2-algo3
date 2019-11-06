@@ -4,6 +4,7 @@ import fiuba.AlgoChess.Modelo.Tablero.Casillero;
 
 public abstract class Entidad {
 
+
     private Casillero casillero;
 
     public Entidad(Casillero casillero) {
@@ -15,4 +16,8 @@ public abstract class Entidad {
 
         this.casillero = casillero;
     }
+
+    public abstract <string>  getEstatus();
+
+
 }

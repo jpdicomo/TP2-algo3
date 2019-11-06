@@ -14,7 +14,7 @@ public class Casillero {
         this.y = y;
         this.estado = new Libre();
     }
-    public boolean agregarEntidad(Entidad entidad){
+    public boolean agregarEntidad(Entidad entidad ){//Entidad entidad){
         try {
             estado.agregarEntidad(entidad, this);
             estado = new Ocupado();

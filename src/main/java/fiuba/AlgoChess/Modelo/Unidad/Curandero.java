@@ -12,4 +12,8 @@ public class Curandero extends Entidad {
         super(casillero);
     }
 
+    void curar(Aliada aliada){
+
+        aliada.recibirCura();
+    }
 }
