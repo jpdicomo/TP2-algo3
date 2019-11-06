@@ -17,9 +17,9 @@ public class CasilleroTest {
         Casillero casillero = new Casillero(1,1);
         Jinete jinete = new Jinete(casillero);
 
-        casillero.agregarEntidad(jinete);
 
-        Assert.assertEquals(true, true);
+
+        Assert.assertEquals(true, casillero.agregarEntidad(jinete));
     }
 
     @Test
@@ -30,9 +30,8 @@ public class CasilleroTest {
         casillero.agregarEntidad(jinete);
 
         Jinete otroJinete = new Jinete(casillero);
-        casillero.agregarEntidad(otroJinete);
-
-        Assert.assertEquals(false, false);
+        
+        Assert.assertEquals(false, casillero.agregarEntidad(otroJinete));
     }
 
 }

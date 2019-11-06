@@ -18,9 +18,10 @@ public class JugadorTest {
         Casillero casillero = new Casillero(1,1);
         Jinete jinete = new Jinete(casillero);
 
-        jugador.colocarEntidad(jinete);
-        Assert.assertEquals(true, true);
+
+        Assert.assertEquals(true, jugador.colocarEntidad(jinete));
     }
+
 
 
 }
