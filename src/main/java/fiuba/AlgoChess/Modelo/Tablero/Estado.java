@@ -1,6 +1,7 @@
-package fiuba.AlgoChess.Modelo.Tablero;
+package main.java.fiuba.AlgoChess.Modelo.Tablero;
 
-import fiuba.AlgoChess.Modelo.Unidad.Entidad;
+
+import main.java.fiuba.AlgoChess.Modelo.Unidad.Entidad;
 
 public abstract class Estado {
 

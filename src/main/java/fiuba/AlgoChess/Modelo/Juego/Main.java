@@ -1,4 +1,4 @@
-package fiuba.AlgoChess.Modelo.Juego;
+package main.java.fiuba.AlgoChess.Modelo.Juego;
 
 public class Main {
 
