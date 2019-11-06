@@ -32,5 +32,13 @@ public class JineteTest {
         assertEquals(100-15,jinete2.getVida());
 
     }
+    @Test
+    public void test04SoldadoAtacaAUnJineteYRestaCorrectamenteLaVida(){
+        Jinete jinete = new Jinete(mock(Casillero.class));
+        Soldado soldado = new Soldado(mock(Casillero.class));
+
+        jinete.atacarA(soldado);
+        assertEquals(100-5,soldado.getVida());
+    }
 }
 

@@ -25,4 +25,8 @@ public abstract class Entidad {
     public int getVida(){
         return this.vida;
     }
+
+    protected void recibirCura(int curacion){
+        this.vida += curacion;
+    }
 }
