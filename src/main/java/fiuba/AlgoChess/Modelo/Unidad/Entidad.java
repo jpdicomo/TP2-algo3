@@ -17,4 +17,5 @@ public abstract class Entidad {
         this.casillero = casillero;
     }
 
+
 }
