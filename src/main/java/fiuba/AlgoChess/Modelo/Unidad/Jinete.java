@@ -11,7 +11,7 @@ public class Jinete extends Entidad{
     private int vida = 100;
     private int danioDistancia = 15;
     private int danioMelee = 5;
-    private int costo = 3;
+    private int costo = 20; // alterado
 
     public Jinete(Casillero casillero){
 

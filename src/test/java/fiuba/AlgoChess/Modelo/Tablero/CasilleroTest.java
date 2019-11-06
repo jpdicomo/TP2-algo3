@@ -30,7 +30,7 @@ public class CasilleroTest {
         casillero.agregarEntidad(jinete);
 
         Jinete otroJinete = new Jinete(casillero);
-        
+
         Assert.assertEquals(false, casillero.agregarEntidad(otroJinete));
     }
 
