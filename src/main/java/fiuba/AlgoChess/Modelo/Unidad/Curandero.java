@@ -1,6 +1,6 @@
-package main.java.fiuba.AlgoChess.Modelo.Unidad;
+package fiuba.AlgoChess.Modelo.Unidad;
 
-import main.java.fiuba.AlgoChess.Modelo.Tablero.Casillero;
+import fiuba.AlgoChess.Modelo.Tablero.Casillero;
 
 public class Curandero extends Entidad {
 
@@ -10,6 +10,11 @@ public class Curandero extends Entidad {
 
     public Curandero(Casillero casillero){
         super(casillero);
+    }
+
+    @Override
+    public void atacarA(Entidad entidad) {
+
     }
 
 }

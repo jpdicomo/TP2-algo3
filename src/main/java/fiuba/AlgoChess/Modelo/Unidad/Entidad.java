@@ -1,10 +1,12 @@
-package main.java.fiuba.AlgoChess.Modelo.Unidad;
+package fiuba.AlgoChess.Modelo.Unidad;
 
-import main.java.fiuba.AlgoChess.Modelo.Tablero.Casillero;
+import fiuba.AlgoChess.Modelo.Tablero.Casillero;
+
 
 public abstract class Entidad {
 
-    private Casillero casillero;
+    protected Casillero casillero;
+    protected int vida;
 
     public Entidad(Casillero casillero) {
 
@@ -14,5 +16,15 @@ public abstract class Entidad {
     public void setCasillero(Casillero casillero){
 
         this.casillero = casillero;
+    }
+
+    public abstract void atacarA(Entidad entidad);
+
+    public void recibirDanio(int danio){
+        this.vida -= danio;
+    }
+
+    public int getVida(){
+        return this.vida;
     }
 }

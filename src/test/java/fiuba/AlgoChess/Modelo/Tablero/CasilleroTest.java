@@ -1,4 +1,4 @@
-package test.java.fiuba.AlgoChess.Modelo.Tablero;
+package fiuba.AlgoChess.Modelo.Tablero;
 
 import org.junit.Assert;
 import org.junit.Test;
