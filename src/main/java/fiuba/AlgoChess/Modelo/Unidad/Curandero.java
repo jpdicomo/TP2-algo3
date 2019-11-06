@@ -12,9 +12,5 @@ public class Curandero extends Entidad {
         super(casillero);
     }
 
-    @Override
-    public void atacarA(Entidad entidad) {
-
-    }
 
 }
