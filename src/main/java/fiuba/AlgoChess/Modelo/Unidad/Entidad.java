@@ -12,7 +12,7 @@ public abstract class Entidad {
 
         this.setCasillero(casillero);
     }
-
+    public abstract void atacarA(Entidad unidadEnemiga);
     public void setCasillero(Casillero casillero){
 
         this.casillero = casillero;
@@ -26,7 +26,7 @@ public abstract class Entidad {
         return this.vida;
     }
 
-    protected void recibirCura(int curacion){
+    protected void serCurado(int curacion){
         this.vida += curacion;
     }
 }
