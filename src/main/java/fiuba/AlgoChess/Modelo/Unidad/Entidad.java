@@ -12,7 +12,6 @@ public abstract class Entidad {
 
         this.setCasillero(casillero);
     }
-    public abstract void atacarA(Entidad unidadEnemiga);
     public void setCasillero(Casillero casillero){
 
         this.casillero = casillero;

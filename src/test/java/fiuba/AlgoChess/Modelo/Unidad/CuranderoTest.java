@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
+
 public class CuranderoTest {
 
     @Test
@@ -15,10 +16,19 @@ public class CuranderoTest {
         assertEquals(75,curandero.getVida());
     }
     @Test
-    public void test01CurarASoldadoSumaSusPuntosDeVidaCorrectamente(){
+    public void test01CurarASoldadoNoDañadoSumaSusPuntosDeVidaMaximos(){
         Curandero curandero = new Curandero(mock(Casillero.class));
         Soldado soldado = new Soldado(mock(Casillero.class));
 
         curandero.curarA(soldado);
+        assertEquals(100 + 15,soldado.getVida());
+    }
+    @Test
+    public void test02CurarASoldadoDañadoSumaSusPuntosDeVida(){
+        Curandero curandero = new Curandero(mock(Casillero.class));
+        Soldado soldado = new Soldado(mock(Casillero.class));
+        soldado.recibirDanio(15);
+        curandero.curarA(soldado);
+        assertEquals(100,soldado.getVida());
     }
 }
