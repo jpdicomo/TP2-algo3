@@ -19,7 +19,7 @@ public class JugadorTest {
         Jinete jinete = new Jinete(casillero);
 
 
-        Assert.assertEquals(true, jugador.colocarEntidad(jinete));
+        Assert.assertEquals(true, jugador.agregarEntidad(jinete));
     }
 
 
@@ -35,10 +35,10 @@ public class JugadorTest {
         Jinete jinete = new Jinete(mock(Casillero.class));
         Jinete otroJinete = new Jinete(mock(Casillero.class));
 
-        jugador.colocarEntidad(jinete);
-        jugador.colocarEntidad(otroJinete);
+        jugador.agregarEntidad(jinete);
+        jugador.agregarEntidad(otroJinete);
 
-        Assert.assertEquals(false, jugador.colocarEntidad(jinete));
+        Assert.assertEquals(false, jugador.agregarEntidad(jinete));
     }
     @Test
     public void Test03JugadorPierdeSiSeQuedaSinEntidades(){
@@ -57,7 +57,7 @@ public class JugadorTest {
 
         Jugador jugador = new Aliado("Fede");
         Jinete jinete = mock(Jinete.class);
-        jugador.colocarEntidad(jinete);
+        jugador.agregarEntidad(jinete);
 
         Assert.assertEquals(true, jugador.sigueJugando());
 
