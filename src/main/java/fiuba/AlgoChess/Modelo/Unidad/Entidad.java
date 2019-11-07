@@ -1,6 +1,6 @@
-package main.java.fiuba.AlgoChess.Modelo.Unidad;
+package fiuba.AlgoChess.Modelo.Unidad;
 
-import main.java.fiuba.AlgoChess.Modelo.Tablero.Casillero;
+import fiuba.AlgoChess.Modelo.Tablero.Casillero;
 
 public abstract class Entidad {
 
