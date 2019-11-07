@@ -3,6 +3,8 @@ package fiuba.AlgoChess.Modelo.Tablero;
 // Acá irian los imports.
 
 import fiuba.AlgoChess.Modelo.Jugador.Jugador;
+import fiuba.AlgoChess.Modelo.Unidad.Aliada;
+import fiuba.AlgoChess.Modelo.Unidad.Enemiga;
 import fiuba.AlgoChess.Modelo.Unidad.Entidad;
 
 public class Tablero {
@@ -29,12 +31,12 @@ public class Tablero {
 
 			for (int j = 1; j <= 10; j++) {
 
-				this.casilleros[j][i] = new Casillero(j, i);
+				this.casilleros[j][i] = new Casillero(j, i, new Aliada());
 			}
 
 			for (int k = 10; k <= 20; k++) {
 
-				this.casilleros[k][i] = new Casillero(k, i);
+				this.casilleros[k][i] = new Casillero(k, i, new Enemiga());
 			}
 		}
 	}
@@ -53,7 +55,7 @@ public class Tablero {
 		
 		do {
 
-			int[] ubicacion = jugador.elegirCasillero(); // Metodo a implementar.
+			int[] ubicacion = jugador.elegirCasillero();
 			int x = ubicacion[0];
 			int y = ubicacion[1];
 			Casillero casillero = this.casilleros[x][y];

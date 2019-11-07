@@ -33,4 +33,10 @@ public class Aliada extends Bando {
     public void serAtacadaPorEnemigo(Entidad entidad, TipoAtaque tipoAtaque) {
         tipoAtaque.atacarA(entidad);
     }
+
+    @Override
+    public void serColocadaEnCasilleroDeBando(Bando bando) {
+
+
+    }
 }

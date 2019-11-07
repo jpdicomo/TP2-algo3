@@ -3,7 +3,9 @@ package fiuba.AlgoChess.Modelo.Tablero;
 
 import fiuba.AlgoChess.Modelo.Errores.CasilleroOcupadoException;
 import fiuba.AlgoChess.Modelo.Errores.CasilleroLibreException;
+import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
 import fiuba.AlgoChess.Modelo.Jugador.Jugador;
+import fiuba.AlgoChess.Modelo.Unidad.Bando;
 import fiuba.AlgoChess.Modelo.Unidad.Entidad;
 
 public class Casillero {
@@ -12,7 +14,7 @@ public class Casillero {
 	
 	private int[] posicion;
 	private Estado estado;
-	
+	private Bando bando;
 	
 	// Metodos.
 	
@@ -20,12 +22,13 @@ public class Casillero {
 	 * PRE:  ...
 	 * POST: ...
 	 */
-	public Casillero(int x, int y) {
+	public Casillero(int x, int y, Bando bando) {
 		
 		this.posicion = new int [2];
 		this.posicion[0] = x;
 		this.posicion[1] = y;
 		this.estado = new Libre();
+		this.bando = bando;
 	}
 	
 	
@@ -34,17 +37,21 @@ public class Casillero {
 	 * POST: Agrega una unidad al casillero.
 	 */
 	public boolean agregarEntidad(Entidad entidad) {
-		
+
 		try {
 
 			estado.agregarEntidad(entidad, this);
-			estado = new Ocupado(entidad);
+			entidad.serColocadaEnCasilleroDeBando(this.bando);
 
 		} catch (CasilleroOcupadoException error) {
 
 			return false;
+		} catch (DistintoBandoException e){
+
+			return false;
 		}
-		
+
+		estado = new Ocupado(entidad);
 		return true;
 	}
 

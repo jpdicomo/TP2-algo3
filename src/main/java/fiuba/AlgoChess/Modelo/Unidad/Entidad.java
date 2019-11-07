@@ -1,5 +1,6 @@
 package fiuba.AlgoChess.Modelo.Unidad;
 
+import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
 import fiuba.AlgoChess.Modelo.Tablero.Casillero;
 
 
@@ -21,6 +22,7 @@ public abstract class Entidad {
     }
 
     public void recibirDanio(int danio){
+
         this.vida -= danio;
     }
 
@@ -29,10 +31,12 @@ public abstract class Entidad {
     }
 
     protected void serCurado(int curacion){
+
         this.vida += curacion;
     }
 
     public int getCosto(){
+
         return this.costo;
     }
 
@@ -44,17 +48,34 @@ public abstract class Entidad {
     }
 
     public void serCuradoPorAliado(int curacion){
+
         this.bando.serCuradoPorAliado(this,curacion);
     }
+
     public void serCuradoPorEnemigo(int curacion){
+
         this.bando.serCuradoPorEnemigo(this,curacion);
     }
 
     public void serAtacadaPorAliado(TipoAtaque tipoAtaque){
+
         this.bando.serAtacadaPorAliado(this,tipoAtaque);
     }
 
     public void serAtacadaPorEnemigo(TipoAtaque tipoAtaque){
+
         this.bando.serAtacadaPorEnemigo(this,tipoAtaque);
+    }
+
+    /*
+     * Esto falla porque estas comparando objetos de direcciones distintas.
+     */
+    public boolean serColocadaEnCasilleroDeBando(Bando bando){
+
+        if(this.bando. == bando){
+            return true;
+        } else {
+            throw new DistintoBandoException();
+        }
     }
 }

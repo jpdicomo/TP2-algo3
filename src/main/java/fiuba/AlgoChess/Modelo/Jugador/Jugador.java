@@ -33,9 +33,9 @@ public abstract class Jugador {
     }
 
     //funciona como controlador de estado de jugador.
-    public boolean sigueJugando(){
-        return(this.cantidadEntidades >0);
+    public boolean sigueJugando() {
 
+        return(this.cantidadEntidades > 0);
     }
 
     public int[] elegirCasillero(){

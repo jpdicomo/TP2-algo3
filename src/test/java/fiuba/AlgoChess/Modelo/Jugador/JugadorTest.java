@@ -1,11 +1,13 @@
 package fiuba.AlgoChess.Modelo.Jugador;
 
+import fiuba.AlgoChess.Modelo.Unidad.Aliada;
 import fiuba.AlgoChess.Modelo.Unidad.Jinete;
 import org.junit.Assert;
 import org.junit.Test;
 
 import fiuba.AlgoChess.Modelo.Tablero.Casillero;
 
+import static org.mockito.Matchers.anyList;
 import static org.mockito.Mockito.mock;
 
 public class JugadorTest {
@@ -15,7 +17,7 @@ public class JugadorTest {
 
 
         Jugador jugador = new Aliado("Jose");
-        Casillero casillero = new Casillero(1,1);
+        Casillero casillero = new Casillero(1,1, new Aliada());
         Jinete jinete = new Jinete(casillero);
 
 
