@@ -31,7 +31,7 @@ public abstract class Entidad {
         this.vida += curacion;
     }
 
-    protected int getCosto(){
+    public int getCosto(){
         return this.costo;
     }
 

@@ -1,6 +1,8 @@
 package fiuba.AlgoChess.Modelo.Jugador;
 
 import fiuba.AlgoChess.Modelo.Unidad.Entidad;
+import jdk.internal.misc.FileSystemOption;
+
 import java.util.Scanner;
 
 public class Jugador {
@@ -39,6 +41,14 @@ public class Jugador {
 
     public int[] elegirCasillero(){
 
-        return
+        int[] array = new int[2];
+
+        System.out.println("Ingresa fila: ");
+        array[0] = consola.nextInt();
+
+        System.out.println("Ingresa columna: ");
+        array[1] = consola.nextInt();
+
+        return array;
     }
 }
