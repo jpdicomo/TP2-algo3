@@ -16,7 +16,7 @@ public class CuranderoTest {
         assertEquals(75,curandero.getVida());
     }
     @Test
-    public void test01CurarASoldadoNoDañadoSumaSusPuntosDeVidaMaximos(){
+    public void test01CurarASoldadoNoDaniadoSumaSusPuntosDeVidaMaximos(){
         Curandero curandero = new Curandero(mock(Casillero.class));
         Soldado soldado = new Soldado(mock(Casillero.class));
 
@@ -24,7 +24,7 @@ public class CuranderoTest {
         assertEquals(100 + 15,soldado.getVida());
     }
     @Test
-    public void test02CurarASoldadoDañadoSumaSusPuntosDeVida(){
+    public void test02CurarASoldadoDaniadoSumaSusPuntosDeVida(){
         Curandero curandero = new Curandero(mock(Casillero.class));
         Soldado soldado = new Soldado(mock(Casillero.class));
         soldado.recibirDanio(15);

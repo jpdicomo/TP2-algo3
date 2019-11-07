@@ -1,15 +1,39 @@
 package fiuba.AlgoChess.Modelo.Tablero;
 
+import fiuba.AlgoChess.Modelo.Jugador.Aliado;
+import fiuba.AlgoChess.Modelo.Unidad.Jinete;
+import fiuba.AlgoChess.Modelo.Jugador.Jugador;
+import fiuba.AlgoChess.Modelo.Tablero.Casillero;
+
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.mockito.Mockito.mock;
+
 public class CasilleroTest {
 
-    // Test de ejemplo con JUnit 4, borrar luego.
-    @Test
-    public void unTest() {
 
-        Assert.assertEquals(2, 2);
+    @Test
+    public void Test01SeColocaEntidadEnCasilleroLibre() {
+
+        Casillero casillero = new Casillero(1,1);
+        Jinete jinete = mock(Jinete.class);
+
+
+
+        Assert.assertEquals(true, casillero.agregarEntidad(jinete));
+    }
+
+    @Test
+    public void Test02NoSeColocaEntidadEnCasilleroOcupado() {
+
+        Casillero casillero = new Casillero(1,1);
+        Jinete jinete = mock(Jinete.class);
+        casillero.agregarEntidad(jinete);
+
+        Jinete otroJinete = mock(Jinete.class);
+
+        Assert.assertEquals(false, casillero.agregarEntidad(otroJinete));
     }
 
 }

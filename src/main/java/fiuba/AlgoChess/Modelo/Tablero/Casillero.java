@@ -12,7 +12,6 @@ public class Casillero {
 	
 	private int[] posicion;
 	private Estado estado;
-	private Jugador bando;
 	
 	
 	// Metodos.
@@ -21,12 +20,11 @@ public class Casillero {
 	 * PRE:  ...
 	 * POST: ...
 	 */
-	public Casillero(int x, int y, Jugador jugador) {
+	public Casillero(int x, int y) {
 		
 		this.posicion = new int [2];
 		this.posicion[0] = x;
 		this.posicion[1] = y;
-		this.bando = jugador;
 		this.estado = new Libre();
 	}
 	

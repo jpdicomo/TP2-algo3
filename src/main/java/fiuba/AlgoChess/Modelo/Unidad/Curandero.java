@@ -5,13 +5,8 @@ import fiuba.AlgoChess.Modelo.Tablero.Casillero;
 
 public class Curandero extends Entidad {
 
-	// Atributos
-	static private int costo = 2;
 	private int curacion;
-    
-    
-    // Metodos
-    
+
     /*PRE:  El casillero esta libre.
      * POST: Crea un nuevo curandero, ubicado en un casillero.*/
     public Curandero(Casillero casillero){
@@ -19,6 +14,7 @@ public class Curandero extends Entidad {
         super(casillero);
         this.vida = 75;
         this.curacion = 15;
+        this.costo = 2;
     }
     /*PRE:  La unidadAliada no es una catapulta.
      * POST: Aumenta la vida de la unidadAliada tanto como le permita su poder de curación.*/
@@ -26,12 +22,5 @@ public class Curandero extends Entidad {
     	
     	unidadAliada.serCurado(this.curacion);
     }
-	
-	/* METODO ESTATICO (De clase)
-	 * 
-	 * POST: Devuelve el costo de crear una nueva entidad de tipo Curandero.*/
-	static public int getCosto() {
-		
-		return costo;
-	}
+
 }

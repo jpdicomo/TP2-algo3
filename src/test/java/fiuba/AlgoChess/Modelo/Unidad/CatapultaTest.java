@@ -17,7 +17,7 @@ public class CatapultaTest {
     }
 
     @Test
-    public void test01CatapultaAtacaAUnSoldadoYLehaceDaño(){
+    public void test01CatapultaAtacaAUnSoldadoYLehaceDanio(){
         Catapulta catapulta = new Catapulta(mock(Casillero.class));
         Soldado soldado = new Soldado(mock(Casillero.class));
 

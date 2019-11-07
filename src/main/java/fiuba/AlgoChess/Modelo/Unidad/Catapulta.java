@@ -5,6 +5,7 @@ import fiuba.AlgoChess.Modelo.Errores.CatapultaNoPuedeSerCuradaException;
 
 public class Catapulta extends Entidad implements Atacante {
     private TipoAtaque tipoAtaque = new AtaqueALargaDistancia(20);
+
     public Catapulta(Casillero casillero) {
         super(casillero);
         this.vida = 50;

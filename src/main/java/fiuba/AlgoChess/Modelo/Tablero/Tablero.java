@@ -29,12 +29,12 @@ public class Tablero {
 
 			for (int j = 1; j <= 10; j++) {
 
-				this.casilleros[j][i] = new Casillero(j, i, jugador1);
+				this.casilleros[j][i] = new Casillero(j, i);
 			}
 
 			for (int k = 10; k <= 20; k++) {
 
-				this.casilleros[k][i] = new Casillero(k, i, jugador2);
+				this.casilleros[k][i] = new Casillero(k, i);
 			}
 		}
 	}

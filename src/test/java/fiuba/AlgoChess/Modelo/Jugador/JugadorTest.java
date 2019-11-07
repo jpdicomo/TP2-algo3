@@ -6,18 +6,20 @@ import org.junit.Test;
 
 import fiuba.AlgoChess.Modelo.Tablero.Casillero;
 
+import static org.mockito.Mockito.mock;
+
 public class JugadorTest {
 
     @Test
     public void Test01JugadorPuedeColocarUnaEntidadSiTienePuntos(){
 
 
-        Jugador jugador = new Jugador("Jose");
-        Casillero casillero = new Casillero(1,1, jugador);
+        Jugador jugador = new Aliado("Jose");
+        Casillero casillero = new Casillero(1,1);
         Jinete jinete = new Jinete(casillero);
 
 
-        Assert.assertEquals(true, jugador.colocarEntidad(jinete));
+        Assert.assertEquals(true, jugador.agregarEntidad(jinete));
     }
 
 
@@ -26,24 +28,24 @@ public class JugadorTest {
 
         //se altera el valor del costo de la entidad para ver verificación más rápido
 
-        Jugador jugador = new Jugador("Jose");
-        Casillero casillero = new Casillero(1,1, jugador);
-        Casillero otroCasillero = new Casillero(1,2, jugador);
+        Jugador jugador = new Aliado("Jose");
 
-        Jinete jinete = new Jinete(casillero);
-        Jinete otroJinete = new Jinete(otroCasillero);
+        jugador.setPuntos(5);
 
-        jugador.colocarEntidad(jinete);
-        jugador.colocarEntidad(otroJinete);
+        Jinete jinete = new Jinete(mock(Casillero.class));
+        Jinete otroJinete = new Jinete(mock(Casillero.class));
 
-        Assert.assertEquals(false, jugador.colocarEntidad(jinete));
+        jugador.agregarEntidad(jinete);
+        jugador.agregarEntidad(otroJinete);
+
+        Assert.assertEquals(false, jugador.agregarEntidad(jinete));
     }
     @Test
     public void Test03JugadorPierdeSiSeQuedaSinEntidades(){
 
         //se altera el valor del costo de la entidad para ver verificación más rápido
 
-        Jugador jugador = new Jugador("Fede");
+        Jugador jugador = new Aliado("Fede");
 
         Assert.assertEquals(false, jugador.sigueJugando());
 
@@ -53,10 +55,9 @@ public class JugadorTest {
 
         //se altera el valor del costo de la entidad para ver verificación más rápido
 
-        Jugador jugador = new Jugador("Fede");
-        Casillero casillero = new Casillero(1,1, jugador);
-        Jinete jinete = new Jinete(casillero);
-        jugador.colocarEntidad(jinete);
+        Jugador jugador = new Aliado("Fede");
+        Jinete jinete = mock(Jinete.class);
+        jugador.agregarEntidad(jinete);
 
         Assert.assertEquals(true, jugador.sigueJugando());
 

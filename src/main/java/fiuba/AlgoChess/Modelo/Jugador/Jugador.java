@@ -1,11 +1,10 @@
 package fiuba.AlgoChess.Modelo.Jugador;
 
 import fiuba.AlgoChess.Modelo.Unidad.Entidad;
-import jdk.internal.misc.FileSystemOption;
 
 import java.util.Scanner;
 
-public class Jugador {
+public abstract class Jugador {
 
     private String nombre;
     private int puntos;
@@ -19,7 +18,7 @@ public class Jugador {
     }
 
 
-    public boolean colocarEntidad(Entidad unaEntidad){
+    public boolean agregarEntidad(Entidad unaEntidad){
 
         if(this.puntos >= unaEntidad.getCosto()){ //precioentidad
 
@@ -50,5 +49,9 @@ public class Jugador {
         array[1] = consola.nextInt();
 
         return array;
+    }
+
+    public void setPuntos(int puntos) {
+        this.puntos = puntos;
     }
 }
