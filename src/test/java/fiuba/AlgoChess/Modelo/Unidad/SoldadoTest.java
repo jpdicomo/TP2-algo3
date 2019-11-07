@@ -5,6 +5,7 @@ import fiuba.AlgoChess.Modelo.Tablero.Casillero;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.*;
 
 public class SoldadoTest {
@@ -15,26 +16,46 @@ public class SoldadoTest {
         assertEquals(100,soldado.getVida());
     }
     @Test
-    public void test01SoldadoAtacaAOtroSoldadoYRestaCorrectamenteLaVida(){
+    public void test01SoldadoAliadoAtacaASoldadoEnemigoYLeRestaCorrectamenteLaVida(){
         Soldado soldado1 = new Soldado(mock(Casillero.class));
+        soldado1.setBandoAliado();
         Soldado soldado2 = new Soldado(mock(Casillero.class));
+        soldado2.setBandoEnemigo();
 
         soldado1.atacarA(soldado2);
         assertEquals(100-10,soldado2.getVida());
     }
     @Test
-    public void test02SoldadoAtacaAUnJineteYRestaCorrectamenteLaVida(){
-        Soldado soldado = new Soldado(mock(Casillero.class));
-        Jinete jinete = new Jinete(mock(Casillero.class));
+    public void test02SoldadoAliadoAtacaASoldadoAliadoTiraError(){
+        Soldado soldado1 = new Soldado(mock(Casillero.class));
+        soldado1.setBandoAliado();
+        Soldado soldado2 = new Soldado(mock(Casillero.class));
+        soldado2.setBandoAliado();
+        assertFalse(soldado1.atacarA(soldado2));
 
-        soldado.atacarA(jinete);
-        assertEquals(100-10,jinete.getVida());
     }
-/*    @Test
-    public void test03UnSoldadoNoPuedeAtacarseASiMismo(){
+    @Test
+    public void test03SoldadoEnemigoAtacaASoldadoAliadoYLeRestaCorrectamenteLaVida(){
+        Soldado soldado1 = new Soldado(mock(Casillero.class));
+        soldado1.setBandoEnemigo();
+        Soldado soldado2 = new Soldado(mock(Casillero.class));
+        soldado2.setBandoAliado();
+        soldado1.atacarA(soldado2);
+        assertEquals(100-10,soldado2.getVida());
+    }
+    @Test
+    public void test04SoldadoEnemigoAtacaASoldadoEnemigoTiraError(){
+        Soldado soldado1 = new Soldado(mock(Casillero.class));
+        soldado1.setBandoEnemigo();
+        Soldado soldado2 = new Soldado(mock(Casillero.class));
+        soldado2.setBandoEnemigo();
+        assertFalse(soldado1.atacarA(soldado2));
+    }
+    @Test
+    public void test05UnSoldadoAliadoNoPuedeAtacarseASiMismo(){
         Soldado soldado = new Soldado(mock(Casillero.class));
-
-        soldado.atacarA(soldado);
-        assertEquals(100,soldado.getVida());
-    }*/
+        soldado.setBandoAliado();
+        assertFalse(soldado.atacarA(soldado));
+    }
 }
+
