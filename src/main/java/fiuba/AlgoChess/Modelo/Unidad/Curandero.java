@@ -1,6 +1,7 @@
 package fiuba.AlgoChess.Modelo.Unidad;
 
 
+import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
 import fiuba.AlgoChess.Modelo.Errores.MismoBandoExeption;
 import fiuba.AlgoChess.Modelo.Tablero.Casillero;
 
@@ -22,7 +23,7 @@ public class Curandero extends Entidad {
     public boolean curarA(Entidad entidad) {
         try{
             this.bando.curarA(entidad,this.curacion);
-        }catch(MismoBandoExeption e){
+        }catch(DistintoBandoException e){
             return false;
         }
         return true;
