@@ -1,5 +1,6 @@
 package fiuba.AlgoChess.Modelo.Unidad;
 
+import fiuba.AlgoChess.Modelo.Errores.MismoBandoExeption;
 import fiuba.AlgoChess.Modelo.Tablero.Casillero;
 import fiuba.AlgoChess.Modelo.Errores.CatapultaNoPuedeSerCuradaException;
 
@@ -13,8 +14,13 @@ public class Catapulta extends Entidad implements Atacante {
     }
 
     @Override
-    public void atacarA(Entidad entidad) {
-        this.tipoAtaque.atacarA(entidad);
+    public boolean atacarA(Entidad entidad) {
+        try{
+            this.bando.atacarA(entidad,tipoAtaque);
+        }catch(MismoBandoExeption e){
+            return false;
+    }
+        return true;
     }
     
 	@Override

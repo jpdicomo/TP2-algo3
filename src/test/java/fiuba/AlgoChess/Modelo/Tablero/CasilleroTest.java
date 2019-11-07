@@ -1,9 +1,6 @@
 package fiuba.AlgoChess.Modelo.Tablero;
 
-import fiuba.AlgoChess.Modelo.Jugador.Aliado;
 import fiuba.AlgoChess.Modelo.Unidad.Jinete;
-import fiuba.AlgoChess.Modelo.Jugador.Jugador;
-import fiuba.AlgoChess.Modelo.Tablero.Casillero;
 
 import org.junit.Assert;
 import org.junit.Test;

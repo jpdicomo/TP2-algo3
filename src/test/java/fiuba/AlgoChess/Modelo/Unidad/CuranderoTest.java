@@ -5,6 +5,7 @@ import fiuba.AlgoChess.Modelo.Tablero.Casillero;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.*;
 
 public class CuranderoTest {
@@ -16,19 +17,56 @@ public class CuranderoTest {
         assertEquals(75,curandero.getVida());
     }
     @Test
-    public void test01CurarASoldadoNoDaniadoSumaSusPuntosDeVidaMaximos(){
-        Curandero curandero = new Curandero(mock(Casillero.class));
-        Soldado soldado = new Soldado(mock(Casillero.class));
+    public void test01CuranderoAliadoCuraACuranderoAliadoNoDaniadoSumaSusPuntosDeVidaMaximos(){
+        Curandero curandero1 = new Curandero(mock(Casillero.class));
+        curandero1.setBandoAliado();
+        Curandero curandero2 = new Curandero(mock(Casillero.class));
+        curandero2.setBandoAliado();
 
-        curandero.curarA(soldado);
-        assertEquals(100 + 15,soldado.getVida());
+        curandero1.curarA(curandero2);
+
+        assertEquals(75 + 15,curandero2.getVida());
     }
     @Test
-    public void test02CurarASoldadoDaniadoSumaSusPuntosDeVida(){
-        Curandero curandero = new Curandero(mock(Casillero.class));
-        Soldado soldado = new Soldado(mock(Casillero.class));
-        soldado.recibirDanio(15);
-        curandero.curarA(soldado);
-        assertEquals(100,soldado.getVida());
+    public void test02CuranderoAliadoCuraACuranderoAliadoDaniadoSumaSusPuntosDeVida(){
+        Curandero curandero1 = new Curandero(mock(Casillero.class));
+        curandero1.setBandoAliado();
+        Curandero curandero2 = new Curandero(mock(Casillero.class));
+        curandero2.setBandoAliado();
+
+        curandero2.recibirDanio(15);
+        curandero1.curarA(curandero2);
+
+        assertEquals(75,curandero2.getVida());
     }
+    @Test
+    public void test03CuranderoAliadoCuraACuranderoEnemigoTiraError(){
+        Curandero curandero1 = new Curandero(mock(Casillero.class));
+        curandero1.setBandoAliado();
+        Curandero curandero2 = new Curandero(mock(Casillero.class));
+        curandero2.setBandoEnemigo();
+
+        assertFalse(curandero1.curarA(curandero2));
+    }
+    @Test
+    public void test04CuranderoEnemigoCuraACuranderoAliadoTiraError(){
+        Curandero curandero1 = new Curandero(mock(Casillero.class));
+        curandero1.setBandoEnemigo();
+        Curandero curandero2 = new Curandero(mock(Casillero.class));
+        curandero2.setBandoAliado();
+
+        assertFalse(curandero1.curarA(curandero2));
+    }
+    @Test
+    public void test05CuranderoEnemigoCuraACuranderoEnemigoSumaSusPuntosDeVida(){
+        Curandero curandero1 = new Curandero(mock(Casillero.class));
+        curandero1.setBandoEnemigo();
+        Curandero curandero2 = new Curandero(mock(Casillero.class));
+        curandero2.setBandoEnemigo();
+
+        curandero1.curarA(curandero2);
+
+        assertEquals(90,curandero2.getVida());
+    }
+
 }
