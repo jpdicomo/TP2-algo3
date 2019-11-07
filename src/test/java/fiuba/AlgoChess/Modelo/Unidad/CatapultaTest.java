@@ -5,6 +5,7 @@ import fiuba.AlgoChess.Modelo.Tablero.Casillero;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.*;
 
 public class CatapultaTest {
@@ -17,13 +18,52 @@ public class CatapultaTest {
     }
 
     @Test
-    public void test01CatapultaAtacaAUnSoldadoYLehaceDanio(){
-        Catapulta catapulta = new Catapulta(mock(Casillero.class));
-        Soldado soldado = new Soldado(mock(Casillero.class));
+    public void test01CatapultaAliadaAtacaACatapultaEnemigaYLeRestaCorrectamenteLaVida(){
+        Catapulta catapulta1 = new Catapulta(mock(Casillero.class));
+        catapulta1.setBandoAliado();
+        Catapulta catapulta2 = new Catapulta(mock(Casillero.class));
+        catapulta2.setBandoEnemigo();
 
-        catapulta.atacarA(soldado);
-        assertEquals(100-20,soldado.getVida());
+        catapulta1.atacarA(catapulta2);
+        assertEquals(50-20,catapulta2.getVida());
     }
+    @Test
+    public void test02CatapultaAliadaAtacaACatapultaAliadaTiraError(){
+        Catapulta catapulta1 = new Catapulta(mock(Casillero.class));
+        catapulta1.setBandoAliado();
+        Catapulta catapulta2 = new Catapulta(mock(Casillero.class));
+        catapulta2.setBandoAliado();
+        assertFalse(catapulta1.atacarA(catapulta2));
 
+    }
+    @Test
+    public void test03CatapultaEnemigaAtacaACatapultaAliadaYLeRestaCorrectamenteLaVida(){
+        Catapulta catapulta1 = new Catapulta(mock(Casillero.class));
+        catapulta1.setBandoEnemigo();
+        Catapulta catapulta2 = new Catapulta(mock(Casillero.class));
+        catapulta2.setBandoAliado();
+        catapulta1.atacarA(catapulta2);
+        assertEquals(50-20,catapulta2.getVida());
+    }
+    @Test
+    public void test04CatapultaEnemigaAtacaACatapultaEnemigaTiraError(){
+        Catapulta catapulta1 = new Catapulta(mock(Casillero.class));
+        catapulta1.setBandoEnemigo();
+        Catapulta catapulta2 = new Catapulta(mock(Casillero.class));
+        catapulta2.setBandoEnemigo();
+        assertFalse(catapulta1.atacarA(catapulta2));
+    }
+    @Test
+    public void test05UnaCatapultaAliadaNoPuedeAtacarseASiMismo(){
+        Catapulta catapulta = new Catapulta(mock(Casillero.class));
+        catapulta.setBandoAliado();
+        assertFalse(catapulta.atacarA(catapulta));
+    }
+    @Test
+    public void test06UnaCatapultaEnemigaNoPuedeAtacarseASiMismo(){
+        Catapulta catapulta = new Catapulta(mock(Casillero.class));
+        catapulta.setBandoEnemigo();
+        assertFalse(catapulta.atacarA(catapulta));
+    }
 }
 

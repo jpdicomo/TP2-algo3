@@ -57,5 +57,11 @@ public class SoldadoTest {
         soldado.setBandoAliado();
         assertFalse(soldado.atacarA(soldado));
     }
+    @Test
+    public void test06UnSoldadoEnemigoNoPuedeAtacarseASiMismo(){
+        Soldado soldado = new Soldado(mock(Casillero.class));
+        soldado.setBandoEnemigo();
+        assertFalse(soldado.atacarA(soldado));
+    }
 }
 
