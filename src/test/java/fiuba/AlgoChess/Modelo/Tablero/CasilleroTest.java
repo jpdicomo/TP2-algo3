@@ -34,11 +34,11 @@ public class CasilleroTest {
     }
 
     @Test
-    public void Test03NoSeColocaEntidadEnCasilleroEnemigo() {
+    public void Test03NoSeColocaEntidadAliadaEnCasilleroEnemigo() {
 
         Casillero casillero = new Casillero(1,1, new Enemiga());
-        Jinete jinete = mock(Jinete.class);
-        jinete.setBandoEnemigo();
+        Jinete jinete = new Jinete(casillero);
+        jinete.setBandoAliado();
         Assert.assertEquals(false, casillero.agregarEntidad(jinete));
     }
 

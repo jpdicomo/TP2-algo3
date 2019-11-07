@@ -72,7 +72,11 @@ public class Casillero {
 
 			return null;
 		}
-
 		return entidad;
+	}
+
+
+	public int[] getPosicion() {
+		return posicion;
 	}
 }

@@ -72,7 +72,7 @@ public abstract class Entidad {
      */
     public boolean serColocadaEnCasilleroDeBando(Bando bando){
 
-        if(this.bando. == bando){
+        if(this.bando == bando){
             return true;
         } else {
             throw new DistintoBandoException();

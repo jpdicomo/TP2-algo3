@@ -1,11 +1,13 @@
 package fiuba.AlgoChess.Modelo.Unidad;
 
 
+import fiuba.AlgoChess.Modelo.Errores.CasilleroOcupadoException;
 import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
 import fiuba.AlgoChess.Modelo.Errores.MismoBandoExeption;
 import fiuba.AlgoChess.Modelo.Tablero.Casillero;
+import fiuba.AlgoChess.Modelo.Tablero.Tablero;
 
-public class Curandero extends Entidad {
+public class Curandero extends Entidad implements Movible{
 
 	private int curacion;
 
@@ -28,5 +30,65 @@ public class Curandero extends Entidad {
         }
         return true;
     }
+    @Override
+    public boolean moverseALaDerecha(Tablero tablero){
+        Casillero casilleroNuevo = tablero.getDerecha(this.casillero);
+        try{moverseA(casilleroNuevo);
+        }catch(CasilleroOcupadoException e) {
+            return false;
+        }catch(DistintoBandoException e){
+            return false;
+        }
+        return true;
+    }
+    @Override
+    public boolean moverseALaIzquierda(Tablero tablero){
+        Casillero casilleroNuevo = tablero.getDerecha(this.casillero);
+        try{moverseA(casilleroNuevo);
+        }catch(CasilleroOcupadoException e) {
+            return false;
+        }catch(DistintoBandoException e){
+            return false;
+        }
+        return true;
+    }
+    @Override
+    public boolean moverseArriba(Tablero tablero){
+        Casillero casilleroNuevo = tablero.getArriba(this.casillero);
+        try{moverseA(casilleroNuevo);
+        }catch(CasilleroOcupadoException e) {
+            return false;
+        }catch(DistintoBandoException e){
+            return false;
+        }
+        return true;
+    }
+    @Override
+    public boolean moverseAbajo(Tablero tablero){
+        Casillero casilleroNuevo = tablero.getAbajo(this.casillero);
+        try{moverseA(casilleroNuevo);
+        }catch(CasilleroOcupadoException e) {
+            return false;
+        }catch(DistintoBandoException e){
+            return false;
+        }
+        return true;
+    }
+
+
+
+
+    @Override
+    public boolean moverseA(Casillero casilleroNuevo) {
+        try{
+            casilleroNuevo.agregarEntidad(this);
+        }catch(CasilleroOcupadoException e){
+            return false;
+        }
+        this.casillero.quitarEntidad();
+        this.casillero = casilleroNuevo;
+        return true;
+    }
+
 
 }
