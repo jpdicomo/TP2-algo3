@@ -9,6 +9,7 @@ public class Soldado extends Entidad implements Atacante{
     public Soldado(Casillero casillero) {
         super(casillero);
         this.vida = 100;
+        this.costo = 1;
     }
 
     @Override

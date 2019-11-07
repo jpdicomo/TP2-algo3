@@ -12,7 +12,7 @@ public class Jinete extends Entidad implements Atacante{
         super(casillero);
         this.tipoAtaque = new AtaqueMelee(5);
         this.vida = 100;
-
+        this.costo = 3;
     }
 
     @Override

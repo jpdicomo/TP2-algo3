@@ -2,6 +2,9 @@ package fiuba.AlgoChess.Modelo.Tablero;
 
 // Acá irian los imports.
 
+import fiuba.AlgoChess.Modelo.Jugador.Jugador;
+import fiuba.AlgoChess.Modelo.Unidad.Entidad;
+
 public class Tablero {
 
 	// Atribútos

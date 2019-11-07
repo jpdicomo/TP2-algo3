@@ -2,7 +2,8 @@ package fiuba.AlgoChess.Modelo.Tablero;
 
 
 import fiuba.AlgoChess.Modelo.Errores.CasilleroOcupadoException;
-import fiuba.AlgoChess.Modelo.Errores.CasilleroLibreException
+import fiuba.AlgoChess.Modelo.Errores.CasilleroLibreException;
+import fiuba.AlgoChess.Modelo.Jugador.Jugador;
 import fiuba.AlgoChess.Modelo.Unidad.Entidad;
 
 public class Casillero {
