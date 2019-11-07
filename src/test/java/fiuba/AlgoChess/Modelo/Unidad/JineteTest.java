@@ -5,6 +5,7 @@ import fiuba.AlgoChess.Modelo.Tablero.Casillero;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.*;
 
 public class JineteTest {
@@ -16,29 +17,40 @@ public class JineteTest {
     }
 
     @Test
-    public void test02JineteAtacaAOtroJineteAMeleeYLeRestaCorrectamenteLaVida(){
+    public void test02JineteAliadoAtacaAJineteEnemigoYLeRestaCorrectamenteLaVida(){
         Jinete jinete1 = new Jinete(mock(Casillero.class));
+        jinete1.setBandoAliado();
         Jinete jinete2 = new Jinete(mock(Casillero.class));
+        jinete2.setBandoEnemigo();
 
         jinete1.atacarA(jinete2);
         assertEquals(100-5,jinete2.getVida());
     }
     @Test
-    public void test03JineteAtacaAOtroJineteADistanciaYLeRestaCorrectamenteLaVida(){
+    public void test03JineteAliadoAtacaAJineteAliadoTiraError(){
         Jinete jinete1 = new Jinete(mock(Casillero.class));
+        jinete1.setBandoAliado();
         Jinete jinete2 = new Jinete(mock(Casillero.class));
-        jinete1.setAtaqueADistancia();
-        jinete1.atacarA(jinete2);
-        assertEquals(100-15,jinete2.getVida());
+        jinete2.setBandoAliado();
+        assertFalse(jinete1.atacarA(jinete2));
 
     }
     @Test
-    public void test04SoldadoAtacaAUnJineteYRestaCorrectamenteLaVida(){
-        Jinete jinete = new Jinete(mock(Casillero.class));
-        Soldado soldado = new Soldado(mock(Casillero.class));
-
-        jinete.atacarA(soldado);
-        assertEquals(100-5,soldado.getVida());
+    public void test04JineteEnemigoAtacaAJineteAliadoYLeRestaCorrectamenteLaVida(){
+        Jinete jinete1 = new Jinete(mock(Casillero.class));
+        jinete1.setBandoEnemigo();
+        Jinete jinete2 = new Jinete(mock(Casillero.class));
+        jinete2.setBandoAliado();
+        jinete1.atacarA(jinete2);
+        assertEquals(100-5,jinete2.getVida());
+    }
+    @Test
+    public void test05JineteEnemigoAtacaAJineteEnemigoTiraError(){
+        Jinete jinete1 = new Jinete(mock(Casillero.class));
+        jinete1.setBandoEnemigo();
+        Jinete jinete2 = new Jinete(mock(Casillero.class));
+        jinete2.setBandoEnemigo();
+        assertFalse(jinete1.atacarA(jinete2));
     }
 }
 
