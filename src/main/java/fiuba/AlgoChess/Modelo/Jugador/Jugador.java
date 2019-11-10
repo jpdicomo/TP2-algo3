@@ -4,7 +4,7 @@ import fiuba.AlgoChess.Modelo.Unidad.Entidad;
 
 import java.util.Scanner;
 
-public abstract class Jugador {
+public class Jugador {
 
     private String nombre;
     private int puntos;
