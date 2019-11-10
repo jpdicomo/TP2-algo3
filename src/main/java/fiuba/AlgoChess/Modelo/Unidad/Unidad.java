@@ -6,26 +6,47 @@ import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 
 public abstract class Unidad {
 
+    // Atributos.
+
     protected Casillero casillero;
     protected int vida;
     protected int costo;
     protected Bando bando;
 
+
+    // Metodos.
+
+    /*
+     * POST: Crea una nueva unidad asignada a un determinado Jugador.
+     */
     public Unidad(Casillero casillero) {
 
-        this.setCasillero(casillero);
+        // Asignar la unidad a un jugador.
+        this.setCasillero(casillero); // <--- Borrar esto.
     }
 
+
+    /*
+     * ¡ELIMINAR ESTE METODO!
+     */
     public void setCasillero(Casillero casillero){
 
         this.casillero = casillero;
     }
 
+
+    /*
+     *
+     */
     public void recibirDanio(int danio){
 
         this.vida -= danio;
     }
 
+
+    /*
+     *
+     */
     public int getVida(){
         return this.vida;
     }

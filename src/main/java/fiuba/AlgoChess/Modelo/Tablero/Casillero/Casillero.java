@@ -1,9 +1,7 @@
 package fiuba.AlgoChess.Modelo.Tablero.Casillero;
 
 
-import fiuba.AlgoChess.Modelo.Errores.CasilleroOcupadoException;
-import fiuba.AlgoChess.Modelo.Errores.CasilleroLibreException;
-import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
+import fiuba.AlgoChess.Modelo.Errores.*;
 import fiuba.AlgoChess.Modelo.Unidad.Bando;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 

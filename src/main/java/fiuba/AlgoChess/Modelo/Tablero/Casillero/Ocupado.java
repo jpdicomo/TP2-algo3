@@ -9,7 +9,8 @@ public class Ocupado extends Estado {
 	// Atributos.
 	
 	private Unidad unidad;
-	
+
+
 	// Metodos.
 
 	/*
@@ -20,9 +21,10 @@ public class Ocupado extends Estado {
     	this.unidad = unidad;
 	}
 
-    /*
-	 * PRE:  ...
-	 * POST: ...
+
+	/*
+	 * PRE:  El Casillero se encuentra en Estado Libre.
+	 * POST: Se agrega una Unidad al Casillero y se crea un Estado Ocupado.
 	 */
 	@Override
     public void agregarEntidad(Unidad unidad, Casillero casillero){
@@ -30,9 +32,10 @@ public class Ocupado extends Estado {
         throw new CasilleroOcupadoException();
     }
 
+
 	/*
-	 * PRE:  ...
-	 * POST: ...
+	 * PRE:  El Casillero se encuentra en Estado Ocupado.
+	 * POST: Se quita la Unidad del Casillero y se crea un Estado Libre.
 	 */
 	@Override
 	public Unidad quitarEntidad() {
@@ -40,4 +43,3 @@ public class Ocupado extends Estado {
 		return this.unidad;
 	}
 }
-
