@@ -6,7 +6,7 @@ public class AtaqueADistancia extends TipoAtaque {
     }
 
     @Override
-    public void atacarA(Entidad entidad) {
-        entidad.recibirDanio(this.danio);
+    public void atacarA(Unidad unidad) {
+        unidad.recibirDanio(this.danio);
     }
 }

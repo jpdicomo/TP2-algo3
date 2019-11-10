@@ -1,7 +1,7 @@
 package fiuba.AlgoChess.Modelo.Unidad;
 
 
-import fiuba.AlgoChess.Modelo.Tablero.Casillero;
+import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

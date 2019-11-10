@@ -3,9 +3,10 @@ package fiuba.AlgoChess.Modelo.Tablero;
 // Aca irian los imports.
 
 import fiuba.AlgoChess.Modelo.Jugador.Jugador;
+import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 import fiuba.AlgoChess.Modelo.Unidad.Aliada;
 import fiuba.AlgoChess.Modelo.Unidad.Enemiga;
-import fiuba.AlgoChess.Modelo.Unidad.Entidad;
+import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 
 public class Tablero {
 
@@ -49,7 +50,7 @@ public class Tablero {
 	 * NOTA: falta implementar en Casillero que reconozca cuando quieren colocar
 	 * 		 una pieza en el, que el jugador es del mismo bando o no.
 	 */
-	public void colocarEntidad(Entidad entidad, Jugador jugador){
+	public void colocarEntidad(Unidad unidad, Jugador jugador){
 		
 		boolean entidadNoColocada = true;
 
@@ -60,7 +61,7 @@ public class Tablero {
 			int y = ubicacion[1];
 			Casillero casillero = this.casilleros[x][y];
 			
-			entidadNoColocada = casillero.agregarEntidad(entidad);
+			entidadNoColocada = casillero.agregarEntidad(unidad);
 			
 		} while(entidadNoColocada);
 	}

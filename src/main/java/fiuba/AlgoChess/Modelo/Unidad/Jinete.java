@@ -4,10 +4,10 @@ package fiuba.AlgoChess.Modelo.Unidad;
 import fiuba.AlgoChess.Modelo.Errores.CasilleroOcupadoException;
 import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
 import fiuba.AlgoChess.Modelo.Errores.MismoBandoExeption;
-import fiuba.AlgoChess.Modelo.Tablero.Casillero;
+import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 import fiuba.AlgoChess.Modelo.Tablero.Tablero;
 
-public class Jinete extends Entidad implements Atacante, Movible{
+public class Jinete extends Unidad implements Atacante, Movible{
 
     private TipoAtaque tipoAtaque;
     private int danioMelee = 5;
@@ -20,9 +20,9 @@ public class Jinete extends Entidad implements Atacante, Movible{
     }
 
     @Override
-    public boolean atacarA(Entidad entidad) {
+    public boolean atacarA(Unidad unidad) {
         try{
-            this.bando.atacarA(entidad,tipoAtaque);
+            this.bando.atacarA(unidad,tipoAtaque);
         }catch(MismoBandoExeption e){
             return false;
         }

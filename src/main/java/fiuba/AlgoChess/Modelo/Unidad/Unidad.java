@@ -1,17 +1,17 @@
 package fiuba.AlgoChess.Modelo.Unidad;
 
 import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
-import fiuba.AlgoChess.Modelo.Tablero.Casillero;
+import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 
 
-public abstract class Entidad {
+public abstract class Unidad {
 
     protected Casillero casillero;
     protected int vida;
     protected int costo;
     protected Bando bando;
 
-    public Entidad(Casillero casillero) {
+    public Unidad(Casillero casillero) {
 
         this.setCasillero(casillero);
     }

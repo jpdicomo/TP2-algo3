@@ -5,32 +5,32 @@ import fiuba.AlgoChess.Modelo.Errores.MismoBandoExeption;
 
 public class Enemiga extends Bando {
     @Override
-    public void atacarA(Entidad entidad, TipoAtaque tipoAtaque) {
-        entidad.serAtacadaPorEnemigo(tipoAtaque);
+    public void atacarA(Unidad unidad, TipoAtaque tipoAtaque) {
+        unidad.serAtacadaPorEnemigo(tipoAtaque);
     }
 
     @Override
-    public void curarA(Entidad entidad, int curacion) {
-        entidad.serCuradoPorEnemigo(curacion);
+    public void curarA(Unidad unidad, int curacion) {
+        unidad.serCuradoPorEnemigo(curacion);
     }
 
     @Override
-    public void serCuradoPorAliado(Entidad entidad, int curacion) {
+    public void serCuradoPorAliado(Unidad unidad, int curacion) {
         throw new DistintoBandoException();
     }
 
     @Override
-    public void serCuradoPorEnemigo(Entidad entidad, int curacion) {
-        entidad.serCurado(curacion);
+    public void serCuradoPorEnemigo(Unidad unidad, int curacion) {
+        unidad.serCurado(curacion);
     }
 
     @Override
-    public void serAtacadaPorAliado(Entidad entidad, TipoAtaque tipoAtaque) {
-        tipoAtaque.atacarA(entidad);
+    public void serAtacadaPorAliado(Unidad unidad, TipoAtaque tipoAtaque) {
+        tipoAtaque.atacarA(unidad);
     }
 
     @Override
-    public void serAtacadaPorEnemigo(Entidad entidad, TipoAtaque tipoAtaque) {
+    public void serAtacadaPorEnemigo(Unidad unidad, TipoAtaque tipoAtaque) {
         throw new MismoBandoExeption();
     }
 }

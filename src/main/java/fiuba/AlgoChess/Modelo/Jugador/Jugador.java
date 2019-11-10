@@ -1,6 +1,6 @@
 package fiuba.AlgoChess.Modelo.Jugador;
 
-import fiuba.AlgoChess.Modelo.Unidad.Entidad;
+import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 import java.util.Scanner;
 
 public class Jugador {
@@ -33,11 +33,11 @@ public class Jugador {
      *
      * NOTA: Revisar este metodo a ver si puedo mejorarlo.
      */
-    public boolean agregarEntidad(Entidad unaEntidad){
+    public boolean agregarEntidad(Unidad unaUnidad){
 
-        if(this.puntos >= unaEntidad.getCosto()){ //precioentidad
+        if(this.puntos >= unaUnidad.getCosto()){ //precioentidad
 
-            this.puntos-= unaEntidad.getCosto();
+            this.puntos-= unaUnidad.getCosto();
             this.cantidadEntidades ++;
             return true;
 

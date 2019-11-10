@@ -5,9 +5,8 @@ import fiuba.AlgoChess.Modelo.Unidad.Jinete;
 import org.junit.Assert;
 import org.junit.Test;
 
-import fiuba.AlgoChess.Modelo.Tablero.Casillero;
+import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 
-import static org.mockito.Matchers.anyList;
 import static org.mockito.Mockito.mock;
 
 public class JugadorTest {

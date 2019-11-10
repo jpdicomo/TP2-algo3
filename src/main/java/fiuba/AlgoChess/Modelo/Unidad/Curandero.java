@@ -3,11 +3,10 @@ package fiuba.AlgoChess.Modelo.Unidad;
 
 import fiuba.AlgoChess.Modelo.Errores.CasilleroOcupadoException;
 import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
-import fiuba.AlgoChess.Modelo.Errores.MismoBandoExeption;
-import fiuba.AlgoChess.Modelo.Tablero.Casillero;
+import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 import fiuba.AlgoChess.Modelo.Tablero.Tablero;
 
-public class Curandero extends Entidad implements Movible{
+public class Curandero extends Unidad implements Movible{
 
 	private int curacion;
 
@@ -22,9 +21,9 @@ public class Curandero extends Entidad implements Movible{
     }
     /*PRE:  La unidadAliada no es una catapulta.
      * POST: Aumenta la vida de la unidadAliada tanto como le permita su poder de curación.*/
-    public boolean curarA(Entidad entidad) {
+    public boolean curarA(Unidad unidad) {
         try{
-            this.bando.curarA(entidad,this.curacion);
+            this.bando.curarA(unidad,this.curacion);
         }catch(DistintoBandoException e){
             return false;
         }

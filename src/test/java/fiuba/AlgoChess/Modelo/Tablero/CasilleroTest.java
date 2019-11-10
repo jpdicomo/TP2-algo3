@@ -1,5 +1,6 @@
 package fiuba.AlgoChess.Modelo.Tablero;
 
+import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 import fiuba.AlgoChess.Modelo.Unidad.Aliada;
 import fiuba.AlgoChess.Modelo.Unidad.Enemiga;
 import fiuba.AlgoChess.Modelo.Unidad.Jinete;

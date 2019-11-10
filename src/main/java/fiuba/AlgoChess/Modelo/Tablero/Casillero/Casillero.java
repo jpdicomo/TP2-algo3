@@ -1,12 +1,11 @@
-package fiuba.AlgoChess.Modelo.Tablero;
+package fiuba.AlgoChess.Modelo.Tablero.Casillero;
 
 
 import fiuba.AlgoChess.Modelo.Errores.CasilleroOcupadoException;
 import fiuba.AlgoChess.Modelo.Errores.CasilleroLibreException;
 import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
-import fiuba.AlgoChess.Modelo.Jugador.Jugador;
 import fiuba.AlgoChess.Modelo.Unidad.Bando;
-import fiuba.AlgoChess.Modelo.Unidad.Entidad;
+import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 
 public class Casillero {
 
@@ -36,12 +35,12 @@ public class Casillero {
 	 * PRE:  El casillero se encuentra vacio.
 	 * POST: Agrega una unidad al casillero.
 	 */
-	public boolean agregarEntidad(Entidad entidad) {
+	public boolean agregarEntidad(Unidad unidad) {
 
 		try {
 
-			estado.agregarEntidad(entidad, this);
-			entidad.serColocadaEnCasilleroDeBando(this.bando);
+			estado.agregarEntidad(unidad, this);
+			unidad.serColocadaEnCasilleroDeBando(this.bando);
 
 		} catch (CasilleroOcupadoException error) {
 
@@ -51,7 +50,7 @@ public class Casillero {
 			return false;
 		}
 
-		estado = new Ocupado(entidad);
+		estado = new Ocupado(unidad);
 		return true;
 	}
 
@@ -60,19 +59,19 @@ public class Casillero {
 	 * PRE:  El casillero se encuentra ocupado.
 	 * POST: Quita una unidad al casillero.
 	 */
-	public Entidad quitarEntidad() {
-		Entidad entidad;
+	public Unidad quitarEntidad() {
+		Unidad unidad;
 		
 		try {
 
-			entidad = estado.quitarEntidad();
+			unidad = estado.quitarEntidad();
 			estado = new Libre();
 
 		} catch (CasilleroLibreException error) {
 
 			return null;
 		}
-		return entidad;
+		return unidad;
 	}
 
 
