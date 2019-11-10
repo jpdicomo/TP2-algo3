@@ -3,6 +3,7 @@ package fiuba.AlgoChess.Modelo.Jugador;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 import java.util.Scanner;
 
+
 public class Jugador {
 
     // Atributos.
@@ -10,6 +11,7 @@ public class Jugador {
     private String nombre;
     private int puntos;
     private int cantidadEntidades;
+    private final Bando bando;
     Scanner consola = new Scanner(System.in);
 
 
@@ -23,7 +25,8 @@ public class Jugador {
 
         this.nombre = nombre;
         this.puntos = 20;
-        this.cantidadEntidades = 0;
+        this.cantidadEntidades = 0; // Abria que eliminar esto luego o buscar una solución mejor.
+        this.bando = new Bando(this);
     }
 
 
@@ -33,22 +36,26 @@ public class Jugador {
      *
      * NOTA: Revisar este metodo a ver si puedo mejorarlo.
      */
-    public boolean agregarEntidad(Unidad unaUnidad){
+    public boolean agregarUnidad(Unidad unaUnidad){
 
-        if(this.puntos >= unaUnidad.getCosto()){ //precioentidad
+        this.elegirUnidad();
+        this.elegirCasillero();
+
+        if (this.puntos >= unaUnidad.getCosto()) { //precioentidad
 
             this.puntos-= unaUnidad.getCosto();
-            this.cantidadEntidades ++;
+            this.cantidadEntidades++;
             return true;
 
-        }else{
+        } else {
+
             return false;
         }
     }
 
 
     /*
-     * POST: Indica si el Jugador aun tiene fichas para continuar jugando.
+     * POST: Indica si el Jugador aún tiene fichas para continuar jugando.
      */
     public boolean sigueJugando() {
 
@@ -62,20 +69,21 @@ public class Jugador {
      */
     public int[] elegirCasillero(){
 
-        int[] array = new int[2];
+        int[] posicion = new int[2];
 
-        System.out.println("Ingresa fila: ");
-        array[0] = consola.nextInt();
+        System.out.print("Ingresa fila: ");
+        posicion[0] = consola.nextInt();
 
-        System.out.println("Ingresa columna: ");
-        array[1] = consola.nextInt();
+        System.out.print("\nIngresa columna: ");
+        posicion[1] = consola.nextInt();
 
-        return array;
+        return posicion;
     }
 
 
-    /*
-     * POST: Devuelve los puntos del jugador.
+    /* NOTA: Quitar este metodo.
+     *
+     * POST: ...
      */
     public void setPuntos(int puntos) {
 

@@ -15,12 +15,12 @@ public class JugadorTest {
     public void Test01JugadorPuedeColocarUnaEntidadSiTienePuntos(){
 
 
-        Jugador jugador = new Jugador("Jose");
+        Jugador jugador = new Jugador("Jose", bando);
         Casillero casillero = new Casillero(1,1, new Aliada());
         Jinete jinete = new Jinete(casillero);
 
 
-        Assert.assertEquals(true, jugador.agregarEntidad(jinete));
+        Assert.assertEquals(true, jugador.agregarUnidad(jinete));
     }
 
 
@@ -29,24 +29,24 @@ public class JugadorTest {
 
         //se altera el valor del costo de la entidad para ver verificación más rápido
 
-        Jugador jugador = new Jugador("Jose");
+        Jugador jugador = new Jugador("Jose", bando);
 
         jugador.setPuntos(5);
 
         Jinete jinete = new Jinete(mock(Casillero.class));
         Jinete otroJinete = new Jinete(mock(Casillero.class));
 
-        jugador.agregarEntidad(jinete);
-        jugador.agregarEntidad(otroJinete);
+        jugador.agregarUnidad(jinete);
+        jugador.agregarUnidad(otroJinete);
 
-        Assert.assertEquals(false, jugador.agregarEntidad(jinete));
+        Assert.assertEquals(false, jugador.agregarUnidad(jinete));
     }
     @Test
     public void Test03JugadorPierdeSiSeQuedaSinEntidades(){
 
         //se altera el valor del costo de la entidad para ver verificación más rápido
 
-        Jugador jugador = new Jugador("Fede");
+        Jugador jugador = new Jugador("Fede", bando);
 
         Assert.assertEquals(false, jugador.sigueJugando());
 
@@ -56,9 +56,9 @@ public class JugadorTest {
 
         //se altera el valor del costo de la entidad para ver verificación más rápido
 
-        Jugador jugador = new Jugador("Fede");
+        Jugador jugador = new Jugador("Fede", bando);
         Jinete jinete = mock(Jinete.class);
-        jugador.agregarEntidad(jinete);
+        jugador.agregarUnidad(jinete);
 
         Assert.assertEquals(true, jugador.sigueJugando());
 

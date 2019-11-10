@@ -1,9 +1,9 @@
 package fiuba.AlgoChess.Modelo.Tablero.Casillero;
 
-
 import fiuba.AlgoChess.Modelo.Errores.*;
-import fiuba.AlgoChess.Modelo.Unidad.Bando;
+import fiuba.AlgoChess.Modelo.Jugador.Bando;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
+
 
 public class Casillero {
 
@@ -12,12 +12,12 @@ public class Casillero {
 	private int[] posicion;
 	private Estado estado;
 	private Bando bando;
-	
+
+
 	// Metodos.
 	
 	/*
-	 * PRE:  ...
-	 * POST: ...
+	 * POST: Crea un nuevo Casillero vacio que pertenece a un Bando.
 	 */
 	public Casillero(int x, int y, Bando bando) {
 		
@@ -73,7 +73,11 @@ public class Casillero {
 	}
 
 
+	/*
+	 *
+	 */
 	public int[] getPosicion() {
+
 		return posicion;
 	}
 }

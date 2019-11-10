@@ -1,12 +1,11 @@
 package fiuba.AlgoChess.Modelo.Tablero;
 
-// Aca irian los imports.
-
 import fiuba.AlgoChess.Modelo.Jugador.Jugador;
 import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 import fiuba.AlgoChess.Modelo.Unidad.Aliada;
 import fiuba.AlgoChess.Modelo.Unidad.Enemiga;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
+
 
 public class Tablero {
 
@@ -66,12 +65,22 @@ public class Tablero {
 		} while(entidadNoColocada);
 	}
 
+	// -- REVISAR LOS METODOS DE ACA PARA ABAJO --
+
+	/*
+	 *
+	 */
 	public Casillero getDerecha(Casillero casillero){
 		int[] posicion = casillero.getPosicion();
 		Casillero casilleroNuevo = casilleros[posicion[0]+1][posicion[1]];
 		return casilleroNuevo;
 
 	}
+
+
+	/*
+	 *
+	 */
 	public Casillero getIzquierda(Casillero casillero){
 		int[] posicion = casillero.getPosicion();
 		Casillero casilleroNuevo = casilleros[posicion[0]-1][posicion[1]];
@@ -79,12 +88,22 @@ public class Tablero {
 
 
 	}
+
+
+	/*
+	 *
+	 */
 	public Casillero getArriba(Casillero casillero){
 		int[] posicion = casillero.getPosicion();
 		Casillero casilleroNuevo = casilleros[posicion[0]][posicion[1]+1];
 		return casilleroNuevo;
 
 	}
+
+
+	/*
+	 *
+	 */
 	public Casillero getAbajo(Casillero casillero){
 		int[] posicion = casillero.getPosicion();
 		Casillero casilleroNuevo = casilleros[posicion[0]][posicion[1]-1];
