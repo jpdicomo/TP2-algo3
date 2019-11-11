@@ -9,21 +9,22 @@ public class Casillero {
 
 	// Atributos.
 	
-	private int[] posicion;
+	private int[] ubicacion;
 	private Estado estado;
 	private Bando bando;
 
 
 	// Metodos.
 	
-	/*
-	 * POST: Crea un nuevo Casillero vacio que pertenece a un Bando.
+	/* Este metodo esta bien.
+	 * 
+	 * POST: Crea un nuevo Casillero Libre con un determinado Bando.
 	 */
 	public Casillero(int x, int y, Bando bando) {
 		
-		this.posicion = new int [2];
-		this.posicion[0] = x;
-		this.posicion[1] = y;
+		this.ubicacion = new int [2];
+		this.ubicacion[0] = x;
+		this.ubicacion[1] = y;
 		this.estado = new Libre();
 		this.bando = bando;
 	}
@@ -78,6 +79,6 @@ public class Casillero {
 	 */
 	public int[] getPosicion() {
 
-		return posicion;
+		return ubicacion;
 	}
 }

@@ -30,6 +30,26 @@ public class Jugador {
         this.cantidadEntidades = 0;
         this.bando = new Bando(this);
     }
+    
+    
+    /* Este metodo esta bien.
+     * 
+     * POST: Devuelve el nombre del Jugador.
+     */
+    public String getNombre() {
+    	
+    	return this.nombre;
+    }
+    
+    
+    /* Este metodo esta bien.
+     * 
+     * POST: Devuelve la cantidad de puntos del Jugador.
+     */
+    public int getPuntos() {
+    	
+    	return this.puntos;
+    }
 
 
     /* Este metodo esta bien.
@@ -50,18 +70,29 @@ public class Jugador {
             throw new PuntosInsuficientesException();
         }
     }
-
-
+    
+    
     /*
+     * POST: Devuelve el bando al que pertenece el Jugador.
+     */
+    public Bando getBando() {
+
+		return this.bando;
+	} 
+    
+    
+    /* Este metodo CAPAZ HAY QUE BORRARLO.
+     * 
      * POST: Indica si el Jugador aún tiene fichas para continuar jugando.
      */
     public boolean sigueJugando() {
 
-        return(this.cantidadEntidades > 0);
+        return (this.cantidadEntidades > 0);
     }
 
 
-    /*
+    /* Este metodo CAPAZ HAY QUE BORRARLO.
+     * 
      * PRE:  -...
      * POST: -...
      */
@@ -76,18 +107,5 @@ public class Jugador {
         posicion[1] = consola.nextInt();
 
         return posicion;
-    }
-
-
-    /* NOTA: Quitar este metodo.
-     *
-     * POST: ...
-     */
-    public void setPuntos(int puntos) {
-
-        this.puntos = puntos;
-    }
-
-    public Unidad elegirUnidad() {
     }
 }

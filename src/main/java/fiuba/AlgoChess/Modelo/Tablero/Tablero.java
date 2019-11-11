@@ -16,12 +16,10 @@ public class Tablero {
 	
 	// Metodos
 
-	/*  
-	 * POST: Crea un tablero listo para la partida
+	/* Este metodo esta bien.
 	 * 
-	 * NOTA: Falta implementar en Casillero alguna manera de que reconozca a que
-	 * 		 jugador "pertenece". Lo que hice ahora a modo de arreglo rapido es 
-	 * 		 colocar un atributo "bando" en cada casillero que referencia al jugador.
+	 * POST: Crea un tablero listo para la partida con todos sus casilleros
+	 * 		 desocupados.
 	 */
 	public Tablero(Jugador jugador1, Jugador jugador2) {
 
@@ -31,39 +29,29 @@ public class Tablero {
 
 			for (int j = 0; j < 10; j++) {
 
-				this.casilleros[j][i] = new Casillero(j, i, new Aliada());
+				this.casilleros[j][i] = new Casillero(j, i, jugador1.getBando());
 			}
 
 			for (int k = 10; k < 20; k++) {
 
-				this.casilleros[k][i] = new Casillero(k, i, new Enemiga());
+				this.casilleros[k][i] = new Casillero(k, i, jugador2.getBando());
 			}
 		}
 	}
 
 	
-	/*
-	 * PRE:  El jugador ya ha elegido que unidad colocar.
-	 * POST: Se coloca una unidad en el tablero.
+	/* Este metodo esta bien.
 	 * 
-	 * NOTA: falta implementar en Casillero que reconozca cuando quieren colocar
-	 * 		 una pieza en el, que el jugador es del mismo bando o no.
+	 * PRE:  La ubicación elegida esta vacia.
+	 * POST: Se coloca una unidad en el tablero.
 	 */
-	public void colocarNuevaUnidad(Jugador jugador){
+	public void colocarUnidad(Unidad unidad, int[] ubicacion){
 		
-		boolean entidadNoColocada = true;
-
-		do {
-
-			Unidad unidad = jugador.elegirUnidad();
-			int[] ubicacion = jugador.elegirCasillero();
-			int x = ubicacion[0];
-			int y = ubicacion[1];
-			Casillero casillero = this.casilleros[x][y];
-			
-			entidadNoColocada = casillero.agregarEntidad(unidad);
-			
-		} while(entidadNoColocada);
+		int x = ubicacion[0];
+		int y = ubicacion[1];
+		Casillero casillero = this.casilleros[x][y];
+		
+		casillero.agregarEntidad(unidad);
 	}
 
 	// -- REVISAR LOS METODOS DE ACA PARA ABAJO --
