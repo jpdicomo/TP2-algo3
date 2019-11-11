@@ -49,12 +49,13 @@ public class Tablero {
 	 * NOTA: falta implementar en Casillero que reconozca cuando quieren colocar
 	 * 		 una pieza en el, que el jugador es del mismo bando o no.
 	 */
-	public void colocarEntidad(Unidad unidad, Jugador jugador){
+	public void colocarNuevaUnidad(Jugador jugador){
 		
 		boolean entidadNoColocada = true;
 
 		do {
 
+			Unidad unidad = jugador.elegirUnidad();
 			int[] ubicacion = jugador.elegirCasillero();
 			int x = ubicacion[0];
 			int y = ubicacion[1];

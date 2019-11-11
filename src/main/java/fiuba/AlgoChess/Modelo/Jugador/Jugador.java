@@ -1,5 +1,6 @@
 package fiuba.AlgoChess.Modelo.Jugador;
 
+import fiuba.AlgoChess.Modelo.Errores.PuntosInsuficientesException;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 import java.util.Scanner;
 
@@ -17,39 +18,36 @@ public class Jugador {
 
     // Metodos.
 
-    /*
+    /* Este metodo esta bien.
+     * 
      * POST: Crea un nuevo Jugador al cual se le ha asignado un nombre y
-     * una cierta cantidad de puntos para jugar.
+     * 		 una cierta cantidad de puntos para jugar.
      */
     public Jugador(String nombre){
 
         this.nombre = nombre;
         this.puntos = 20;
-        this.cantidadEntidades = 0; // Abria que eliminar esto luego o buscar una solución mejor.
+        this.cantidadEntidades = 0;
         this.bando = new Bando(this);
     }
 
 
-    /*
-     * PRE:  El Jugador cuenta con puntos suficientes para colocar una nueva Entidad en el Tablero.
-     * POST: Se agrega una nueva Entidad al Tablero y al Jugador.
+    /* Este metodo esta bien.
+     * 
+     * PRE:  El Jugador cuenta con puntos suficientes para colocar una nueva Unidad en el Tablero.
+     * POST: Se agrega una nueva Unidad al Jugador.
      *
-     * NOTA: Revisar este metodo a ver si puedo mejorarlo.
      */
-    public boolean agregarUnidad(Unidad unaUnidad){
+    public void agregarUnidad(Unidad unaUnidad){
 
-        this.elegirUnidad();
-        this.elegirCasillero();
-
-        if (this.puntos >= unaUnidad.getCosto()) { //precioentidad
-
+        if (this.puntos >= unaUnidad.getCosto()) {
+        	
             this.puntos-= unaUnidad.getCosto();
             this.cantidadEntidades++;
-            return true;
 
         } else {
 
-            return false;
+            throw new PuntosInsuficientesException();
         }
     }
 
@@ -88,5 +86,8 @@ public class Jugador {
     public void setPuntos(int puntos) {
 
         this.puntos = puntos;
+    }
+
+    public Unidad elegirUnidad() {
     }
 }
