@@ -19,7 +19,7 @@ public abstract class Jugador {
 
 
     public boolean agregarEntidad(Entidad unaEntidad){
-
+        //Hacer que la entidad se reste a ella misma de loos puntos
         if(this.puntos >= unaEntidad.getCosto()){ //precioentidad
 
             this.puntos-= unaEntidad.getCosto();
@@ -50,6 +50,9 @@ public abstract class Jugador {
 
         return array;
     }
+
+
+
 
     public void setPuntos(int puntos) {
         this.puntos = puntos;
