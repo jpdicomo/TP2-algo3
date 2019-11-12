@@ -1,4 +1,4 @@
-package fiuba.AlgoChess.Modelo.Unidad;
+package fiuba.AlgoChess.Modelo.Movimiento;
 
 import fiuba.AlgoChess.Modelo.Tablero.Casillero;
 import fiuba.AlgoChess.Modelo.Tablero.Tablero;
