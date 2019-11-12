@@ -26,7 +26,7 @@ public class Movimiento {
     }
 
     public boolean moverseALaIzquierda(Tablero tablero, Entidad entidad){
-        Casillero casilleroNuevo = tablero.getDerecha(this.casillero);
+        Casillero casilleroNuevo = tablero.getIzquierda(this.casillero);
         try{moverseA(casilleroNuevo, entidad);
         }catch(CasilleroOcupadoException e) {
             return false;
