@@ -1,6 +1,6 @@
 package fiuba.AlgoChess.Modelo.Tablero;
 
-import fiuba.AlgoChess.Modelo.Errores.distanciaInvalidaException;
+import fiuba.AlgoChess.Modelo.Errores.DistanciaInvalidaException;
 import fiuba.AlgoChess.Modelo.Jugador.Jugador;
 import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
@@ -77,7 +77,7 @@ public class Tablero {
 		
 		if(posicionActual.medirDistanciaA(nuevaPosicion) > 1.0) {
 			
-			throw new distanciaInvalidaException();
+			throw new DistanciaInvalidaException();
 		}
 		
 		Casillero casilleroActual = this.obtenerCasillero(posicionActual);
