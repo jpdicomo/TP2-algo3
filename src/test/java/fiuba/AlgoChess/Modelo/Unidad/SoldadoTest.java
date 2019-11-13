@@ -49,7 +49,7 @@ public class SoldadoTest {
 	
 
 	@Test (expected = MismaUnidadException.class)
-	public void test05UnSoldadoAliadoNoPuedeAtacarseASiMismo() {
+	public void test03UnSoldadoNoPuedeAtacarseASiMismo() {
 
 		Jugador jose = new Jugador("Jose");
 		

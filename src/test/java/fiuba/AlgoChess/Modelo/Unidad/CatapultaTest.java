@@ -1,69 +1,61 @@
 package fiuba.AlgoChess.Modelo.Unidad;
 
-
-import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
+import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.mockito.Mockito.*;
+import fiuba.AlgoChess.Modelo.Errores.MismaUnidadException;
+import fiuba.AlgoChess.Modelo.Errores.MismoBandoException;
+import fiuba.AlgoChess.Modelo.Jugador.Jugador;
+
 
 public class CatapultaTest {
 
+	
     @Test
-    public void test00CatapultaRecienCreadaTieneTodaLaVida(){
-        Catapulta catapulta = new Catapulta(mock(Casillero.class));
+    public void test00CatapultaRecienCreadaTiene50DeVida(){
+    	
+    	Jugador jose = new Jugador("Jose");
+        Catapulta catapulta = new Catapulta(jose.getBando());
 
-        assertEquals(50,catapulta.getVida());
+        Assert.assertEquals(50,catapulta.getVida());
     }
 
+    
     @Test
-    public void test01CatapultaAliadaAtacaACatapultaEnemigaYLeRestaCorrectamenteLaVida(){
-        Catapulta catapulta1 = new Catapulta(mock(Casillero.class));
-        catapulta1.setBandoAliado();
-        Catapulta catapulta2 = new Catapulta(mock(Casillero.class));
-        catapulta2.setBandoEnemigo();
+    public void test01CatapultaAtacaACatapultaEnemigaYLeRestaCorrectamenteLaVida(){
+    	
+    	Jugador jose = new Jugador("Jose");
+		Catapulta catapulta1 = new Catapulta(jose.getBando());
 
-        catapulta1.atacarA(catapulta2);
-        assertEquals(50-20,catapulta2.getVida());
+		Jugador juan = new Jugador("Juan");
+		Catapulta catapulta2 = new Catapulta(juan.getBando());
+    	
+    	catapulta1.realizarAccionSobre(catapulta2);
+		
+        Assert.assertEquals(30,catapulta2.getVida());
     }
-    @Test
-    public void test02CatapultaAliadaAtacaACatapultaAliadaTiraError(){
-        Catapulta catapulta1 = new Catapulta(mock(Casillero.class));
-        catapulta1.setBandoAliado();
-        Catapulta catapulta2 = new Catapulta(mock(Casillero.class));
-        catapulta2.setBandoAliado();
-        assertFalse(catapulta1.atacarA(catapulta2));
+    
+    
+    @Test (expected = MismoBandoException.class)
+    public void test02CatapultaAtacaACatapultaAliadaTiraError(){
+		
+    	Jugador jose = new Jugador("Jose");
+		
+		Catapulta catapulta1 = new Catapulta(jose.getBando());
+		Catapulta catapulta2 = new Catapulta(jose.getBando());
 
+		catapulta1.realizarAccionSobre(catapulta2);
     }
-    @Test
-    public void test03CatapultaEnemigaAtacaACatapultaAliadaYLeRestaCorrectamenteLaVida(){
-        Catapulta catapulta1 = new Catapulta(mock(Casillero.class));
-        catapulta1.setBandoEnemigo();
-        Catapulta catapulta2 = new Catapulta(mock(Casillero.class));
-        catapulta2.setBandoAliado();
-        catapulta1.atacarA(catapulta2);
-        assertEquals(50-20,catapulta2.getVida());
-    }
-    @Test
-    public void test04CatapultaEnemigaAtacaACatapultaEnemigaTiraError(){
-        Catapulta catapulta1 = new Catapulta(mock(Casillero.class));
-        catapulta1.setBandoEnemigo();
-        Catapulta catapulta2 = new Catapulta(mock(Casillero.class));
-        catapulta2.setBandoEnemigo();
-        assertFalse(catapulta1.atacarA(catapulta2));
-    }
-    @Test
-    public void test05UnaCatapultaAliadaNoPuedeAtacarseASiMismo(){
-        Catapulta catapulta = new Catapulta(mock(Casillero.class));
-        catapulta.setBandoAliado();
-        assertFalse(catapulta.atacarA(catapulta));
-    }
-    @Test
-    public void test06UnaCatapultaEnemigaNoPuedeAtacarseASiMismo(){
-        Catapulta catapulta = new Catapulta(mock(Casillero.class));
-        catapulta.setBandoEnemigo();
-        assertFalse(catapulta.atacarA(catapulta));
-    }
+    
+    
+	@Test (expected = MismaUnidadException.class)
+	public void test03UnaCatapultaNoPuedeAtacarseASiMismo() {
+
+		Jugador jose = new Jugador("Jose");
+		
+		Catapulta catapulta1 = new Catapulta(jose.getBando());
+		
+		catapulta1.realizarAccionSobre(catapulta1);
+	}
 }
 
