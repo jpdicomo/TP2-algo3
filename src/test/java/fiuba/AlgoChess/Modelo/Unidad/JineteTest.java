@@ -54,6 +54,7 @@ public class JineteTest {
 		Jugador jose = new Jugador("Jose");
 		
 		Jinete jinete1 = new Jinete(jose.getBando());
+		
 		jinete1.realizarAccionSobre(jinete1);
 	}
 }
