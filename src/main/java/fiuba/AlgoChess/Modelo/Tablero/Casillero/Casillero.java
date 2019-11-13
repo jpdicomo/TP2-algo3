@@ -25,35 +25,32 @@ public class Casillero {
 		this.ubicacion = new int [2];
 		this.ubicacion[0] = x;
 		this.ubicacion[1] = y;
+		
 		this.estado = new Libre();
 		this.bando = bando;
 	}
 	
 	
 	/*
-	 * PRE:  El casillero se encuentra vacio.
-	 * POST: Agrega una unidad al casillero.
+	 * PRE:  El Casillero se encuentra Libre.
+	 * POST: Agrega una Unidad al Casillero y este pasa a estar Ocupado.
 	 */
-	public boolean agregarEntidad(Unidad unidad) {
+	public void agregarUnidad(Unidad unaUnidad) {
 
-		try {
-
-			estado.agregarEntidad(unidad, this);
-			unidad.serColocadaEnCasilleroDeBando(this.bando);
-
-		} catch (CasilleroOcupadoException error) {
-
-			return false;
-		} catch (DistintoBandoException e){
-
-			return false;
-		}
-
-		estado = new Ocupado(unidad);
-		return true;
+		this.estado.agregarUnidad(unaUnidad, this.bando);
+		this.estado = new Ocupado(unaUnidad);
 	}
 
 
+	/*
+	 * 
+	 */
+	public Unidad getUnidad() {
+		
+		return this.estado.getUnidad();
+	}
+	
+	
 	/*
 	 * PRE:  El casillero se encuentra ocupado.
 	 * POST: Quita una unidad al casillero.
@@ -63,7 +60,7 @@ public class Casillero {
 		
 		try {
 
-			unidad = estado.quitarEntidad();
+			unidad = estado.quitarUnidad();
 			estado = new Libre();
 
 		} catch (CasilleroLibreException error) {

@@ -1,9 +1,10 @@
 package fiuba.AlgoChess.Modelo.Tablero;
 
+import fiuba.AlgoChess.Modelo.Errores.CasilleroLibreException;
+import fiuba.AlgoChess.Modelo.Errores.CasilleroOcupadoException;
+import fiuba.AlgoChess.Modelo.Errores.distanciaInvalidaException;
 import fiuba.AlgoChess.Modelo.Jugador.Jugador;
 import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
-import fiuba.AlgoChess.Modelo.Unidad.Aliada;
-import fiuba.AlgoChess.Modelo.Unidad.Enemiga;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 
 
@@ -40,63 +41,101 @@ public class Tablero {
 	}
 
 	
+	/*
+	 * 
+	 */
+	private Casillero obtenerCasillero(Posicion posicion) {
+		
+		int x = posicion.getX();
+		int y = posicion.getY();
+		
+		return this.casilleros[x][y];
+	}
+	
+	
+	
 	/* Este metodo esta bien.
 	 * 
 	 * PRE:  La ubicación elegida esta vacia.
 	 * POST: Se coloca una unidad en el tablero.
 	 */
-	public void colocarUnidad(Unidad unidad, int[] ubicacion){
+	public void agregarUnidad(Unidad unaUnidad, Posicion posicion){
 		
-		int x = ubicacion[0];
-		int y = ubicacion[1];
-		Casillero casillero = this.casilleros[x][y];
+		Casillero casillero = this.obtenerCasillero(posicion);
+		casillero.agregarUnidad(unaUnidad);
+	}
+	
+	
+	
+	public Unidad seleccionarUnidad(Posicion posicion) {
 		
-		casillero.agregarEntidad(unidad);
+		Casillero casillero = this.obtenerCasillero(posicion);
+		
+		return casillero.getUnidad();
+	}
+	
+	
+	public void moverUnidad(Posicion posicionActual, Posicion nuevaPosicion) {
+		
+		if(posicionActual.medirDistanciaA(nuevaPosicion) > 1.0) {
+			
+			throw new distanciaInvalidaException();
+		}
+		
+		Casillero casilleroActual = this.obtenerCasillero(posicionActual);
+		Casillero casilleroDestino = this.obtenerCasillero(nuevaPosicion);
+		
+		Unidad unidadAMover = this.seleccionarUnidad(posicionActual);
+		
+		casilleroDestino.agregarUnidad(unidadAMover);
+		casilleroActual.quitarEntidad();
 	}
 
-	// -- REVISAR LOS METODOS DE ACA PARA ABAJO --
-
-	/*
-	 *
-	 */
-	public Casillero getDerecha(Casillero casillero){
-		int[] posicion = casillero.getPosicion();
-		Casillero casilleroNuevo = casilleros[posicion[0]+1][posicion[1]];
-		return casilleroNuevo;
-
-	}
-
-
-	/*
-	 *
-	 */
-	public Casillero getIzquierda(Casillero casillero){
-		int[] posicion = casillero.getPosicion();
-		Casillero casilleroNuevo = casilleros[posicion[0]-1][posicion[1]];
-		return casilleroNuevo;
-
-
-	}
-
-
-	/*
-	 *
-	 */
-	public Casillero getArriba(Casillero casillero){
-		int[] posicion = casillero.getPosicion();
-		Casillero casilleroNuevo = casilleros[posicion[0]][posicion[1]+1];
-		return casilleroNuevo;
-
-	}
-
-
-	/*
-	 *
-	 */
-	public Casillero getAbajo(Casillero casillero){
-		int[] posicion = casillero.getPosicion();
-		Casillero casilleroNuevo = casilleros[posicion[0]][posicion[1]-1];
-		return casilleroNuevo;
-
-	}
+	
+	
+//	// -- REVISAR LOS METODOS DE ACA PARA ABAJO --
+//
+//	/*
+//	 *
+//	 */
+//	public Casillero getDerecha(Casillero casillero){
+//		int[] posicion = casillero.getPosicion();
+//		Casillero casilleroNuevo = casilleros[posicion[0]+1][posicion[1]];
+//		return casilleroNuevo;
+//
+//	}
+//
+//
+//	/*
+//	 *
+//	 */
+//	public Casillero getIzquierda(Casillero casillero){
+//		int[] posicion = casillero.getPosicion();
+//		Casillero casilleroNuevo = casilleros[posicion[0]-1][posicion[1]];
+//		return casilleroNuevo;
+//
+//
+//	}
+//
+//
+//	/*
+//	 *
+//	 */
+//	public Casillero getArriba(Casillero casillero){
+//		int[] posicion = casillero.getPosicion();
+//		Casillero casilleroNuevo = casilleros[posicion[0]][posicion[1]+1];
+//		return casilleroNuevo;
+//
+//	}
+//
+//
+//	/*
+//	 *
+//	 */
+//	public Casillero getAbajo(Casillero casillero){
+//		int[] posicion = casillero.getPosicion();
+//		Casillero casilleroNuevo = casilleros[posicion[0]][posicion[1]-1];
+//		return casilleroNuevo;
+//
+//	}
 }

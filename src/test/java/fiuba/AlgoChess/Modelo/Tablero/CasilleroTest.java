@@ -1,8 +1,9 @@
 package fiuba.AlgoChess.Modelo.Tablero;
 
+import fiuba.AlgoChess.Modelo.Errores.CasilleroOcupadoException;
+import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
+import fiuba.AlgoChess.Modelo.Jugador.Jugador;
 import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
-import fiuba.AlgoChess.Modelo.Unidad.Aliada;
-import fiuba.AlgoChess.Modelo.Unidad.Enemiga;
 import fiuba.AlgoChess.Modelo.Unidad.Jinete;
 
 import org.junit.Assert;
@@ -12,35 +13,43 @@ import static org.mockito.Mockito.mock;
 
 public class CasilleroTest {
 
+	@Test
+	public void Test01SeColocaEntidadEnCasilleroLibre() {
 
-    @Test
-    public void Test01SeColocaEntidadEnCasilleroLibre() {
+		Jugador fede = new Jugador("Fede");
 
-        Casillero casillero = new Casillero(1,1, new Aliada());
-        Jinete jinete = mock(Jinete.class);
+		Casillero casillero = new Casillero(1, 1, fede.getBando());
+		
+		Jinete jinete = new Jinete(fede.getBando());
+		casillero.agregarUnidad(jinete);
+		
+		Assert.assertEquals(jinete, casillero.getUnidad());
+	}
 
-        Assert.assertEquals(true, casillero.agregarEntidad(jinete));
-    }
+	@Test(expected = CasilleroOcupadoException.class)
+	public void Test02NoSeColocaEntidadEnCasilleroOcupado() {
 
-    @Test
-    public void Test02NoSeColocaEntidadEnCasilleroOcupado() {
+		Jugador fede = new Jugador("Fede");
+		
+		Casillero casillero = new Casillero(1, 1, fede.getBando());
+		
+		Jinete jinete = new Jinete(fede.getBando());
+		casillero.agregarUnidad(jinete);
 
-        Casillero casillero = new Casillero(1,1, new Aliada());
-        Jinete jinete = mock(Jinete.class);
-        casillero.agregarEntidad(jinete);
+		Jinete otroJinete = new Jinete(fede.getBando());
+		casillero.agregarUnidad(otroJinete);
+	}
 
-        Jinete otroJinete = mock(Jinete.class);
+	@Test(expected = DistintoBandoException.class)
+	public void Test03NoSeColocaEntidadAliadaEnCasilleroEnemigo() {
 
-        Assert.assertEquals(false, casillero.agregarEntidad(otroJinete));
-    }
-
-    @Test
-    public void Test03NoSeColocaEntidadAliadaEnCasilleroEnemigo() {
-
-        Casillero casillero = new Casillero(1,1, new Enemiga());
-        Jinete jinete = new Jinete(casillero);
-        jinete.setBandoAliado();
-        Assert.assertEquals(false, casillero.agregarEntidad(jinete));
-    }
+		Jugador fede = new Jugador("Fede");
+		Jugador juampi = new Jugador("Juampi");
+		
+		Casillero casillero = new Casillero(1, 1, fede.getBando());
+		Jinete jinete = new Jinete(juampi.getBando());
+		
+		casillero.agregarUnidad(jinete);
+	}
 
 }

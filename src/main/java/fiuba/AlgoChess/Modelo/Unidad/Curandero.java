@@ -4,90 +4,131 @@ package fiuba.AlgoChess.Modelo.Unidad;
 import fiuba.AlgoChess.Modelo.Errores.CasilleroOcupadoException;
 import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
 import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
+import fiuba.AlgoChess.Modelo.Jugador.Bando;
 import fiuba.AlgoChess.Modelo.Tablero.Tablero;
 
-public class Curandero extends Unidad implements Movible{
+public class Curandero extends Unidad /*implements Movible*/{
 
+	// Atributos.
+	
 	private int curacion;
 
-    /*PRE:  El casillero esta libre.
-     * POST: Crea un nuevo curandero, ubicado en un casillero.*/
-    public Curandero(Casillero casillero){
+	
+	// Metodos.
+	
+    /* 
+     * PRE:  El casillero esta libre.
+     * POST: Crea un nuevo curandero, ubicado en un casillero.
+     */
+    public Curandero(Bando bando){
     	
-        super(casillero);
+        super(bando);
         this.vida = 75;
         this.curacion = 15;
         this.costo = 2;
     }
-    /*PRE:  La unidadAliada no es una catapulta.
-     * POST: Aumenta la vida de la unidadAliada tanto como le permita su poder de curación.*/
-    public boolean curarA(Unidad unidad) {
-        try{
-            this.bando.curarA(unidad,this.curacion);
-        }catch(DistintoBandoException e){
-            return false;
-        }
-        return true;
+    
+    
+    /* 
+     * PRE:  La unidad no es una catapulta.
+     * POST: Aumenta la vida de la unidad tanto como le permita su poder de curación.
+     */
+    public void curarA(Unidad unidad) {
+
+    	unidad.serCurado(this.curacion);
     }
+    
+//    
+//    /*
+//     * 
+//     */
+//    @Override
+//    public boolean moverseALaDerecha(Tablero tablero){
+//        Casillero casilleroNuevo = tablero.getDerecha(this.casillero);
+//        try{moverseA(casilleroNuevo);
+//        }catch(CasilleroOcupadoException e) {
+//            return false;
+//        }catch(DistintoBandoException e){
+//            return false;
+//        }
+//        return true;
+//    }
+//    
+//    
+//    /*
+//     * 
+//     */
+//    @Override
+//    public boolean moverseALaIzquierda(Tablero tablero){
+//        Casillero casilleroNuevo = tablero.getDerecha(this.casillero);
+//        try{moverseA(casilleroNuevo);
+//        }catch(CasilleroOcupadoException e) {
+//            return false;
+//        }catch(DistintoBandoException e){
+//            return false;
+//        }
+//        return true;
+//    }
+//    
+//    
+//    /*
+//     * 
+//     */
+//    @Override
+//    public boolean moverseArriba(Tablero tablero){
+//        Casillero casilleroNuevo = tablero.getArriba(this.casillero);
+//        try{moverseA(casilleroNuevo);
+//        }catch(CasilleroOcupadoException e) {
+//            return false;
+//        }catch(DistintoBandoException e){
+//            return false;
+//        }
+//        return true;
+//    }
+//    
+//    
+//    /*
+//     * 
+//     */
+//    @Override
+//    public boolean moverseAbajo(Tablero tablero){
+//        Casillero casilleroNuevo = tablero.getAbajo(this.casillero);
+//        try{moverseA(casilleroNuevo);
+//        }catch(CasilleroOcupadoException e) {
+//            return false;
+//        }catch(DistintoBandoException e){
+//            return false;
+//        }
+//        return true;
+//    }
+//
+//    
+//	/*
+//	 * 
+//	 */
+//    @Override
+//    public boolean moverseA(Casillero casilleroNuevo) {
+//    	
+//        try{
+//        	
+//            casilleroNuevo.agregarUnidad(this);
+//            
+//        }catch(CasilleroOcupadoException e){
+//        	
+//            return false;
+//        }
+//        
+//        this.casillero.quitarEntidad();
+//        this.casillero = casilleroNuevo;
+//        return true;
+//    }
+
+
     @Override
-    public boolean moverseALaDerecha(Tablero tablero){
-        Casillero casilleroNuevo = tablero.getDerecha(this.casillero);
-        try{moverseA(casilleroNuevo);
-        }catch(CasilleroOcupadoException e) {
-            return false;
-        }catch(DistintoBandoException e){
-            return false;
-        }
-        return true;
-    }
-    @Override
-    public boolean moverseALaIzquierda(Tablero tablero){
-        Casillero casilleroNuevo = tablero.getDerecha(this.casillero);
-        try{moverseA(casilleroNuevo);
-        }catch(CasilleroOcupadoException e) {
-            return false;
-        }catch(DistintoBandoException e){
-            return false;
-        }
-        return true;
-    }
-    @Override
-    public boolean moverseArriba(Tablero tablero){
-        Casillero casilleroNuevo = tablero.getArriba(this.casillero);
-        try{moverseA(casilleroNuevo);
-        }catch(CasilleroOcupadoException e) {
-            return false;
-        }catch(DistintoBandoException e){
-            return false;
-        }
-        return true;
-    }
-    @Override
-    public boolean moverseAbajo(Tablero tablero){
-        Casillero casilleroNuevo = tablero.getAbajo(this.casillero);
-        try{moverseA(casilleroNuevo);
-        }catch(CasilleroOcupadoException e) {
-            return false;
-        }catch(DistintoBandoException e){
-            return false;
-        }
-        return true;
-    }
+	public void realizarAccionSobre(Unidad otraUnidad) {
 
-
-
-
-    @Override
-    public boolean moverseA(Casillero casilleroNuevo) {
-        try{
-            casilleroNuevo.agregarEntidad(this);
-        }catch(CasilleroOcupadoException e){
-            return false;
-        }
-        this.casillero.quitarEntidad();
-        this.casillero = casilleroNuevo;
-        return true;
-    }
-
-
+    	super.realizarAccionSobre(otraUnidad);
+		this.bando.interactuarConUnAliado(otraUnidad.getBando());
+		this.curarA(otraUnidad);
+	}
 }

@@ -1,6 +1,7 @@
 package fiuba.AlgoChess.Modelo.Tablero.Casillero;
 
 import fiuba.AlgoChess.Modelo.Errores.CasilleroOcupadoException;
+import fiuba.AlgoChess.Modelo.Jugador.Bando;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 
 
@@ -14,11 +15,11 @@ public class Ocupado extends Estado {
 	// Metodos.
 
 	/*
-	 * POST: Crea un estado ocupado para un casillero que tiene una unidad en su interior.
+	 * POST: Crea un estado Ocupado para un casillero que tiene una Unidad en su interior.
 	 */
-    public Ocupado(Unidad unidad) {
+    public Ocupado(Unidad unaUnidad) {
 
-    	this.unidad = unidad;
+    	this.unidad = unaUnidad;
 	}
 
 
@@ -27,7 +28,7 @@ public class Ocupado extends Estado {
 	 * POST: Se agrega una Unidad al Casillero y se crea un Estado Ocupado.
 	 */
 	@Override
-    public void agregarEntidad(Unidad unidad, Casillero casillero){
+    public void agregarUnidad(Unidad unaUnidad, Bando bando){
 
         throw new CasilleroOcupadoException();
     }
@@ -38,8 +39,27 @@ public class Ocupado extends Estado {
 	 * POST: Se quita la Unidad del Casillero y se crea un Estado Libre.
 	 */
 	@Override
-	public Unidad quitarEntidad() {
+	public Unidad quitarUnidad() {
 		
 		return this.unidad;
+	}
+
+
+	@Override
+	public Unidad getUnidad() {
+
+		return this.unidad;
+	}
+
+
+	@Override
+	public void recibirAtaque(Bando bando, int danio) {
+		
+		if(bando == this.unidad.getBando()) {
+			
+			danio *= 1.05;
+		}
+		
+		this.unidad.recibirDanio(danio);
 	}
 }
