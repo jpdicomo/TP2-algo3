@@ -60,7 +60,7 @@ public class Tablero {
 	public void agregarUnidad(Unidad unaUnidad, Posicion posicion){
 		
 		Casillero casillero = this.obtenerCasillero(posicion);
-		casillero.agregarUnidad(unaUnidad);
+		casillero.agregarNuevaUnidad(unaUnidad);
 	}
 	
 	

@@ -20,7 +20,7 @@ public class CasilleroTest {
 		Casillero casillero = new Casillero(1, 1, fede.getBando());
 		
 		Jinete jinete = new Jinete(fede.getBando());
-		casillero.agregarUnidad(jinete);
+		casillero.agregarNuevaUnidad(jinete);
 		
 		Assert.assertEquals(jinete, casillero.getUnidad());
 	}
@@ -33,10 +33,10 @@ public class CasilleroTest {
 		Casillero casillero = new Casillero(1, 1, fede.getBando());
 		
 		Jinete jinete = new Jinete(fede.getBando());
-		casillero.agregarUnidad(jinete);
+		casillero.agregarNuevaUnidad(jinete);
 
 		Jinete otroJinete = new Jinete(fede.getBando());
-		casillero.agregarUnidad(otroJinete);
+		casillero.agregarNuevaUnidad(otroJinete);
 	}
 
 	@Test(expected = DistintoBandoException.class)
@@ -48,7 +48,7 @@ public class CasilleroTest {
 		Casillero casillero = new Casillero(1, 1, fede.getBando());
 		Jinete jinete = new Jinete(juampi.getBando());
 		
-		casillero.agregarUnidad(jinete);
+		casillero.agregarNuevaUnidad(jinete);
 	}
 
 }

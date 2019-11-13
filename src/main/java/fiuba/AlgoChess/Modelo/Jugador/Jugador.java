@@ -28,7 +28,7 @@ public class Jugador {
         this.nombre = nombre;
         this.puntos = 20;
         this.cantidadEntidades = 0;
-        this.bando = new Bando(this);
+        this.bando = new Bando();
     }
     
     

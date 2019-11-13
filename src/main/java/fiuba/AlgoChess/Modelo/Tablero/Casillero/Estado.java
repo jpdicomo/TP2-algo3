@@ -13,6 +13,15 @@ public abstract class Estado {
       * POST: Se agrega una Unidad al Casillero y se crea un Estado Ocupado.
       */
      public abstract void agregarUnidad(Unidad unaUnidad, Bando bando);
+     
+     
+     /* Sobrecarga del metodo anterior que no verifica el bando de una pieza
+      * antes de que esta sea colocada en un casillero.
+      * 
+      * PRE:  El Casillero se encuentra en Estado Libre.
+      * POST: Se agrega una Unidad al Casillero y se crea un Estado Ocupado.
+      */
+     public abstract void agregarUnidad(Unidad unaUnidad);
 
      
      /*

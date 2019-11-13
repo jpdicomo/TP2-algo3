@@ -5,19 +5,13 @@ import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
 
 public class Bando {
 
-    // Atributos.
-
-    private final Jugador jugador;
-
-
     // Metodos.
 
     /*
      *
      */
-    public Bando(Jugador jugador) {
-
-        this.jugador = jugador;
+    public Bando() {
+    	
     }
 
 

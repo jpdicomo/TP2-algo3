@@ -32,13 +32,23 @@ public class Casillero {
 	
 	
 	/*
+	 * PRE:  El Casillero se encuentra Libre. El casillero y la unidad son del mismo bando.
+	 * POST: Agrega una Unidad al Casillero y este pasa a estar Ocupado.
+	 */
+	public void agregarNuevaUnidad(Unidad unaUnidad) {
+
+		this.estado.agregarUnidad(unaUnidad, this.bando);
+		this.estado = new Ocupado(unaUnidad);
+	}
+	
+	
+	/*
 	 * PRE:  El Casillero se encuentra Libre.
 	 * POST: Agrega una Unidad al Casillero y este pasa a estar Ocupado.
 	 */
 	public void agregarUnidad(Unidad unaUnidad) {
-
-		this.estado.agregarUnidad(unaUnidad, this.bando);
-		this.estado = new Ocupado(unaUnidad);
+		
+		this.estado.agregarUnidad(unaUnidad);
 	}
 
 
