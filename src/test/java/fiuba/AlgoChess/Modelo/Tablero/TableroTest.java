@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.HashMap;
-import static org.junit.jupiter.api.Assertions.*;
+
 
 public class TableroTest {
 
@@ -15,7 +15,7 @@ public class TableroTest {
 
         HashMap<Posicion, Casillero > tablero = new HashMap<>();
         Posicion pos = new Posicion (1,1);
-   
+
         tablero.put(pos,new Casillero(1, 1, new Aliada()));
         Casillero c = tablero.get(pos);
         Posicion posB = new Posicion (1,1);
