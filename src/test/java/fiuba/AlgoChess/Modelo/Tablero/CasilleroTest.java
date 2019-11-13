@@ -9,7 +9,6 @@ import fiuba.AlgoChess.Modelo.Unidad.Jinete;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.mockito.Mockito.mock;
 
 public class CasilleroTest {
 
