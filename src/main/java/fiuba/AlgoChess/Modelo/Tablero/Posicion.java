@@ -15,4 +15,11 @@ public class Posicion {
     public int getY(){
         return y;
     }
+
+    public Posicion desplazar(int desplazamientoX , int desplazamientoY){
+        this.x += desplazamientoX;
+        this.y += desplazamientoY;
+        Posicion posNueva = new Posicion(x,y);
+        return posNueva;
+    }
 }

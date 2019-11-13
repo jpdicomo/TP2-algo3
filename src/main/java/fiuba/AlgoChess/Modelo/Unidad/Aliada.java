@@ -35,4 +35,8 @@ public class Aliada extends Bando {
         tipoAtaque.atacarA(entidad);
     }
 
+    @Override
+    public int getBando(){
+        return 1;
+    }
 }

@@ -34,4 +34,9 @@ public class Enemiga extends Bando {
     public void serAtacadaPorEnemigo(Entidad entidad, TipoAtaque tipoAtaque) {
         throw new MismoBandoExeption();
     }
+
+    @Override
+    public int getBando(){
+        return 0;
+    }
 }
