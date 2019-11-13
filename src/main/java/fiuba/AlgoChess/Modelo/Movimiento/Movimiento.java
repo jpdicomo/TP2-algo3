@@ -68,4 +68,6 @@ public class Movimiento {
         this.casillero = casilleroNuevo;
         return true;
     }
+
 }
+

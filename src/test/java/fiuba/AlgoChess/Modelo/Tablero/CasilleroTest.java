@@ -13,11 +13,12 @@ public class CasilleroTest {
 
 
     @Test
+
     public void Test01SeColocaEntidadEnCasilleroLibre() {
 
         Casillero casillero = new Casillero(1,1, new Aliada());
-        Jinete jinete = mock(Jinete.class);
-
+        Jinete jinete = new Jinete(casillero);
+        jinete.setBandoAliado();
         Assert.assertEquals(true, casillero.agregarEntidad(jinete));
     }
 
@@ -25,10 +26,11 @@ public class CasilleroTest {
     public void Test02NoSeColocaEntidadEnCasilleroOcupado() {
 
         Casillero casillero = new Casillero(1,1, new Aliada());
-        Jinete jinete = mock(Jinete.class);
+        Jinete jinete = new Jinete(casillero);
         casillero.agregarEntidad(jinete);
 
-        Jinete otroJinete = mock(Jinete.class);
+        Jinete otroJinete = new Jinete(casillero);
+        otroJinete.setBandoAliado();
 
         Assert.assertEquals(false, casillero.agregarEntidad(otroJinete));
     }

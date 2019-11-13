@@ -23,6 +23,7 @@ public class Curandero extends Entidad implements Movible {
     }
     /*PRE:  La unidadAliada no es una catapulta.
      * POST: Aumenta la vida de la unidadAliada tanto como le permita su poder de curación.*/
+
     public boolean curarA(Entidad entidad) {
         try{
             this.bando.curarA(entidad,this.curacion);

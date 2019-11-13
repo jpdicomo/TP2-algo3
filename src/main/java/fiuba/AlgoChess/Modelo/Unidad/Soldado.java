@@ -51,4 +51,5 @@ public class Soldado extends Entidad implements Atacante, Movible {
     public boolean moverseA(Casillero casilleroNuevo) {
         return this.movimiento.moverseA(casilleroNuevo, this);
     }
+
 }

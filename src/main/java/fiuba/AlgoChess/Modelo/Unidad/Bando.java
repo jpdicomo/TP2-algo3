@@ -16,4 +16,5 @@ public abstract class Bando {
 
     public abstract void serAtacadaPorEnemigo(Entidad entidad, TipoAtaque tipoAtaque);
 
+    public abstract int getBando();
 }

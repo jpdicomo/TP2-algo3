@@ -79,4 +79,8 @@ public class Casillero {
 	public int[] getPosicion() {
 		return posicion;
 	}
+
+	public int getBando(){
+		return this.bando.getBando();
+	}
 }
