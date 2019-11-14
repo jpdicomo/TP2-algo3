@@ -52,7 +52,7 @@ public class TableroTest {
         Soldado soldado = new Soldado(jose.getBando());
         Posicion posicion = new Posicion(0,0);
     	
-        tablero.agregarUnidad(soldado, posicion);
+        tablero.agregarNuevaUnidad(soldado, posicion);
         
     	Assert.assertEquals(soldado, tablero.seleccionarUnidad(posicion));
     }
@@ -65,10 +65,10 @@ public class TableroTest {
     	Jugador juan = new Jugador("Juan");
     	
         Tablero tablero = new Tablero(jose, juan);
-        Soldado soldado = new Soldado(juan.getBando());
-        Posicion posicion = new Posicion(0,0);
+        Soldado soldado = new Soldado(jose.getBando());
+        Posicion posicion = new Posicion(10,0);
     	
-        tablero.agregarUnidad(soldado, posicion);
+        tablero.agregarNuevaUnidad(soldado, posicion);
     }
     
     
@@ -84,7 +84,7 @@ public class TableroTest {
         Posicion posicionInicial = new Posicion(0,0);
         Posicion posicionFinal = new Posicion(1,1);
     	
-        tablero.agregarUnidad(soldado, posicionInicial);
+        tablero.agregarNuevaUnidad(soldado, posicionInicial);
         tablero.moverUnidad(posicionInicial, posicionFinal);
         
         Assert.assertEquals(soldado, tablero.seleccionarUnidad(posicionFinal));
@@ -103,7 +103,7 @@ public class TableroTest {
         Posicion posicionInicial = new Posicion(0,0);
         Posicion posicionFinal = new Posicion(0,2);
     	
-        tablero.agregarUnidad(soldado, posicionInicial);
+        tablero.agregarNuevaUnidad(soldado, posicionInicial);
         tablero.moverUnidad(posicionInicial, posicionFinal);
     }
  
@@ -120,7 +120,24 @@ public class TableroTest {
         Posicion posicionInicial = new Posicion(0,0);
         Posicion posicionFinal = new Posicion(0,0);
     	
-        tablero.agregarUnidad(soldado, posicionInicial);
+        tablero.agregarNuevaUnidad(soldado, posicionInicial);
+        tablero.moverUnidad(posicionInicial, posicionFinal);
+    }
+    
+    
+    @Test
+    public void Test06SeMueveUnaUnidadEnElTableroAlLadoEnemigo(){
+    	
+    	Jugador jose = new Jugador("Jose");
+    	Jugador juan = new Jugador("Juan");
+    	
+        Tablero tablero = new Tablero(jose, juan);
+        Soldado soldado = new Soldado(jose.getBando());
+        
+        Posicion posicionInicial = new Posicion(9,0);
+        Posicion posicionFinal = new Posicion(10,0);
+    	
+        tablero.agregarNuevaUnidad(soldado, posicionInicial);
         tablero.moverUnidad(posicionInicial, posicionFinal);
     }
 }

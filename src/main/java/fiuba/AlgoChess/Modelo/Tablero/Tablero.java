@@ -15,8 +15,7 @@ public class Tablero {
 	
 	// Metodos
 
-	/* Este metodo esta bien.
-	 * 
+	/* 
 	 * POST: Crea un tablero listo para la partida con todos sus casilleros
 	 * 		 desocupados.
 	 */
@@ -39,8 +38,10 @@ public class Tablero {
 	}
 
 	
-	/*
+	/* Metodo privado.
 	 * 
+	 * POST: Devuelve un casillero del Tablero a partir de una Posicion valida.
+	 *  
 	 */
 	private Casillero obtenerCasillero(Posicion posicion) {
 		
@@ -52,19 +53,37 @@ public class Tablero {
 	
 	
 	
-	/* Este metodo esta bien.
-	 * 
+	/*
 	 * PRE:  La ubicación elegida esta vacia.
-	 * POST: Se coloca una unidad en el tablero.
+	 * POST: Se coloca una nueva Unidad en el tablero.
 	 */
-	public void agregarUnidad(Unidad unaUnidad, Posicion posicion){
+	public void agregarNuevaUnidad(Unidad unaUnidad, Posicion posicion){
 		
 		Casillero casillero = this.obtenerCasillero(posicion);
 		casillero.agregarNuevaUnidad(unaUnidad);
 	}
 	
 	
+	/* Metodo privado.
+	 * 
+	 * Este metodo coloca una Unidad en un casillero del tablero
+	 * verificar si la misma pertenece al mismo bando que el casillero
+	 * destino.
+	 * 
+	 * PRE:  La ubicación elegida esta vacia.
+	 * POST: Se coloca una Unidad en el tablero.
+	 */
+	private void agregarUnidad(Unidad unaUnidad, Posicion posicion){
+		
+		Casillero casillero = this.obtenerCasillero(posicion);
+		casillero.agregarUnidad(unaUnidad);
+	}
 	
+
+	/* 
+	 * PRE:  La Posicion recibida esta ocupada por una Unidad.
+	 * POST: Devuelve la Unidad.
+	 */
 	public Unidad seleccionarUnidad(Posicion posicion) {
 		
 		Casillero casillero = this.obtenerCasillero(posicion);
@@ -73,67 +92,31 @@ public class Tablero {
 	}
 	
 	
-	public void moverUnidad(Posicion posicionActual, Posicion nuevaPosicion) {
+	/*
+	 * PRE:  La distancia entre la posicionInicial y la posicionFinal es menor a 1.
+	 * POST: Mueve una Unidad de un casillero a otro.
+	 */
+	public void moverUnidad(Posicion posicionInicial, Posicion posicionFinal) {
 		
-		if(posicionActual.medirDistanciaA(nuevaPosicion) > Math.sqrt(2)) {
+		if(posicionInicial.medirDistanciaA(posicionFinal) > Math.sqrt(2)) {
 			
 			throw new DistanciaInvalidaException();
 		}
 		
-		Casillero casilleroActual = this.obtenerCasillero(posicionActual);
-		Casillero casilleroDestino = this.obtenerCasillero(nuevaPosicion);
+		Unidad unidadAMover = this.seleccionarUnidad(posicionInicial);
 		
-		Unidad unidadAMover = this.seleccionarUnidad(posicionActual);
-		
-		casilleroDestino.agregarUnidad(unidadAMover);
-		casilleroActual.quitarEntidad();
+		this.agregarUnidad(unidadAMover, posicionFinal);
+		this.quitarUnidad(posicionInicial);
 	}
-
 	
 	
-//	// -- REVISAR LOS METODOS DE ACA PARA ABAJO --
-//
-//	/*
-//	 *
-//	 */
-//	public Casillero getDerecha(Casillero casillero){
-//		int[] posicion = casillero.getPosicion();
-//		Casillero casilleroNuevo = casilleros[posicion[0]+1][posicion[1]];
-//		return casilleroNuevo;
-//
-//	}
-//
-//
-//	/*
-//	 *
-//	 */
-//	public Casillero getIzquierda(Casillero casillero){
-//		int[] posicion = casillero.getPosicion();
-//		Casillero casilleroNuevo = casilleros[posicion[0]-1][posicion[1]];
-//		return casilleroNuevo;
-//
-//
-//	}
-//
-//
-//	/*
-//	 *
-//	 */
-//	public Casillero getArriba(Casillero casillero){
-//		int[] posicion = casillero.getPosicion();
-//		Casillero casilleroNuevo = casilleros[posicion[0]][posicion[1]+1];
-//		return casilleroNuevo;
-//
-//	}
-//
-//
-//	/*
-//	 *
-//	 */
-//	public Casillero getAbajo(Casillero casillero){
-//		int[] posicion = casillero.getPosicion();
-//		Casillero casilleroNuevo = casilleros[posicion[0]][posicion[1]-1];
-//		return casilleroNuevo;
-//
-//	}
+	/*
+	 * PRE:  Hay una Unidad en la Posicion indicada.
+	 * POST: Quita una Unidad del tablero.
+	 */
+	public void quitarUnidad(Posicion posicion) {
+		
+		Casillero casillero = this.obtenerCasillero(posicion);
+		casillero.quitarEntidad();
+	}
 }
