@@ -4,6 +4,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import fiuba.AlgoChess.Modelo.Errores.CasilleroLibreException;
+import fiuba.AlgoChess.Modelo.Errores.CasilleroOcupadoException;
+import fiuba.AlgoChess.Modelo.Errores.DistanciaInvalidaException;
+import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
 import fiuba.AlgoChess.Modelo.Jugador.Jugador;
 import fiuba.AlgoChess.Modelo.Unidad.Soldado;
 
@@ -38,6 +41,7 @@ public class TableroTest {
         Assert.assertEquals(400, posicionesVacias);
     }
     
+    
     @Test
     public void Test01SeColocaUnaUnidadEnElTableroEnElLadoAliado(){
     	
@@ -53,4 +57,70 @@ public class TableroTest {
     	Assert.assertEquals(soldado, tablero.seleccionarUnidad(posicion));
     }
     
+
+    @Test (expected = DistintoBandoException.class)
+    public void Test02SeColocaUnaUnidadEnElTableroEnElLadoEnemigoYTiraError(){
+    	
+    	Jugador jose = new Jugador("Jose");
+    	Jugador juan = new Jugador("Juan");
+    	
+        Tablero tablero = new Tablero(jose, juan);
+        Soldado soldado = new Soldado(juan.getBando());
+        Posicion posicion = new Posicion(0,0);
+    	
+        tablero.agregarUnidad(soldado, posicion);
+    }
+    
+    
+    @Test
+    public void Test03SeMueveUnaUnidadEnElTableroUnaPosicionValida(){
+    	
+    	Jugador jose = new Jugador("Jose");
+    	Jugador juan = new Jugador("Juan");
+    	
+        Tablero tablero = new Tablero(jose, juan);
+        Soldado soldado = new Soldado(jose.getBando());
+        
+        Posicion posicionInicial = new Posicion(0,0);
+        Posicion posicionFinal = new Posicion(1,1);
+    	
+        tablero.agregarUnidad(soldado, posicionInicial);
+        tablero.moverUnidad(posicionInicial, posicionFinal);
+        
+        Assert.assertEquals(soldado, tablero.seleccionarUnidad(posicionFinal));
+    }
+    
+    
+    @Test (expected = DistanciaInvalidaException.class)
+    public void Test04SeMueveUnaUnidadEnElTableroUnaPosicionMuyLejanaYTiraError(){
+    	
+    	Jugador jose = new Jugador("Jose");
+    	Jugador juan = new Jugador("Juan");
+    	
+        Tablero tablero = new Tablero(jose, juan);
+        Soldado soldado = new Soldado(jose.getBando());
+        
+        Posicion posicionInicial = new Posicion(0,0);
+        Posicion posicionFinal = new Posicion(0,2);
+    	
+        tablero.agregarUnidad(soldado, posicionInicial);
+        tablero.moverUnidad(posicionInicial, posicionFinal);
+    }
+ 
+    
+    @Test (expected = CasilleroOcupadoException.class)
+    public void Test05SeMueveUnaUnidadEnElTableroALaMismaPosicionYTiraError(){
+    	
+    	Jugador jose = new Jugador("Jose");
+    	Jugador juan = new Jugador("Juan");
+    	
+        Tablero tablero = new Tablero(jose, juan);
+        Soldado soldado = new Soldado(jose.getBando());
+        
+        Posicion posicionInicial = new Posicion(0,0);
+        Posicion posicionFinal = new Posicion(0,0);
+    	
+        tablero.agregarUnidad(soldado, posicionInicial);
+        tablero.moverUnidad(posicionInicial, posicionFinal);
+    }
 }

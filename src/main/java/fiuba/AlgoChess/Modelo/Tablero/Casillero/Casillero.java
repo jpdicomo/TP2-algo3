@@ -49,6 +49,7 @@ public class Casillero {
 	public void agregarUnidad(Unidad unaUnidad) {
 		
 		this.estado.agregarUnidad(unaUnidad);
+		this.estado = new Ocupado(unaUnidad);
 	}
 
 

@@ -75,7 +75,7 @@ public class Tablero {
 	
 	public void moverUnidad(Posicion posicionActual, Posicion nuevaPosicion) {
 		
-		if(posicionActual.medirDistanciaA(nuevaPosicion) > 1.0) {
+		if(posicionActual.medirDistanciaA(nuevaPosicion) > Math.sqrt(2)) {
 			
 			throw new DistanciaInvalidaException();
 		}
