@@ -1,5 +1,6 @@
 package fiuba.AlgoChess.Modelo.Unidad;
 
+import fiuba.AlgoChess.Modelo.Ataque.TipoAtaque;
 import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
 import fiuba.AlgoChess.Modelo.Errores.MismoBandoExeption;
 
@@ -34,4 +35,8 @@ public class Aliada extends Bando {
         tipoAtaque.atacarA(entidad);
     }
 
+    @Override
+    public int getBando(){
+        return 1;
+    }
 }

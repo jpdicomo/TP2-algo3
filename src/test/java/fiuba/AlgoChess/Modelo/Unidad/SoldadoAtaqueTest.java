@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.*;
 
-public class SoldadoTest {
+public class SoldadoAtaqueTest {
     @Test
     public void test00SoldadoApenasCreadoTiene100Vida(){
         Soldado soldado = new Soldado(mock(Casillero.class));

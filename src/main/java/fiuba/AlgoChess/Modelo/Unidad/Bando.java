@@ -1,5 +1,7 @@
 package fiuba.AlgoChess.Modelo.Unidad;
 
+import fiuba.AlgoChess.Modelo.Ataque.TipoAtaque;
+
 public abstract class Bando {
 
     public abstract void atacarA(Entidad entidad, TipoAtaque tipoAtaque);
@@ -14,4 +16,5 @@ public abstract class Bando {
 
     public abstract void serAtacadaPorEnemigo(Entidad entidad, TipoAtaque tipoAtaque);
 
+    public abstract int getBando();
 }

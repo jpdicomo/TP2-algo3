@@ -1,5 +1,6 @@
 package fiuba.AlgoChess.Modelo.Unidad;
 
+import fiuba.AlgoChess.Modelo.Ataque.TipoAtaque;
 import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
 import fiuba.AlgoChess.Modelo.Tablero.Casillero;
 
@@ -78,4 +79,6 @@ public abstract class Entidad {
             throw new DistintoBandoException();
         }
     }
+
+
 }
