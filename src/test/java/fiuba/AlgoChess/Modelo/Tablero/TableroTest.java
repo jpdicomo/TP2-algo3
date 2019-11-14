@@ -126,7 +126,7 @@ public class TableroTest {
     
     
     @Test
-    public void Test06SeMueveUnaUnidadEnElTableroAlLadoEnemigo(){
+    public void Test06SeMueveUnaUnidadEnElTableroAliadoEnemigo(){
     	
     	Jugador jose = new Jugador("Jose");
     	Jugador juan = new Jugador("Juan");
@@ -139,5 +139,10 @@ public class TableroTest {
     	
         tablero.agregarNuevaUnidad(soldado, posicionInicial);
         tablero.moverUnidad(posicionInicial, posicionFinal);
+
+        Assert.assertEquals(soldado,tablero.seleccionarUnidad(posicionFinal));
+
     }
+
+
 }

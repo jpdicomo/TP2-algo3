@@ -57,4 +57,5 @@ public class SoldadoTest {
 		
 		soldado1.realizarAccionSobre(soldado1);
 	}
+
 }

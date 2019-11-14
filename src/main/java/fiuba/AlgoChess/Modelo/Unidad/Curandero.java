@@ -9,13 +9,9 @@ import fiuba.AlgoChess.Modelo.Jugador.Bando;
 public class Curandero extends Unidad /*implements Movible*/{
 
 	// Atributos.
-	
 	private int curacion;
-//	private Movimiento movimiento;
 
-	
 	// Metodos.
-	
     /* 
      * PRE:  El casillero esta libre.
      * POST: Crea un nuevo curandero, ubicado en un casillero.
@@ -26,7 +22,6 @@ public class Curandero extends Unidad /*implements Movible*/{
         this.vida = 75;
         this.curacion = 15;
         this.costo = 2;
-//      this.movimiento = new Movimiento(this.casillero);
     }
     
     
@@ -52,28 +47,4 @@ public class Curandero extends Unidad /*implements Movible*/{
 		this.bando.interactuarConUnAliado(otraUnidad.getBando());
 		this.curarA(otraUnidad);
 	}
-    
-    
-//    @Override
-//    public boolean moverseALaDerecha(Tablero tablero){
-//        return this.movimiento.moverseALaDerecha(tablero, this);
-//    }
-//    @Override
-//    public boolean moverseALaIzquierda(Tablero tablero){
-//        return this.movimiento.moverseALaIzquierda(tablero, this);
-//    }
-//    @Override
-//    public boolean moverseArriba(Tablero tablero){
-//        return this.movimiento.moverseArriba(tablero, this);
-//    }
-//    @Override
-//    public boolean moverseAbajo(Tablero tablero){
-//        return this.movimiento.moverseAbajo(tablero, this);
-//    }
-//
-//
-//    @Override
-//    public boolean moverseA(Casillero casilleroNuevo) {
-//        return this.movimiento.moverseA(casilleroNuevo,this);
-//    }
 }

@@ -21,20 +21,8 @@ public abstract class Unidad {
      * POST: Crea una nueva unidad asignada a un determinado Jugador.
      */
     public Unidad(Bando bando) {
-
         this.bando = bando;
     }
-
-
-//    /*
-//     * ¡ELIMINAR ESTE METODO!
-//     */
-//    public void setCasillero(Casillero casillero){
-//
-//        this.casillero = casillero;
-//    }
-//
-
     /*
      *
      */
