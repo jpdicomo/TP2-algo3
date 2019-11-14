@@ -1,6 +1,6 @@
 package fiuba.AlgoChess.Modelo.Ataque;
 
-import fiuba.AlgoChess.Modelo.Unidad.Entidad;
+import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 
 public class AtaqueMelee extends TipoAtaque {
     public AtaqueMelee(int danio) {
