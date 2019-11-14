@@ -1,68 +1,57 @@
 package fiuba.AlgoChess.Modelo.Jugador;
 
-import fiuba.AlgoChess.Modelo.Unidad.Aliada;
-import fiuba.AlgoChess.Modelo.Unidad.Jinete;
 import org.junit.Assert;
 import org.junit.Test;
 
-import fiuba.AlgoChess.Modelo.Tablero.Casillero;
-
-import static org.mockito.Matchers.anyList;
-import static org.mockito.Mockito.mock;
+import fiuba.AlgoChess.Modelo.Errores.PuntosInsuficientesException;
+import fiuba.AlgoChess.Modelo.Unidad.Jinete;
 
 public class JugadorTest {
 
     @Test
-    public void Test01JugadorPuedeColocarUnaEntidadSiTienePuntos(){
+    public void Test01JugadorPuedeColocarUnaUnidadSiTienePuntos(){
 
+        Jugador jose = new Jugador("Jose");
+        Jinete jinete = new Jinete(jose.getBando());
 
-        Jugador jugador = new Jugador("Jose");
-        Casillero casillero = new Casillero(1,1, new Aliada());
-        Jinete jinete = new Jinete(casillero);
-
-
-        Assert.assertEquals(true, jugador.agregarEntidad(jinete));
+        jose.agregarUnidad(jinete);
+        
+        Assert.assertEquals(true, jose.sigueJugando());
     }
 
 
+    /*
+     * Se agregan unidades al jugador hasta que este se queda sin puntos.
+     */
+    @Test (expected = PuntosInsuficientesException.class)
+    public void Test02JugadorNoPuedeColocarUnaUnidadSiNoTienePuntos(){
+    	
+        Jugador jose = new Jugador("Jose");
+
+        for (int i = 0; i < 20; i++) {
+			
+        	Jinete unJinete = new Jinete(jose.getBando());
+        	jose.agregarUnidad(unJinete);
+		}
+    }
+    
+    
     @Test
-    public void Test02JugadorNoPuedeColocarUnaEntidadSiNoTienePuntos(){
+    public void Test03JugadorPierdeSiNoTieneUnidades(){
 
-        //se altera el valor del costo de la entidad para ver verificación más rápido
+        Jugador jose = new Jugador("Jose");
 
-        Jugador jugador = new Jugador("Jose");
-
-        jugador.setPuntos(5);
-
-        Jinete jinete = new Jinete(mock(Casillero.class));
-        Jinete otroJinete = new Jinete(mock(Casillero.class));
-
-        jugador.agregarEntidad(jinete);
-        jugador.agregarEntidad(otroJinete);
-
-        Assert.assertEquals(false, jugador.agregarEntidad(jinete));
+        Assert.assertEquals(false, jose.sigueJugando());
     }
-    @Test
-    public void Test03JugadorPierdeSiSeQuedaSinEntidades(){
-
-        //se altera el valor del costo de la entidad para ver verificación más rápido
-
-        Jugador jugador = new Jugador("Fede");
-
-        Assert.assertEquals(false, jugador.sigueJugando());
-
-    }
+    
+    
     @Test
     public void Test04JugadorSigueJugandoSiTieneEntidades(){
 
-        //se altera el valor del costo de la entidad para ver verificación más rápido
+        Jugador jose = new Jugador("Jose");
+        Jinete jinete = new Jinete(jose.getBando());
+        jose.agregarUnidad(jinete);
 
-        Jugador jugador = new Jugador("Fede");
-        Jinete jinete = mock(Jinete.class);
-        jugador.agregarEntidad(jinete);
-
-        Assert.assertEquals(true, jugador.sigueJugando());
-
+        Assert.assertEquals(true, jose.sigueJugando());
     }
-
 }

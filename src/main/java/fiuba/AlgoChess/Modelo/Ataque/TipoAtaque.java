@@ -8,7 +8,7 @@ public abstract class TipoAtaque{
     public TipoAtaque(int danio){
         this.danio = danio;
     }
-    public abstract void atacarA(Entidad entidad);
+    public abstract void atacarA(Unidad unidad);
 
 
 }

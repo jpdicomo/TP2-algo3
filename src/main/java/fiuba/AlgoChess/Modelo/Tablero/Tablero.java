@@ -1,124 +1,189 @@
 package fiuba.AlgoChess.Modelo.Tablero;
 
-// Aca irian los imports.
-
+import fiuba.AlgoChess.Modelo.Errores.DistanciaInvalidaException;
 import fiuba.AlgoChess.Modelo.Jugador.Jugador;
-import fiuba.AlgoChess.Modelo.Unidad.Aliada;
-import fiuba.AlgoChess.Modelo.Unidad.Enemiga;
-import fiuba.AlgoChess.Modelo.Unidad.Entidad;
+import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
+import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 
+//import java.util.HashMap;	<--- para mas adelante
 
-import java.util.HashMap;
-
-
+/* -----------IMPORTANTE-----------------
+ * 
+ * NOTA: Voy a comentar la versión del tablero que usa el HashMap y dejar la de la matriz
+ * hasta que podamos hacer funcionar bien el hashmap, asi no se rompen los test.
+ * 
+ * A las cosas que comente les puse esta marca:	<--- para mas adelante
+ * 
+ * -----------IMPORTANTE-----------------
+ */
 
 public class Tablero {
 
 	// Atributos
 
-	//private Casillero[][] casilleros;
-
-	HashMap<Posicion , Casillero > tablero = new HashMap<Posicion,Casillero>();
+	private Casillero[][] casilleros;
+//	HashMap<Posicion , Casillero > tablero = new HashMap<Posicion,Casillero>();	<--- para mas adelante
+	
 
 	// Metodos
 
-	/*  
-	 * POST: Crea un tablero listo para la partida
-	 * 
-	 * NOTA: Falta implementar en Casillero alguna manera de que reconozca a que
-	 * 		 jugador "pertenece". Lo que hice ahora a modo de arreglo rapido es 
-	 * 		 colocar un atributo "bando" en cada casillero que referencia al jugador.
+	/* 
+	 * POST: Crea un tablero listo para la partida con todos sus casilleros
+	 * 		 desocupados.
 	 */
-	public Tablero() {
+	public Tablero(Jugador jugador1, Jugador jugador2) {
 
+		this.casilleros = new Casillero[20][20];
 
 		for (int i = 0; i < 20; i++) {
 
-
 			for (int j = 0; j < 10; j++) {
 
-
-				this.tablero.put(new Posicion(j,i), new Casillero(j, i, new Aliada()));
-
+				this.casilleros[j][i] = new Casillero(j, i, jugador1.getBando());
+//				this.tablero.put(new Posicion(j,i), new Casillero(j, i, jugador1.getBando()));	<--- para mas adelante
 			}
 
 			for (int k = 10; k < 20; k++) {
 
-				this.tablero.put(new Posicion(k,i), new Casillero(k, i, new Enemiga()));
-
+				this.casilleros[k][i] = new Casillero(k, i, jugador2.getBando());
+//				this.tablero.put(new Posicion(k,i), new Casillero(k, i, jugador2.getBando()));	<--- para mas adelante
 			}
 		}
 	}
 
-	/* PARA HACER TEST DE CREACION */
-
-	public Casillero getCasillero(Posicion pos){
-		return this.tablero.get(pos);
+	
+	/* Metodo privado.
+	 * 
+	 * POST: Devuelve un casillero del Tablero a partir de una Posicion valida.
+	 *  
+	 */
+	private Casillero obtenerCasillero(Posicion posicion) {
+		
+		int x = posicion.getX();
+		int y = posicion.getY();
+		
+		return this.casilleros[x][y];
+//		return this.tablero.get(posicion);	<--- para mas adelante
 	}
 	
 	/*
-	 * PRE:  El jugador ya ha elegido que unidad colocar.
-	 * POST: Se coloca una unidad en el tablero.
-	 * 
-	 * NOTA: falta implementar en Casillero que reconozca cuando quieren colocar
-	 * 		 una pieza en el, que el jugador es del mismo bando o no.
+	 * PRE:  La ubicaciÃ³n elegida esta vacia.
+	 * POST: Se coloca una nueva Unidad en el tablero.
 	 */
-	public void colocarEntidad(Entidad entidad, Jugador jugador){
+	public void agregarNuevaUnidad(Unidad unaUnidad, Posicion posicion){
 		
-		boolean entidadColocada = false;
-
-		do {
-
-			int[] ubicacion = jugador.elegirCasillero();
-			int x = ubicacion[0];
-			int y = ubicacion[1];
-			Posicion pos = new Posicion(x,y);
-			Casillero casillero =  this.tablero.get(pos);
-
-			entidadColocada = casillero.agregarEntidad(entidad);
-			this.tablero.put(pos, casillero);
-		} while(!entidadColocada);
+		Casillero casillero = this.obtenerCasillero(posicion);
+		casillero.agregarNuevaUnidad(unaUnidad);
 	}
+	
+	
+	/* Metodo privado.
+	 * 
+	 * Este metodo coloca una Unidad en un casillero del tablero
+	 * verificar si la misma pertenece al mismo bando que el casillero
+	 * destino.
+	 * 
+	 * PRE:  La ubicaciÃ³n elegida esta vacia.
+	 * POST: Se coloca una Unidad en el tablero.
+	 */
+	private void agregarUnidad(Unidad unaUnidad, Posicion posicion){
+		
+		Casillero casillero = this.obtenerCasillero(posicion);
+		casillero.agregarUnidad(unaUnidad);
+	}
+	
 
+	/* 
+	 * PRE:  La Posicion recibida esta ocupada por una Unidad.
+	 * POST: Devuelve la Unidad.
+	 */
+	public Unidad seleccionarUnidad(Posicion posicion) {
+		
+		Casillero casillero = this.obtenerCasillero(posicion);
+		
+		return casillero.getUnidad();
+	}
+	
+	
+	/*
+	 * PRE:  La distancia entre la posicionInicial y la posicionFinal es menor a 1.
+	 * POST: Mueve una Unidad de un casillero a otro.
+	 */
+	public void moverUnidad(Posicion posicionInicial, Posicion posicionFinal) {
+		
+		if(posicionInicial.medirDistanciaA(posicionFinal) > Math.sqrt(2)) {
+			
+			throw new DistanciaInvalidaException();
+		}
+		
+		Unidad unidadAMover = this.seleccionarUnidad(posicionInicial);
+		
+		this.agregarUnidad(unidadAMover, posicionFinal);
+		this.quitarUnidad(posicionInicial);
+	}
+	
+	
+	/*
+	 * PRE:  Hay una Unidad en la Posicion indicada.
+	 * POST: Quita una Unidad del tablero.
+	 */
+	public void quitarUnidad(Posicion posicion) {
+		
+		Casillero casillero = this.obtenerCasillero(posicion);
+		casillero.quitarEntidad();
+	}
+	
+	
+	// DEJE ESTOS METODOS TAL CUAL, PERO NO LOS USE.
+	
 	public Casillero getDerecha(Casillero casillero){
+		
 		int[] posicion = casillero.getPosicion();
 		int x = posicion[0];
 		int y = posicion[1];
+		
 		Posicion posDerecha = new Posicion(x+1,y);
-
-		Casillero casilleroNuevo = this.tablero.get(posDerecha);
+		Casillero casilleroNuevo = this.obtenerCasillero(posDerecha);
+		
 		return casilleroNuevo;
-
 	}
+	
+	
 	public Casillero getIzquierda(Casillero casillero){
+		
 		int[] posicion = casillero.getPosicion();
 		int x = posicion[0];
 		int y = posicion[1];
+		
 		Posicion posIzquierda = new Posicion(x-1, y);
-
-		Casillero casilleroNuevo = this.tablero.get(posIzquierda);
+		Casillero casilleroNuevo = this.obtenerCasillero(posIzquierda);
+		
 		return casilleroNuevo;
-
-
 	}
+	
+	
 	public Casillero getArriba(Casillero casillero){
+		
 		int[] posicion = casillero.getPosicion();
 		int x = posicion[0];
 		int y = posicion[1];
-		Posicion posArriba = new Posicion(x, y+1);
-
-		Casillero casilleroNuevo = this.tablero.get(posArriba);
+		
+		Posicion posArriba = new Posicion(x, y + 1);
+		Casillero casilleroNuevo = this.obtenerCasillero(posArriba);
+		
 		return casilleroNuevo;
-
 	}
+	
+	
 	public Casillero getAbajo(Casillero casillero){
+		
 		int[] posicion = casillero.getPosicion();
 		int x = posicion[0];
 		int y = posicion[1];
-		Posicion posAbajo = new Posicion(x, y-1);
-		Casillero casilleroNuevo =this.tablero.get(posAbajo);
+		
+		Posicion posAbajo = new Posicion(x, y - 1);
+		Casillero casilleroNuevo = this.obtenerCasillero(posAbajo);
 
 		return casilleroNuevo;
-
 	}
 }

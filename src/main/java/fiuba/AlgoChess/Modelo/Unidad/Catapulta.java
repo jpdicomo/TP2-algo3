@@ -1,34 +1,47 @@
 package fiuba.AlgoChess.Modelo.Unidad;
 
-import fiuba.AlgoChess.Modelo.Ataque.Atacante;
-import fiuba.AlgoChess.Modelo.Ataque.AtaqueALargaDistancia;
-import fiuba.AlgoChess.Modelo.Ataque.TipoAtaque;
-import fiuba.AlgoChess.Modelo.Errores.MismoBandoExeption;
-import fiuba.AlgoChess.Modelo.Tablero.Casillero;
+import fiuba.AlgoChess.Modelo.Jugador.Bando;
 import fiuba.AlgoChess.Modelo.Errores.CatapultaNoPuedeSerCuradaException;
+import fiuba.AlgoChess.Modelo.Ataque.TipoAtaque;
+import fiuba.AlgoChess.Modelo.Ataque.AtaqueALargaDistancia;
 
-public class Catapulta extends Entidad implements Atacante {
+
+public class Catapulta extends Unidad {
+	
+	// Atributos.
+	
     private TipoAtaque tipoAtaque = new AtaqueALargaDistancia(20);
 
-    public Catapulta(Casillero casillero) {
-        super(casillero);
+    
+    // Metodos.
+    
+    /*
+     * PRE:  ...
+     * POST: ... 
+     */
+    public Catapulta(Bando bando) {
+    	
+        super(bando);
         this.vida = 50;
         this.costo = 5;
     }
 
-    @Override
-    public boolean atacarA(Entidad entidad) {
-        try{
-            this.bando.atacarA(entidad,tipoAtaque);
-        }catch(MismoBandoExeption e){
-            return false;
-    }
-        return true;
-    }
-    
+
+    /*
+     * 
+     */
 	@Override
 	public void serCurado(int curacion) {
 	
 		throw new CatapultaNoPuedeSerCuradaException();
+	}
+
+
+	@Override
+	public void realizarAccionSobre(Unidad otraUnidad) {
+
+		super.realizarAccionSobre(otraUnidad);
+		this.bando.interactuarConUnEnemigo(otraUnidad.getBando());
+		this.tipoAtaque.atacarA(otraUnidad);
 	}
 }

@@ -1,69 +1,60 @@
 package fiuba.AlgoChess.Modelo.Unidad;
 
-
-import fiuba.AlgoChess.Modelo.Tablero.Casillero;
-import fiuba.AlgoChess.Modelo.Tablero.Tablero;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.mockito.Mockito.*;
+import fiuba.AlgoChess.Modelo.Errores.MismaUnidadException;
+import fiuba.AlgoChess.Modelo.Errores.MismoBandoException;
+import fiuba.AlgoChess.Modelo.Jugador.Jugador;
 
-public class SoldadoAtaqueTest {
-    @Test
-    public void test00SoldadoApenasCreadoTiene100Vida(){
-        Soldado soldado = new Soldado(mock(Casillero.class));
 
-        assertEquals(100,soldado.getVida());
-    }
-    @Test
-    public void test01SoldadoAliadoAtacaASoldadoEnemigoYLeRestaCorrectamenteLaVida(){
-        Soldado soldado1 = new Soldado(mock(Casillero.class));
-        soldado1.setBandoAliado();
-        Soldado soldado2 = new Soldado(mock(Casillero.class));
-        soldado2.setBandoEnemigo();
+public class SoldadoTest {
 
-        soldado1.atacarA(soldado2);
-        assertEquals(100-10,soldado2.getVida());
-    }
-    @Test
-    public void test02SoldadoAliadoAtacaASoldadoAliadoTiraError(){
-        Soldado soldado1 = new Soldado(mock(Casillero.class));
-        soldado1.setBandoAliado();
-        Soldado soldado2 = new Soldado(mock(Casillero.class));
-        soldado2.setBandoAliado();
-        assertFalse(soldado1.atacarA(soldado2));
+	
+	@Test
+	public void test00SoldadoApenasCreadoTiene100DeVida() {
+		
+		Jugador jose = new Jugador("Jose");
+		Soldado soldado = new Soldado(jose.getBando());
 
-    }
-    @Test
-    public void test03SoldadoEnemigoAtacaASoldadoAliadoYLeRestaCorrectamenteLaVida(){
-        Soldado soldado1 = new Soldado(mock(Casillero.class));
-        soldado1.setBandoEnemigo();
-        Soldado soldado2 = new Soldado(mock(Casillero.class));
-        soldado2.setBandoAliado();
-        soldado1.atacarA(soldado2);
-        assertEquals(100-10,soldado2.getVida());
-    }
-    @Test
-    public void test04SoldadoEnemigoAtacaASoldadoEnemigoTiraError(){
-        Soldado soldado1 = new Soldado(mock(Casillero.class));
-        soldado1.setBandoEnemigo();
-        Soldado soldado2 = new Soldado(mock(Casillero.class));
-        soldado2.setBandoEnemigo();
-        assertFalse(soldado1.atacarA(soldado2));
-    }
-    @Test
-    public void test05UnSoldadoAliadoNoPuedeAtacarseASiMismo(){
-        Soldado soldado = new Soldado(mock(Casillero.class));
-        soldado.setBandoAliado();
-        assertFalse(soldado.atacarA(soldado));
-    }
-    @Test
-    public void test06UnSoldadoEnemigoNoPuedeAtacarseASiMismo(){
-        Soldado soldado = new Soldado(mock(Casillero.class));
-        soldado.setBandoEnemigo();
-        assertFalse(soldado.atacarA(soldado));
-    }
+		Assert.assertEquals(100, soldado.getVida());
+	}
+	
+
+	@Test
+	public void test01SoldadoAliadoAtacaASoldadoEnemigoYLeRestaCorrectamenteLaVida() {
+		
+		Jugador jose = new Jugador("Jose");
+		Soldado soldado1 = new Soldado(jose.getBando());
+
+		Jugador juan = new Jugador("Juan");
+		Soldado soldado2 = new Soldado(juan.getBando());
+
+		soldado1.realizarAccionSobre(soldado2);
+		
+		Assert.assertEquals(90, soldado2.getVida());
+	}
+
+	
+	@Test (expected = MismoBandoException.class)
+	public void test02SoldadoAtacaASoldadoAliadoTiraError() {
+		
+		Jugador jose = new Jugador("Jose");
+		
+		Soldado soldado1 = new Soldado(jose.getBando());
+		Soldado soldado2 = new Soldado(jose.getBando());
+
+		soldado1.realizarAccionSobre(soldado2);
+	}
+	
+
+	@Test (expected = MismaUnidadException.class)
+	public void test03UnSoldadoNoPuedeAtacarseASiMismo() {
+
+		Jugador jose = new Jugador("Jose");
+		
+		Soldado soldado1 = new Soldado(jose.getBando());
+		
+		soldado1.realizarAccionSobre(soldado1);
+	}
 }
-
