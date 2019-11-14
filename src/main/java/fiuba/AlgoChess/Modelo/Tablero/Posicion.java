@@ -13,7 +13,6 @@ public class Posicion {
      * 
      */
     public Posicion(int x, int y){
-    
     	this.x = x;
         this.y = y;
     }
@@ -23,7 +22,6 @@ public class Posicion {
      * 
      */
     public int getX() {
-    
     	return x;
     }
     
@@ -32,7 +30,6 @@ public class Posicion {
      * 
      */
     public int getY(){
-    
     	return y;
     }
 
