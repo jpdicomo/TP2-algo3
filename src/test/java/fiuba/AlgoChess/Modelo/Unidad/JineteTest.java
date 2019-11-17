@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import fiuba.AlgoChess.Modelo.Errores.MismaUnidadException;
 import fiuba.AlgoChess.Modelo.Errores.MismoBandoException;
-import fiuba.AlgoChess.Modelo.Jugador.Jugador;
+import fiuba.AlgoChess.Modelo.Jugador.Bando;
 
 
 public class JineteTest {
@@ -14,8 +14,8 @@ public class JineteTest {
 	@Test
 	public void test00JineteApenasCreadoTiene100DeVida() {
 		
-		Jugador jose = new Jugador("Jose");
-		Jinete jinete = new Jinete(jose.getBando());
+		Bando bandoJose = new Bando();
+		Jinete jinete = new Jinete(bandoJose);
 
 		Assert.assertEquals(100, jinete.getVida());
 	}
@@ -24,13 +24,13 @@ public class JineteTest {
 	@Test
 	public void test01JineteAtacaAJineteEnemigoYLeRestaCorrectamenteLaVida() {
 		
-		Jugador jose = new Jugador("Jose");
-		Jinete jinete1 = new Jinete(jose.getBando());
+		Bando bandoJose = new Bando();
+		Jinete jinete1 = new Jinete(bandoJose);
 		
-		Jugador juan = new Jugador("Juan");
-		Jinete jinete2 = new Jinete(juan.getBando());
+		Bando bandoJuan = new Bando();
+		Jinete jinete2 = new Jinete(bandoJuan);
 
-		jinete1.realizarAccionSobre(jinete2);
+		jinete1.interactuarCon(jinete2);
 		
 		Assert.assertEquals(95, jinete2.getVida());
 	}
@@ -39,22 +39,22 @@ public class JineteTest {
 	@Test (expected = MismoBandoException.class)
 	public void test02JineteAtacaAJineteAliadoTiraError() {
 		
-		Jugador jose = new Jugador("Jose");
+		Bando bandoJose = new Bando();
 		
-		Jinete jinete1 = new Jinete(jose.getBando());
-		Jinete jinete2 = new Jinete(jose.getBando());
+		Jinete jinete1 = new Jinete(bandoJose);
+		Jinete jinete2 = new Jinete(bandoJose);
 
-		jinete1.realizarAccionSobre(jinete2);
+		jinete1.interactuarCon(jinete2);
 	}
 	
 
 	@Test (expected = MismaUnidadException.class)
 	public void test03UnJineteNoPuedeAtacarseASiMismo() {
 		
-		Jugador jose = new Jugador("Jose");
+		Bando bandoJose = new Bando();
 		
-		Jinete jinete1 = new Jinete(jose.getBando());
+		Jinete jinete1 = new Jinete(bandoJose);
 		
-		jinete1.realizarAccionSobre(jinete1);
+		jinete1.interactuarCon(jinete1);
 	}
 }

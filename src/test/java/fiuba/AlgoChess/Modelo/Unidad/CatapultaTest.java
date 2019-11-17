@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import fiuba.AlgoChess.Modelo.Errores.MismaUnidadException;
 import fiuba.AlgoChess.Modelo.Errores.MismoBandoException;
-import fiuba.AlgoChess.Modelo.Jugador.Jugador;
+import fiuba.AlgoChess.Modelo.Jugador.Bando;
 
 
 public class CatapultaTest {
@@ -14,8 +14,9 @@ public class CatapultaTest {
     @Test
     public void test00CatapultaRecienCreadaTiene50DeVida(){
     	
-    	Jugador jose = new Jugador("Jose");
-        Catapulta catapulta = new Catapulta(jose.getBando());
+    	Bando bandoJose = new Bando();
+
+        Catapulta catapulta = new Catapulta(bandoJose);
 
         Assert.assertEquals(50,catapulta.getVida());
     }
@@ -24,38 +25,39 @@ public class CatapultaTest {
     @Test
     public void test01CatapultaAtacaACatapultaEnemigaYLeRestaCorrectamenteLaVida(){
     	
-    	Jugador jose = new Jugador("Jose");
-		Catapulta catapulta1 = new Catapulta(jose.getBando());
+    	Bando bandoJose = new Bando();
+		Catapulta catapulta1 = new Catapulta(bandoJose);
 
-		Jugador juan = new Jugador("Juan");
-		Catapulta catapulta2 = new Catapulta(juan.getBando());
+    	Bando bandoJuan = new Bando();
+		Catapulta catapulta2 = new Catapulta(bandoJuan);
     	
-    	catapulta1.realizarAccionSobre(catapulta2);
+    	catapulta1.interactuarCon(catapulta2);
 		
-        Assert.assertEquals(30,catapulta2.getVida());
+        Assert.assertEquals(30, catapulta2.getVida());
     }
     
     
     @Test (expected = MismoBandoException.class)
     public void test02CatapultaAtacaACatapultaAliadaTiraError(){
 		
-    	Jugador jose = new Jugador("Jose");
-		
-		Catapulta catapulta1 = new Catapulta(jose.getBando());
-		Catapulta catapulta2 = new Catapulta(jose.getBando());
+    	
+    	Bando bandoJose = new Bando();
+    	
+		Catapulta catapulta1 = new Catapulta(bandoJose);
+		Catapulta catapulta2 = new Catapulta(bandoJose);
 
-		catapulta1.realizarAccionSobre(catapulta2);
+		catapulta1.interactuarCon(catapulta2);
     }
     
     
 	@Test (expected = MismaUnidadException.class)
 	public void test03UnaCatapultaNoPuedeAtacarseASiMismo() {
 
-		Jugador jose = new Jugador("Jose");
+		Bando bandoJose = new Bando();
 		
-		Catapulta catapulta1 = new Catapulta(jose.getBando());
+		Catapulta catapulta1 = new Catapulta(bandoJose);
 		
-		catapulta1.realizarAccionSobre(catapulta1);
+		catapulta1.interactuarCon(catapulta1);
 	}
 }
 

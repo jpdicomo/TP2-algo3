@@ -2,6 +2,8 @@ package fiuba.AlgoChess.Modelo.Unidad;
 
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
 import fiuba.AlgoChess.Modelo.Errores.CatapultaNoPuedeSerCuradaException;
+import fiuba.AlgoChess.Modelo.Ataque.TipoAtaque;
+import fiuba.AlgoChess.Modelo.Ataque.AtaqueALargaDistancia;
 
 
 public class Catapulta extends Unidad {
@@ -24,21 +26,7 @@ public class Catapulta extends Unidad {
         this.costo = 5;
     }
 
-    
-//    /*
-//     * 
-//     */
-//    @Override
-//    public boolean atacarA(Unidad unidad) {
-//        try{
-//            this.bando.atacarA(unidad,tipoAtaque);
-//        }catch(MismoBandoException e){
-//            return false;
-//    }
-//        return true;
-//    }
-    
-    
+
     /*
      * 
      */
@@ -50,10 +38,17 @@ public class Catapulta extends Unidad {
 
 
 	@Override
-	public void realizarAccionSobre(Unidad otraUnidad) {
+	public void interactuarCon(Unidad otraUnidad) {
 
-		super.realizarAccionSobre(otraUnidad);
-		this.bando.interactuarConUnEnemigo(otraUnidad.getBando());
+		super.interactuarCon(otraUnidad);
+		this.bando.interactuarConUnEnemigo(otraUnidad);
 		this.tipoAtaque.atacarA(otraUnidad);
 	}
+	
+	
+	// Metodo de clase (estatico)
+    public int getCosto() {
+    	
+    	return this.costo;
+    }
 }

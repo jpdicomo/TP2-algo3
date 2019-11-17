@@ -1,6 +1,7 @@
 package fiuba.AlgoChess.Modelo.Jugador;
 
 import fiuba.AlgoChess.Modelo.Errores.PuntosInsuficientesException;
+import fiuba.AlgoChess.Modelo.Tablero.Posicion;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 import java.util.Scanner;
 
@@ -18,17 +19,16 @@ public class Jugador {
 
     // Metodos.
 
-    /* Este metodo esta bien.
-     * 
+    /*
      * POST: Crea un nuevo Jugador al cual se le ha asignado un nombre y
      * 		 una cierta cantidad de puntos para jugar.
      */
-    public Jugador(String nombre){
+    public Jugador(String nombre, Bando bando){
 
         this.nombre = nombre;
         this.puntos = 20;
         this.cantidadEntidades = 0;
-        this.bando = new Bando();
+        this.bando = bando;
     }
     
     
@@ -42,14 +42,14 @@ public class Jugador {
     }
     
     
-    /* Este metodo esta bien.
-     * 
-     * POST: Devuelve la cantidad de puntos del Jugador.
-     */
-    public int getPuntos() {
-    	
-    	return this.puntos;
-    }
+//    /* Este metodo esta bien.
+//     * 
+//     * POST: Devuelve la cantidad de puntos del Jugador.
+//     */
+//    public int getPuntos() {
+//    	
+//    	return this.puntos;
+//    }
 
 
     /* Este metodo esta bien.
@@ -72,13 +72,13 @@ public class Jugador {
     }
     
     
-    /*
-     * POST: Devuelve el bando al que pertenece el Jugador.
-     */
-    public Bando getBando() {
-
-		return this.bando;
-	} 
+//    /*
+//     * POST: Devuelve el bando al que pertenece el Jugador.
+//     */
+//    public Bando getBando() {
+//
+//		return this.bando;
+//	} 
     
     
     /* Este metodo CAPAZ HAY QUE BORRARLO.
@@ -91,21 +91,18 @@ public class Jugador {
     }
 
 
-    /* Este metodo CAPAZ HAY QUE BORRARLO.
-     * 
-     * PRE:  -...
-     * POST: -...
+    /* 
+     * PRE:  ...
+     * POST: ...
      */
-    public int[] elegirCasillero(){
-
-        int[] posicion = new int[2];
+    public Posicion elegirCasillero(){
 
         System.out.print("Ingresa fila: ");
-        posicion[0] = consola.nextInt();
+        int y = consola.nextInt();
 
         System.out.print("\nIngresa columna: ");
-        posicion[1] = consola.nextInt();
+        int x = consola.nextInt();
 
-        return posicion;
+        return new Posicion(x,y);
     }
 }

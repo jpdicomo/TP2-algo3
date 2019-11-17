@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import fiuba.AlgoChess.Modelo.Errores.MismaUnidadException;
 import fiuba.AlgoChess.Modelo.Errores.MismoBandoException;
-import fiuba.AlgoChess.Modelo.Jugador.Jugador;
+import fiuba.AlgoChess.Modelo.Jugador.Bando;
 
 
 public class SoldadoTest {
@@ -14,8 +14,8 @@ public class SoldadoTest {
 	@Test
 	public void test00SoldadoApenasCreadoTiene100DeVida() {
 		
-		Jugador jose = new Jugador("Jose");
-		Soldado soldado = new Soldado(jose.getBando());
+		Bando bandoJose = new Bando();
+		Soldado soldado = new Soldado(bandoJose);
 
 		Assert.assertEquals(100, soldado.getVida());
 	}
@@ -24,13 +24,13 @@ public class SoldadoTest {
 	@Test
 	public void test01SoldadoAliadoAtacaASoldadoEnemigoYLeRestaCorrectamenteLaVida() {
 		
-		Jugador jose = new Jugador("Jose");
-		Soldado soldado1 = new Soldado(jose.getBando());
+		Bando bandoJose = new Bando();
+		Soldado soldado1 = new Soldado(bandoJose);
 
-		Jugador juan = new Jugador("Juan");
-		Soldado soldado2 = new Soldado(juan.getBando());
+		Bando bandoJuan = new Bando();
+		Soldado soldado2 = new Soldado(bandoJuan);
 
-		soldado1.realizarAccionSobre(soldado2);
+		soldado1.interactuarCon(soldado2);
 		
 		Assert.assertEquals(90, soldado2.getVida());
 	}
@@ -39,22 +39,23 @@ public class SoldadoTest {
 	@Test (expected = MismoBandoException.class)
 	public void test02SoldadoAtacaASoldadoAliadoTiraError() {
 		
-		Jugador jose = new Jugador("Jose");
+		Bando bandoJose = new Bando();
 		
-		Soldado soldado1 = new Soldado(jose.getBando());
-		Soldado soldado2 = new Soldado(jose.getBando());
+		Soldado soldado1 = new Soldado(bandoJose);
+		Soldado soldado2 = new Soldado(bandoJose);
 
-		soldado1.realizarAccionSobre(soldado2);
+		soldado1.interactuarCon(soldado2);
 	}
 	
 
 	@Test (expected = MismaUnidadException.class)
 	public void test03UnSoldadoNoPuedeAtacarseASiMismo() {
 
-		Jugador jose = new Jugador("Jose");
+		Bando bandoJose = new Bando();
 		
-		Soldado soldado1 = new Soldado(jose.getBando());
+		Soldado soldado1 = new Soldado(bandoJose);
 		
-		soldado1.realizarAccionSobre(soldado1);
+		soldado1.interactuarCon(soldado1);
 	}
+
 }
