@@ -8,7 +8,7 @@ public class Jinete extends Unidad {
 
 	// Atributos.
 	
-    private Ataque tipoAtaque;
+    private Ataque ataque;
     private int danioMelee = 5;
 
     // Metodos.
@@ -16,7 +16,7 @@ public class Jinete extends Unidad {
     public Jinete(Bando bando){
     	
         super(bando);
-        this.tipoAtaque = new AtaqueMelee(this.danioMelee);
+        this.ataque = new AtaqueMelee(this.danioMelee);
         this.vida = 100;
         this.costo = 3;
     }
@@ -26,13 +26,6 @@ public class Jinete extends Unidad {
 
     	super.interactuarCon(otraUnidad);
 		this.bando.interactuarConUnEnemigo(otraUnidad);
-		this.tipoAtaque.atacarA(otraUnidad);
+		this.ataque.atacarA(otraUnidad);
 	}
-    
-    
-    // Metodo de clase (estatico)
-    public int getCosto() {
-    	
-    	return this.costo;
-    }
 }

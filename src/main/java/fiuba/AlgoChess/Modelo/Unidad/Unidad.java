@@ -42,15 +42,6 @@ public abstract class Unidad {
 
         this.vida += curacion;
     }
-
-
-    /*
-     *
-     */
-    public int getVida(){
-
-    	return this.vida;
-    }
     
     
     public void interactuarCon(Unidad otraUnidad) {
@@ -77,6 +68,15 @@ public abstract class Unidad {
     		throw new DistintoBandoException();
     	}
 	}
+    
+    
+    /*
+    *
+    */
+   public int getVida(){
+
+	   return this.vida;
+   }
     
     
     public int getCosto() {

@@ -8,7 +8,7 @@ public class Soldado extends Unidad {
 
 	// Atributos.
 	
-	private Ataque tipoAtaque = new AtaqueMelee(10);
+	private Ataque ataque = new AtaqueMelee(10);
 
     // Metodos.
 
@@ -24,13 +24,6 @@ public class Soldado extends Unidad {
 
     	super.interactuarCon(otraUnidad);
     	this.bando.interactuarConUnEnemigo(otraUnidad);
-		this.tipoAtaque.atacarA(otraUnidad);
+		this.ataque.atacarA(otraUnidad);
 	}
-    
-    
-    // Metodo de clase (estatico)
-    public int getCosto() {
-    	
-    	return this.costo;
-    }
 }

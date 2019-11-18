@@ -48,11 +48,4 @@ public class Curandero extends Unidad /*implements Movible*/{
 		this.bando.interactuarConUnAliado(otraUnidad);
 		this.curarA(otraUnidad);
 	}
-    
-    
-    // Metodo de clase (estatico)
-    public int getCosto() {
-    	
-    	return this.costo;
-    }
 }

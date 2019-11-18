@@ -10,7 +10,7 @@ public class Catapulta extends Unidad {
 	
 	// Atributos.
 	
-    private Ataque tipoAtaque = new AtaqueALargaDistancia(20);
+    private Ataque ataque = new AtaqueALargaDistancia(20);
 
     
     // Metodos.
@@ -42,13 +42,6 @@ public class Catapulta extends Unidad {
 
 		super.interactuarCon(otraUnidad);
 		this.bando.interactuarConUnEnemigo(otraUnidad);
-		this.tipoAtaque.atacarA(otraUnidad);
+		this.ataque.atacarA(otraUnidad);
 	}
-	
-	
-	// Metodo de clase (estatico)
-    public int getCosto() {
-    	
-    	return this.costo;
-    }
 }
