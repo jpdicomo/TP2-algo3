@@ -8,7 +8,7 @@ public class Soldado extends Unidad {
 
 	// Atributos.
 	
-	private TipoAtaque tipoAtaque = new AtaqueMelee(10);
+	private Ataque tipoAtaque = new AtaqueMelee(10);
 
     // Metodos.
 

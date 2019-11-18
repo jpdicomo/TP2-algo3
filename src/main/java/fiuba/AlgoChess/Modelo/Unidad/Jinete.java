@@ -8,7 +8,7 @@ public class Jinete extends Unidad {
 
 	// Atributos.
 	
-    private TipoAtaque tipoAtaque;
+    private Ataque tipoAtaque;
     private int danioMelee = 5;
 
     // Metodos.

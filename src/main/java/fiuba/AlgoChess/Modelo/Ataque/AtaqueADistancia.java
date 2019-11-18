@@ -2,7 +2,7 @@ package fiuba.AlgoChess.Modelo.Ataque;
 
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 
-public class AtaqueADistancia extends TipoAtaque {
+public class AtaqueADistancia extends Ataque {
 	
     public AtaqueADistancia(int danio) {
         super(danio);
