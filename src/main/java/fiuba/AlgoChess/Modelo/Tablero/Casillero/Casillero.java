@@ -1,5 +1,7 @@
 package fiuba.AlgoChess.Modelo.Tablero.Casillero;
 
+import java.util.HashMap;
+
 import fiuba.AlgoChess.Modelo.Errores.*;
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
@@ -11,6 +13,8 @@ public class Casillero {
 	private int[] ubicacion;
 	private Estado estado;
 	private Bando bando;
+	HashMap<String , Casillero> vecinos;
+	
 
 	// Metodos.
 
@@ -27,7 +31,15 @@ public class Casillero {
 
 		this.estado = new Libre();
 		this.bando = bando;
+		this.vecinos = new HashMap<String, Casillero>();
 	}
+	
+	
+	public void agregarVecino(String direccion, Casillero vecino) {
+		
+		this.vecinos.put(direccion, vecino);
+	}
+	
 
 	/*
 	 * PRE:  El Casillero se encuentra Libre. El casillero y la unidad son del mismo

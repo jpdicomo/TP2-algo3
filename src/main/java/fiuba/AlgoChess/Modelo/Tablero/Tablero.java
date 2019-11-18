@@ -35,7 +35,15 @@ public class Tablero {
 	public Tablero(Bando bando1, Bando bando2) {
 
 		this.casilleros = new Casillero[20][20];
+		
+		this.crearCasilleros(bando1, bando2);
+		this.conectarCasilleros();
+	}
 
+	
+	
+	private void crearCasilleros(Bando bando1, Bando bando2) {
+		
 		for (int i = 0; i < 20; i++) {
 
 			for (int j = 0; j < 10; j++) {
@@ -51,8 +59,41 @@ public class Tablero {
 			}
 		}
 	}
+	
+	
+	private void conectarCasilleros() {
+		
+		for (int i = 0; i < 20; i++) {
+			for (int j = 0; j < 20; j++) {
+				
+				Casillero casillero = this.casilleros[i][j];
+				
+				casillero.agregarVecino("Arriba", this.buscarVecino(i,j+1));
+				casillero.agregarVecino("ArribaDerecha", this.buscarVecino(i+1,j+1));
+				casillero.agregarVecino("Derecha", this.buscarVecino(i+1,j));
+				casillero.agregarVecino("AbajoDerecha", this.buscarVecino(i+1,j-1));
+				casillero.agregarVecino("Abajo", this.buscarVecino(i,j-1));
+				casillero.agregarVecino("AbajoIzquierda", this.buscarVecino(i-1,j-1));
+				casillero.agregarVecino("Izquierda", this.buscarVecino(i-1,j));
+				casillero.agregarVecino("ArribaIzquierda", this.buscarVecino(i-1,j+1));
+			}
+		}
+	}
+	
 
 	
+	private Casillero buscarVecino(int i, int j) {
+
+		Casillero casillero;
+		
+		try {
+			casillero = this.casilleros[i][j];
+		} catch (ArrayIndexOutOfBoundsException e) {
+			casillero = null;
+		}
+		return casillero;
+	}
+
 	/* Metodo privado.
 	 * 
 	 * POST: Devuelve un casillero del Tablero a partir de una Posicion valida.
