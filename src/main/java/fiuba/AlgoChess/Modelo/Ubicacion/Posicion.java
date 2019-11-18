@@ -1,8 +1,7 @@
-package fiuba.AlgoChess.Modelo.Tablero;
+package fiuba.AlgoChess.Modelo.Ubicacion;
 
 import fiuba.AlgoChess.Modelo.Errores.DesplazamientoInvalidoExcepcion;
 import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
-import fiuba.AlgoChess.Modelo.Ubicacion.Direccion;
 
 public class Posicion {
 	

@@ -1,7 +1,7 @@
 package fiuba.AlgoChess.Modelo.Jugador;
 
 import fiuba.AlgoChess.Modelo.Errores.PuntosInsuficientesException;
-import fiuba.AlgoChess.Modelo.Tablero.Posicion;
+import fiuba.AlgoChess.Modelo.Ubicacion.Posicion;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 import java.util.Scanner;
 

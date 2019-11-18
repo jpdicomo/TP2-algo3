@@ -1,9 +1,9 @@
 package fiuba.AlgoChess.Modelo.Tablero;
 
-import fiuba.AlgoChess.Modelo.Errores.DistanciaInvalidaException;
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
 import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 import fiuba.AlgoChess.Modelo.Ubicacion.Direccion;
+import fiuba.AlgoChess.Modelo.Ubicacion.Posicion;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 
 //import java.util.HashMap;	<--- para mas adelante

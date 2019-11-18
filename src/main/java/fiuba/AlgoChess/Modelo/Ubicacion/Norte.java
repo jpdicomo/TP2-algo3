@@ -1,7 +1,5 @@
 package fiuba.AlgoChess.Modelo.Ubicacion;
 
-import fiuba.AlgoChess.Modelo.Tablero.Posicion;
-
 public class Norte extends Direccion {
 
 	@Override
