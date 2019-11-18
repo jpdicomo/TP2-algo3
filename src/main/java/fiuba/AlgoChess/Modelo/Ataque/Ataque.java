@@ -1,6 +1,6 @@
 package fiuba.AlgoChess.Modelo.Ataque;
 
-import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
+import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 
 
 public abstract class Ataque {
@@ -24,6 +24,6 @@ public abstract class Ataque {
 	/*
 	 * 
 	 */
-	public abstract void atacarA(Casillero unCasillero);
+	public abstract void atacarA(Unidad unaUnidad);
 
 }

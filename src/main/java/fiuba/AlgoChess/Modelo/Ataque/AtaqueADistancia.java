@@ -1,6 +1,6 @@
 package fiuba.AlgoChess.Modelo.Ataque;
 
-import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
+import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 
 
 public class AtaqueADistancia extends Ataque {
@@ -13,8 +13,8 @@ public class AtaqueADistancia extends Ataque {
 
 	
 	@Override
-	public void atacarA(Casillero unCasillero) {
+	public void atacarA(Unidad unaUnidad) {
 
-		unCasillero.recibirAtaque(this.danio);
+		unaUnidad.recibirDanio(this.danio);
 	}
 }
