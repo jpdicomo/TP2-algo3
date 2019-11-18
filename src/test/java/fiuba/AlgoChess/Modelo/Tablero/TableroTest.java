@@ -82,7 +82,7 @@ public class TableroTest {
         
         Posicion posicionInicial = new Posicion(0,0);
         Posicion posicionFinal = new Posicion(0,1);
-        Direccion direccion = new Arriba();
+        Direccion direccion = new Norte();
     	
         tablero.agregarNuevaUnidad(soldado, posicionInicial);
         tablero.moverUnidad(posicionInicial, direccion);
@@ -101,7 +101,7 @@ public class TableroTest {
         Soldado soldado = new Soldado(bandoJose);
         
         Posicion posicionInicial = new Posicion(9,0);
-        Direccion direccion = new Derecha();
+        Direccion direccion = new Este();
         Posicion posicionFinal = new Posicion(10,0);
     	
         tablero.agregarNuevaUnidad(soldado, posicionInicial);

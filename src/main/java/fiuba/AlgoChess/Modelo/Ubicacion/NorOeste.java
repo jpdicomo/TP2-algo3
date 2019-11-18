@@ -2,11 +2,11 @@ package fiuba.AlgoChess.Modelo.Ubicacion;
 
 import fiuba.AlgoChess.Modelo.Tablero.Posicion;
 
-public class Sur extends Direccion {
+public class NorOeste extends Direccion {
 
 	@Override
 	public Posicion decimeADondeMoverme(Posicion posicion) {
 
-		return posicion.moveteHaciaElSur();
+		return posicion.moveteHaciaElNorOeste();
 	}
 }

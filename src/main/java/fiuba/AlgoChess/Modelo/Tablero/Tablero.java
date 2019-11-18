@@ -40,14 +40,14 @@ public class Tablero {
 
 			for (int j = 0; j < 10; j++) {
 
-				this.casilleros[j][i] = new Casillero(j, i, bando1);
-//				this.tablero.put(new Posicion(j,i), new Casillero(j, i, jugador1.getBando()));	<--- para mas adelante
+				this.casilleros[j][i] = new Casillero(i, j, bando1);
+//				this.tablero.put(new Posicion(i,j), new Casillero(i, j, jugador1.getBando()));	<--- para mas adelante
 			}
 
 			for (int k = 10; k < 20; k++) {
 
-				this.casilleros[k][i] = new Casillero(k, i, bando2);
-//				this.tablero.put(new Posicion(k,i), new Casillero(k, i, jugador2.getBando()));	<--- para mas adelante
+				this.casilleros[k][i] = new Casillero(i, k, bando2);
+//				this.tablero.put(new Posicion(i,k), new Casillero(i, k, jugador2.getBando()));	<--- para mas adelante
 			}
 		}
 	}
