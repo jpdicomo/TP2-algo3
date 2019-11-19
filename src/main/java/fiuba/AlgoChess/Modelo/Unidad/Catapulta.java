@@ -2,15 +2,15 @@ package fiuba.AlgoChess.Modelo.Unidad;
 
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
 import fiuba.AlgoChess.Modelo.Errores.CatapultaNoPuedeSerCuradaException;
-import fiuba.AlgoChess.Modelo.Ataque.Ataque;
-import fiuba.AlgoChess.Modelo.Ataque.AtaqueALargaDistancia;
+import fiuba.AlgoChess.Modelo.Ataque.Habilidad;
+import fiuba.AlgoChess.Modelo.Ataque.AtaqueMedio;
 
 
 public class Catapulta extends Unidad {
 	
 	// Atributos.
 	
-    private Ataque ataque = new AtaqueALargaDistancia(20);
+    private Habilidad ataque = new AtaqueMedio(20);
 
     
     // Metodos.

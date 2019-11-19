@@ -38,7 +38,7 @@ public abstract class Unidad {
 	/*
 	 * 
 	 */
-    protected void serCurado(int curacion){
+    public void serCurado(int curacion){
 
         this.vida += curacion;
     }

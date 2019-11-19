@@ -8,7 +8,7 @@ public class Jinete extends Unidad {
 
 	// Atributos.
 	
-    private Ataque ataque;
+    private Habilidad ataque;
     private int danioMelee = 5;
 
     // Metodos.
@@ -16,7 +16,7 @@ public class Jinete extends Unidad {
     public Jinete(Bando bando){
     	
         super(bando);
-        this.ataque = new AtaqueMelee(this.danioMelee);
+        this.ataque = new AtaqueCerca(this.danioMelee);
         this.vida = 100;
         this.costo = 3;
     }
