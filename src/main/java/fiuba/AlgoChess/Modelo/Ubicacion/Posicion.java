@@ -45,20 +45,33 @@ public class Posicion {
     
     public Posicion moveteHaciaElNorte() {
 
-    	if(this.columna == 20) {
+    	if(this.fila == 19) {
     		
     		throw new DesplazamientoInvalidoExcepcion();
     	
     	} else {
     		
-    		return new Posicion(this.fila, this.columna + 1);
+    		return new Posicion(this.fila +1, this.columna);
     	}
     }
 
 
 	public Posicion moveteHaciaElSur() {
 		
-		if(this.columna == 1) {
+		if(this.fila == 0) {
+    		
+    		throw new DesplazamientoInvalidoExcepcion();
+    	
+		} else {
+    		
+    		return new Posicion(this.fila -1, this.columna);
+    	}
+	}
+
+
+	public Posicion moveteHaciaElOeste() {
+		
+		if(this.columna == 0) {
     		
     		throw new DesplazamientoInvalidoExcepcion();
     	
@@ -69,29 +82,15 @@ public class Posicion {
 	}
 
 
-	public Posicion moveteHaciaElOeste() {
-		
-		if(this.fila == 1) {
-    		
-    		throw new DesplazamientoInvalidoExcepcion();
-    	
-		} else {
-    		
-    		this.fila--;
-    		return new Posicion(this.fila - 1, this.columna);
-    	}
-	}
-
-
 	public Posicion moveteHaciaElEste() {
 		
-		if(this.fila == 20) {
+		if(this.columna == 19) {
     		
     		throw new DesplazamientoInvalidoExcepcion();
     	
 		} else {
     		
-    		return new Posicion(this.fila + 1, this.columna);
+    		return new Posicion(this.fila, this.columna + 1);
     	}
 	}
 	

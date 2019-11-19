@@ -1,7 +1,5 @@
 package fiuba.AlgoChess.Modelo.Tablero;
 
-import java.util.ArrayList;
-
 import fiuba.AlgoChess.Modelo.Errores.CasilleroLibreException;
 import fiuba.AlgoChess.Modelo.Errores.CasilleroOcupadoException;
 import fiuba.AlgoChess.Modelo.Errores.DesplazamientoInvalidoExcepcion;
@@ -208,7 +206,7 @@ public class Tablero {
 				
 				fichasNoMovidas++;
 				if(fichasNoMovidas == 3) {
-					throw e;
+					throw new DesplazamientoInvalidoExcepcion();
 				}
 			}
 		}
@@ -264,7 +262,7 @@ public class Tablero {
 			hayBatallon = casilleroN.getUnidad() instanceof Soldado;
 			hayBatallon = hayBatallon && casilleroS.getUnidad() instanceof Soldado;
 			
-		} catch (PosicionInvalidaException | CasilleroLibreException e) {
+		} catch (DesplazamientoInvalidoExcepcion | PosicionInvalidaException | CasilleroLibreException e) {
 			
 			return new Batallon(false);
 		}
@@ -294,7 +292,7 @@ public class Tablero {
 			hayBatallon = casilleroE.getUnidad() instanceof Soldado;
 			hayBatallon = hayBatallon && casilleroO.getUnidad() instanceof Soldado;
 			
-		} catch (PosicionInvalidaException | CasilleroLibreException e) {
+		} catch (DesplazamientoInvalidoExcepcion | PosicionInvalidaException | CasilleroLibreException e) {
 			
 			return new Batallon(false);
 		}
@@ -324,7 +322,7 @@ public class Tablero {
 			hayBatallon = casilleroNE.getUnidad() instanceof Soldado;
 			hayBatallon = hayBatallon && casilleroSO.getUnidad() instanceof Soldado;
 			
-		} catch (PosicionInvalidaException | CasilleroLibreException e) {
+		} catch (DesplazamientoInvalidoExcepcion | PosicionInvalidaException | CasilleroLibreException e) {
 			
 			return new Batallon(false);
 		}
@@ -354,7 +352,7 @@ public class Tablero {
 			hayBatallon = casilleroNO.getUnidad() instanceof Soldado;
 			hayBatallon = hayBatallon && casilleroSE.getUnidad() instanceof Soldado;
 			
-		} catch (PosicionInvalidaException | CasilleroLibreException e) {
+		} catch (DesplazamientoInvalidoExcepcion | PosicionInvalidaException | CasilleroLibreException e) {
 			
 			return new Batallon(false);
 		}
