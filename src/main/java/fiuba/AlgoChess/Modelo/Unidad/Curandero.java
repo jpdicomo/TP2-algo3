@@ -9,6 +9,7 @@ import fiuba.AlgoChess.Modelo.Jugador.Bando;
 public class Curandero extends Unidad /*implements Movible*/{
 
 	// Atributos.
+
 	private int curacion;
 
 	// Metodos.
@@ -21,7 +22,7 @@ public class Curandero extends Unidad /*implements Movible*/{
         super(bando);
         this.vida = 75;
         this.curacion = 15;
-        this.costo = 2;
+        this.costo= 2;
     }
     
     
@@ -41,10 +42,10 @@ public class Curandero extends Unidad /*implements Movible*/{
      * POST: La unidad aliada es curada.
      */
     @Override
-	public void realizarAccionSobre(Unidad otraUnidad) {
+	public void interactuarCon(Unidad otraUnidad) {
 
-    	super.realizarAccionSobre(otraUnidad);
-		this.bando.interactuarConUnAliado(otraUnidad.getBando());
+    	super.interactuarCon(otraUnidad);
+		this.bando.interactuarConUnAliado(otraUnidad);
 		this.curarA(otraUnidad);
 	}
 }

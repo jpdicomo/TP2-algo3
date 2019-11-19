@@ -16,7 +16,7 @@ public class Libre extends Estado {
     @Override
     public void agregarUnidad(Unidad unaUnidad, Bando bando) {
     	
-		bando.interactuarConUnAliado(unaUnidad.getBando());
+		bando.interactuarConUnAliado(unaUnidad);
     }
     
     

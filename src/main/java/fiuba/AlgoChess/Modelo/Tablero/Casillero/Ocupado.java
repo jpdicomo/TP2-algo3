@@ -1,6 +1,7 @@
 package fiuba.AlgoChess.Modelo.Tablero.Casillero;
 
 import fiuba.AlgoChess.Modelo.Errores.CasilleroOcupadoException;
+import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 
@@ -68,7 +69,11 @@ public class Ocupado extends Estado {
 	@Override
 	public void recibirAtaque(Bando bando, int danio) {
 		
-		if(bando == this.unidad.getBando()) {
+		try {
+			
+			this.unidad.interactuarConUnAliado(bando);
+			
+		} catch(DistintoBandoException e) {
 			
 			danio *= 1.05;
 		}

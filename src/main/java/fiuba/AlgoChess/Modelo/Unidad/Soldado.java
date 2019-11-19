@@ -8,7 +8,7 @@ public class Soldado extends Unidad {
 
 	// Atributos.
 	
-	private TipoAtaque tipoAtaque = new AtaqueMelee(10);
+	private Ataque ataque = new AtaqueMelee(10);
 
     // Metodos.
 
@@ -20,11 +20,10 @@ public class Soldado extends Unidad {
     }
 
     @Override
-	public void realizarAccionSobre(Unidad otraUnidad) {
+	public void interactuarCon(Unidad otraUnidad) {
 
-    	super.realizarAccionSobre(otraUnidad);
-		this.bando.interactuarConUnEnemigo(otraUnidad.getBando());
-		this.tipoAtaque.atacarA(otraUnidad);
+    	super.interactuarCon(otraUnidad);
+    	this.bando.interactuarConUnEnemigo(otraUnidad);
+		this.ataque.atacarA(otraUnidad);
 	}
-
 }

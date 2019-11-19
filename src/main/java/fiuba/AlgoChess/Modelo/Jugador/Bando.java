@@ -1,7 +1,6 @@
 package fiuba.AlgoChess.Modelo.Jugador;
 
-import fiuba.AlgoChess.Modelo.Errores.MismoBandoException;
-import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
+import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 
 public class Bando {
 
@@ -17,27 +16,19 @@ public class Bando {
 
     /* Nota: Mejorar la descripcion de lo que hace este metodo.
      * 
-     * POST: Verifica si el Objeto (Jugador, Unidad, Casillero) esta interactuando
-     * 		 con un Aliado (Alguien de su mismo bando), caso contrario, arroja una
-     * 		 excepcion.
+     * POST: 
      */
-    public void interactuarConUnAliado(Bando bando) {
+    public void interactuarConUnAliado(Unidad unidadAliada) {
 		
-		if(this != bando) {
-			
-			throw new DistintoBandoException();
-		}
+		unidadAliada.interactuarConUnAliado(this);
 	}
     
     
     /*
      * 
      */
-    public void interactuarConUnEnemigo(Bando bando) {
+    public void interactuarConUnEnemigo(Unidad unidadEnemiga) {
 		
-		if(this == bando) {
-			
-			throw new MismoBandoException();
-		}
+		unidadEnemiga.interactuarConUnEnemigo(this);
 	}   
 }

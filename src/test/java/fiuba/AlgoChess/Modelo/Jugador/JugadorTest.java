@@ -10,9 +10,10 @@ public class JugadorTest {
 
     @Test
     public void Test01JugadorPuedeColocarUnaUnidadSiTienePuntos(){
-
-        Jugador jose = new Jugador("Jose");
-        Jinete jinete = new Jinete(jose.getBando());
+    	
+    	Bando bandoJose = new Bando();
+        Jugador jose = new Jugador("Jose", bandoJose);
+        Jinete jinete = new Jinete(bandoJose);
 
         jose.agregarUnidad(jinete);
         
@@ -26,11 +27,12 @@ public class JugadorTest {
     @Test (expected = PuntosInsuficientesException.class)
     public void Test02JugadorNoPuedeColocarUnaUnidadSiNoTienePuntos(){
     	
-        Jugador jose = new Jugador("Jose");
+    	Bando bandoJose = new Bando();
+        Jugador jose = new Jugador("Jose", bandoJose);
 
         for (int i = 0; i < 20; i++) {
 			
-        	Jinete unJinete = new Jinete(jose.getBando());
+        	Jinete unJinete = new Jinete(bandoJose);
         	jose.agregarUnidad(unJinete);
 		}
     }
@@ -39,7 +41,8 @@ public class JugadorTest {
     @Test
     public void Test03JugadorPierdeSiNoTieneUnidades(){
 
-        Jugador jose = new Jugador("Jose");
+    	Bando bandoJose = new Bando();
+        Jugador jose = new Jugador("Jose", bandoJose);
 
         Assert.assertEquals(false, jose.sigueJugando());
     }
@@ -48,8 +51,10 @@ public class JugadorTest {
     @Test
     public void Test04JugadorSigueJugandoSiTieneEntidades(){
 
-        Jugador jose = new Jugador("Jose");
-        Jinete jinete = new Jinete(jose.getBando());
+    	Bando bandoJose = new Bando();
+        Jugador jose = new Jugador("Jose", bandoJose);
+        Jinete jinete = new Jinete(bandoJose);
+        
         jose.agregarUnidad(jinete);
 
         Assert.assertEquals(true, jose.sigueJugando());

@@ -7,7 +7,8 @@ import fiuba.AlgoChess.Modelo.Ataque.*;
 public class Jinete extends Unidad {
 
 	// Atributos.
-    private TipoAtaque tipoAtaque;
+	
+    private Ataque ataque;
     private int danioMelee = 5;
 
     // Metodos.
@@ -15,17 +16,16 @@ public class Jinete extends Unidad {
     public Jinete(Bando bando){
     	
         super(bando);
-        this.tipoAtaque = new AtaqueMelee(this.danioMelee);
+        this.ataque = new AtaqueMelee(this.danioMelee);
         this.vida = 100;
         this.costo = 3;
     }
 
     @Override
-	public void realizarAccionSobre(Unidad otraUnidad) {
+	public void interactuarCon(Unidad otraUnidad) {
 
-    	super.realizarAccionSobre(otraUnidad);
-		this.bando.interactuarConUnEnemigo(otraUnidad.getBando());
-		this.tipoAtaque.atacarA(otraUnidad);
+    	super.interactuarCon(otraUnidad);
+		this.bando.interactuarConUnEnemigo(otraUnidad);
+		this.ataque.atacarA(otraUnidad);
 	}
-
 }

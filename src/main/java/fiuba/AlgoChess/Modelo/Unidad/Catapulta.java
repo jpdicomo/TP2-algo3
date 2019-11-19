@@ -2,7 +2,7 @@ package fiuba.AlgoChess.Modelo.Unidad;
 
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
 import fiuba.AlgoChess.Modelo.Errores.CatapultaNoPuedeSerCuradaException;
-import fiuba.AlgoChess.Modelo.Ataque.TipoAtaque;
+import fiuba.AlgoChess.Modelo.Ataque.Ataque;
 import fiuba.AlgoChess.Modelo.Ataque.AtaqueALargaDistancia;
 
 
@@ -10,7 +10,7 @@ public class Catapulta extends Unidad {
 	
 	// Atributos.
 	
-    private TipoAtaque tipoAtaque = new AtaqueALargaDistancia(20);
+    private Ataque ataque = new AtaqueALargaDistancia(20);
 
     
     // Metodos.
@@ -38,10 +38,10 @@ public class Catapulta extends Unidad {
 
 
 	@Override
-	public void realizarAccionSobre(Unidad otraUnidad) {
+	public void interactuarCon(Unidad otraUnidad) {
 
-		super.realizarAccionSobre(otraUnidad);
-		this.bando.interactuarConUnEnemigo(otraUnidad.getBando());
-		this.tipoAtaque.atacarA(otraUnidad);
+		super.interactuarCon(otraUnidad);
+		this.bando.interactuarConUnEnemigo(otraUnidad);
+		this.ataque.atacarA(otraUnidad);
 	}
 }
