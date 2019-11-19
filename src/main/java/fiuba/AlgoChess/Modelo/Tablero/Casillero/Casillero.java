@@ -1,6 +1,6 @@
 package fiuba.AlgoChess.Modelo.Tablero.Casillero;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import fiuba.AlgoChess.Modelo.Errores.*;
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
@@ -14,7 +14,7 @@ public class Casillero {
 	private Posicion posicion;
 	private Estado estado;
 	private Bando bando;
-	HashMap<String , Casillero> vecinos;
+	private ArrayList<Casillero> vecinos;
 	
 
 	// Metodos.
@@ -29,13 +29,13 @@ public class Casillero {
 		this.posicion = new Posicion(fila, columna);
 		this.estado = new Libre();
 		this.bando = bando;
-		this.vecinos = new HashMap<String, Casillero>();
+		this.vecinos = new ArrayList<Casillero>();
 	}
 	
 	
-	public void agregarVecino(String direccion, Casillero vecino) {
+	public void agregarVecino(Casillero vecino) {
 		
-		this.vecinos.put(direccion, vecino);
+		this.vecinos.add(vecino);
 	}
 	
 

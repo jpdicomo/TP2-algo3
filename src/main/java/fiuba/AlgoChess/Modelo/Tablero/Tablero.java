@@ -71,7 +71,8 @@ public class Tablero {
 		return casillero;
 	}
 	
-	
+//	NO BORRAR ESTO, PODEMOS NECESITARLO MAS ADELANTE
+//	
 //	private void conectarCasilleros() {
 //		
 //		for (int i = 0; i < 20; i++) {

@@ -8,8 +8,8 @@ import fiuba.AlgoChess.Modelo.Errores.DesplazamientoInvalidoExcepcion;
 import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
 import fiuba.AlgoChess.Modelo.Ubicacion.*;
-import fiuba.AlgoChess.Modelo.Unidad.Jinete;
 import fiuba.AlgoChess.Modelo.Unidad.Soldado;
+import fiuba.AlgoChess.Modelo.Unidad.Jinete.Jinete;
 
 
 public class TableroTest {
