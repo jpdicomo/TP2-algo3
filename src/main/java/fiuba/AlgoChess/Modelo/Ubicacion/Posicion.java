@@ -7,8 +7,8 @@ public class Posicion {
 	
 	// Atributos.
 	
-    private int x;
-    private int y;
+    private int fila;
+    private int columna;
 
 
     // Metodos.
@@ -18,7 +18,7 @@ public class Posicion {
      */
     public Casillero obtenerCasillero(Casillero[][] casilleros) {
     	
-    	return casilleros[this.x][this.y];
+    	return casilleros[this.fila][this.columna];
     }
     
     
@@ -26,10 +26,10 @@ public class Posicion {
     /*
      * 
      */
-    public Posicion(int x, int y){
+    public Posicion(int fila, int columna){
     	
-    	this.x = x;
-        this.y = y;
+    	this.fila = fila;
+        this.columna = columna;
     }
     
     
@@ -45,53 +45,53 @@ public class Posicion {
     
     public Posicion moveteHaciaElNorte() {
 
-    	if(this.y == 20) {
+    	if(this.columna == 20) {
     		
     		throw new DesplazamientoInvalidoExcepcion();
     	
     	} else {
     		
-    		return new Posicion(this.x, this.y + 1);
+    		return new Posicion(this.fila, this.columna + 1);
     	}
     }
 
 
 	public Posicion moveteHaciaElSur() {
 		
-		if(this.y == 1) {
+		if(this.columna == 1) {
     		
     		throw new DesplazamientoInvalidoExcepcion();
     	
 		} else {
     		
-    		return new Posicion(this.x, this.y - 1);
+    		return new Posicion(this.fila, this.columna - 1);
     	}
 	}
 
 
 	public Posicion moveteHaciaElOeste() {
 		
-		if(this.x == 1) {
+		if(this.fila == 1) {
     		
     		throw new DesplazamientoInvalidoExcepcion();
     	
 		} else {
     		
-    		this.x--;
-    		return new Posicion(this.x - 1, this.y);
+    		this.fila--;
+    		return new Posicion(this.fila - 1, this.columna);
     	}
 	}
 
 
 	public Posicion moveteHaciaElEste() {
 		
-		if(this.x == 20) {
+		if(this.fila == 20) {
     		
     		throw new DesplazamientoInvalidoExcepcion();
     	
 		} else {
     		
-    		return new Posicion(this.x + 1, this.y);
+    		return new Posicion(this.fila + 1, this.columna);
     	}
 	}
 	

@@ -4,13 +4,14 @@ import java.util.HashMap;
 
 import fiuba.AlgoChess.Modelo.Errores.*;
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
+import fiuba.AlgoChess.Modelo.Ubicacion.Posicion;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 
 public class Casillero {
 
 	// Atributos.
 
-	private int[] ubicacion;
+	private Posicion posicion;
 	private Estado estado;
 	private Bando bando;
 	HashMap<String , Casillero> vecinos;
@@ -23,12 +24,9 @@ public class Casillero {
 	 * 
 	 * POST: Crea un nuevo Casillero Libre con un determinado Bando.
 	 */
-	public Casillero(int x, int y, Bando bando) {
+	public Casillero(int fila, int columna, Bando bando) {
 
-		this.ubicacion = new int[2];
-		this.ubicacion[0] = x;
-		this.ubicacion[1] = y;
-
+		this.posicion = new Posicion(fila, columna);
 		this.estado = new Libre();
 		this.bando = bando;
 		this.vecinos = new HashMap<String, Casillero>();

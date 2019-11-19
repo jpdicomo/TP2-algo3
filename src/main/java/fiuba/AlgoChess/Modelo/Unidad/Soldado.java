@@ -26,9 +26,4 @@ public class Soldado extends Unidad {
     	this.bando.interactuarConUnEnemigo(otraUnidad);
 		this.ataque.atacarA(otraUnidad);
 	}
-    
-    public void moverse(Direccion direccion){
-    	
-    }
-    
 }
