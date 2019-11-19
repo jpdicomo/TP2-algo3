@@ -1,6 +1,7 @@
 package fiuba.AlgoChess.Modelo.Unidad;
 
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
+import fiuba.AlgoChess.Modelo.Ataque.Habilidad;
 import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
 import fiuba.AlgoChess.Modelo.Errores.MismaUnidadException;
 import fiuba.AlgoChess.Modelo.Errores.MismoBandoException;
@@ -13,6 +14,7 @@ public abstract class Unidad {
     protected int vida;
     protected Bando bando;
 	protected int costo;
+	protected Habilidad habilidad;
 
 
     // Metodos.
@@ -44,9 +46,9 @@ public abstract class Unidad {
     }
     
     
-    public void interactuarCon(Unidad otraUnidad) {
+    public void interactuarCon(Unidad unaUnidad, int distancia) {
     	
-    	if(this == otraUnidad) {
+    	if(this == unaUnidad) {
     		
     		throw new MismaUnidadException();
     	}

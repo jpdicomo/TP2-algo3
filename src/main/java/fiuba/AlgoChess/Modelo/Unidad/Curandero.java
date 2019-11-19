@@ -1,17 +1,11 @@
 package fiuba.AlgoChess.Modelo.Unidad;
 
+import fiuba.AlgoChess.Modelo.Ataque.Curacion;
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
 
-//import fiuba.AlgoChess.Modelo.Tablero.Tablero;
-//import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
-//import fiuba.AlgoChess.Modelo.Movimiento.*;
 
 public class Curandero extends Unidad /*implements Movible*/{
-
-	// Atributos.
-
-	private int curacion;
-
+	
 	// Metodos.
     /* 
      * PRE:  El casillero esta libre.
@@ -21,18 +15,8 @@ public class Curandero extends Unidad /*implements Movible*/{
     	
         super(bando);
         this.vida = 75;
-        this.curacion = 15;
         this.costo= 2;
-    }
-    
-    
-    /* 
-     * PRE:  La unidad no es una catapulta.
-     * POST: Aumenta la vida de la unidad tanto como le permita su poder de curaciÃ³n.
-     */
-    public void curarA(Unidad unidad) {
-
-    	unidad.serCurado(this.curacion);
+        this.habilidad = new Curacion(15);
     }
     
     
@@ -42,10 +26,10 @@ public class Curandero extends Unidad /*implements Movible*/{
      * POST: La unidad aliada es curada.
      */
     @Override
-	public void interactuarCon(Unidad otraUnidad) {
+	public void interactuarCon(Unidad unaUnidad, int distancia) {
 
-    	super.interactuarCon(otraUnidad);
-		this.bando.interactuarConUnAliado(otraUnidad);
-		this.curarA(otraUnidad);
+    	super.interactuarCon(unaUnidad, distancia);
+    	this.bando.interactuarConUnAliado(unaUnidad);
+		this.habilidad.usarHabilidadCon(unaUnidad, distancia);
 	}
 }
