@@ -97,4 +97,54 @@ public class Casillero {
 		
 		this.estado.recibirAtaque(this.bando, danio);
 	}
+
+
+	/*
+	 * POST: Detecta si hay alguna unidad enemiga cerca
+	 * 		 de mi unidad.
+	 */
+	public boolean hayEnemigosCerca(Bando bando) {
+		
+		ArrayList<Unidad> unidadesVecinas = this.getUnidadesVecinas();
+		
+		for(Casillero vecino : this.vecinos) {
+			
+			unidadesVecinas.addAll(vecino.getUnidadesVecinas());
+		}
+		
+		for (Unidad unidad : unidadesVecinas) {
+			
+			try {
+				
+				unidad.interactuarConUnAliado(bando);
+				
+			} catch(DistintoBandoException e) {
+				
+				return true;
+			}	
+		}
+		
+		return false;
+	}
+	
+	
+	
+	
+	private ArrayList<Unidad> getUnidadesVecinas(){
+		
+		ArrayList<Unidad> unidadesVecinas = new ArrayList<Unidad>();
+		
+		for(Casillero vecino : this.vecinos) {
+			
+			try {
+				
+				unidadesVecinas.add(vecino.getUnidad());
+				
+			} catch(CasilleroLibreException e) {
+				
+			}
+		}
+		
+		return unidadesVecinas;
+	}
 }
