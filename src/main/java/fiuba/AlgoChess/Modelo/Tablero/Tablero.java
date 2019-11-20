@@ -6,11 +6,8 @@ import fiuba.AlgoChess.Modelo.Errores.DesplazamientoInvalidoExcepcion;
 import fiuba.AlgoChess.Modelo.Errores.PosicionInvalidaException;
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
 import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
-import fiuba.AlgoChess.Modelo.Ubicacion.Direccion;
-import fiuba.AlgoChess.Modelo.Ubicacion.Posicion;
-import fiuba.AlgoChess.Modelo.Unidad.Batallon;
-import fiuba.AlgoChess.Modelo.Unidad.Soldado;
-import fiuba.AlgoChess.Modelo.Unidad.Unidad;
+import fiuba.AlgoChess.Modelo.Ubicacion.*;
+import fiuba.AlgoChess.Modelo.Unidad.*;
 
 
 public class Tablero {
@@ -30,7 +27,7 @@ public class Tablero {
 
 		this.casilleros = new Casillero[20][20];
 		this.crearCasilleros(bando1, bando2);
-//		this.conectarCasilleros();
+		this.conectarCasilleros();
 	}
 
 	
@@ -71,38 +68,41 @@ public class Tablero {
 		return casillero;
 	}
 	
-	
-//	private void conectarCasilleros() {
-//		
-//		for (int i = 0; i < 20; i++) {
-//			for (int j = 0; j < 20; j++) {
-//				
-//				Casillero casillero = this.casilleros[i][j];
-//				
-//				casillero.agregarVecino("Arriba", this.buscarVecino(i,j+1));
-//				casillero.agregarVecino("ArribaDerecha", this.buscarVecino(i+1,j+1));
-//				casillero.agregarVecino("Derecha", this.buscarVecino(i+1,j));
-//				casillero.agregarVecino("AbajoDerecha", this.buscarVecino(i+1,j-1));
-//				casillero.agregarVecino("Abajo", this.buscarVecino(i,j-1));
-//				casillero.agregarVecino("AbajoIzquierda", this.buscarVecino(i-1,j-1));
-//				casillero.agregarVecino("Izquierda", this.buscarVecino(i-1,j));
-//				casillero.agregarVecino("ArribaIzquierda", this.buscarVecino(i-1,j+1));
-//			}
-//		}
-//	}
-//
-//
-//	private Casillero buscarVecino(int i, int j) {
-//
-//		Casillero casillero;
-//		
-//		try {
-//			casillero = this.casilleros[i][j];
-//		} catch (ArrayIndexOutOfBoundsException e) {
-//			casillero = null;
-//		}
-//		return casillero;
-//	}
+
+	private void conectarCasilleros() {
+		
+		for (int fila = 0; fila < 20; fila++) {
+			for (int columna = 0; columna < 20; columna++) {
+				
+				Posicion posicion = new Posicion(fila, columna);
+				
+				this.buscarCasilleroVecino(posicion, new Norte());
+				this.buscarCasilleroVecino(posicion, new NorEste());
+				this.buscarCasilleroVecino(posicion, new Este());
+				this.buscarCasilleroVecino(posicion, new SurEste());
+				this.buscarCasilleroVecino(posicion, new Sur());
+				this.buscarCasilleroVecino(posicion, new SurOeste());
+				this.buscarCasilleroVecino(posicion, new Oeste());
+				this.buscarCasilleroVecino(posicion, new NorOeste());
+			}
+		}
+	}
+
+
+	private void buscarCasilleroVecino(Posicion posicion, Direccion direccion) {
+
+		Casillero casillero = this.obtenerCasillero(posicion);
+		Casillero vecino;
+		
+		try {
+			
+			vecino = this.obtenerCasillero(posicion.moveteHacia(direccion));
+			casillero.agregarVecino(vecino);
+			
+		} catch (DesplazamientoInvalidoExcepcion | PosicionInvalidaException e) {
+			
+		}
+	}
 	
 	
 	/*
@@ -153,11 +153,6 @@ public class Tablero {
 		return casillero.getUnidad();
 	}
 	
-	/*
-	 * --------------------------------------------------------
-	 * ----------- HASTA ACA TODO MAS O MENOS BIEN. -----------
-	 * --------------------------------------------------------
-	 */
 	
 	/*
 	 * PRE:  La direccion hacia la que hay que moverse pertenece a un

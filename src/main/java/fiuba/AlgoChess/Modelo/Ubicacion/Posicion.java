@@ -40,7 +40,6 @@ public class Posicion {
     	
     	return unaDireccion.decimeADondeMoverme(this);
     }
-    
 
     
     public Posicion moveteHaciaElNorte() {
@@ -125,5 +124,15 @@ public class Posicion {
     		
 		return posicionDezplazadaAlNorte.moveteHaciaElOeste();
     }
+
+
+
+	public double medirDistancia(Posicion otraPosicion) {
+
+		int x = Math.abs(this.columna - otraPosicion.columna);
+		int y = Math.abs(this.fila - otraPosicion.fila);
+		    	
+		return Math.hypot(x, y);
+	}
 
 }

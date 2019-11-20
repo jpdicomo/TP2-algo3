@@ -46,6 +46,6 @@ public abstract class Estado {
       * NOTA: implementarlo en las clases libre y ocupado
       * 
       */
-     public abstract void recibirAtaque(Bando bando, int danio);
+     public abstract void recibirDanio(Bando bando, int danio);
 
 }
