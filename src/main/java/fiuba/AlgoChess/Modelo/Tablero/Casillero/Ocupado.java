@@ -1,6 +1,5 @@
 package fiuba.AlgoChess.Modelo.Tablero.Casillero;
 
-import fiuba.AlgoChess.Modelo.Errores.CasilleroOcupadoException;
 import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
@@ -21,30 +20,6 @@ public class Ocupado extends Estado {
     public Ocupado(Unidad unaUnidad) {
 
     	this.unidad = unaUnidad;
-	}
-
-
-	/*
-	 * PRE:  El Casillero se encuentra en Estado Libre.
-	 * POST: Se agrega una Unidad al Casillero y se crea un Estado Ocupado.
-	 */
-	@Override
-    public void agregarUnidad(Unidad unaUnidad, Bando bando){
-
-        this.agregarUnidad(unaUnidad);
-    }
-	
-	
-	/* Sobrecarga del metodo anterior que no verifica el bando de una pieza
-     * antes de que esta sea colocada en un casillero.
-     * 
-     * PRE:  El Casillero se encuentra en Estado Libre.
-     * POST: Se agrega una Unidad al Casillero y se crea un Estado Ocupado.
-     */
-	@Override
-	public void agregarUnidad(Unidad unaUnidad) {
-		
-		throw new CasilleroOcupadoException();
 	}
 
 

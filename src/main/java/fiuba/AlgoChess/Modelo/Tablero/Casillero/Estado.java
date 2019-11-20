@@ -1,5 +1,7 @@
 package fiuba.AlgoChess.Modelo.Tablero.Casillero;
 
+import fiuba.AlgoChess.Modelo.Errores.CasilleroLibreException;
+import fiuba.AlgoChess.Modelo.Errores.CasilleroOcupadoException;
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 
@@ -12,7 +14,10 @@ public abstract class Estado {
       * PRE:  El Casillero se encuentra en Estado Libre.
       * POST: Se agrega una Unidad al Casillero y se crea un Estado Ocupado.
       */
-     public abstract void agregarUnidad(Unidad unaUnidad, Bando bando);
+     public void agregarUnidad(Unidad unaUnidad, Bando bando) {
+    	 
+    	 this.agregarUnidad(unaUnidad);
+     }
      
      
      /* Sobrecarga del metodo anterior que no verifica el bando de una pieza
@@ -21,21 +26,30 @@ public abstract class Estado {
       * PRE:  El Casillero se encuentra en Estado Libre.
       * POST: Se agrega una Unidad al Casillero y se crea un Estado Ocupado.
       */
-     public abstract void agregarUnidad(Unidad unaUnidad);
+     public void agregarUnidad(Unidad unaUnidad)  {
+ 		
+ 		throw new CasilleroOcupadoException();
+     }
 
      
      /*
       * PRE:  El Casillero se encuentra en Estado Ocupado.
       * POST: Se quita la Unidad del Casillero y se crea un Estado Libre.
       */
-     public abstract Unidad getUnidad();
+     public Unidad getUnidad() {
+
+ 		throw new CasilleroLibreException();
+ 	}
      
 
      /*
       * PRE:  El Casillero se encuentra en Estado Ocupado.
       * POST: Se quita la Unidad del Casillero y se crea un Estado Libre.
       */
-     public abstract Unidad quitarUnidad();
+     public Unidad quitarUnidad() {
+
+ 		throw new CasilleroLibreException();
+ 	}
      
      
      
@@ -46,6 +60,9 @@ public abstract class Estado {
       * NOTA: implementarlo en las clases libre y ocupado
       * 
       */
-     public abstract void recibirDanio(Bando bando, int danio);
+     public void recibirDanio(Bando bando, int danio) {
+
+ 		throw new CasilleroLibreException();
+ 	}
 
 }
