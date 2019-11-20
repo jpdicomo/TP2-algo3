@@ -162,9 +162,7 @@ public class Tablero {
 	public void moverUnidad(Posicion posicion, Direccion direccion) {
 		
 		Posicion posicionInicial = posicion;
-		Posicion posicionFinal = posicion.moveteHacia(direccion);
 		
-		Unidad unidadAMover = this.seleccionarUnidad(posicionInicial);
 		Batallon batallon = this.hayUnBatallonEn(posicionInicial);
 
 		if(batallon.hayBatallon()) {
@@ -172,6 +170,9 @@ public class Tablero {
 			this.moverBatallon(batallon, direccion);
 			
 		} else {
+		
+			Unidad unidadAMover = this.seleccionarUnidad(posicionInicial);
+			Posicion posicionFinal = posicion.moveteHacia(direccion);
 			
 			this.agregarUnidad(unidadAMover, posicionFinal);
 			this.quitarUnidad(posicionInicial);
