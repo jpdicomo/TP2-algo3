@@ -12,11 +12,6 @@ import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 
 public class SoldadoTest {
 	
-	/*
-	 * NOTA: Los test de batallon estan en TableroTest.
-	 */
-
-	
 	@Test
 	public void test00SoldadoApenasCreadoTiene100DeVida() {
 		

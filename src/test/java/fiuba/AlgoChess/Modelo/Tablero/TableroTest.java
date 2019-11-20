@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import fiuba.AlgoChess.Modelo.Errores.CasilleroLibreException;
-import fiuba.AlgoChess.Modelo.Errores.DesplazamientoInvalidoExcepcion;
 import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
 import fiuba.AlgoChess.Modelo.Ubicacion.*;
