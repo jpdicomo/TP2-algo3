@@ -1,16 +1,10 @@
-package fiuba.AlgoChess.Modelo.Unidad.Jinete;
+package fiuba.AlgoChess.Modelo.Unidad;
 
 import fiuba.AlgoChess.Modelo.Ataque.AtaqueCerca;
 import fiuba.AlgoChess.Modelo.Ataque.AtaqueMedio;
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
-import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 
 public class Jinete extends Unidad {
-
-	// Atributos.
-	
-	private Estado estado;
-	
 	
     // Metodos.
 

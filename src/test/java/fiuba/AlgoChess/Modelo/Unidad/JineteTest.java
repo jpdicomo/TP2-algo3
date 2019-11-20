@@ -6,7 +6,6 @@ import org.junit.Test;
 import fiuba.AlgoChess.Modelo.Errores.MismaUnidadException;
 import fiuba.AlgoChess.Modelo.Errores.MismoBandoException;
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
-import fiuba.AlgoChess.Modelo.Unidad.Jinete.Jinete;
 
 
 public class JineteTest {

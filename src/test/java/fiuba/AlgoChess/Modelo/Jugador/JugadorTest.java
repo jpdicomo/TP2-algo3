@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import fiuba.AlgoChess.Modelo.Errores.PuntosInsuficientesException;
-import fiuba.AlgoChess.Modelo.Unidad.Jinete.Jinete;
+import fiuba.AlgoChess.Modelo.Unidad.Jinete;
 
 public class JugadorTest {
 
