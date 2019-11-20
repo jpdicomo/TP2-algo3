@@ -1,6 +1,7 @@
 package fiuba.AlgoChess.Modelo.Unidad;
 
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
+import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 import fiuba.AlgoChess.Modelo.Ataque.Habilidad;
 import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
 import fiuba.AlgoChess.Modelo.Errores.MismaUnidadException;
@@ -15,6 +16,7 @@ public abstract class Unidad {
     protected Bando bando;
 	protected int costo;
 	protected Habilidad habilidad;
+	protected Casillero casillero;
 
 
     // Metodos.
@@ -85,4 +87,10 @@ public abstract class Unidad {
     
     	return this.costo;
     }
+
+
+	public void asignarCasillero(Casillero casillero) {
+
+		this.casillero = casillero;
+	}
 }

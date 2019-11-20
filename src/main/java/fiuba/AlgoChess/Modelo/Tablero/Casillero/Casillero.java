@@ -47,6 +47,7 @@ public class Casillero {
 	public void agregarNuevaUnidad(Unidad unaUnidad) {
 
 		this.estado.agregarUnidad(unaUnidad, this.bando);
+		unaUnidad.asignarCasillero(this);
 		this.estado = new Ocupado(unaUnidad);
 	}
 
@@ -57,6 +58,7 @@ public class Casillero {
 	public void agregarUnidad(Unidad unaUnidad) {
 
 		this.estado.agregarUnidad(unaUnidad);
+		unaUnidad.asignarCasillero(this);
 		this.estado = new Ocupado(unaUnidad);
 	}
 

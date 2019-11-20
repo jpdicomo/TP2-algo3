@@ -40,7 +40,6 @@ public class Posicion {
     	
     	return unaDireccion.decimeADondeMoverme(this);
     }
-    
 
     
     public Posicion moveteHaciaElNorte() {

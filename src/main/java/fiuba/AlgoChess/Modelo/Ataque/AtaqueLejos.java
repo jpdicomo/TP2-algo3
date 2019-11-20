@@ -16,7 +16,7 @@ public class AtaqueLejos extends Habilidad {
 	@Override
 	public void usarHabilidadCon(Unidad unidad, int distancia) {
 
-		this.alcance.estaDentroDelAlcance(distancia);
+		super.usarHabilidadCon(unidad, distancia);
 		unidad.recibirDanio(this.poder);
 	}
 }

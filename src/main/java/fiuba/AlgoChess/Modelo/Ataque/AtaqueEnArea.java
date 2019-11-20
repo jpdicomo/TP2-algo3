@@ -16,7 +16,7 @@ public class AtaqueEnArea extends Habilidad {
 	@Override
 	public void usarHabilidadCon(Unidad unidad, int distancia) {
 
-		this.alcance.estaDentroDelAlcance(distancia);
+		super.usarHabilidadCon(unidad, distancia);
 		// Buscar como extender el ataque de la catapulta.
 		unidad.recibirDanio(this.poder);
 	}

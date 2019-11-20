@@ -26,6 +26,9 @@ public abstract class Habilidad {
 	/*
 	 * 
 	 */
-	public abstract void usarHabilidadCon(Unidad unidad, int distancia);
+	public void usarHabilidadCon(Unidad unidad, int distancia) {
+		
+		this.alcance.estaDentroDelAlcance(distancia);
+	}
 
 }
