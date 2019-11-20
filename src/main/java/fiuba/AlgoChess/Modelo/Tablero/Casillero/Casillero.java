@@ -93,9 +93,9 @@ public class Casillero {
 		return unidad;
 	}
 
-	public void recibirAtaque(int danio) {
+	public void recibirDanio(int danio) {
 		
-		this.estado.recibirAtaque(this.bando, danio);
+		this.estado.recibirDanio(this.bando, danio);
 	}
 
 
@@ -146,5 +146,11 @@ public class Casillero {
 		}
 		
 		return unidadesVecinas;
+	}
+
+
+	public double medirDistanciaA(Casillero unCasillero) {
+
+		return this.posicion.medirDistancia(unCasillero.posicion);
 	}
 }

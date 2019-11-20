@@ -6,8 +6,8 @@ public class Alcance {
 	
 	// Atributos.
 	
-	private int distanciaMaxima;
-    private int distanciaMinima;
+	private double distanciaMaxima;
+    private double distanciaMinima;
 
     
     // Metodos.
@@ -15,7 +15,7 @@ public class Alcance {
     /*
      * 
      */
-    public Alcance(int minima, int maxima){
+    public Alcance(double minima, double maxima){
     
     	this.distanciaMaxima = maxima;
         this.distanciaMinima = minima;
@@ -25,7 +25,7 @@ public class Alcance {
     /*
      * 
      */
-    public void estaDentroDelAlcance(int distancia) {
+    public void estaDentroDelAlcance(double distancia) {
 
         if(distancia > this.distanciaMaxima || distancia < this.distanciaMinima){
         	

@@ -1,6 +1,6 @@
 package fiuba.AlgoChess.Modelo.Ataque;
 
-import fiuba.AlgoChess.Modelo.Unidad.Unidad;
+import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 
 
 public class Curacion extends Habilidad {
@@ -14,10 +14,10 @@ public class Curacion extends Habilidad {
 
 	
 	@Override
-	public void usarHabilidadCon(Unidad unidad, int distancia) {
+	public void usarHabilidadCon(Casillero unCasillero, double distancia) {
 
-		super.usarHabilidadCon(unidad, distancia);
-		unidad.serCurado(this.poder);
+		super.usarHabilidadCon(unCasillero, distancia);
+		unCasillero.getUnidad().serCurado(this.poder);
 	}
 
 }

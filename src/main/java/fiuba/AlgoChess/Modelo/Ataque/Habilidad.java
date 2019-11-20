@@ -1,6 +1,6 @@
 package fiuba.AlgoChess.Modelo.Ataque;
 
-import fiuba.AlgoChess.Modelo.Unidad.Unidad;
+import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 
 
 public abstract class Habilidad {
@@ -26,7 +26,7 @@ public abstract class Habilidad {
 	/*
 	 * 
 	 */
-	public void usarHabilidadCon(Unidad unidad, int distancia) {
+	public void usarHabilidadCon(Casillero unCasillero, double distancia) {
 		
 		this.alcance.estaDentroDelAlcance(distancia);
 	}

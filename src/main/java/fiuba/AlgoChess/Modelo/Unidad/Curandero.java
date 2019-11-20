@@ -2,6 +2,7 @@ package fiuba.AlgoChess.Modelo.Unidad;
 
 import fiuba.AlgoChess.Modelo.Ataque.Curacion;
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
+import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 
 
 public class Curandero extends Unidad /*implements Movible*/{
@@ -26,10 +27,12 @@ public class Curandero extends Unidad /*implements Movible*/{
      * POST: La unidad aliada es curada.
      */
     @Override
-	public void interactuarCon(Unidad unaUnidad, int distancia) {
+	public void interactuarCon(Casillero unCasillero) {
 
-    	super.interactuarCon(unaUnidad, distancia);
-    	this.bando.interactuarConUnAliado(unaUnidad);
-		this.habilidad.usarHabilidadCon(unaUnidad, distancia);
+		super.interactuarCon(unCasillero);
+		this.bando.interactuarConUnAliado(unCasillero.getUnidad());
+		
+		double distancia = this.casillero.medirDistanciaA(unCasillero);
+		this.habilidad.usarHabilidadCon(unCasillero, distancia);
 	}
 }

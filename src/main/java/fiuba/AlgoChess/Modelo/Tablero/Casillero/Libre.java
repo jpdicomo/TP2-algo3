@@ -51,7 +51,7 @@ public class Libre extends Estado {
 
 
 	@Override
-	public void recibirAtaque(Bando bando, int danio) {
+	public void recibirDanio(Bando bando, int danio) {
 
 		throw new CasilleroLibreException();
 	}

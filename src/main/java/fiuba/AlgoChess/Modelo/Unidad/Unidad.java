@@ -48,9 +48,9 @@ public abstract class Unidad {
     }
     
     
-    public void interactuarCon(Unidad unaUnidad, int distancia) {
+    public void interactuarCon(Casillero unCasillero) {
     	
-    	if(this == unaUnidad) {
+    	if(this == unCasillero.getUnidad()) {
     		
     		throw new MismaUnidadException();
     	}

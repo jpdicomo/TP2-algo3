@@ -1,6 +1,6 @@
 package fiuba.AlgoChess.Modelo.Ataque;
 
-import fiuba.AlgoChess.Modelo.Unidad.Unidad;
+import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 
 
 public class AtaqueEnArea extends Habilidad {
@@ -14,10 +14,10 @@ public class AtaqueEnArea extends Habilidad {
 
 
 	@Override
-	public void usarHabilidadCon(Unidad unidad, int distancia) {
+	public void usarHabilidadCon(Casillero unCasillero, double distancia) {
 
-		super.usarHabilidadCon(unidad, distancia);
+		super.usarHabilidadCon(unCasillero, distancia);
 		// Buscar como extender el ataque de la catapulta.
-		unidad.recibirDanio(this.poder);
+		unCasillero.recibirDanio(this.poder);
 	}
 }

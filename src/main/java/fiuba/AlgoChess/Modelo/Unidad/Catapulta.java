@@ -3,6 +3,7 @@ package fiuba.AlgoChess.Modelo.Unidad;
 import fiuba.AlgoChess.Modelo.Errores.CatapultaNoPuedeSerCuradaException;
 import fiuba.AlgoChess.Modelo.Ataque.AtaqueEnArea;
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
+import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 
 
 public class Catapulta extends Unidad {
@@ -33,10 +34,12 @@ public class Catapulta extends Unidad {
 
 
 	@Override
-	public void interactuarCon(Unidad unaUnidad, int distancia) {
+	public void interactuarCon(Casillero unCasillero) {
 
-		super.interactuarCon(unaUnidad, distancia);
-		this.bando.interactuarConUnEnemigo(unaUnidad);
-		this.habilidad.usarHabilidadCon(unaUnidad, distancia);
+		super.interactuarCon(unCasillero);
+		this.bando.interactuarConUnEnemigo(unCasillero.getUnidad());
+		
+		double distancia = this.casillero.medirDistanciaA(unCasillero);
+		this.habilidad.usarHabilidadCon(unCasillero, distancia);
 	}
 }

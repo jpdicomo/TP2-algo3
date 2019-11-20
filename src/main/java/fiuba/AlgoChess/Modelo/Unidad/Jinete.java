@@ -3,6 +3,7 @@ package fiuba.AlgoChess.Modelo.Unidad;
 import fiuba.AlgoChess.Modelo.Ataque.AtaqueCerca;
 import fiuba.AlgoChess.Modelo.Ataque.AtaqueMedio;
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
+import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 
 public class Jinete extends Unidad {
 	
@@ -17,12 +18,14 @@ public class Jinete extends Unidad {
 
     
     @Override
-	public void interactuarCon(Unidad unaUnidad, int distancia) {
+	public void interactuarCon(Casillero unCasillero) {
 
-    	super.interactuarCon(unaUnidad, distancia);
-    	this.bando.interactuarConUnEnemigo(unaUnidad);
-    	this.hayEnemigosCerca();
-		this.habilidad.usarHabilidadCon(unaUnidad, distancia);
+		super.interactuarCon(unCasillero);
+		this.bando.interactuarConUnEnemigo(unCasillero.getUnidad());
+		this.hayEnemigosCerca();
+		
+		double distancia = this.casillero.medirDistanciaA(unCasillero);
+		this.habilidad.usarHabilidadCon(unCasillero, distancia);
 	}
     
     
