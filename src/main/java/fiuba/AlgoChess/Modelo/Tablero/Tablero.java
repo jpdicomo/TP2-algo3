@@ -99,7 +99,7 @@ public class Tablero {
 			vecino = this.obtenerCasillero(posicion.moveteHacia(direccion));
 			casillero.agregarVecino(vecino);
 			
-		} catch (PosicionInvalidaException e) {
+		} catch (DesplazamientoInvalidoExcepcion | PosicionInvalidaException e) {
 			
 		}
 	}
