@@ -21,9 +21,6 @@ public class JugadorTest {
     }
 
 
-    /*
-     * Se agregan unidades al jugador hasta que este se queda sin puntos.
-     */
     @Test (expected = PuntosInsuficientesException.class)
     public void Test02JugadorNoPuedeColocarUnaUnidadSiNoTienePuntos(){
     	
@@ -59,4 +56,9 @@ public class JugadorTest {
 
         Assert.assertEquals(true, jose.sigueJugando());
     }
+    
+    
+    /*
+     * Agregar un test de que un jugador no puede seleccionar la ficha de otro.
+     */
 }

@@ -5,6 +5,7 @@ import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 
 public class AtaqueMedio extends Habilidad {
 	
+	
 	public AtaqueMedio(int poder) {
 
 		super(poder);

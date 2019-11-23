@@ -7,7 +7,9 @@ import fiuba.AlgoChess.Modelo.Errores.DistanciaInvalidaException;
 import fiuba.AlgoChess.Modelo.Errores.MismaUnidadException;
 import fiuba.AlgoChess.Modelo.Errores.MismoBandoException;
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
+import fiuba.AlgoChess.Modelo.Tablero.Tablero;
 import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
+import fiuba.AlgoChess.Modelo.Ubicacion.Posicion;
 
 
 public class CatapultaTest {
@@ -92,6 +94,33 @@ public class CatapultaTest {
 		casillero.agregarNuevaUnidad(catapulta);
 		
 		catapulta.interactuarCon(casillero);
+	}
+	
+	
+	@Test
+	public void test05CatapultaAtacaEnAreaYHiereATodos() {
+		
+		Bando bandoJose = new Bando();
+    	Bando bandoJuan = new Bando();
+    	
+    	Tablero tablero = new Tablero(bandoJose, bandoJuan);
+    	
+    	tablero.agregarNuevaUnidad(new Soldado(bandoJuan), new Posicion(13,9));
+    	tablero.agregarNuevaUnidad(new Soldado(bandoJuan), new Posicion(14,8));
+    	tablero.agregarNuevaUnidad(new Soldado(bandoJuan), new Posicion(14,9));
+    	tablero.agregarNuevaUnidad(new Soldado(bandoJuan), new Posicion(14,10));
+    	tablero.agregarNuevaUnidad(new Soldado(bandoJuan), new Posicion(15,9));
+    	
+    	tablero.agregarNuevaUnidad(new Catapulta(bandoJose), new Posicion(4,9));
+    	
+    	Unidad catapulta = tablero.seleccionarUnidad(new Posicion(4,9));
+    	catapulta.interactuarCon(tablero.getCasillero(new Posicion(14,9)));
+    	
+    	Assert.assertEquals(100 - 20, tablero.seleccionarUnidad(new Posicion(13,9)).getVida());
+    	Assert.assertEquals(100 - 20, tablero.seleccionarUnidad(new Posicion(14,8)).getVida());
+    	Assert.assertEquals(100 - 20, tablero.seleccionarUnidad(new Posicion(14,9)).getVida());
+    	Assert.assertEquals(100 - 20, tablero.seleccionarUnidad(new Posicion(14,10)).getVida());
+    	Assert.assertEquals(100 - 20, tablero.seleccionarUnidad(new Posicion(15,9)).getVida());
 	}
 }
 

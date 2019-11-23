@@ -1,28 +1,17 @@
 package fiuba.AlgoChess.Modelo.Tablero;
 
-import fiuba.AlgoChess.Modelo.Errores.CasilleroLibreException;
-import fiuba.AlgoChess.Modelo.Errores.CasilleroOcupadoException;
-import fiuba.AlgoChess.Modelo.Errores.DesplazamientoInvalidoExcepcion;
-import fiuba.AlgoChess.Modelo.Errores.PosicionInvalidaException;
+import fiuba.AlgoChess.Modelo.Errores.*;
+import fiuba.AlgoChess.Modelo.Unidad.*;
+import fiuba.AlgoChess.Modelo.Ubicacion.*;
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
 import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
-import fiuba.AlgoChess.Modelo.Ubicacion.*;
-import fiuba.AlgoChess.Modelo.Unidad.*;
 
 
 public class Tablero {
 
-	// Atributos
-
 	private Casillero[][] casilleros;
-
 	
-	// Metodos
-
-	/* 
-	 * POST: Crea un tablero listo para la partida con todos sus casilleros
-	 * 		 desocupados.
-	 */
+	
 	public Tablero(Bando bando1, Bando bando2) {
 
 		this.casilleros = new Casillero[20][20];
@@ -30,7 +19,6 @@ public class Tablero {
 		this.conectarCasilleros();
 	}
 
-	
 	
 	private void crearCasilleros(Bando bando1, Bando bando2) {
 		
@@ -49,9 +37,6 @@ public class Tablero {
 	}
 	
 	
-	/*
-	 * POST: Devuelve un casillero del Tablero a partir de una Posicion valida.
-	 */
 	private Casillero obtenerCasillero(Posicion posicion) {
 		
 		Casillero casillero;
@@ -68,7 +53,7 @@ public class Tablero {
 		return casillero;
 	}
 	
-
+	
 	private void conectarCasilleros() {
 		
 		for (int fila = 0; fila < 20; fila++) {
@@ -105,10 +90,6 @@ public class Tablero {
 	}
 	
 	
-	/*
-	 * PRE:  La ubicación elegida esta vacia.
-	 * POST: Se coloca una nueva Unidad en el tablero.
-	 */
 	public void agregarNuevaUnidad(Unidad unaUnidad, Posicion posicion){
 		
 		Casillero casillero = this.obtenerCasillero(posicion);
@@ -116,14 +97,6 @@ public class Tablero {
 	}
 	
 	
-	/*
-	 * Este metodo coloca una Unidad en un casillero del tablero
-	 * verificar si la misma pertenece al mismo bando que el casillero
-	 * destino.
-	 * 
-	 * PRE:  La ubicación elegida esta vacia.
-	 * POST: Se coloca una Unidad en el tablero.
-	 */
 	private void agregarUnidad(Unidad unaUnidad, Posicion posicion){
 		
 		Casillero casillero = this.obtenerCasillero(posicion);
@@ -131,10 +104,6 @@ public class Tablero {
 	}
 	
 	
-	/*
-	 * PRE:  Hay una Unidad en la Posicion indicada.
-	 * POST: Quita una Unidad del tablero.
-	 */
 	public void quitarUnidad(Posicion posicion) {
 		
 		Casillero casillero = this.obtenerCasillero(posicion);
@@ -142,10 +111,6 @@ public class Tablero {
 	}
 	
 
-	/* 
-	 * PRE:  La Posicion recibida esta ocupada por una Unidad.
-	 * POST: Devuelve la Unidad.
-	 */
 	public Unidad seleccionarUnidad(Posicion posicion) {
 		
 		Casillero casillero = this.obtenerCasillero(posicion);
@@ -154,11 +119,12 @@ public class Tablero {
 	}
 	
 	
-	/*
-	 * PRE:  La direccion hacia la que hay que moverse pertenece a un
-	 * 		 Casillero valido (no me salgo del tablero) el cual esta vacio.
-	 * POST: Mueve una Unidad de un casillero a otro.
-	 */
+	public Casillero getCasillero(Posicion posicion) {
+		
+		return this.obtenerCasillero(posicion);
+	}
+	
+	
 	public void moverUnidad(Posicion posicion, Direccion direccion) {
 		
 		Posicion posicionInicial = posicion;
@@ -178,8 +144,8 @@ public class Tablero {
 			this.quitarUnidad(posicionInicial);
 		}
 	}
-
-
+	
+	
 	private void moverBatallon(Batallon batallon, Direccion direccion) {
 
 		int fichasNoMovidas = 0;
@@ -209,7 +175,6 @@ public class Tablero {
 	}
 
 
-
 	private Batallon hayUnBatallonEn(Posicion posicion) {
 		
 		Batallon batallon = new Batallon(false);
@@ -235,12 +200,8 @@ public class Tablero {
 		
 		return batallon;
 	}
-
 	
-	/*
-	 * POST: Indica si hay un batallon formando una vertical en
-	 * 		 la posicion recibida.
-	 */
+	
 	private Batallon hayUnBatallonVerticalEn(Posicion posicion) {
 		
 		Posicion posicionN;
@@ -267,10 +228,6 @@ public class Tablero {
 	}
 
 	
-	/*
-	 * POST: Indica si hay un batallon formando una horizontal en
-	 * 		 la posicion recibida.
-	 */
 	private Batallon hayUnBatallonHorizontalEn(Posicion posicion) {
 		
 		Posicion posicionE;
@@ -295,12 +252,8 @@ public class Tablero {
 		
 		return new Batallon(posicionE, posicion, posicionO);
 	}
-
 	
-	/*
-	 * POST: Indica si hay un batallon formando una diagonal creciente en
-	 * 		 la posicion recibida.
-	 */
+	
 	private Batallon hayUnBatallonDiagonalCrecienteEn(Posicion posicion) {
 		
 		Posicion posicionNE;
@@ -325,12 +278,8 @@ public class Tablero {
 		
 		return new Batallon(posicionNE, posicion, posicionSO);
 	}
-
 	
-	/*
-	 * POST: Indica si hay un batallon formando una diagonal decreciente en
-	 * 		 la posicion recibida.
-	 */
+	
 	private Batallon hayUnBatallonDiagonalDecrecienteEn(Posicion posicion) {
 		
 		Posicion posicionNO;
@@ -355,5 +304,4 @@ public class Tablero {
 		
 		return new Batallon(posicionNO, posicion, posicionSE);
 	}
-
 }

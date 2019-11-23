@@ -7,28 +7,20 @@ import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 
 
 public class Catapulta extends Unidad {
-    
-    // Metodos.
-    
-    /*
-     * PRE:  ...
-     * POST: ... 
-     */
-    public Catapulta(Bando bando) {
-    	
-        super(bando);
-        this.vida = 50;
-        this.costo = 5;
-        this.habilidad = new AtaqueEnArea(20);
-    }
+	
+	
+	public Catapulta(Bando bando) {
 
-
-    /*
-     * 
-     */
+		super(bando);
+		this.vida = 50;
+		this.costo = 5;
+		this.habilidad = new AtaqueEnArea(20);
+	}
+	
+	
 	@Override
 	public void serCurado(int curacion) {
-	
+		
 		throw new CatapultaNoPuedeSerCuradaException();
 	}
 

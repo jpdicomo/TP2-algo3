@@ -7,23 +7,15 @@ import fiuba.AlgoChess.Modelo.Jugador.Bando;
 import fiuba.AlgoChess.Modelo.Ubicacion.Posicion;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 
+
 public class Casillero {
-
-	// Atributos.
-
+	
 	private Posicion posicion;
 	private Estado estado;
 	private Bando bando;
 	private ArrayList<Casillero> vecinos;
 	
 
-	// Metodos.
-
-	/*
-	 * Este metodo esta bien.
-	 * 
-	 * POST: Crea un nuevo Casillero Libre con un determinado Bando.
-	 */
 	public Casillero(int fila, int columna, Bando bando) {
 
 		this.posicion = new Posicion(fila, columna);
@@ -39,11 +31,6 @@ public class Casillero {
 	}
 	
 
-	/*
-	 * PRE:  El Casillero se encuentra Libre. El casillero y la unidad son del mismo
-	 * 		 bando.
-	 * POST: Agrega una Unidad al Casillero y este pasa a estar Ocupado.
-	 */
 	public void agregarNuevaUnidad(Unidad unaUnidad) {
 
 		this.estado.agregarUnidad(unaUnidad, this.bando);
@@ -51,10 +38,7 @@ public class Casillero {
 		this.estado = new Ocupado(unaUnidad);
 	}
 
-	/*
-	 * PRE: El Casillero se encuentra Libre.
-	 * POST: Agrega una Unidad al Casillero y este pasa a estar Ocupado.
-	 */
+
 	public void agregarUnidad(Unidad unaUnidad) {
 
 		this.estado.agregarUnidad(unaUnidad);
@@ -63,19 +47,18 @@ public class Casillero {
 	}
 
 	
-	/*
-	 * BUSCAR COMO BORRAR ESTE METODO
-	 */
 	public Unidad getUnidad() {
 
 		return this.estado.getUnidad();
 	}
 
 	
-	/*
-	 * PRE:  El casillero se encuentra ocupado.
-	 * POST: Quita una unidad al casillero.
-	 */
+	public ArrayList<Casillero> getVecinos() {
+
+		return this.vecinos;
+	}
+	
+	
 	public Unidad quitarEntidad() {
 
 		Unidad unidad;
@@ -93,16 +76,13 @@ public class Casillero {
 		return unidad;
 	}
 
+	
 	public void recibirDanio(int danio) {
 		
 		this.estado.recibirDanio(this.bando, danio);
 	}
 
 
-	/*
-	 * POST: Detecta si hay alguna unidad enemiga cerca
-	 * 		 de mi unidad.
-	 */
 	public boolean hayEnemigosCerca(Bando bando) {
 		
 		ArrayList<Unidad> unidadesVecinas = this.getUnidadesVecinas();
@@ -126,10 +106,8 @@ public class Casillero {
 		
 		return false;
 	}
-	
-	
-	
-	
+
+
 	private ArrayList<Unidad> getUnidadesVecinas(){
 		
 		ArrayList<Unidad> unidadesVecinas = new ArrayList<Unidad>();

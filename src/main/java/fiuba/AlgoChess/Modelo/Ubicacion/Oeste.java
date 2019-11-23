@@ -8,5 +8,4 @@ public class Oeste extends Direccion {
 
 		return posicion.moveteHaciaElOeste();
 	}
-
 }

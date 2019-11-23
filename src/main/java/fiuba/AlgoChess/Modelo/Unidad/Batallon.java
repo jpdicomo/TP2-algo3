@@ -1,11 +1,10 @@
 package fiuba.AlgoChess.Modelo.Unidad;
 
 import java.util.ArrayList;
-
 import fiuba.AlgoChess.Modelo.Ubicacion.Posicion;
 
+
 public class Batallon {
-	
 	
 	private ArrayList<Posicion> posicionIntegrantes;
 	private boolean hayBatallon;
@@ -37,5 +36,4 @@ public class Batallon {
 		
 		return this.posicionIntegrantes.get(indiceIntegrante);
 	}
-	
 }

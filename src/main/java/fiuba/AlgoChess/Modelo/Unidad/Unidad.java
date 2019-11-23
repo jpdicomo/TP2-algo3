@@ -9,88 +9,73 @@ import fiuba.AlgoChess.Modelo.Errores.MismoBandoException;
 
 
 public abstract class Unidad {
-
-    // Atributos.
-
-    protected int vida;
-    protected Bando bando;
+	
+	protected int vida;
+	protected Bando bando;
 	protected int costo;
 	protected Habilidad habilidad;
 	protected Casillero casillero;
 
+	
+	public Unidad(Bando bando) {
+		
+		this.bando = bando;
+	}
 
-    // Metodos.
+	
+	public void recibirDanio(int danio) {
+		
+		this.vida -= danio;
+	}
 
-    /*
-     * POST: Crea una nueva unidad asignada a un determinado Jugador.
-     */
-    public Unidad(Bando bando) {
-    	
-        this.bando = bando;
-    }
-    
-    
-    /*
-     *
-     */
-    public void recibirDanio(int danio){
+	
+	public void serCurado(int curacion) {
+		
+		this.vida += curacion;
+	}
 
-        this.vida -= danio;
-    }
-    
-    
-	/*
-	 * 
-	 */
-    public void serCurado(int curacion){
+	
+	public void interactuarCon(Casillero unCasillero) {
+		
+		if (this == unCasillero.getUnidad()) {
+			
+			throw new MismaUnidadException();
+		}
+	}
 
-        this.vida += curacion;
-    }
-    
-    
-    public void interactuarCon(Casillero unCasillero) {
-    	
-    	if(this == unCasillero.getUnidad()) {
-    		
-    		throw new MismaUnidadException();
-    	}
-    }
-    
-
-    public void interactuarConUnEnemigo(Bando bandoDelEnemigo) {
-
-		if(this.bando == bandoDelEnemigo) {
+	
+	public void interactuarConUnEnemigo(Bando bandoDelEnemigo) {
+		
+		if (this.bando == bandoDelEnemigo) {
 			
 			throw new MismoBandoException();
 		}
 	}
-    
-    public void interactuarConUnAliado(Bando bandoDelAliado) {
 
-    	if(this.bando != bandoDelAliado) {
-    		
-    		throw new DistintoBandoException();
-    	}
+	
+	public void interactuarConUnAliado(Bando bandoDelAliado) {
+		
+		if (this.bando != bandoDelAliado) {
+			
+			throw new DistintoBandoException();
+		}
 	}
-    
-    
-    /*
-    *
-    */
-   public int getVida(){
 
-	   return this.vida;
-   }
-    
-    
-    public int getCosto() {
-    
-    	return this.costo;
-    }
+	
+	public int getVida() {
+		
+		return this.vida;
+	}
 
+	
+	public int getCosto() {
+		
+		return this.costo;
+	}
 
+	
 	public void asignarCasillero(Casillero casillero) {
-
+		
 		this.casillero = casillero;
 	}
 }

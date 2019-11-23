@@ -6,26 +6,15 @@ import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 
 public class Libre extends Estado {
 
-	// Metodos.
-
-	/*
-	 * PRE:  El Casillero se encuentra en Estado Libre.
-	 * POST: Se agrega una Unidad al Casillero y se crea un Estado Ocupado.
-	 */
-    @Override
-    public void agregarUnidad(Unidad unaUnidad, Bando bando) {
-    	
+	
+	@Override
+	public void agregarUnidad(Unidad unaUnidad, Bando bando) {
+		
 		bando.interactuarConUnAliado(unaUnidad);
-    }
-    
-    
-    /* Sobrecarga del metodo anterior que no verifica el bando de una pieza
-     * antes de que esta sea colocada en un casillero.
-     * 
-     * PRE:  El Casillero se encuentra en Estado Libre.
-     * POST: Se agrega una Unidad al Casillero y se crea un Estado Ocupado.
-     */
-    @Override
+	}
+
+	
+	@Override
 	public void agregarUnidad(Unidad unaUnidad) {
 		
 	}

@@ -19,5 +19,4 @@ public class Curacion extends Habilidad {
 		super.usarHabilidadCon(unCasillero, distancia);
 		unCasillero.getUnidad().serCurado(this.poder);
 	}
-
 }
