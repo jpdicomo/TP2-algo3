@@ -14,14 +14,17 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<java.version>1.8</java.version>
+		<maven.compiler.source>8</maven.compiler.source>
+		<maven.compiler.target>8</maven.compiler.target>
+		<javadoc.plugin.version>3.1.0</javadoc.plugin.version>
+		<gpg.plugin.version>1.6</gpg.plugin.version>
+		<java.version>11</java.version>
 		<javafx.version>13</javafx.version>
 		<mockito.version>1.10.19</mockito.version>
 	</properties>
 
 	<dependencies>
+	
     	<!-- JUNIT 4 - https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -29,6 +32,7 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
+		
 		<!-- MOCKITO - https://mvnrepository.com/artifact/org.mockito/mockito-all -->
 		<dependency>
 			<groupId>org.mockito</groupId>
@@ -36,6 +40,7 @@
 			<version>${mockito.version}</version>
 			<scope>test</scope>
 		</dependency>
+		
 		<!-- JAVA FX - https://mvnrepository.com/artifact/org.openjfx/javafx -->
 		<dependency>
 			<groupId>org.openjfx</groupId>
@@ -49,8 +54,9 @@
 		</dependency>
 	</dependencies>
     
-	<!-- PARTE ENCARGADA DEL BUILD, LA COPIE TAL CUAL DE ARCHIVO POKEMON -->
+	<!-- PARTE ENCARGADA DEL BUILD -->
 	<build>
+		<sourceDirectory>src/main/java</sourceDirectory>
 		<pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
 			<plugins>
 				<!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
@@ -114,6 +120,7 @@
 						<check />
 					</configuration>
 				</plugin>
+				
 				<!-- JAVAFX -->
 				<plugin>
 					<groupId>org.openjfx</groupId>
