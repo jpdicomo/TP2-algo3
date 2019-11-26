@@ -3,8 +3,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
 	<modelVersion>4.0.0</modelVersion>
-
 	<groupId>fiuba</groupId>
 	<artifactId>AlgoChess</artifactId>
 	<version>1.0-SNAPSHOT</version>
@@ -38,15 +38,15 @@
 		</dependency>
 		<!-- JAVA FX - https://mvnrepository.com/artifact/org.openjfx/javafx -->
 		<dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>${javafx.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-            <version>${javafx.version}</version>
-        </dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-controls</artifactId>
+			<version>${javafx.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-fxml</artifactId>
+			<version>${javafx.version}</version>
+		</dependency>
 	</dependencies>
     
 	<!-- PARTE ENCARGADA DEL BUILD, LA COPIE TAL CUAL DE ARCHIVO POKEMON -->
@@ -116,13 +116,13 @@
 				</plugin>
 				<!-- JAVAFX -->
 				<plugin>
-	                <groupId>org.openjfx</groupId>
-	                <artifactId>javafx-maven-plugin</artifactId>
-	                <version>0.0.3</version>
-	                <configuration>
-	                    <mainClass>fiuba.AlgoChess.Vista.Juego.Main</mainClass>
-	                </configuration>
-            	</plugin>
+					<groupId>org.openjfx</groupId>
+					<artifactId>javafx-maven-plugin</artifactId>
+					<version>0.0.3</version>
+					<configuration>
+						<mainClass>fiuba.AlgoChess.Vista.Juego.Main</mainClass>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
