@@ -16,6 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
@@ -39,7 +40,7 @@ public class Main extends Application {
 		this.escenario = stage;
 		this.escenario.setTitle("AlgoChess");
 
-		escenario.setScene(this.pantallaInicial());
+		escenario.setScene(this.selectorDeUnidades());
 		stage.show();
 	}
 
@@ -153,6 +154,57 @@ public class Main extends Application {
 		return new Scene(contenedorPrincipal, 800, 600);
 	}
 
+	private Scene selectorDeUnidades() throws FileNotFoundException{
+		Label labelTitulo = new Label("Personaliza tu ejercito");
+
+		ImageView soldadoImgV = new ImageView();
+		Image soldadoAliado = new Image(new FileInputStream("texturas/soldado2.png"),50,50,false,false);
+		soldadoImgV.setImage(soldadoAliado);
+
+		ImageView curanderoImgV = new ImageView();
+		Image curanderoAliado = new Image(new FileInputStream("texturas/curandero2.png"),50,50,false,false);
+		curanderoImgV.setImage(curanderoAliado);
+
+		ImageView catapultaImgV = new ImageView();
+		Image catapultaAliada = new Image(new FileInputStream("texturas/catapulta2.png"),50,50,false,false);
+		catapultaImgV.setImage(catapultaAliada);
+
+		ImageView jineteImgV = new ImageView();
+		Image jineteAliado = new Image(new FileInputStream("texturas/jinete2.png"),50,50,false,false);
+		jineteImgV.setImage(jineteAliado);
+
+		Image agregarUnidadImg = new Image(new FileInputStream("texturas/agregarUnidad.png"),20,20,false,false);
+		Image removerUnidadImg = new Image(new FileInputStream("texturas/removerUnidad.png"),20,20,false,false);
+
+		Button agregarUnidadSoldado = new Button();
+		agregarUnidadSoldado.setGraphic(new ImageView(agregarUnidadImg));
+		Button removerUnidadSoldado = new Button();
+		removerUnidadSoldado.setGraphic(new ImageView(removerUnidadImg));
+
+		Button agregarUnidadCurandero = new Button();
+		agregarUnidadCurandero.setGraphic(new ImageView(agregarUnidadImg));
+		Button removerUnidadCurandero = new Button();
+		removerUnidadCurandero.setGraphic(new ImageView(removerUnidadImg));
+
+		Button agregarUnidadCatapulta = new Button();
+		agregarUnidadCatapulta.setGraphic(new ImageView(agregarUnidadImg));
+		Button removerUnidadCatapulta = new Button();
+		removerUnidadCatapulta.setGraphic(new ImageView(removerUnidadImg));
+
+		Button agregarUnidadJinete = new Button();
+		agregarUnidadJinete.setGraphic(new ImageView(agregarUnidadImg));
+		Button removerUnidadJinete = new Button();
+		removerUnidadJinete.setGraphic(new ImageView(removerUnidadImg));
+
+		HBox unidadesAliadas = new HBox(soldadoImgV,curanderoImgV,catapultaImgV,jineteImgV);
+		unidadesAliadas.setSpacing(40);
+
+		HBox botonesAgregarRemover = new HBox(agregarUnidadSoldado,removerUnidadSoldado,agregarUnidadCurandero,removerUnidadCurandero,agregarUnidadCatapulta,removerUnidadCatapulta,agregarUnidadJinete,removerUnidadJinete);
+		botonesAgregarRemover.setSpacing(5);
+		VBox layout = new VBox(labelTitulo,unidadesAliadas,botonesAgregarRemover);
+		layout.setSpacing(20);
+		return new Scene(layout,800,600);
+	}
     private Scene pantallaTablero() throws FileNotFoundException{
 	    ImageView imageView = new ImageView();
         Image imagenTablero = new Image(new FileInputStream("texturas/tableroSprite.png"));
