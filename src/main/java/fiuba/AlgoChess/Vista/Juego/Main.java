@@ -1,5 +1,6 @@
 package fiuba.AlgoChess.Vista.Juego;
 
+import fiuba.AlgoChess.Vista.Juego.Handlers.BotonNuevaPartidaHandler;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -7,6 +8,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -64,6 +66,9 @@ public class Main extends Application {
 		Button botonNuevaPartida = new Button("Nueva Partida");
 		botonNuevaPartida.setFont(Font.font("Verdana", 16));
 
+		BotonNuevaPartidaHandler botonNuevaPartidaHandler = new BotonNuevaPartidaHandler(this.escenario,this.creacionDePersonajes());
+		botonNuevaPartida.setOnAction(botonNuevaPartidaHandler);
+
 		Button botonSalir = new Button("Salir");
 		botonSalir.setFont(Font.font("Verdana", 16));
 
@@ -84,6 +89,42 @@ public class Main extends Application {
 
 		return new Scene(contenedorPrincipal, 800, 600);
 	}
+
+	private Scene creacionDePersonajes() throws FileNotFoundException{
+		Label labelTitulo = new Label("Creacion de Jugadores");
+		labelTitulo.setFont(Font.font("Verdana", 48));
+		labelTitulo.setTextFill(Color.rgb(255, 255, 255));
+
+		Label labelJugador1 = new Label("Jugador 1");
+		Label labelJugador2 = new Label("Jugador 2");
+
+		TextField textFieldJugador1 = new TextField();
+		textFieldJugador1.setPromptText("Ingresa tu nombre");
+		TextField textFieldJugador2 = new TextField();
+		textFieldJugador2.setPromptText("Ingresa tu nombre");
+
+		Button  botonAceptarNombreJugador1 = new Button("aceptar");
+		Button  botonAceptarNombreJugador2 = new Button("aceptar");
+
+		HBox labelJugadores = new HBox(labelJugador1,labelJugador2);
+		labelJugadores.setAlignment(Pos.CENTER);
+		labelJugadores.setSpacing(500);
+
+		HBox cuadrosDeTexto = new HBox(textFieldJugador1,textFieldJugador2);
+		cuadrosDeTexto.setAlignment(Pos.CENTER);
+		cuadrosDeTexto.setSpacing(310);
+
+		HBox botonesAceptar = new HBox(botonAceptarNombreJugador1,botonAceptarNombreJugador2);
+		botonesAceptar.setAlignment(Pos.CENTER);
+		botonesAceptar.setSpacing(500);
+
+		VBox contenedorPrincipal = new VBox(labelJugadores,cuadrosDeTexto,botonesAceptar);
+		contenedorPrincipal.setAlignment(Pos.CENTER);
+		contenedorPrincipal.setSpacing(20);
+
+		return new Scene(contenedorPrincipal, 800, 600);
+	}
+
 
 	public void setCasilleros(Pane layout,Image img){
 		for(int i = 0; i<20;i++){
