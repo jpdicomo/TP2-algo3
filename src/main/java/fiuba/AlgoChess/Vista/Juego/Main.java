@@ -20,6 +20,7 @@ import fiuba.AlgoChess.Modelo.Tablero.Tablero;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+import fiuba.AlgoChess.Controlador.BotonNuevaPartida;
 import fiuba.AlgoChess.Controlador.BotonSalirDelJuego;
 import fiuba.AlgoChess.Modelo.Jugador.Jugador;
 
@@ -40,10 +41,17 @@ public class Main extends Application {
 
 		this.escenario = stage;
 		this.escenario.setTitle("AlgoChess");
-		this.escenario.setScene(this.pantallaInicial());
+		this.cambiarEscenaA(this.pantallaInicial());
 		this.escenario.show();
 	}
 
+	
+	public void cambiarEscenaA(Scene nuevaEscena) {
+		
+		this.escenario.setScene(nuevaEscena);
+	}
+	
+	
 	private Scene pantallaInicial() throws FileNotFoundException {
 
 		Label labelTitulo = new Label("AlgoChess");
@@ -52,6 +60,7 @@ public class Main extends Application {
 
 		Button botonNuevaPartida = new Button("Nueva Partida");
 		botonNuevaPartida.setFont(Font.font("Verdana", 16));
+		botonNuevaPartida.setOnAction(new BotonNuevaPartida(this));
 
 		Button botonSalir = new Button("Salir");
 		botonSalir.setFont(Font.font("Verdana", 16));
@@ -74,4 +83,5 @@ public class Main extends Application {
 		
 		return new Scene(contenedorPrincipal, 800, 600);
 	}
+
 }
