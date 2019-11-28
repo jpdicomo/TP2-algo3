@@ -40,7 +40,7 @@ public class Main extends Application {
 		this.escenario = stage;
 		this.escenario.setTitle("AlgoChess");
 
-		escenario.setScene(this.selectorDeUnidades());
+		escenario.setScene(this.pantallaInicial());
 		stage.show();
 	}
 
@@ -106,7 +106,7 @@ public class Main extends Application {
 		botonAceptarNombreJugador2.setOnAction(botonAceptarJugador2Handler);
 
 		Button botonContinuar = new Button("Continuar");
-		BotonContinuarHandler botonContinuarHandler = new BotonContinuarHandler(this.escenario,this.pantallaTablero());
+		BotonContinuarHandler botonContinuarHandler = new BotonContinuarHandler(this.escenario,this.selectorDeUnidades());
         botonContinuar.setOnAction(botonContinuarHandler);
 		Button botonVolver = new Button("Volver");
 
@@ -201,7 +201,11 @@ public class Main extends Application {
 
 		HBox botonesAgregarRemover = new HBox(agregarUnidadSoldado,removerUnidadSoldado,agregarUnidadCurandero,removerUnidadCurandero,agregarUnidadCatapulta,removerUnidadCatapulta,agregarUnidadJinete,removerUnidadJinete);
 		botonesAgregarRemover.setSpacing(5);
-		VBox layout = new VBox(labelTitulo,unidadesAliadas,botonesAgregarRemover);
+
+		Button continuar = new Button("continuar");
+		BotonContinuarHandler continuarHandler = new BotonContinuarHandler(this.escenario,pantallaTablero());
+		continuar.setOnAction(continuarHandler);
+		VBox layout = new VBox(labelTitulo,unidadesAliadas,botonesAgregarRemover,continuar);
 		layout.setSpacing(20);
 		return new Scene(layout,800,600);
 	}
