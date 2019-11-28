@@ -1,6 +1,8 @@
 package fiuba.AlgoChess.Vista.Juego;
 
+import fiuba.AlgoChess.Modelo.Jugador.Jugador;
 import fiuba.AlgoChess.Vista.Juego.Handlers.CambioEscena.*;
+import fiuba.AlgoChess.Vista.Juego.Handlers.Jugador.BotonAceptarHandler;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -21,6 +23,7 @@ public class Main extends Application {
 
 	private Stage escenario;
 	private Scene sceneMenu, scene2;
+	private Jugador jugador1, jugador2;
 
 
 	public Main() throws FileNotFoundException {
@@ -91,8 +94,15 @@ public class Main extends Application {
 		TextField textFieldJugador2 = new TextField();
 		textFieldJugador2.setPromptText("Ingresa tu nombre");
 
-		Button  botonAceptarNombreJugador1 = new Button("aceptar");
+		Button botonAceptarNombreJugador1 = new Button("aceptar");
+		Label labelNombreJugador1 = new Label();
+		BotonAceptarHandler botonAceptarJugador1Handler = new BotonAceptarHandler(jugador1,textFieldJugador1,labelNombreJugador1);
+		botonAceptarNombreJugador1.setOnAction(botonAceptarJugador1Handler);
+
 		Button  botonAceptarNombreJugador2 = new Button("aceptar");
+		Label labelNombreJugador2 = new Label();
+		BotonAceptarHandler botonAceptarJugador2Handler = new BotonAceptarHandler(jugador2,textFieldJugador2,labelNombreJugador2);
+		botonAceptarNombreJugador2.setOnAction(botonAceptarJugador2Handler);
 
 		Button botonContinuar = new Button("Continuar");
 		BotonContinuarHandler botonContinuarHandler = new BotonContinuarHandler(this.escenario,this.pantallaTablero());
@@ -125,7 +135,11 @@ public class Main extends Application {
         botonescCambioEscena.setAlignment(Pos.CENTER);
         botonescCambioEscena.setSpacing(20);
 
-		VBox contenedorPrincipal = new VBox(labelJugadores,cuadrosDeTexto,botonesAceptar,botonescCambioEscena);
+        HBox labelsNombresJugadores = new HBox(labelNombreJugador1,labelNombreJugador2);
+		labelsNombresJugadores.setAlignment(Pos.CENTER);
+		labelsNombresJugadores.setSpacing(500);
+
+		VBox contenedorPrincipal = new VBox(labelJugadores,cuadrosDeTexto,botonesAceptar,botonescCambioEscena,labelsNombresJugadores);
 		contenedorPrincipal.setAlignment(Pos.CENTER);
 		contenedorPrincipal.setSpacing(20);
 
