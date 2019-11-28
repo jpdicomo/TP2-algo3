@@ -20,6 +20,7 @@ import fiuba.AlgoChess.Modelo.Tablero.Tablero;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+import fiuba.AlgoChess.Controlador.BotonSalirDelJuego;
 import fiuba.AlgoChess.Modelo.Jugador.Jugador;
 
 public class Main extends Application {
@@ -54,6 +55,7 @@ public class Main extends Application {
 
 		Button botonSalir = new Button("Salir");
 		botonSalir.setFont(Font.font("Verdana", 16));
+		botonSalir.setOnAction(new BotonSalirDelJuego());
 		
 		VBox botones = new VBox(botonNuevaPartida, botonSalir);
 		botones.setAlignment(Pos.BOTTOM_CENTER);
