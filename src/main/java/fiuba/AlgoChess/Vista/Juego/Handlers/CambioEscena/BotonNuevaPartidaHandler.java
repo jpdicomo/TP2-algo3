@@ -1,9 +1,9 @@
-package fiuba.AlgoChess.Vista.Juego.Handlers;
+package fiuba.AlgoChess.Vista.Juego.Handlers.CambioEscena;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-        import javafx.stage.Stage;
+import javafx.stage.Stage;
 
 public class BotonNuevaPartidaHandler implements EventHandler<ActionEvent> {
     private Stage escenario;

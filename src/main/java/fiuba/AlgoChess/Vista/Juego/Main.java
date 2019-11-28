@@ -1,9 +1,7 @@
 package fiuba.AlgoChess.Vista.Juego;
 
-import fiuba.AlgoChess.Vista.Juego.Handlers.BotonNuevaPartidaHandler;
+import fiuba.AlgoChess.Vista.Juego.Handlers.CambioEscena.*;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,7 +13,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.scene.canvas.*;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -39,24 +36,10 @@ public class Main extends Application {
 		this.escenario = stage;
 		this.escenario.setTitle("AlgoChess");
 
-
-//
-//		//Boton 2
-//		Button botonVolver = new Button("Volver");
-//		botonVolver.setOnAction(e -> ventana.setScene(sceneMenu));
-
-		//Imagen tile
-		Image tileSprite = new Image(new FileInputStream("texturas/tileSprite.png"));
-//
-//		//Segundo Layout
-//		Pane layout2 = new Pane();
-//		layout2.getChildren().add(botonVolver);
-//		setCasilleros(layout2,tileSprite);
-//		scene2 = new Scene(layout2,600,600);
-
 		escenario.setScene(this.pantallaInicial());
 		stage.show();
 	}
+
 	private Scene pantallaInicial() throws FileNotFoundException {
 
 		Label labelTitulo = new Label("AlgoChess");
@@ -91,12 +74,17 @@ public class Main extends Application {
 	}
 
 	private Scene creacionDePersonajes() throws FileNotFoundException{
-		Label labelTitulo = new Label("Creacion de Jugadores");
+		//Creacion de los elementos de la escena
+	    Label labelTitulo = new Label("Creacion de Jugadores");
 		labelTitulo.setFont(Font.font("Verdana", 48));
 		labelTitulo.setTextFill(Color.rgb(255, 255, 255));
 
 		Label labelJugador1 = new Label("Jugador 1");
+		labelJugador1.setFont(Font.font("TimesNewRoman",20));
+        labelJugador1.setTextFill(Color.rgb(255, 255, 255));
 		Label labelJugador2 = new Label("Jugador 2");
+        labelJugador2.setFont(Font.font("TimesNewRoman",20));
+        labelJugador2.setTextFill(Color.rgb(255, 255, 255));
 
 		TextField textFieldJugador1 = new TextField();
 		textFieldJugador1.setPromptText("Ingresa tu nombre");
@@ -106,6 +94,21 @@ public class Main extends Application {
 		Button  botonAceptarNombreJugador1 = new Button("aceptar");
 		Button  botonAceptarNombreJugador2 = new Button("aceptar");
 
+		Button botonContinuar = new Button("Continuar");
+		BotonContinuarHandler botonContinuarHandler = new BotonContinuarHandler(this.escenario,this.pantallaTablero());
+        botonContinuar.setOnAction(botonContinuarHandler);
+		Button botonVolver = new Button("Volver");
+
+		//No puedo hace que funcione el handler de botonVolver asi que lo hago aca directamente
+		botonVolver.setOnAction(e -> {
+            try {
+                escenario.setScene(this.pantallaInicial());
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+        });
+
+		//Creacion de las HBox
 		HBox labelJugadores = new HBox(labelJugador1,labelJugador2);
 		labelJugadores.setAlignment(Pos.CENTER);
 		labelJugadores.setSpacing(500);
@@ -118,24 +121,35 @@ public class Main extends Application {
 		botonesAceptar.setAlignment(Pos.CENTER);
 		botonesAceptar.setSpacing(500);
 
-		VBox contenedorPrincipal = new VBox(labelJugadores,cuadrosDeTexto,botonesAceptar);
+		HBox botonescCambioEscena = new HBox(botonVolver,botonContinuar);
+        botonescCambioEscena.setAlignment(Pos.CENTER);
+        botonescCambioEscena.setSpacing(20);
+
+		VBox contenedorPrincipal = new VBox(labelJugadores,cuadrosDeTexto,botonesAceptar,botonescCambioEscena);
 		contenedorPrincipal.setAlignment(Pos.CENTER);
 		contenedorPrincipal.setSpacing(20);
+
+		Background fondo = new Background(new BackgroundImage(new Image(new FileInputStream("texturas/pantallaCrearJugador.png")),
+				BackgroundRepeat.REPEAT,
+				BackgroundRepeat.REPEAT,
+				BackgroundPosition.CENTER,
+				new BackgroundSize(800, 600, false, false, false, false)));
+		contenedorPrincipal.setBackground(fondo);
 
 		return new Scene(contenedorPrincipal, 800, 600);
 	}
 
-
-	public void setCasilleros(Pane layout,Image img){
-		for(int i = 0; i<20;i++){
-			for(int j = 0; j<20;j++){
-				ImageView imgView = new ImageView();
-				imgView.setImage(img);
-				imgView.setTranslateX(j*32);
-				imgView.setTranslateY((i+1)*32);
-				layout.getChildren().add(imgView);
-			}
-
-		}
-	}
+    private Scene pantallaTablero() throws FileNotFoundException{
+	    ImageView imageView = new ImageView();
+        Image imagenTablero = new Image(new FileInputStream("texturas/tableroSprite.png"));
+	    imageView.setImage(imagenTablero);
+	    Pane layout = new Pane(imageView);
+		Background fondo = new Background(new BackgroundImage(new Image(new FileInputStream("texturas/fondoPantallaTablero.png")),
+				BackgroundRepeat.REPEAT,
+				BackgroundRepeat.REPEAT,
+				BackgroundPosition.CENTER,
+				new BackgroundSize(800, 600, false, false, false, false)));
+		layout.setBackground(fondo);
+	    return new Scene(layout,800,600);
+    }
 }
