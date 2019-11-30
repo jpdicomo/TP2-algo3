@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 
 import fiuba.AlgoChess.Modelo.Tablero.Tablero;
 import fiuba.AlgoChess.Vista.Compra.CajaDeUnidades;
+import fiuba.AlgoChess.Vista.Juego.Colocacion.CajaDeUnidadesVertical;
 import fiuba.AlgoChess.Controlador.Handlers.BotonCambiarAEscenaColocarUnidades1;
 import fiuba.AlgoChess.Controlador.Handlers.BotonCambiarAEscenaDeCompra2;
 import fiuba.AlgoChess.Controlador.Handlers.BotonComenzarJuego;
@@ -203,12 +204,22 @@ public class Main extends Application {
 		Label labelTitulo = new Label(jugador.getNombre() + " - Coloca tus unidades");
 		labelTitulo.setFont(Font.font("Times New Roman", 28));
 
-
+		// Caja de unidades
+		CajaDeUnidadesVertical cajaUnidades = new CajaDeUnidadesVertical(this, numeroJugador);
 		
 		
-		VBox contenedorPrincipal = new VBox();
+		
+		// Creo las cajas.
+		HBox contenedorSecundario = new HBox(cajaUnidades);
+//		contenedorSecundario.setMaxWidth(515);
+//		contenedorSecundario.setMinHeight(450);
+		contenedorSecundario.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png"));
+		contenedorSecundario.setAlignment(Pos.CENTER_LEFT);
+		
+			
+		VBox contenedorPrincipal = new VBox(contenedorSecundario);
 		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo4.png"));
-		contenedorPrincipal.setAlignment(Pos.CENTER);
+		contenedorPrincipal.setAlignment(Pos.CENTER_LEFT);
 		
 		return new Scene(contenedorPrincipal, 800, 600);
 	}

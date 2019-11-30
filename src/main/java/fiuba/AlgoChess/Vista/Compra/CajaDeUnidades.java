@@ -26,8 +26,8 @@ public class CajaDeUnidades extends HBox {
 		
 		this.cargarUnidad(new Soldado(bando), numeroJugador, puntosJugador);
 		this.cargarUnidad(new Curandero(bando), numeroJugador, puntosJugador);
-		this.cargarUnidad(new Catapulta(bando), numeroJugador, puntosJugador);
 		this.cargarUnidad(new Jinete(bando), numeroJugador, puntosJugador);
+		this.cargarUnidad(new Catapulta(bando), numeroJugador, puntosJugador);
 		
 		this.setAlignment(Pos.CENTER);
 		this.setSpacing(30);
