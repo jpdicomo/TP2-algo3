@@ -2,27 +2,19 @@ package fiuba.AlgoChess.Controlador;
 
 import java.io.FileNotFoundException;
 
-import fiuba.AlgoChess.Modelo.Jugador.Jugador;
-import fiuba.AlgoChess.Vista.Compra.CajaDeUnidades;
 import fiuba.AlgoChess.Vista.Juego.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 
 
-public class BotonCargarJugadores implements EventHandler<ActionEvent> {
+public class BotonComenzarJuego implements EventHandler<ActionEvent> {
 	
 	private String jugador1;
     private String jugador2;
     private Main main;
 
-    public BotonCargarJugadores(TextField jugador1, TextField jugador2, Main main){
+    public BotonComenzarJuego(TextField jugador1, TextField jugador2, Main main){
     	
         this.jugador1 = jugador1.getText();
         this.jugador2 = jugador2.getText();
@@ -31,16 +23,14 @@ public class BotonCargarJugadores implements EventHandler<ActionEvent> {
 
     @Override
 	public void handle(ActionEvent event) {
-    	
-    	System.out.println(jugador1 + jugador2);
 
         if(!(this.jugador1.isEmpty()) && !(this.jugador2.isEmpty())) {
-        
-        	this.main.crearJugadores(this.jugador1, this.jugador2);
+        	
+        	this.main.asignarNombreJugadores(this.jugador1, this.jugador2);
+        	
         	try {
-				main.cambiarEscenaA(this.main.escenaCompraDeUnidades1());
+				this.main.cambiarEscenaA(this.main.escenaCompraDeUnidades1());
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
         }

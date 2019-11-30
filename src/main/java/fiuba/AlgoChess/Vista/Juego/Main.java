@@ -23,7 +23,7 @@ import fiuba.AlgoChess.Vista.Compra.CajaDeUnidades;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-import fiuba.AlgoChess.Controlador.BotonCargarJugadores;
+import fiuba.AlgoChess.Controlador.BotonComenzarJuego;
 import fiuba.AlgoChess.Controlador.BotonNuevaPartida;
 import fiuba.AlgoChess.Controlador.BotonSalirDelJuego;
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
@@ -32,12 +32,14 @@ import fiuba.AlgoChess.Modelo.Jugador.Jugador;
 public class Main extends Application {
 
 	private Stage escenario;
-	private Bando[] bandos;
-	private Jugador[] jugadores;
+	private Bando bando1;
+	private Bando bando2;
+	private Jugador jugador1;
+	private Jugador jugador2;
 	private Tablero tablero;
 
 	public static void main(String[] args) {
-
+		
 		launch(args);
 	}
 
@@ -46,6 +48,8 @@ public class Main extends Application {
 	public void start(Stage stage) throws Exception {
 
 //		stage.setMaximized(true); <-- No creo que haga falta
+		this.iniciarJuego();
+		
 		stage.setResizable(true);
 		this.escenario = stage;
 		this.escenario.setTitle("AlgoChess");
@@ -54,22 +58,20 @@ public class Main extends Application {
 	}
 	
 	
+	private void iniciarJuego() {
+
+		this.bando1 = new Bando();
+		this.bando2 = new Bando();
+		this.jugador1 = new Jugador("", this.bando1);
+		this.jugador2 = new Jugador("", this.bando2);
+		this.tablero = new Tablero(this.bando1, this.bando2);
+	}
+
 	public void cambiarEscenaA(Scene nuevaEscena) {
 		
 		this.escenario.setScene(nuevaEscena);
 	}
-	
-	
-	public void crearJugadores(String jugador1, String jugador2) {
 
-		this.bandos[0] = new Bando();
-		this.bandos[1] = new Bando();
-		
-		this.jugadores[0] = new Jugador(jugador1, bandos[0]);
-		this.jugadores[1] = new Jugador(jugador2, bandos[1]);
-		
-		this.tablero = new Tablero(this.bandos[0], this.bandos[1]);
-	}
 	
 	/*
 	 * *********************************************
@@ -107,12 +109,13 @@ public class Main extends Application {
 		return new Scene(contenedorPrincipal, 800, 600);
 	}
 
-	// TE QUEDASTE ACA.
+
+	// Listo.
 	public Scene escenaCargaDeJugadores() throws FileNotFoundException{
 		
 		// Titulo
-	    Label labelTitulo = new Label("Creacion de Jugadores");
-		labelTitulo.setFont(Font.font("Verdana", 48));
+	    Label labelTitulo = new Label("Ingresar nombres");
+		labelTitulo.setFont(Font.font("Times New Roman", 48));
 		labelTitulo.setTextFill(Color.rgb(255, 255, 255));
 
 		// Jugador 1
@@ -121,7 +124,6 @@ public class Main extends Application {
         labelJugador1.setTextFill(Color.rgb(255, 255, 255));
         TextField nombreJugador1 = new TextField();
         nombreJugador1.setPromptText("Ingresa tu nombre");
-		
         
         // Jugador 2
         Label labelJugador2 = new Label("Jugador 2");
@@ -130,11 +132,11 @@ public class Main extends Application {
 		TextField nombreJugador2 = new TextField();
 		nombreJugador2.setPromptText("Ingresa tu nombre");
 
-		Button botonJugar = new Button("Jugar");
-		botonJugar.setFont(Font.font("Times New Roman", 20));
+		Button botonComenzar = new Button("¡Comenzar Juego!");
+		botonComenzar.setFont(Font.font(18));
 		
-		BotonCargarJugadores botonCargarJugadores = new BotonCargarJugadores(nombreJugador1, nombreJugador2, this);
-		botonJugar.setOnAction(botonCargarJugadores);
+		BotonComenzarJuego accionBotonComenzar = new BotonComenzarJuego(nombreJugador1, nombreJugador2, this);
+		botonComenzar.setOnAction(accionBotonComenzar);
 		
 		
 		//Creacion de las XBox
@@ -148,9 +150,13 @@ public class Main extends Application {
 
 		VBox contenedorJugadores = new VBox(labelJugadores, cuadrosDeTexto);
 		contenedorJugadores.setAlignment(Pos.CENTER);
-		contenedorJugadores.setSpacing(20);
+		contenedorJugadores.setSpacing(15);
 		
-		VBox contenedorPrincipal = new VBox(contenedorJugadores, botonJugar);
+		VBox contenedorConBoton = new VBox(contenedorJugadores, botonComenzar);
+		contenedorConBoton.setAlignment(Pos.CENTER);
+		contenedorConBoton.setSpacing(100);
+		
+		VBox contenedorPrincipal = new VBox(labelTitulo, contenedorConBoton);
 		contenedorPrincipal.setAlignment(Pos.CENTER);
 		contenedorPrincipal.setSpacing(150);
 
@@ -184,13 +190,19 @@ public class Main extends Application {
 	}
 	
 	
-	public Jugador getJugador(int numeroJugador) {
+//	public Jugador getJugador(int numeroJugador) {
+//
+//		return this.jugadores[numeroJugador - 1];
+//	}
+//
+//	public Bando getBando(int numeroJugador) {
+//
+//		return bandos[numeroJugador - 1];
+//	}
 
-		return this.jugadores[numeroJugador - 1];
-	}
-
-	public Bando getBando(int numeroJugador) {
-
-		return bandos[numeroJugador - 1];
+	public void asignarNombreJugadores(String jugador1, String jugador2) {
+		
+		this.jugador1.setNombre(jugador1);
+		this.jugador2.setNombre(jugador2);
 	}
 }

@@ -26,12 +26,6 @@ public class Jugador {
 	}
 	
 
-	public String getNombre() {
-
-		return this.nombre;
-	}
-	
-
 	public void agregarUnidad(Unidad unaUnidad) {
 
 		if (this.puntos >= unaUnidad.getCosto()) {
@@ -67,5 +61,17 @@ public class Jugador {
 	public int getPuntos() {
 		// TODO Auto-generated method stub
 		return this.puntos;
+	}
+
+
+	public String getNombre() {
+
+		return this.nombre;
+	}
+	
+	
+	public void setNombre(String nombre) {
+
+		this.nombre = nombre;
 	}
 }
