@@ -6,12 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -19,8 +14,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import fiuba.AlgoChess.Modelo.Tablero.Tablero;
 import fiuba.AlgoChess.Vista.Compra.CajaDeUnidades;
-
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import fiuba.AlgoChess.Controlador.BotonCambiarAEscenaDeCompra2;
@@ -46,10 +39,9 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 
-//		stage.setMaximized(true); <-- No creo que haga falta
 		this.iniciarJuego();
 		
-		stage.setResizable(true);
+		stage.setResizable(false);
 		this.escenario = stage;
 		this.escenario.setTitle("AlgoChess");
 		this.cambiarEscenaA(this.escenaBienvenida());
@@ -164,9 +156,9 @@ public class Main extends Application {
 	}
 
 	// Listo.
-	public Scene escenaCompraDeUnidades1() throws FileNotFoundException {
+	public Scene escenaCompraDeUnidades(int numeroJugador) throws FileNotFoundException {
 		
-		Jugador jugador = this.jugadores[0];
+		Jugador jugador = this.getJugador(numeroJugador);
 		
 		// Titulo
 		Label labelTitulo = new Label(jugador.getNombre() + " - Elegi tus unidades");
@@ -177,9 +169,16 @@ public class Main extends Application {
 		puntosJugador.setFont(Font.font("Times New Roman", 20));
 		
 		// Caja de unidades
-		CajaDeUnidades cajaUnidades = new CajaDeUnidades(this, 1, puntosJugador);
+		CajaDeUnidades cajaUnidades = new CajaDeUnidades(this, numeroJugador, puntosJugador);
 		Button botonTerminarCompra = new Button("Terminar Compra");
-		botonTerminarCompra.setOnAction(new BotonCambiarAEscenaDeCompra2(this));
+		
+		if(numeroJugador == 2) {
+			botonTerminarCompra.setOnAction(new BotonCambiarAEscenaDeCompra2(this));
+		} else {
+			botonTerminarCompra.setOnAction(null);
+		}
+		
+		
 		
 		// Creo las cajas.
 		VBox contenedorSecundario = new VBox(labelTitulo, cajaUnidades, puntosJugador, botonTerminarCompra);

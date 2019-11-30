@@ -1,10 +1,10 @@
 package fiuba.AlgoChess.Controlador;
 
 import java.io.FileNotFoundException;
-
 import fiuba.AlgoChess.Vista.Juego.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+
 
 public class BotonCambiarAEscenaDeCompra2 implements EventHandler<ActionEvent> {
 
@@ -20,12 +20,12 @@ public class BotonCambiarAEscenaDeCompra2 implements EventHandler<ActionEvent> {
 	@Override
 	public void handle(ActionEvent event) {
 
-//		try {
-//			this.main.cambiarEscenaA(this.main.escenaCompraDeUnidades1());
-//		} catch (FileNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		try {
+			this.main.cambiarEscenaA(this.main.escenaCompraDeUnidades(2));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

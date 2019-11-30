@@ -29,7 +29,7 @@ public class BotonComenzarJuego implements EventHandler<ActionEvent> {
 			this.main.asignarNombreJugadores(this.jugador1.getText(), this.jugador2.getText());
 
 			try {
-				this.main.cambiarEscenaA(this.main.escenaCompraDeUnidades1());
+				this.main.cambiarEscenaA(this.main.escenaCompraDeUnidades(1));
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}

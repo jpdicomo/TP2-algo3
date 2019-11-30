@@ -4,7 +4,6 @@ import fiuba.AlgoChess.Controlador.BotonComprarUnidad;
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
 import fiuba.AlgoChess.Modelo.Jugador.Jugador;
 import fiuba.AlgoChess.Modelo.Unidad.*;
-import fiuba.AlgoChess.Vista.Juego.CreadorDeFondos;
 import fiuba.AlgoChess.Vista.Juego.Main;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
