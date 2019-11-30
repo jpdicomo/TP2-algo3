@@ -10,31 +10,31 @@ import javafx.scene.control.TextField;
 
 public class BotonComenzarJuego implements EventHandler<ActionEvent> {
 	
-	private String jugador1;
-    private String jugador2;
+	private TextField jugador1;
+    private TextField jugador2;
     private Main main;
 
     public BotonComenzarJuego(TextField jugador1, TextField jugador2, Main main){
     	
-        this.jugador1 = jugador1.getText();
-        this.jugador2 = jugador2.getText();
+        this.jugador1 = jugador1;
+        this.jugador2 = jugador2;
         this.main = main;
     }
 
     @Override
 	public void handle(ActionEvent event) {
+    	
+		if (!(this.jugador1.getText().isEmpty()) && !(this.jugador2.getText().isEmpty())) {
 
-        if(!(this.jugador1.isEmpty()) && !(this.jugador2.isEmpty())) {
-        	
-        	this.main.asignarNombreJugadores(this.jugador1, this.jugador2);
-        	
-        	try {
+			this.main.asignarNombreJugadores(this.jugador1.getText(), this.jugador2.getText());
+
+			try {
 				this.main.cambiarEscenaA(this.main.escenaCompraDeUnidades1());
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
-        }
-    }
+		}
+	}
     
 //    
 //    private Scene escenaCompraUnidades(int numeroJugador) {

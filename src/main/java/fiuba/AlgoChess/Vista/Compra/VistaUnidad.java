@@ -54,7 +54,7 @@ public class VistaUnidad extends VBox {
 	
 	private ImageView cargarImagenUnidad(Unidad unidad) {
 		
-		String direccion = "./recursos/" + this.nombreClase + this.numeroJugador + ".png";
+		String direccion = "./recursos/unidades" + this.nombreClase + this.numeroJugador + ".png";
 		Image imagenUnidad = null;
 		
 		try {

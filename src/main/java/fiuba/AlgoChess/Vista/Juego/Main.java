@@ -32,10 +32,8 @@ import fiuba.AlgoChess.Modelo.Jugador.Jugador;
 public class Main extends Application {
 
 	private Stage escenario;
-	private Bando bando1;
-	private Bando bando2;
-	private Jugador jugador1;
-	private Jugador jugador2;
+	private Bando[] bandos = new Bando[2];
+	private Jugador[] jugadores = new Jugador[2];
 	private Tablero tablero;
 
 	public static void main(String[] args) {
@@ -60,11 +58,11 @@ public class Main extends Application {
 	
 	private void iniciarJuego() {
 
-		this.bando1 = new Bando();
-		this.bando2 = new Bando();
-		this.jugador1 = new Jugador("", this.bando1);
-		this.jugador2 = new Jugador("", this.bando2);
-		this.tablero = new Tablero(this.bando1, this.bando2);
+		this.bandos[0] = new Bando();
+		this.bandos[1] = new Bando();
+		this.jugadores[0] = new Jugador("", this.bandos[0]);
+		this.jugadores[1] = new Jugador("", this.bandos[1]);
+		this.tablero = new Tablero(this.bandos[0], this.bandos[1]);
 	}
 
 	public void cambiarEscenaA(Scene nuevaEscena) {
@@ -134,10 +132,7 @@ public class Main extends Application {
 
 		Button botonComenzar = new Button("¡Comenzar Juego!");
 		botonComenzar.setFont(Font.font(18));
-		
-		BotonComenzarJuego accionBotonComenzar = new BotonComenzarJuego(nombreJugador1, nombreJugador2, this);
-		botonComenzar.setOnAction(accionBotonComenzar);
-		
+		botonComenzar.setOnAction(new BotonComenzarJuego(nombreJugador1, nombreJugador2, this));		
 		
 		//Creacion de las XBox
 		HBox labelJugadores = new HBox(labelJugador1,labelJugador2);
@@ -170,7 +165,13 @@ public class Main extends Application {
 	
 	public Scene escenaCompraDeUnidades1() throws FileNotFoundException {
 		
+		Jugador jugador = this.jugadores[0];
 		
+		// Datos
+		Label nombreJugador = new Label(jugador.getNombre() + " - Elegi tus unidades");
+        Label puntosJugador = new Label("Puntos restantes: " + jugador.getPuntos());
+		
+		// Caja de unidades
 		CajaDeUnidades cajaUnidades = new CajaDeUnidades(this, 1);
 		Button botonTerminarCompra = new Button("Terminar Compra");
 		
@@ -179,30 +180,26 @@ public class Main extends Application {
 		contenedorPrincipal.setSpacing(150);
 		
 		// Cargo el fondo.
-		Background fondo = new Background(new BackgroundImage(new Image(new FileInputStream("./recursos/fondo1.png")),
-				BackgroundRepeat.REPEAT,
-                BackgroundRepeat.REPEAT,
-                BackgroundPosition.CENTER,
-                new BackgroundSize(800, 600, false, false, false, false)));
+		Background fondo = new CreadorDeFondos().crearFondo("./recursos/fondos/fondo3.png");
 		contenedorPrincipal.setBackground(fondo);
 
-		return null;
+		return new Scene(contenedorPrincipal, 800, 600);
 	}
 	
 	
-//	public Jugador getJugador(int numeroJugador) {
-//
-//		return this.jugadores[numeroJugador - 1];
-//	}
-//
-//	public Bando getBando(int numeroJugador) {
-//
-//		return bandos[numeroJugador - 1];
-//	}
+	public Jugador getJugador(int numeroJugador) {
+
+		return this.jugadores[numeroJugador - 1];
+	}
+
+	public Bando getBando(int numeroJugador) {
+
+		return bandos[numeroJugador - 1];
+	}
 
 	public void asignarNombreJugadores(String jugador1, String jugador2) {
 		
-		this.jugador1.setNombre(jugador1);
-		this.jugador2.setNombre(jugador2);
+		this.jugadores[0].setNombre(jugador1);
+		this.jugadores[1].setNombre(jugador2);
 	}
 }
