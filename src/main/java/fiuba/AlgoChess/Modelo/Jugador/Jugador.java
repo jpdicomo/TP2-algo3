@@ -69,7 +69,7 @@ public class Jugador {
 
 
 	public int getPuntos() {
-		// TODO Auto-generated method stub
+
 		return this.puntos;
 	}
 

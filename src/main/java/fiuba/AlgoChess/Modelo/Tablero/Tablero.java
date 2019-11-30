@@ -110,6 +110,17 @@ public class Tablero {
 		casillero.quitarEntidad();
 	}
 	
+	
+	public void quitarUnidadesMuertas() {
+
+		for (int fila = 0; fila < 20; fila++) {
+			for (int columna = 0; columna < 20; columna++) {
+
+				this.casilleros[fila][columna].quitarUnidadMuerta();
+			}
+		}
+	}
+	
 
 	public Unidad seleccionarUnidad(Posicion posicion) {
 		
