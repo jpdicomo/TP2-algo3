@@ -208,6 +208,20 @@ public class Main extends Application {
 		CajaDeUnidadesVertical cajaUnidades = new CajaDeUnidadesVertical(this, numeroJugador);
 		
 		
+		/*
+		 * Te quedaste aca, hay que ponerle comportamiento a los botones de las
+		 * unidades Toggle botton que agregaste, creo que va a haber
+		 * que hacer un handler por cada boton,
+		 * tambien hay que encontrar como actualizar la cnatidad de unidades
+		 * cuando apretas el boton (mejor cuando colocas la imagen
+		 * en el tablero, cosa de que si apretas 10 veces el boton
+		 * no te quedes sin unidades). Tambien hay que ver como
+		 * armar el tablero y agregarle un metodo a la clase jugador
+		 * para que te de sus unidades. Tambien agregar metodos para sacar unidades
+		 * muertas del tablero y del jugador.
+		 */
+		
+		
 		
 		// Creo las cajas.
 		HBox contenedorSecundario = new HBox(cajaUnidades);
