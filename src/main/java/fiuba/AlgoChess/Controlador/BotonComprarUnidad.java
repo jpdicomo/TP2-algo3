@@ -1,10 +1,12 @@
 package fiuba.AlgoChess.Controlador;
 
+import fiuba.AlgoChess.Controlador.Alertas.AlertaPuntosInsuficientes;
 import fiuba.AlgoChess.Modelo.Errores.PuntosInsuficientesException;
 import fiuba.AlgoChess.Modelo.Jugador.Jugador;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 
 public class BotonComprarUnidad implements EventHandler<ActionEvent> {
@@ -31,6 +33,8 @@ public class BotonComprarUnidad implements EventHandler<ActionEvent> {
 		
 		} catch (PuntosInsuficientesException e) {
 		
+			Alert alertaPuntosInsuficientes = new AlertaPuntosInsuficientes();
+			alertaPuntosInsuficientes.showAndWait();
 			return;
 			
 		} finally {

@@ -174,7 +174,7 @@ public class Main extends Application {
 		
 		// Puntos restantes
 		Label puntosJugador = new Label("Puntos restantes: " + jugador.getPuntos());
-		puntosJugador.setFont(Font.font("Times New Roman", 16));
+		puntosJugador.setFont(Font.font("Times New Roman", 20));
 		
 		// Caja de unidades
 		CajaDeUnidades cajaUnidades = new CajaDeUnidades(this, 1, puntosJugador);
@@ -182,14 +182,17 @@ public class Main extends Application {
 		botonTerminarCompra.setOnAction(new BotonCambiarAEscenaDeCompra2(this));
 		
 		// Creo las cajas.
-		VBox contenedorPrincipal = new VBox(labelTitulo, cajaUnidades, puntosJugador, botonTerminarCompra);
-		contenedorPrincipal.setAlignment(Pos.CENTER);
-		contenedorPrincipal.setSpacing(20);
+		VBox contenedorSecundario = new VBox(labelTitulo, cajaUnidades, puntosJugador, botonTerminarCompra);
+		contenedorSecundario.setMaxWidth(515);
+		contenedorSecundario.setMinHeight(450);
+		contenedorSecundario.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png"));
+		contenedorSecundario.setAlignment(Pos.CENTER);
+		contenedorSecundario.setSpacing(20);
 		
-		// Cargo el fondo.
-		Background fondo = new CreadorDeFondos().crearFondo("./recursos/fondos/fondo3.png");
-		contenedorPrincipal.setBackground(fondo);
-
+		VBox contenedorPrincipal = new VBox(contenedorSecundario);
+		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo3.png"));
+		contenedorPrincipal.setAlignment(Pos.CENTER);
+		
 		return new Scene(contenedorPrincipal, 800, 600);
 	}
 	

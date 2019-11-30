@@ -30,9 +30,6 @@ public class CajaDeUnidades extends HBox {
 		this.cargarUnidad(new Catapulta(bando), numeroJugador, puntosJugador);
 		this.cargarUnidad(new Jinete(bando), numeroJugador, puntosJugador);
 		
-		this.setMaxWidth(515);
-		this.setMinHeight(300);
-		this.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/1.png"));
 		this.setAlignment(Pos.CENTER);
 		this.setSpacing(30);
 	}
