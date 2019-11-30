@@ -23,6 +23,7 @@ import fiuba.AlgoChess.Vista.Compra.CajaDeUnidades;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+import fiuba.AlgoChess.Controlador.BotonCambiarAEscenaDeCompra2;
 import fiuba.AlgoChess.Controlador.BotonComenzarJuego;
 import fiuba.AlgoChess.Controlador.BotonNuevaPartida;
 import fiuba.AlgoChess.Controlador.BotonSalirDelJuego;
@@ -131,7 +132,7 @@ public class Main extends Application {
 		nombreJugador2.setPromptText("Ingresa tu nombre");
 
 		Button botonComenzar = new Button("¡Comenzar Juego!");
-		botonComenzar.setFont(Font.font(18));
+		botonComenzar.setFont(Font.font(16));
 		botonComenzar.setOnAction(new BotonComenzarJuego(nombreJugador1, nombreJugador2, this));		
 		
 		//Creacion de las XBox
@@ -161,23 +162,29 @@ public class Main extends Application {
 
 		return new Scene(contenedorPrincipal, 800, 600);
 	}
-	
-	
+
+	// Listo.
 	public Scene escenaCompraDeUnidades1() throws FileNotFoundException {
 		
 		Jugador jugador = this.jugadores[0];
 		
-		// Datos
-		Label nombreJugador = new Label(jugador.getNombre() + " - Elegi tus unidades");
-        Label puntosJugador = new Label("Puntos restantes: " + jugador.getPuntos());
+		// Titulo
+		Label labelTitulo = new Label(jugador.getNombre() + " - Elegi tus unidades");
+		labelTitulo.setFont(Font.font("Times New Roman", 32));
+		
+		// Puntos restantes
+		Label puntosJugador = new Label("Puntos restantes: " + jugador.getPuntos());
+		puntosJugador.setFont(Font.font("Times New Roman", 16));
 		
 		// Caja de unidades
-		CajaDeUnidades cajaUnidades = new CajaDeUnidades(this, 1);
+		CajaDeUnidades cajaUnidades = new CajaDeUnidades(this, 1, puntosJugador);
 		Button botonTerminarCompra = new Button("Terminar Compra");
+		botonTerminarCompra.setOnAction(new BotonCambiarAEscenaDeCompra2(this));
 		
-		VBox contenedorPrincipal = new VBox(cajaUnidades, botonTerminarCompra);
+		// Creo las cajas.
+		VBox contenedorPrincipal = new VBox(labelTitulo, cajaUnidades, puntosJugador, botonTerminarCompra);
 		contenedorPrincipal.setAlignment(Pos.CENTER);
-		contenedorPrincipal.setSpacing(150);
+		contenedorPrincipal.setSpacing(20);
 		
 		// Cargo el fondo.
 		Background fondo = new CreadorDeFondos().crearFondo("./recursos/fondos/fondo3.png");
