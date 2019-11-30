@@ -71,10 +71,16 @@ public class Main extends Application {
 		this.tablero = new Tablero(this.bandos[0], this.bandos[1]);
 	}
 	
+	/*
+	 * *********************************************
+	 * *----------------- ESCENAS -----------------*
+	 * *********************************************
+	 */
 	
+	// Listo.
 	public Scene escenaBienvenida() throws FileNotFoundException {
 
-		Label labelTitulo = new Label("AlgoChess");
+		Label labelTitulo = new Label("");
 		labelTitulo.setFont(Font.font("Verdana", 48));
 		labelTitulo.setTextFill(Color.rgb(255, 255, 255));
 
@@ -88,7 +94,7 @@ public class Main extends Application {
 		
 		VBox botones = new VBox(botonNuevaPartida, botonSalir);
 		botones.setAlignment(Pos.BOTTOM_CENTER);
-		botones.setSpacing(15);
+		botones.setSpacing(10);
 
 		VBox contenedorPrincipal = new VBox(labelTitulo, botones);
 		contenedorPrincipal.setSpacing(200);
@@ -101,7 +107,7 @@ public class Main extends Application {
 		return new Scene(contenedorPrincipal, 800, 600);
 	}
 
-	
+	// TE QUEDASTE ACA.
 	public Scene escenaCargaDeJugadores() throws FileNotFoundException{
 		
 		// Titulo
@@ -149,11 +155,7 @@ public class Main extends Application {
 		contenedorPrincipal.setSpacing(150);
 
 		// Cargo el fondo.
-		Background fondo = new Background(new BackgroundImage(new Image(new FileInputStream("./recursos/fondo2.png")),
-				BackgroundRepeat.REPEAT,
-				BackgroundRepeat.REPEAT,
-				BackgroundPosition.CENTER,
-				new BackgroundSize(800, 600, false, false, false, false)));
+		Background fondo = new CreadorDeFondos().crearFondo("./recursos/fondos/fondo2.png");
 		contenedorPrincipal.setBackground(fondo);
 
 		return new Scene(contenedorPrincipal, 800, 600);

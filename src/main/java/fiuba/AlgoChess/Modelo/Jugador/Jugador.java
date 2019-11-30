@@ -62,4 +62,10 @@ public class Jugador {
 		
 		return new Posicion(x,y);
     }
+
+
+	public int getPuntos() {
+		// TODO Auto-generated method stub
+		return this.puntos;
+	}
 }
