@@ -1,6 +1,9 @@
 package fiuba.AlgoChess.Modelo.Jugador;
 
+import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
 import fiuba.AlgoChess.Modelo.Errores.PuntosInsuficientesException;
+import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
+import fiuba.AlgoChess.Modelo.Tablero.Tablero;
 import fiuba.AlgoChess.Modelo.Ubicacion.Posicion;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 
@@ -52,14 +55,26 @@ public class Jugador {
 	}
 
 
-    public Posicion elegirCasillero() {
+    public Posicion elegirCasillero(Tablero tablero) {
+		try{
+			System.out.print("Ingresa fila: ");
 
-		System.out.print("Ingresa fila: ");
-		int y = consola.nextInt();
-		
-		System.out.print("\nIngresa columna: ");
-		int x = consola.nextInt();
-		
-		return new Posicion(x,y);
+			int y = consola.nextInt();
+
+			System.out.print("\nIngresa columna: ");
+			int x = consola.nextInt();
+			Posicion pos = new Posicion(x,y);//x,y
+
+			Casillero casilleroSeleccionado = tablero.getCasillero(pos);
+			Unidad unidadSeleccionada = casilleroSeleccionado.getUnidad();
+
+			unidadSeleccionada.interactuarConUnAliado(this.bando);
+
+			return new Posicion(x,y);//x,y
+
+		}catch(DistintoBandoException error) {
+
+			return null;
+		}
     }
 }
