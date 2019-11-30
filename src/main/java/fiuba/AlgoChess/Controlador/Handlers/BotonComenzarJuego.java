@@ -1,4 +1,4 @@
-package fiuba.AlgoChess.Controlador;
+package fiuba.AlgoChess.Controlador.Handlers;
 
 import java.io.FileNotFoundException;
 

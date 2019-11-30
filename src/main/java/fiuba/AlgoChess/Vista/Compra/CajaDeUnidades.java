@@ -1,6 +1,6 @@
 package fiuba.AlgoChess.Vista.Compra;
 
-import fiuba.AlgoChess.Controlador.BotonComprarUnidad;
+import fiuba.AlgoChess.Controlador.Handlers.BotonComprarUnidad;
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
 import fiuba.AlgoChess.Modelo.Jugador.Jugador;
 import fiuba.AlgoChess.Modelo.Unidad.*;

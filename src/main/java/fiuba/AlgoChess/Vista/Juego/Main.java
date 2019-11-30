@@ -16,10 +16,10 @@ import fiuba.AlgoChess.Modelo.Tablero.Tablero;
 import fiuba.AlgoChess.Vista.Compra.CajaDeUnidades;
 import java.io.FileNotFoundException;
 
-import fiuba.AlgoChess.Controlador.BotonCambiarAEscenaDeCompra2;
-import fiuba.AlgoChess.Controlador.BotonComenzarJuego;
-import fiuba.AlgoChess.Controlador.BotonNuevaPartida;
-import fiuba.AlgoChess.Controlador.BotonSalirDelJuego;
+import fiuba.AlgoChess.Controlador.Handlers.BotonCambiarAEscenaDeCompra2;
+import fiuba.AlgoChess.Controlador.Handlers.BotonComenzarJuego;
+import fiuba.AlgoChess.Controlador.Handlers.BotonNuevaPartida;
+import fiuba.AlgoChess.Controlador.Handlers.BotonSalirDelJuego;
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
 import fiuba.AlgoChess.Modelo.Jugador.Jugador;
 
@@ -172,13 +172,11 @@ public class Main extends Application {
 		CajaDeUnidades cajaUnidades = new CajaDeUnidades(this, numeroJugador, puntosJugador);
 		Button botonTerminarCompra = new Button("Terminar Compra");
 		
-		if(numeroJugador == 2) {
+		if(numeroJugador != 2) {
 			botonTerminarCompra.setOnAction(new BotonCambiarAEscenaDeCompra2(this));
 		} else {
 			botonTerminarCompra.setOnAction(null);
 		}
-		
-		
 		
 		// Creo las cajas.
 		VBox contenedorSecundario = new VBox(labelTitulo, cajaUnidades, puntosJugador, botonTerminarCompra);

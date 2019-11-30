@@ -1,4 +1,4 @@
-package fiuba.AlgoChess.Controlador;
+package fiuba.AlgoChess.Controlador.Handlers;
 
 import fiuba.AlgoChess.Controlador.Alertas.AlertaPuntosInsuficientes;
 import fiuba.AlgoChess.Modelo.Errores.PuntosInsuficientesException;
