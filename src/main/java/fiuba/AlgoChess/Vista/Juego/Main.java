@@ -12,16 +12,17 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+
 import fiuba.AlgoChess.Modelo.Tablero.Tablero;
 import fiuba.AlgoChess.Vista.Compra.CajaDeUnidades;
-import java.io.FileNotFoundException;
-
+import fiuba.AlgoChess.Controlador.Handlers.BotonCambiarAEscenaColocarUnidades1;
 import fiuba.AlgoChess.Controlador.Handlers.BotonCambiarAEscenaDeCompra2;
 import fiuba.AlgoChess.Controlador.Handlers.BotonComenzarJuego;
 import fiuba.AlgoChess.Controlador.Handlers.BotonNuevaPartida;
 import fiuba.AlgoChess.Controlador.Handlers.BotonSalirDelJuego;
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
 import fiuba.AlgoChess.Modelo.Jugador.Jugador;
+
 
 public class Main extends Application {
 
@@ -71,7 +72,7 @@ public class Main extends Application {
 	 */
 	
 	// Listo.
-	public Scene escenaBienvenida() throws FileNotFoundException {
+	public Scene escenaBienvenida() {
 
 		Label labelTitulo = new Label("");
 		labelTitulo.setFont(Font.font("Verdana", 48));
@@ -102,7 +103,7 @@ public class Main extends Application {
 
 
 	// Listo.
-	public Scene escenaCargaDeJugadores() throws FileNotFoundException{
+	public Scene escenaCargaDeJugadores() {
 		
 		// Titulo
 	    Label labelTitulo = new Label("Ingresar nombres");
@@ -156,13 +157,13 @@ public class Main extends Application {
 	}
 
 	// Listo.
-	public Scene escenaCompraDeUnidades(int numeroJugador) throws FileNotFoundException {
+	public Scene escenaCompraDeUnidades(int numeroJugador) {
 		
 		Jugador jugador = this.getJugador(numeroJugador);
 		
 		// Titulo
 		Label labelTitulo = new Label(jugador.getNombre() + " - Elegi tus unidades");
-		labelTitulo.setFont(Font.font("Times New Roman", 32));
+		labelTitulo.setFont(Font.font("Times New Roman", 28));
 		
 		// Puntos restantes
 		Label puntosJugador = new Label("Puntos restantes: " + jugador.getPuntos());
@@ -175,7 +176,7 @@ public class Main extends Application {
 		if(numeroJugador != 2) {
 			botonTerminarCompra.setOnAction(new BotonCambiarAEscenaDeCompra2(this));
 		} else {
-			botonTerminarCompra.setOnAction(null);
+			botonTerminarCompra.setOnAction(new BotonCambiarAEscenaColocarUnidades1(this));
 		}
 		
 		// Creo las cajas.
@@ -188,6 +189,25 @@ public class Main extends Application {
 		
 		VBox contenedorPrincipal = new VBox(contenedorSecundario);
 		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo3.png"));
+		contenedorPrincipal.setAlignment(Pos.CENTER);
+		
+		return new Scene(contenedorPrincipal, 800, 600);
+	}
+	
+	
+	public Scene escenaColocarUnidades(int numeroJugador) {
+		
+		Jugador jugador = this.getJugador(numeroJugador);
+		
+		// Titulo
+		Label labelTitulo = new Label(jugador.getNombre() + " - Coloca tus unidades");
+		labelTitulo.setFont(Font.font("Times New Roman", 28));
+
+
+		
+		
+		VBox contenedorPrincipal = new VBox();
+		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo4.png"));
 		contenedorPrincipal.setAlignment(Pos.CENTER);
 		
 		return new Scene(contenedorPrincipal, 800, 600);

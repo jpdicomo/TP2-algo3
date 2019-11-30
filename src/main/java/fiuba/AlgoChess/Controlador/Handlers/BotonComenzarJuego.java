@@ -1,7 +1,5 @@
 package fiuba.AlgoChess.Controlador.Handlers;
 
-import java.io.FileNotFoundException;
-
 import fiuba.AlgoChess.Vista.Juego.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -28,11 +26,7 @@ public class BotonComenzarJuego implements EventHandler<ActionEvent> {
 
 			this.main.asignarNombreJugadores(this.jugador1.getText(), this.jugador2.getText());
 
-			try {
-				this.main.cambiarEscenaA(this.main.escenaCompraDeUnidades(1));
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}
+			this.main.cambiarEscenaA(this.main.escenaCompraDeUnidades(1));
 		}
 	}
     
