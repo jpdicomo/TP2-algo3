@@ -84,4 +84,9 @@ public class Jugador {
 
 		this.nombre = nombre;
 	}
+	
+	public ArrayList<Unidad> getUnidades() {
+		
+		return this.unidades;
+	}
 }

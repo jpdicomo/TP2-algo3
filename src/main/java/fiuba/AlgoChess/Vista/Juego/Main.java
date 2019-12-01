@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 import fiuba.AlgoChess.Modelo.Tablero.Tablero;
 import fiuba.AlgoChess.Vista.Compra.CajaDeUnidades;
 import fiuba.AlgoChess.Vista.Juego.Colocacion.CajaDeUnidadesVertical;
+import fiuba.AlgoChess.Vista.Juego.Colocacion.VistaUnidadSeleccionada;
+import fiuba.AlgoChess.Vista.Tablero.VistaTablero;
 import fiuba.AlgoChess.Controlador.Handlers.BotonCambiarAEscenaColocarUnidades1;
 import fiuba.AlgoChess.Controlador.Handlers.BotonCambiarAEscenaDeCompra2;
 import fiuba.AlgoChess.Controlador.Handlers.BotonComenzarJuego;
@@ -43,7 +45,7 @@ public class Main extends Application {
 
 		this.iniciarJuego();
 		
-		stage.setResizable(false);
+//		stage.setResizable(false);
 		this.escenario = stage;
 		this.escenario.setTitle("AlgoChess");
 		this.cambiarEscenaA(this.escenaBienvenida());
@@ -96,7 +98,7 @@ public class Main extends Application {
 		contenedorPrincipal.setAlignment(Pos.CENTER);
 		
 		
-		Background fondo = new CreadorDeFondos().crearFondo("./recursos/fondos/fondo1.png");
+		Background fondo = new CreadorDeFondos().crearFondo("./recursos/fondos/fondo1.png", 800, 600);
 		contenedorPrincipal.setBackground(fondo);
 		
 		return new Scene(contenedorPrincipal, 800, 600);
@@ -151,7 +153,7 @@ public class Main extends Application {
 		contenedorPrincipal.setSpacing(150);
 
 		// Cargo el fondo.
-		Background fondo = new CreadorDeFondos().crearFondo("./recursos/fondos/fondo2.png");
+		Background fondo = new CreadorDeFondos().crearFondo("./recursos/fondos/fondo2.png", 800, 600);
 		contenedorPrincipal.setBackground(fondo);
 
 		return new Scene(contenedorPrincipal, 800, 600);
@@ -184,12 +186,12 @@ public class Main extends Application {
 		VBox contenedorSecundario = new VBox(labelTitulo, cajaUnidades, puntosJugador, botonTerminarCompra);
 		contenedorSecundario.setMaxWidth(515);
 		contenedorSecundario.setMinHeight(450);
-		contenedorSecundario.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png"));
+		contenedorSecundario.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png", 800, 600));
 		contenedorSecundario.setAlignment(Pos.CENTER);
 		contenedorSecundario.setSpacing(20);
 		
 		VBox contenedorPrincipal = new VBox(contenedorSecundario);
-		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo3.png"));
+		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo3.png", 800, 600));
 		contenedorPrincipal.setAlignment(Pos.CENTER);
 		
 		return new Scene(contenedorPrincipal, 800, 600);
@@ -205,8 +207,12 @@ public class Main extends Application {
 		labelTitulo.setFont(Font.font("Times New Roman", 28));
 
 		// Caja de unidades
-		CajaDeUnidadesVertical cajaUnidades = new CajaDeUnidadesVertical(this, numeroJugador);
+		VistaUnidadSeleccionada unidadSeleccionada = new VistaUnidadSeleccionada();
+		CajaDeUnidadesVertical cajaUnidades = new CajaDeUnidadesVertical(this, numeroJugador, unidadSeleccionada);
 		
+		
+		// Tablero
+		VistaTablero tablero = new VistaTablero(this, this.tablero, unidadSeleccionada);
 		
 		/*
 		 * Te quedaste aca, hay que ponerle comportamiento a los botones de las
@@ -224,16 +230,22 @@ public class Main extends Application {
 		
 		
 		// Creo las cajas.
-		HBox contenedorSecundario = new HBox(cajaUnidades);
+		VBox cajaDeUnidades = new VBox(cajaUnidades, unidadSeleccionada);
+		cajaDeUnidades.setSpacing(20);
+		
+		HBox unidadesYTablero = new HBox(cajaDeUnidades, tablero);
+		unidadesYTablero.setSpacing(20);
+		
+		VBox contenedorSecundario = new VBox(labelTitulo, unidadesYTablero);
 //		contenedorSecundario.setMaxWidth(515);
 //		contenedorSecundario.setMinHeight(450);
-		contenedorSecundario.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png"));
-		contenedorSecundario.setAlignment(Pos.CENTER_LEFT);
-		
+		contenedorSecundario.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png", 800, 600));
+		contenedorSecundario.setAlignment(Pos.CENTER);
+		contenedorSecundario.setSpacing(20);
 			
 		VBox contenedorPrincipal = new VBox(contenedorSecundario);
-		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo4.png"));
-		contenedorPrincipal.setAlignment(Pos.CENTER_LEFT);
+		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo4.png", 800, 600));
+		contenedorPrincipal.setAlignment(Pos.CENTER);
 		
 		return new Scene(contenedorPrincipal, 800, 600);
 	}

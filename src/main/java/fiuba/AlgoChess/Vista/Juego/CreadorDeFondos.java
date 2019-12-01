@@ -15,7 +15,7 @@ import javafx.scene.layout.BackgroundSize;
  */
 public class CreadorDeFondos {
 
-	public Background crearFondo(String direccion) {
+	public Background crearFondo(String direccion, int ancho, int alto) {
 		
 		Image imagenDeFondo = null;
 		
@@ -32,7 +32,7 @@ public class CreadorDeFondos {
                 BackgroundRepeat.REPEAT,
                 BackgroundRepeat.REPEAT,
                 BackgroundPosition.CENTER,
-                new BackgroundSize(800, 600, false, false, false, false)));
+                new BackgroundSize(ancho, alto, false, false, false, false)));
 		
 		return fondo;
 	}
