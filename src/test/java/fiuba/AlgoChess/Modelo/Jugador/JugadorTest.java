@@ -1,6 +1,7 @@
 package fiuba.AlgoChess.Modelo.Jugador;
 
 import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
+import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 import fiuba.AlgoChess.Modelo.Tablero.Tablero;
 import fiuba.AlgoChess.Modelo.Ubicacion.Posicion;
 import org.junit.Assert;
@@ -82,4 +83,5 @@ public class JugadorTest {
         jose.elegirCasillero(tablero);
 
     }
+
 }
