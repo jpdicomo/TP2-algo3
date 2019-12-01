@@ -85,10 +85,13 @@ public class Casillero {
 			if(this.estado.getUnidad().getVida() <= 0) {
 
 				this.estado.quitarUnidad();
+				return true;
+			}else{
+				return false;
 			}
-			return true;
 
-		} catch(CasilleroLibreException e) {
+
+		} catch(CasilleroLibreException e ) {
 			return false;
 		}
 	}

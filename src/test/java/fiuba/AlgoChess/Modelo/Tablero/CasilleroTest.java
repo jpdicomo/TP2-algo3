@@ -87,6 +87,30 @@ public class CasilleroTest {
 
 		Assert.assertEquals(true, casillero2.quitarUnidadMuerta());
 	}
+	@Test
+	public void Test05NoSeQuitaUnidadQueMuertaDeSuCasillero() {
+
+
+		Bando bandoJose = new Bando();
+		Bando bandoJuan = new Bando();
+
+		Jinete jinete1 = new Jinete(bandoJose);
+		Jinete jinete2 = new Jinete(bandoJuan);
+
+		Casillero casillero1 = new Casillero(0, 0, bandoJose);
+		Casillero casillero2 = new Casillero(0, 4, bandoJuan);
+
+		casillero1.agregarNuevaUnidad(jinete1);
+		casillero2.agregarNuevaUnidad(jinete2);
+
+		 jinete1.interactuarCon(casillero2);
+
+
+		Assert.assertEquals(false, casillero2.quitarUnidadMuerta());
+	}
+
+
+
 
 
 
