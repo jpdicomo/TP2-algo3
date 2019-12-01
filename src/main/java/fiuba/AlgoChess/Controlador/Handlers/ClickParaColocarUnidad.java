@@ -8,6 +8,7 @@ import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
 import fiuba.AlgoChess.Modelo.Tablero.Tablero;
 import fiuba.AlgoChess.Modelo.Ubicacion.Posicion;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
+import fiuba.AlgoChess.Vista.Errores.NoTieneUnaUnidadSeleccionadaException;
 import fiuba.AlgoChess.Vista.Juego.Colocacion.VistaUnidadSeleccionada;
 import fiuba.AlgoChess.Vista.Tablero.VistaCasillero;
 import fiuba.AlgoChess.Vista.Tablero.VistaTablero;
@@ -37,10 +38,11 @@ public class ClickParaColocarUnidad implements EventHandler<ActionEvent> {
 
 		try {
 
-			Unidad unidad = this.unidad.quitarUnidad();
+			Unidad unidad = this.unidad.getUnidad();
 			Posicion posicion = vistaCasillero.getPosicion();
 			
 			this.tablero.agregarNuevaUnidad(unidad, posicion);
+			this.unidad.quitarUnidad();
 
 		} catch (CasilleroOcupadoException e) {
 
@@ -52,7 +54,7 @@ public class ClickParaColocarUnidad implements EventHandler<ActionEvent> {
 			Alert alertaDistintoBando = new AlertaDistintoBandoAlColocarUnidad();
 			alertaDistintoBando.showAndWait();
 		
-		} catch (IndexOutOfBoundsException e){
+		} catch (NoTieneUnaUnidadSeleccionadaException e) {
 			
 			Alert alertaPiezaNoSeleccionada = new AlertaPiezaNoSeleccionada();
 			alertaPiezaNoSeleccionada.showAndWait();

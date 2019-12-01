@@ -18,14 +18,13 @@ public class VistaTablero extends GridPane{
     private VistaUnidadSeleccionada unidadElegida;
     
     
-    public VistaTablero(Main main, Tablero tablero, VistaUnidadSeleccionada unidadElegida) {
+    public VistaTablero(Main main, Tablero tablero) {
 
     	this.tablero = tablero;
         this.main = main;
-        this.unidadElegida = unidadElegida;
         
-        this.setHeight(895);
-        this.setWidth(895);
+        this.setHeight(600);
+        this.setWidth(600);
         this.setVgap(3);
         this.setHgap(3);
         
@@ -59,10 +58,12 @@ public class VistaTablero extends GridPane{
 	
 	public void compartamientoColocarUnidades(VistaUnidadSeleccionada unidad){
 		
+		this.unidadElegida = unidad;
+		
         for(Node nodoCasillero : this.getChildren()){
         	
             VistaCasillero vistaCasillero = (VistaCasillero)nodoCasillero;
-            vistaCasillero.setOnAction(new ClickParaColocarUnidad(unidad, this.tablero, vistaCasillero, this));
+            vistaCasillero.setOnAction(new ClickParaColocarUnidad(this.unidadElegida, this.tablero, vistaCasillero, this));
         }
     }
 

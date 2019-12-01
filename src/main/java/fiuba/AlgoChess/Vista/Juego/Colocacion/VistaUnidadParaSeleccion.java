@@ -63,6 +63,11 @@ public class VistaUnidadParaSeleccion extends HBox {
 	
 	private ImageView generarImagenUnidad() {
 		
+		return this.generarImagenUnidad(80, 80);
+	}
+	
+	private ImageView generarImagenUnidad(int alto, int ancho) {
+		
 		String direccion = "./recursos/unidades/" + this.nombreClase + this.numeroJugador + ".png";
 		Image imagenUnidad = null;
 
@@ -74,8 +79,8 @@ public class VistaUnidadParaSeleccion extends HBox {
 		}
 
 		ImageView imagen = new ImageView();
-		imagen.setFitHeight(80);
-		imagen.setFitWidth(80);
+		imagen.setFitHeight(alto);
+		imagen.setFitWidth(ancho);
 		imagen.setPreserveRatio(true);
 		imagen.setImage(imagenUnidad);
 
@@ -107,7 +112,7 @@ public class VistaUnidadParaSeleccion extends HBox {
 			throw new NoTieneMasUnidadesParaColocarException();
 		}
 
-		this.labelCantidad = new Label("Cantidad: " + this.cantidad);
+		this.labelCantidad.setText("Cantidad: " + this.cantidad);
 		
 		return this.unidad;
 	}
@@ -115,12 +120,12 @@ public class VistaUnidadParaSeleccion extends HBox {
 	public void agregarUnidad() {
 
 		this.cantidad++;
-		this.labelCantidad = new Label("Cantidad: " + this.cantidad);
+		this.labelCantidad.setText("Cantidad: " + this.cantidad);
 	}
 
-	public ImageView getImagen() {
+	public ImageView getImagen(int alto, int ancho) {
 		
-		return this.generarImagenUnidad();
+		return this.generarImagenUnidad(alto, ancho);
 	}
 
 }

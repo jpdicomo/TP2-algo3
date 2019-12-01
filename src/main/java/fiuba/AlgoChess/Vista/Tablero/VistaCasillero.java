@@ -14,9 +14,14 @@ import javafx.scene.image.ImageView;
 
 public class VistaCasillero extends ToggleButton {
 
+	private Posicion posicion;
+	
+	
 	public VistaCasillero(Casillero casillero, int numeroJugador, int fila, int columna) {
 
 		super();
+		
+		this.posicion = new Posicion(fila, columna);
 
 		try {
 			
@@ -70,7 +75,7 @@ public class VistaCasillero extends ToggleButton {
 	}
 
 	public Posicion getPosicion() {
-		// TODO Auto-generated method stub
-		return null;
+
+		return this.posicion;
 	}
 }

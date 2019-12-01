@@ -1,8 +1,11 @@
 package fiuba.AlgoChess.Vista.Juego.Colocacion;
 
+import fiuba.AlgoChess.Controlador.Handlers.BotonSoltarUnidad;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 import fiuba.AlgoChess.Vista.Errores.NoTieneUnaUnidadSeleccionadaException;
 import fiuba.AlgoChess.Vista.Errores.YaTieneUnaUnidadSeleccionadaException;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
@@ -11,6 +14,7 @@ public class VistaUnidadSeleccionada extends HBox {
 	private Unidad unidad;
     private Label imagen;
     private VistaUnidadParaSeleccion vistaUnidad;
+    private Button boton;
 
     
     public VistaUnidadSeleccionada(){
@@ -18,6 +22,8 @@ public class VistaUnidadSeleccionada extends HBox {
         super();
         this.unidad = null;
         this.imagen = new Label();
+        this.boton = new Button("Soltar Unidad");
+        this.boton.setOnAction(new BotonSoltarUnidad(this));
     }
     
     public void agregarUnidad(VistaUnidadParaSeleccion unidad) {
@@ -30,26 +36,35 @@ public class VistaUnidadSeleccionada extends HBox {
     	this.vistaUnidad = unidad;
     	
     	this.unidad = this.vistaUnidad.quitarUnidad();
-    	this.imagen.setGraphic(unidad.getImagen());
+    	this.imagen.setGraphic(unidad.getImagen(80,80));
     	this.imagen.setPrefHeight(80);
     	this.imagen.setPrefHeight(80);
     	
     	this.getChildren().add(this.imagen);
+    	this.getChildren().add(this.boton);
+    	this.setAlignment(Pos.CENTER);
+    	this.setSpacing(20);
     }
     
 	
-	public Unidad quitarUnidad() {
+	public void quitarUnidad() {
 		
 		if (this.unidad == null) {
     		
     		throw new NoTieneUnaUnidadSeleccionadaException();
     	}
 		
-		Unidad unidad = this.unidad;
-		this.imagen = new Label();
 		this.unidad = null;
-		
-		return unidad;
+		this.getChildren().clear();
+	}
+	
+	
+	public Unidad getUnidad() {
+		if (this.unidad == null) {
+    		
+    		throw new NoTieneUnaUnidadSeleccionadaException();
+    	}
+		return this.unidad;
 	}
 	
 	public void soltarUnidad() {
@@ -60,8 +75,8 @@ public class VistaUnidadSeleccionada extends HBox {
     	}
 		
 		this.vistaUnidad.agregarUnidad();
-		this.imagen = new Label();
 		this.unidad = null;
+		this.getChildren().clear();
 	}
 
 }

@@ -212,7 +212,8 @@ public class Main extends Application {
 		
 		
 		// Tablero
-		VistaTablero tablero = new VistaTablero(this, this.tablero, unidadSeleccionada);
+		VistaTablero tablero = new VistaTablero(this, this.tablero);
+		tablero.compartamientoColocarUnidades(unidadSeleccionada);
 		
 		/*
 		 * Te quedaste aca, hay que ponerle comportamiento a los botones de las
@@ -235,6 +236,7 @@ public class Main extends Application {
 		
 		HBox unidadesYTablero = new HBox(cajaDeUnidades, tablero);
 		unidadesYTablero.setSpacing(20);
+		unidadesYTablero.setAlignment(Pos.CENTER);
 		
 		VBox contenedorSecundario = new VBox(labelTitulo, unidadesYTablero);
 //		contenedorSecundario.setMaxWidth(515);
