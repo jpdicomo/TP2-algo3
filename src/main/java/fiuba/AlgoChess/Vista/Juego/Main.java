@@ -19,7 +19,9 @@ import fiuba.AlgoChess.Vista.Juego.Colocacion.CajaDeUnidadesVertical;
 import fiuba.AlgoChess.Vista.Juego.Colocacion.VistaUnidadSeleccionada;
 import fiuba.AlgoChess.Vista.Tablero.VistaTablero;
 import fiuba.AlgoChess.Controlador.Handlers.BotonCambiarAEscenaColocarUnidades1;
+import fiuba.AlgoChess.Controlador.Handlers.BotonCambiarAEscenaColocarUnidades2;
 import fiuba.AlgoChess.Controlador.Handlers.BotonCambiarAEscenaDeCompra2;
+import fiuba.AlgoChess.Controlador.Handlers.BotonCambiarAEscenaDeLucha;
 import fiuba.AlgoChess.Controlador.Handlers.BotonComenzarJuego;
 import fiuba.AlgoChess.Controlador.Handlers.BotonNuevaPartida;
 import fiuba.AlgoChess.Controlador.Handlers.BotonSalirDelJuego;
@@ -204,7 +206,7 @@ public class Main extends Application {
 		
 		// Titulo
 		Label labelTitulo = new Label(jugador.getNombre() + " - Coloca tus unidades");
-		labelTitulo.setFont(Font.font("Times New Roman", 28));
+		labelTitulo.setFont(Font.font("Times New Roman", 34));
 
 		// Caja de unidades
 		VistaUnidadSeleccionada unidadSeleccionada = new VistaUnidadSeleccionada();
@@ -215,27 +217,24 @@ public class Main extends Application {
 		VistaTablero tablero = new VistaTablero(this, this.tablero);
 		tablero.compartamientoColocarUnidades(unidadSeleccionada);
 		
-		/*
-		 * Te quedaste aca, hay que ponerle comportamiento a los botones de las
-		 * unidades Toggle botton que agregaste, creo que va a haber
-		 * que hacer un handler por cada boton,
-		 * tambien hay que encontrar como actualizar la cnatidad de unidades
-		 * cuando apretas el boton (mejor cuando colocas la imagen
-		 * en el tablero, cosa de que si apretas 10 veces el boton
-		 * no te quedes sin unidades). Tambien hay que ver como
-		 * armar el tablero y agregarle un metodo a la clase jugador
-		 * para que te de sus unidades. Tambien agregar metodos para sacar unidades
-		 * muertas del tablero y del jugador.
-		 */
 		
+		// Boton para terminar de colocar unidades.
+		Button botonTerminarColocacion = new Button("Termine de Colocar");
+		
+		if(numeroJugador != 2) {
+			botonTerminarColocacion.setOnAction(new BotonCambiarAEscenaColocarUnidades2(this));
+		} else {
+			botonTerminarColocacion.setOnAction(new BotonCambiarAEscenaDeLucha(this));
+		}
 		
 		
 		// Creo las cajas.
-		VBox cajaDeUnidades = new VBox(cajaUnidades, unidadSeleccionada);
+		VBox cajaDeUnidades = new VBox(cajaUnidades, unidadSeleccionada, botonTerminarColocacion);
 		cajaDeUnidades.setSpacing(20);
+		cajaDeUnidades.setAlignment(Pos.CENTER);
 		
 		HBox unidadesYTablero = new HBox(cajaDeUnidades, tablero);
-		unidadesYTablero.setSpacing(20);
+		unidadesYTablero.setSpacing(40);
 		unidadesYTablero.setAlignment(Pos.CENTER);
 		
 		VBox contenedorSecundario = new VBox(labelTitulo, unidadesYTablero);
@@ -243,13 +242,18 @@ public class Main extends Application {
 //		contenedorSecundario.setMinHeight(450);
 		contenedorSecundario.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png", 800, 600));
 		contenedorSecundario.setAlignment(Pos.CENTER);
-		contenedorSecundario.setSpacing(20);
+		contenedorSecundario.setSpacing(40);
 			
 		VBox contenedorPrincipal = new VBox(contenedorSecundario);
 		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo4.png", 800, 600));
 		contenedorPrincipal.setAlignment(Pos.CENTER);
 		
 		return new Scene(contenedorPrincipal, 800, 600);
+	}
+
+	
+	public Scene escenaDeLucha(int numeroJugador) {
+		 return null;
 	}
 	
 	

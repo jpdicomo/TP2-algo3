@@ -66,8 +66,8 @@ public class VistaCasillero extends ToggleButton {
 		}
 		
 		ImageView imagen = new ImageView();
-        imagen.setFitHeight(40);
-        imagen.setFitWidth(40);
+        imagen.setFitHeight(25);
+        imagen.setFitWidth(25);
         imagen.setPreserveRatio(true);
         imagen.setImage(imagenUnidad);
         

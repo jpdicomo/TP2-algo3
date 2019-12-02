@@ -6,6 +6,7 @@ import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 import fiuba.AlgoChess.Modelo.Ubicacion.Posicion;
 import fiuba.AlgoChess.Vista.Juego.Main;
 import fiuba.AlgoChess.Vista.Juego.Colocacion.VistaUnidadSeleccionada;
+
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -62,7 +63,7 @@ public class VistaTablero extends GridPane{
 		
         for(Node nodoCasillero : this.getChildren()){
         	
-            VistaCasillero vistaCasillero = (VistaCasillero)nodoCasillero;
+            VistaCasillero vistaCasillero = (VistaCasillero) nodoCasillero;
             vistaCasillero.setOnAction(new ClickParaColocarUnidad(this.unidadElegida, this.tablero, vistaCasillero, this));
         }
     }

@@ -1,8 +1,10 @@
 package fiuba.AlgoChess.Controlador.Handlers;
 
+import fiuba.AlgoChess.Controlador.Alertas.AlertaNombreNoCargado;
 import fiuba.AlgoChess.Vista.Juego.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
 
@@ -22,10 +24,14 @@ public class BotonComenzarJuego implements EventHandler<ActionEvent> {
     @Override
 	public void handle(ActionEvent event) {
     	
-		if (!(this.jugador1.getText().isEmpty()) && !(this.jugador2.getText().isEmpty())) {
+		if ((this.jugador1.getText().isEmpty()) || (this.jugador2.getText().isEmpty())) {
 
+			Alert alertaNombreFaltante = new AlertaNombreNoCargado();
+			alertaNombreFaltante.showAndWait();
+			
+		} else {
+			
 			this.main.asignarNombreJugadores(this.jugador1.getText(), this.jugador2.getText());
-
 			this.main.cambiarEscenaA(this.main.escenaCompraDeUnidades(1));
 		}
 	}
