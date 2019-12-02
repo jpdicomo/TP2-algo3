@@ -3,10 +3,7 @@ package fiuba.AlgoChess.Vista.Tablero;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-import com.sun.javafx.scene.paint.GradientUtils.Point;
-
 import fiuba.AlgoChess.Controlador.Handlers.BotonMover;
-import fiuba.AlgoChess.Modelo.Tablero.Tablero;
 import fiuba.AlgoChess.Modelo.Ubicacion.*;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 import javafx.geometry.Pos;
@@ -14,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -57,29 +55,22 @@ public class VistaDatosUnidad extends VBox {
 
 	private HBox agregarBotones() {
 		
-		HBox norte = new HBox();
-		norte.getChildren().add(this.agregarBoton("NO", new NorOeste()));
-		norte.getChildren().add(this.agregarBoton("N", new Norte()));
-		norte.getChildren().add(this.agregarBoton("NE", new NorEste()));
-		norte.setAlignment(Pos.CENTER);
-		norte.setSpacing(5);
+		GridPane direcciones = new GridPane();
+		direcciones.setVgap(5);
+        direcciones.setHgap(5);
+		direcciones.setAlignment(Pos.CENTER);
+        
+		direcciones.add(this.agregarBoton("NO", new SurOeste()), 1, 1);
+		direcciones.add(this.agregarBoton("N", new Oeste()), 2, 1);
+		direcciones.add(this.agregarBoton("NE", new NorOeste()), 3, 1);
 		
-		HBox esteOeste = new HBox();
-		esteOeste.getChildren().add(this.agregarBoton("O", new Oeste()));
-		esteOeste.getChildren().add(this.agregarBoton("E", new Este()));
-		esteOeste.setAlignment(Pos.CENTER);
-		esteOeste.setSpacing(35);
+		direcciones.add(this.agregarBoton("O", new Sur()), 1, 2);
+		direcciones.add(this.agregarBoton("E", new Norte()), 3, 2);
 		
-		HBox sur = new HBox();
-		sur.getChildren().add(this.agregarBoton("SO", new SurOeste()));
-		sur.getChildren().add(this.agregarBoton("S", new Sur()));
-		sur.getChildren().add(this.agregarBoton("SE", new SurEste()));
-		sur.setAlignment(Pos.CENTER);
-		sur.setSpacing(5);
+		direcciones.add(this.agregarBoton("SO", new SurEste()), 1, 3);
+		direcciones.add(this.agregarBoton("S", new Este()), 2, 3);
+		direcciones.add(this.agregarBoton("SE", new NorEste()), 3, 3);
 		
-		VBox botonesDeMovimiento = new VBox(norte, esteOeste, sur);
-		botonesDeMovimiento.setAlignment(Pos.CENTER);
-		botonesDeMovimiento.setSpacing(5);
 		
 		String textoBotonAtaque = "Ataque";
 		
@@ -90,7 +81,7 @@ public class VistaDatosUnidad extends VBox {
 		Button botonAtacar = new Button(textoBotonAtaque);
 		// Crear Handler para el boton Atacar.
 
-		HBox botones = new HBox(botonesDeMovimiento, botonAtacar);
+		HBox botones = new HBox(direcciones, botonAtacar);
 		botones.setAlignment(Pos.CENTER);
 		botones.setSpacing(35);
 		

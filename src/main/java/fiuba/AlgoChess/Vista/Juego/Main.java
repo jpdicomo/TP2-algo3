@@ -259,7 +259,7 @@ public class Main extends Application {
 
 		
 		// Titulo
-		Label labelTitulo = new Label(jugador.getNombre() + " - Coloca tus unidades");
+		Label labelTitulo = new Label(jugador.getNombre() + " - Es tu turno");
 		labelTitulo.setFont(Font.font("Times New Roman", 34));
 
 		// Datos unidad seleccionada.
@@ -274,7 +274,7 @@ public class Main extends Application {
 		Button botonTerminarTurno = new Button("Terminar Turno");
 		botonTerminarTurno.setOnAction(new BotonCambiarDeTurno(this));
 
-		VBox datosUnidad = new VBox (unidadElegida, botonTerminarTurno);
+		VBox datosUnidad = new VBox (labelTitulo, unidadElegida, botonTerminarTurno);
 		datosUnidad.setAlignment(Pos.CENTER);
 		datosUnidad.setSpacing(15);
 		
