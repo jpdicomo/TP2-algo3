@@ -44,7 +44,7 @@ public class CatapultaTest {
 		
         Assert.assertEquals(30, catapulta2.getVida());
     }
-    
+
     
     @Test (expected = DistanciaInvalidaException.class)
     public void test02CatapultaAtacaACatapultaEnemigaMuyCercanaYTiraError(){
@@ -62,7 +62,7 @@ public class CatapultaTest {
 		
     	catapulta1.interactuarCon(casillero2);
 		
-        Assert.assertEquals(30, catapulta2.getVida());
+
     }
     
     
@@ -122,5 +122,116 @@ public class CatapultaTest {
     	Assert.assertEquals(100 - 20, tablero.seleccionarUnidad(new Posicion(14,10)).getVida());
     	Assert.assertEquals(100 - 20, tablero.seleccionarUnidad(new Posicion(15,9)).getVida());
 	}
+
+	@Test
+	public void test06CatapultaAtacaASoldadoEnemigoYLeRestaCorrectamenteLaVida(){
+
+		Bando bandoJose = new Bando();
+		Bando bandoJuan = new Bando();
+
+		Catapulta catapulta1 = new Catapulta(bandoJose);
+		Soldado soldado = new Soldado(bandoJuan);
+		Casillero casillero1 = new Casillero(0, 0, bandoJose);
+		Casillero casillero2 = new Casillero(0, 7, bandoJuan);
+
+		casillero1.agregarNuevaUnidad(catapulta1);
+		casillero2.agregarNuevaUnidad(soldado);
+
+		catapulta1.interactuarCon(casillero2);
+
+		Assert.assertEquals(80, soldado.getVida());
+	}
+
+	@Test
+	public void test07CatapultaAtacaAUnJineteEnemigaYLeRestaCorrectamenteLaVida(){
+
+		Bando bandoJose = new Bando();
+		Bando bandoJuan = new Bando();
+
+		Catapulta catapulta1 = new Catapulta(bandoJose);
+		Jinete jinete = new Jinete(bandoJuan);
+		Casillero casillero1 = new Casillero(0, 0, bandoJose);
+		Casillero casillero2 = new Casillero(0, 7, bandoJuan);
+
+		casillero1.agregarNuevaUnidad(catapulta1);
+		casillero2.agregarNuevaUnidad(jinete);
+
+		catapulta1.interactuarCon(casillero2);
+
+		Assert.assertEquals(80, jinete.getVida());
+	}
+
+
+	@Test
+	public void test08CatapultaAtacaACuranderoEnemigoYLeRestaCorrectamenteLaVida(){
+
+		Bando bandoJose = new Bando();
+		Bando bandoJuan = new Bando();
+
+		Catapulta catapulta1 = new Catapulta(bandoJose);
+		Curandero curandero = new Curandero(bandoJuan);
+		Casillero casillero1 = new Casillero(0, 0, bandoJose);
+		Casillero casillero2 = new Casillero(0, 7, bandoJuan);
+
+		casillero1.agregarNuevaUnidad(catapulta1);
+		casillero2.agregarNuevaUnidad(curandero);
+
+		catapulta1.interactuarCon(casillero2);
+
+		Assert.assertEquals(55, curandero.getVida());
+	}
+
+	@Test (expected = DistanciaInvalidaException.class)
+	public void test09CatapultaAtacaASoldadoEnemigoMuyCercanoYTiraError(){
+
+		Bando bandoJose = new Bando();
+		Bando bandoJuan = new Bando();
+
+		Catapulta catapulta1 = new Catapulta(bandoJose);
+		Soldado soldado = new Soldado(bandoJuan);
+		Casillero casillero1 = new Casillero(0, 0, bandoJose);
+		Casillero casillero2 = new Casillero(0, 1, bandoJuan);
+
+		casillero1.agregarNuevaUnidad(catapulta1);
+		casillero2.agregarNuevaUnidad(soldado);
+
+		catapulta1.interactuarCon(casillero2);
+
+	}
+	@Test (expected = DistanciaInvalidaException.class)
+	public void test10CatapultaAtacaAJineteEnemigoMuyCercanoYTiraError(){
+
+		Bando bandoJose = new Bando();
+		Bando bandoJuan = new Bando();
+
+		Catapulta catapulta1 = new Catapulta(bandoJose);
+		Jinete jinete = new Jinete(bandoJuan);
+		Casillero casillero1 = new Casillero(0, 0, bandoJose);
+		Casillero casillero2 = new Casillero(0, 1, bandoJuan);
+
+		casillero1.agregarNuevaUnidad(catapulta1);
+		casillero2.agregarNuevaUnidad(jinete);
+
+		catapulta1.interactuarCon(casillero2);
+
+	}
+	@Test (expected = DistanciaInvalidaException.class)
+	public void test11CatapultaAtacaACuranderoEnemigoMuyCercanoYTiraError(){
+
+		Bando bandoJose = new Bando();
+		Bando bandoJuan = new Bando();
+
+		Catapulta catapulta1 = new Catapulta(bandoJose);
+		Curandero curandero = new Curandero(bandoJuan);
+		Casillero casillero1 = new Casillero(0, 0, bandoJose);
+		Casillero casillero2 = new Casillero(0, 2, bandoJuan);
+
+		casillero1.agregarNuevaUnidad(catapulta1);
+		casillero2.agregarNuevaUnidad(curandero);
+
+		catapulta1.interactuarCon(casillero2);
+
+	}
+
 }
 
