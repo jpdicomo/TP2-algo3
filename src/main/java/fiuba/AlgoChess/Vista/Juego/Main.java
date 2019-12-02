@@ -200,7 +200,7 @@ public class Main extends Application {
 	
 	public Scene escenaColocarUnidades(int numeroJugador) {
 		
-		Jugador jugador1 = this.getJugador(1);
+		Jugador jugador1 = this.getJugador(numeroJugador);
 		
 		// Titulo1
 		Label labelTitulo1 = new Label(jugador1.getNombre() + " - Coloca tus unidades");
@@ -208,9 +208,9 @@ public class Main extends Application {
 
 		// Caja de unidades
 		VistaUnidadSeleccionada unidadSeleccionada1 = new VistaUnidadSeleccionada();
-		CajaDeUnidadesVertical cajaUnidades1 = new CajaDeUnidadesVertical(this, 1, unidadSeleccionada1);
+		CajaDeUnidadesVertical cajaUnidades1 = new CajaDeUnidadesVertical(this, numeroJugador, unidadSeleccionada1);
 //---------------------------------------------------------------------------------------
-		Jugador jugador2 = this.getJugador(1+1);
+		Jugador jugador2 = this.getJugador(numeroJugador+1);
 
 		// Titulo2
 		Label labelTitulo2 = new Label(jugador2.getNombre() + " - Coloca tus unidades");
@@ -218,18 +218,17 @@ public class Main extends Application {
 
 		// Caja de unidades
 		VistaUnidadSeleccionada unidadSeleccionada2 = new VistaUnidadSeleccionada();
-		CajaDeUnidadesVertical cajaUnidades2 = new CajaDeUnidadesVertical(this, 1+1, unidadSeleccionada2);
+		CajaDeUnidadesVertical cajaUnidades2 = new CajaDeUnidadesVertical(this, numeroJugador+1, unidadSeleccionada2);
 
-
+//---------------------------------------------------------------------------------------
 		// Tablero
 		VistaTablero tablero = new VistaTablero(this, this.tablero);
-		//tablero.compartamientoColocarUnidades(unidadSeleccionada1);
+
 		Button colocarUnidades1 = new Button("Colocar unidades rojas");
 		colocarUnidades1.setOnAction(e -> tablero.compartamientoColocarUnidades(unidadSeleccionada1));
+
 		Button colocarUnidades2 = new Button("Colocar unidades verdes");
 		colocarUnidades2.setOnAction(e -> tablero.compartamientoColocarUnidades(unidadSeleccionada2));
-		//tablero.compartamientoColocarUnidades(unidadSeleccionada2);
-//---------------------------------------------------------------------------------------
 		
 		/*
 		 * Te quedaste aca, hay que ponerle comportamiento a los botones de las
