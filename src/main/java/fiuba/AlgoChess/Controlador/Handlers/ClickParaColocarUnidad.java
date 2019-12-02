@@ -46,7 +46,7 @@ public class ClickParaColocarUnidad implements EventHandler<ActionEvent> {
 			this.tablero.agregarNuevaUnidad(unidad, posicion);
 			this.unidad.quitarUnidad();
 
-			vistaTablero.actualizarTablero();
+			vistaTablero.actualizarTableroParaColocar();
 			vistaTablero.compartamientoColocarUnidades(unidad2,this.unidad);
 
 		} catch (CasilleroOcupadoException e) {
@@ -55,7 +55,7 @@ public class ClickParaColocarUnidad implements EventHandler<ActionEvent> {
 			alertaCasilleroOcupado.showAndWait();
 
 
-			vistaTablero.actualizarTablero();
+			vistaTablero.actualizarTableroParaColocar();
 			vistaTablero.compartamientoColocarUnidades(unidad,unidad2);
 
 		} catch (DistintoBandoException e) {
@@ -63,7 +63,7 @@ public class ClickParaColocarUnidad implements EventHandler<ActionEvent> {
 			Alert alertaDistintoBando = new AlertaDistintoBandoAlColocarUnidad();
 			alertaDistintoBando.showAndWait();
 
-			vistaTablero.actualizarTablero();
+			vistaTablero.actualizarTableroParaColocar();
 			vistaTablero.compartamientoColocarUnidades(unidad,unidad2);
 		
 		} catch (NoTieneUnaUnidadSeleccionadaException e) {
@@ -71,7 +71,7 @@ public class ClickParaColocarUnidad implements EventHandler<ActionEvent> {
 			Alert alertaPiezaNoSeleccionada = new AlertaPiezaNoSeleccionada();
 			alertaPiezaNoSeleccionada.showAndWait();
 
-			vistaTablero.actualizarTablero();
+			vistaTablero.actualizarTableroParaColocar();
 			vistaTablero.compartamientoColocarUnidades(unidad,unidad2);
 
 		}

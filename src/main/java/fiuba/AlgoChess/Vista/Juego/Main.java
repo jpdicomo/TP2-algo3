@@ -223,6 +223,7 @@ public class Main extends Application {
 //---------------------------------------------------------------------------------------
 		// Tablero
 		VistaTablero tablero = new VistaTablero(this, this.tablero);
+		tablero.actualizarTableroParaColocar();
 		tablero.compartamientoColocarUnidades(unidadSeleccionada1,unidadSeleccionada2);
 		
 		/*
@@ -261,14 +262,24 @@ public class Main extends Application {
 		contenedorSecundario.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png", 800, 600));
 		contenedorSecundario.setAlignment(Pos.CENTER);
 		contenedorSecundario.setSpacing(20);
-			
-		VBox contenedorPrincipal = new VBox(contenedorSecundario);
+		//-------------------------------------------------
+		Button botonJugar = new Button("jugar");
+		botonJugar.setOnAction(e -> this.escenario.setScene(escenaJuegoPrincipal(tablero)));
+		//--------------------------------------------------
+		VBox contenedorPrincipal = new VBox(contenedorSecundario,botonJugar);
 		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo4.png", 800, 600));
 		contenedorPrincipal.setAlignment(Pos.CENTER);
 		
 		return new Scene(contenedorPrincipal, 800, 600);
 	}
-	
+
+	public Scene escenaJuegoPrincipal(VistaTablero estadoTablero){
+
+		estadoTablero.setParaJugar(this,estadoTablero,this.tablero);
+
+		HBox layout = new HBox(estadoTablero);
+		return new Scene(layout,800,600);
+	}
 	
 	public Jugador getJugador(int numeroJugador) {
 

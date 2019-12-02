@@ -8,8 +8,6 @@ import fiuba.AlgoChess.Vista.Juego.Main;
 import fiuba.AlgoChess.Vista.Juego.Colocacion.VistaUnidadSeleccionada;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 
 public class VistaTablero extends GridPane{
 	
@@ -23,17 +21,15 @@ public class VistaTablero extends GridPane{
 
     	this.tablero = tablero;
         this.main = main;
-        
+
         this.setHeight(600);
         this.setWidth(600);
         this.setVgap(3);
         this.setHgap(3);
-        
-        this.actualizarTablero();
 	}
 
 
-	public void actualizarTablero() {
+	public void actualizarTableroParaColocar() {
 
 		this.getChildren().clear();
 		this.tablero.quitarUnidadesMuertas();
@@ -69,5 +65,22 @@ public class VistaTablero extends GridPane{
         }
     }
 
+	public void setParaJugar(Main main,VistaTablero vistaTableroActual,Tablero tablero){
 
+		for (int columna = 0; columna < 20; columna++) {
+
+			for (int fila = 0; fila < 20; fila++) {
+
+				int numeroJugador = 1;
+				if(fila > 9) {
+
+					numeroJugador = 2;
+				}
+
+				Casillero casillero = tablero.getCasillero(new Posicion(fila, columna));
+				VistaCasilleroDesplegable vistaCasillero = new VistaCasilleroDesplegable(casillero, numeroJugador, fila, columna);
+				this.add(vistaCasillero, fila, columna);
+			}
+	}
+	}
 }

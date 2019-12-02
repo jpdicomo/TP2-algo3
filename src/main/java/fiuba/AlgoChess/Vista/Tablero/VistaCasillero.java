@@ -15,7 +15,7 @@ import javafx.scene.image.ImageView;
 public class VistaCasillero extends ToggleButton {
 
 	private Posicion posicion;
-	
+	private Unidad unidad;
 	
 	public VistaCasillero(Casillero casillero, int numeroJugador, int fila, int columna) {
 
@@ -49,12 +49,16 @@ public class VistaCasillero extends ToggleButton {
 		this.setPrefSize(40, 40);
 		this.setMaxSize(40, 40);
 	}
-	
-	
+
+	public Unidad getUnidad() {
+		return this.unidad;
+	}
+
+
 	private void colocarUnidad(Casillero casillero, int numeroJugador) {
 		
-		Unidad unidad = casillero.getUnidad();
-		String direccion = "./recursos/unidades/" + unidad.getClass().getSimpleName() + numeroJugador + ".png";
+		this.unidad =  casillero.getUnidad();
+		String direccion = "./recursos/unidades/" + this.unidad.getClass().getSimpleName() + numeroJugador + ".png";
 		
 		Image imagenUnidad = null;
 		
