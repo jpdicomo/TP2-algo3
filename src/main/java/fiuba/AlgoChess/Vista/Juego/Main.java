@@ -223,12 +223,7 @@ public class Main extends Application {
 //---------------------------------------------------------------------------------------
 		// Tablero
 		VistaTablero tablero = new VistaTablero(this, this.tablero);
-
-		Button colocarUnidades1 = new Button("Colocar unidades rojas");
-		colocarUnidades1.setOnAction(e -> tablero.compartamientoColocarUnidades(unidadSeleccionada1));
-
-		Button colocarUnidades2 = new Button("Colocar unidades verdes");
-		colocarUnidades2.setOnAction(e -> tablero.compartamientoColocarUnidades(unidadSeleccionada2));
+		tablero.compartamientoColocarUnidades(unidadSeleccionada1,unidadSeleccionada2);
 		
 		/*
 		 * Te quedaste aca, hay que ponerle comportamiento a los botones de las
@@ -260,11 +255,7 @@ public class Main extends Application {
 		labels.setSpacing(640);
 		labels.setAlignment(Pos.CENTER);
 
-		HBox botones = new HBox(colocarUnidades1,colocarUnidades2);
-		botones.setSpacing(640);
-		botones.setAlignment(Pos.CENTER);
-
-		VBox contenedorSecundario = new VBox(labels, unidadesYTablero,botones);
+		VBox contenedorSecundario = new VBox(labels, unidadesYTablero);
 //		contenedorSecundario.setMaxWidth(515);
 //		contenedorSecundario.setMinHeight(450);
 		contenedorSecundario.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png", 800, 600));
