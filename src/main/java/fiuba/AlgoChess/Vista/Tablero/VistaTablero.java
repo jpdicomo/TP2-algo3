@@ -1,6 +1,8 @@
 package fiuba.AlgoChess.Vista.Tablero;
 
+import fiuba.AlgoChess.Controlador.Handlers.AtacarHandler;
 import fiuba.AlgoChess.Controlador.Handlers.ClickParaColocarUnidad;
+import fiuba.AlgoChess.Controlador.Handlers.MoverseHandler;
 import fiuba.AlgoChess.Modelo.Tablero.Tablero;
 import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 import fiuba.AlgoChess.Modelo.Ubicacion.Posicion;
@@ -80,7 +82,12 @@ public class VistaTablero extends GridPane{
 
 				Casillero casillero = tablero.getCasillero(new Posicion(fila, columna));
 				VistaCasilleroDesplegable vistaCasillero = new VistaCasilleroDesplegable(casillero, numeroJugador, fila, columna);
-				vistaCasillero.getItems().addAll(new BotonAtacar(),new BotonMoverse());
+				BotonAtacar botonAtacar = new BotonAtacar();
+				botonAtacar.setOnAction(new AtacarHandler());
+				BotonMoverse botonMoverse = new BotonMoverse();
+				botonMoverse.setOnAction(new MoverseHandler());
+				vistaCasillero.getItems().addAll(botonAtacar,botonMoverse);
+
 				this.add(vistaCasillero, fila, columna);
 			}
 	}
