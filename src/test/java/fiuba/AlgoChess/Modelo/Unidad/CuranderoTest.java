@@ -26,7 +26,7 @@ public class CuranderoTest {
     
     
     @Test
-    public void test01CuranderoCuraAAliadoYLeSumaSusPuntosDeVidaMaximos(){
+    public void test01CuranderoCuraAAliadoNoDaniadoYLeSumaSusPuntosDeVidaMaximos(){
         
     	Bando bandoJose = new Bando();
     	
@@ -62,9 +62,78 @@ public class CuranderoTest {
 
 		Assert.assertEquals(75, curandero2.getVida());
 	}
+
+
+	@Test
+	public void test03CuranderoCuraASoldadoAliadoDaniadoSumaSusPuntosDeVida() {
+
+		Bando bandoJose = new Bando();
+
+		Curandero curandero = new Curandero(bandoJose);
+		Soldado soldado = new Soldado(bandoJose);
+		Casillero casillero1 = new Casillero(0, 0, bandoJose);
+		Casillero casillero2 = new Casillero(0, 1, bandoJose);
+
+		casillero1.agregarNuevaUnidad(curandero);
+		casillero2.agregarNuevaUnidad(soldado);
+
+		soldado.recibirDanio(20);
+		curandero.interactuarCon(casillero2);
+
+		Assert.assertEquals(95, soldado.getVida());
+	}
+
+
+	@Test
+	public void test04CuranderoCuraASoldadoAliadoDaniadoQueEstaEnCasilleroEnemigoYLoCuraIgual() {
+
+		Bando bandoJose = new Bando();
+		Bando bandoJuan = new Bando();
+
+		Curandero curandero = new Curandero(bandoJose);
+		Curandero curandero2 = new Curandero(bandoJose);
+		Soldado soldado = new Soldado(bandoJose);
+		Casillero casillero1 = new Casillero(0, 0, bandoJose);
+		Casillero casillero2 = new Casillero(0, 1, bandoJuan);
+
+		casillero1.agregarNuevaUnidad(curandero);
+		casillero2.agregarNuevaUnidad(curandero2);
+		casillero2.recibirDanio(75);
+		casillero2.quitarUnidadMuerta();
+		casillero2.agregarUnidad(soldado);
+
+
+		soldado.recibirDanio(40);
+
+		curandero.interactuarCon(casillero2);
+
+		Assert.assertEquals(75, soldado.getVida());
+	}
+
+	@Test
+	public void test05CuranderoCuraAJineteAliadoDaniadoSumaSusPuntosDeVida() {
+
+		Bando bandoJose = new Bando();
+
+		Curandero curandero = new Curandero(bandoJose);
+		Jinete jinete = new Jinete(bandoJose);
+		Casillero casillero1 = new Casillero(0, 0, bandoJose);
+		Casillero casillero2 = new Casillero(0, 1, bandoJose);
+
+		casillero1.agregarNuevaUnidad(curandero);
+		casillero2.agregarNuevaUnidad(jinete);
+
+		jinete.recibirDanio(20);
+		curandero.interactuarCon(casillero2);
+
+		Assert.assertEquals(95, jinete.getVida());
+	}
+
+
+
 	
 	@Test (expected = DistanciaInvalidaException.class)
-	public void test03CuranderoIntentaCurarAAliadoMuyLejosYTiraError() {
+	public void test06CuranderoIntentaCurarAAliadoMuyLejosYTiraError() {
 
 		Bando bandoJose = new Bando();
 
@@ -82,7 +151,7 @@ public class CuranderoTest {
 	
     
     @Test (expected = DistintoBandoException.class)
-    public void test04CuranderoCuraACuranderoEnemigoTiraError(){
+    public void test07CuranderoCuraACuranderoEnemigoTiraError(){
     	
 		Bando bandoJose = new Bando();
 		Bando bandoJuan = new Bando();
@@ -100,7 +169,7 @@ public class CuranderoTest {
     
     
     @Test (expected = CatapultaNoPuedeSerCuradaException.class)
-    public void test05CuranderoQuiereCurarCatapultaYTiraError(){
+    public void test08CuranderoQuiereCurarCatapultaYTiraError(){
     	
 		Bando bandoJose = new Bando();
 
@@ -117,7 +186,7 @@ public class CuranderoTest {
     
     
     @Test (expected = MismaUnidadException.class)
-    public void test06CuranderoSeCuraASiMismoYTiraError(){
+    public void test09CuranderoSeCuraASiMismoYTiraError(){
     	
 		Bando bandoJose = new Bando();
 
