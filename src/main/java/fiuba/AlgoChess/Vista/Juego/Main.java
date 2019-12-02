@@ -200,20 +200,30 @@ public class Main extends Application {
 	
 	public Scene escenaColocarUnidades(int numeroJugador) {
 		
-		Jugador jugador = this.getJugador(numeroJugador);
+		Jugador jugador1 = this.getJugador(numeroJugador);
 		
-		// Titulo
-		Label labelTitulo = new Label(jugador.getNombre() + " - Coloca tus unidades");
-		labelTitulo.setFont(Font.font("Times New Roman", 28));
+		// Titulo1
+		Label labelTitulo1 = new Label(jugador1.getNombre() + " - Coloca tus unidades");
+		labelTitulo1.setFont(Font.font("Times New Roman", 28));
 
 		// Caja de unidades
-		VistaUnidadSeleccionada unidadSeleccionada = new VistaUnidadSeleccionada();
-		CajaDeUnidadesVertical cajaUnidades = new CajaDeUnidadesVertical(this, numeroJugador, unidadSeleccionada);
-		
-		
+		VistaUnidadSeleccionada unidadSeleccionada1 = new VistaUnidadSeleccionada();
+		CajaDeUnidadesVertical cajaUnidades1 = new CajaDeUnidadesVertical(this, numeroJugador, unidadSeleccionada1);
+//---------------------------------------------------------------------------------------
+		Jugador jugador2 = this.getJugador(numeroJugador+1);
+
+		// Titulo2
+		Label labelTitulo2 = new Label(jugador2.getNombre() + " - Coloca tus unidades");
+		labelTitulo2.setFont(Font.font("Times New Roman", 28));
+
+		// Caja de unidades
+		VistaUnidadSeleccionada unidadSeleccionada2 = new VistaUnidadSeleccionada();
+		CajaDeUnidadesVertical cajaUnidades2 = new CajaDeUnidadesVertical(this, numeroJugador+1, unidadSeleccionada2);
+
+//---------------------------------------------------------------------------------------
 		// Tablero
 		VistaTablero tablero = new VistaTablero(this, this.tablero);
-		tablero.compartamientoColocarUnidades(unidadSeleccionada);
+		tablero.compartamientoColocarUnidades(unidadSeleccionada1,unidadSeleccionada2);
 		
 		/*
 		 * Te quedaste aca, hay que ponerle comportamiento a los botones de las
@@ -231,14 +241,21 @@ public class Main extends Application {
 		
 		
 		// Creo las cajas.
-		VBox cajaDeUnidades = new VBox(cajaUnidades, unidadSeleccionada);
-		cajaDeUnidades.setSpacing(20);
-		
-		HBox unidadesYTablero = new HBox(cajaDeUnidades, tablero);
+		VBox cajaDeUnidades1 = new VBox(cajaUnidades1, unidadSeleccionada1);
+		cajaDeUnidades1.setSpacing(20);
+
+		VBox cajaDeUnidades2 = new VBox(cajaUnidades2, unidadSeleccionada2);
+		cajaDeUnidades2.setSpacing(20);
+
+		HBox unidadesYTablero = new HBox(cajaDeUnidades1, tablero,cajaDeUnidades2);
 		unidadesYTablero.setSpacing(20);
 		unidadesYTablero.setAlignment(Pos.CENTER);
-		
-		VBox contenedorSecundario = new VBox(labelTitulo, unidadesYTablero);
+
+		HBox labels = new HBox(labelTitulo1,labelTitulo2);
+		labels.setSpacing(640);
+		labels.setAlignment(Pos.CENTER);
+
+		VBox contenedorSecundario = new VBox(labels, unidadesYTablero);
 //		contenedorSecundario.setMaxWidth(515);
 //		contenedorSecundario.setMinHeight(450);
 		contenedorSecundario.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png", 800, 600));
