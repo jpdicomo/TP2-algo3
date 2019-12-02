@@ -19,16 +19,14 @@ import javafx.scene.control.Alert;
 public class ClickParaColocarUnidad implements EventHandler<ActionEvent> {
 
 	private VistaUnidadSeleccionada unidad;
-	private VistaUnidadSeleccionada unidad2;
 	private Tablero tablero;
 	private VistaCasillero vistaCasillero;
 	private VistaTablero vistaTablero;
 
-	public ClickParaColocarUnidad(VistaUnidadSeleccionada unidad,VistaUnidadSeleccionada unidad2, Tablero tablero, VistaCasillero vistaCasillero,
+	public ClickParaColocarUnidad(VistaUnidadSeleccionada unidad, Tablero tablero, VistaCasillero vistaCasillero,
 			VistaTablero vistaTablero) {
 
 		this.unidad = unidad;
-		this.unidad2 = unidad2;
 		this.tablero = tablero;
 		this.vistaCasillero = vistaCasillero;
 		this.vistaTablero = vistaTablero;
@@ -46,35 +44,25 @@ public class ClickParaColocarUnidad implements EventHandler<ActionEvent> {
 			this.tablero.agregarNuevaUnidad(unidad, posicion);
 			this.unidad.quitarUnidad();
 
-			vistaTablero.actualizarTablero();
-			vistaTablero.compartamientoColocarUnidades(unidad2,this.unidad);
-
 		} catch (CasilleroOcupadoException e) {
 
 			Alert alertaCasilleroOcupado = new AlertaCasilleroOcupado();
 			alertaCasilleroOcupado.showAndWait();
 
-
-			vistaTablero.actualizarTablero();
-			vistaTablero.compartamientoColocarUnidades(unidad,unidad2);
-
 		} catch (DistintoBandoException e) {
 
 			Alert alertaDistintoBando = new AlertaDistintoBandoAlColocarUnidad();
 			alertaDistintoBando.showAndWait();
-
-			vistaTablero.actualizarTablero();
-			vistaTablero.compartamientoColocarUnidades(unidad,unidad2);
 		
 		} catch (NoTieneUnaUnidadSeleccionadaException e) {
 			
 			Alert alertaPiezaNoSeleccionada = new AlertaPiezaNoSeleccionada();
 			alertaPiezaNoSeleccionada.showAndWait();
 
+		} finally {
+
 			vistaTablero.actualizarTablero();
-			vistaTablero.compartamientoColocarUnidades(unidad,unidad2);
-
+			vistaTablero.compartamientoColocarUnidades(unidad);
 		}
-
 	}
 }

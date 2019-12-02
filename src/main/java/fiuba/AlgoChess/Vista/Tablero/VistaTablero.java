@@ -16,10 +16,9 @@ public class VistaTablero extends GridPane{
     private Tablero tablero;
     private Main main;
     private VistaUnidadSeleccionada unidadElegida;
-	private VistaUnidadSeleccionada unidadElegida2;
-
-
-	public VistaTablero(Main main, Tablero tablero) {
+    
+    
+    public VistaTablero(Main main, Tablero tablero) {
 
     	this.tablero = tablero;
         this.main = main;
@@ -57,15 +56,14 @@ public class VistaTablero extends GridPane{
 	}
 	
 	
-	public void compartamientoColocarUnidades(VistaUnidadSeleccionada unidad,VistaUnidadSeleccionada unidad2){
+	public void compartamientoColocarUnidades(VistaUnidadSeleccionada unidad){
 		
 		this.unidadElegida = unidad;
-		this.unidadElegida2 = unidad2;
 		
         for(Node nodoCasillero : this.getChildren()){
         	
             VistaCasillero vistaCasillero = (VistaCasillero)nodoCasillero;
-            vistaCasillero.setOnAction(new ClickParaColocarUnidad(this.unidadElegida,this.unidadElegida2, this.tablero, vistaCasillero, this));
+            vistaCasillero.setOnAction(new ClickParaColocarUnidad(this.unidadElegida, this.tablero, vistaCasillero, this));
         }
     }
 
