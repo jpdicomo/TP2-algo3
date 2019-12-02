@@ -1,27 +1,135 @@
 package fiuba.AlgoChess.Vista.Tablero;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+import com.sun.javafx.scene.paint.GradientUtils.Point;
+
+import fiuba.AlgoChess.Controlador.Handlers.BotonMover;
+import fiuba.AlgoChess.Modelo.Tablero.Tablero;
+import fiuba.AlgoChess.Modelo.Ubicacion.*;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
 public class VistaDatosUnidad extends VBox {
 
+	private Unidad unidad;
+	private VistaTablero tablero;
+	private int numeroJugador;
+	private Posicion posicion;
 	
-	public VistaDatosUnidad(Unidad unidad) {
+	public VistaDatosUnidad() {
 
 		super();
+	}
+	
+	
+	public void agregarUnidad(Unidad unidad, VistaTablero tablero, int numeroJugador, Posicion posicion) {
 
+		this.getChildren().clear();
+
+		this.unidad = unidad;
+		this.tablero = tablero;
+		this.numeroJugador = numeroJugador;
+		this.posicion = posicion;
+		
 		Label nombre = new Label(unidad.getClass().getSimpleName());
 		nombre.setFont(Font.font("Times New Roman", 28));
-
+		
 		Label vida = new Label("Vida: " + unidad.getVida());
 		vida.setFont(Font.font("Times New Roman", 16));
-
-		this.setSpacing(15);
+		
 		this.getChildren().add(nombre);
-//		this.getChildren().add(); <-- Agregar fotito de la unidad.
+		this.getChildren().add(this.agregarImagenUnidad());
 		this.getChildren().add(vida);
-		// Agregar botoncitos de ataque y movimiento.
+		this.getChildren().add(this.agregarBotones());
+		
+		this.setAlignment(Pos.CENTER);
 	}
+
+
+	private HBox agregarBotones() {
+		
+		HBox norte = new HBox();
+		norte.getChildren().add(this.agregarBoton("NO", new NorOeste()));
+		norte.getChildren().add(this.agregarBoton("N", new Norte()));
+		norte.getChildren().add(this.agregarBoton("NE", new NorEste()));
+		norte.setAlignment(Pos.CENTER);
+		norte.setSpacing(5);
+		
+		HBox esteOeste = new HBox();
+		esteOeste.getChildren().add(this.agregarBoton("O", new Oeste()));
+		esteOeste.getChildren().add(this.agregarBoton("E", new Este()));
+		esteOeste.setAlignment(Pos.CENTER);
+		esteOeste.setSpacing(35);
+		
+		HBox sur = new HBox();
+		sur.getChildren().add(this.agregarBoton("SO", new SurOeste()));
+		sur.getChildren().add(this.agregarBoton("S", new Sur()));
+		sur.getChildren().add(this.agregarBoton("SE", new SurEste()));
+		sur.setAlignment(Pos.CENTER);
+		sur.setSpacing(5);
+		
+		VBox botonesDeMovimiento = new VBox(norte, esteOeste, sur);
+		botonesDeMovimiento.setAlignment(Pos.CENTER);
+		botonesDeMovimiento.setSpacing(5);
+		
+		String textoBotonAtaque = "Ataque";
+		
+		if("Curandero".equals(unidad.getClass().getSimpleName())) {
+			textoBotonAtaque = "Curar";
+		}
+		
+		Button botonAtacar = new Button(textoBotonAtaque);
+		// Crear Handler para el boton Atacar.
+
+		HBox botones = new HBox(botonesDeMovimiento, botonAtacar);
+		botones.setAlignment(Pos.CENTER);
+		botones.setSpacing(35);
+		
+		
+		return botones;
+	}
+	
+	
+	private Button agregarBoton(String texto, Direccion direccion) {
+		
+		Button nuevoBoton = new Button(texto);
+		nuevoBoton.setOnAction(new BotonMover(posicion, direccion, tablero));
+		
+		return nuevoBoton;
+	}
+
+
+	private ImageView agregarImagenUnidad() {
+		
+		
+		String direccion = "./recursos/unidades/" + unidad.getClass().getSimpleName() + numeroJugador + ".png";
+		Image imagenUnidad = null;
+
+		try {
+
+			imagenUnidad = new Image(new FileInputStream(direccion));
+
+		} catch (FileNotFoundException e) {
+		}
+
+		ImageView imagen = new ImageView();
+		imagen.setFitHeight(80);
+		imagen.setFitWidth(80);
+		imagen.setPreserveRatio(true);
+		imagen.setImage(imagenUnidad);
+
+		return imagen;
+	}
+	
+	
+	
 }

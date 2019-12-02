@@ -17,11 +17,13 @@ import fiuba.AlgoChess.Modelo.Tablero.Tablero;
 import fiuba.AlgoChess.Vista.Compra.CajaDeUnidades;
 import fiuba.AlgoChess.Vista.Juego.Colocacion.CajaDeUnidadesVertical;
 import fiuba.AlgoChess.Vista.Juego.Colocacion.VistaUnidadSeleccionada;
+import fiuba.AlgoChess.Vista.Tablero.VistaDatosUnidad;
 import fiuba.AlgoChess.Vista.Tablero.VistaTablero;
 import fiuba.AlgoChess.Controlador.Handlers.BotonCambiarAEscenaColocarUnidades1;
 import fiuba.AlgoChess.Controlador.Handlers.BotonCambiarAEscenaColocarUnidades2;
 import fiuba.AlgoChess.Controlador.Handlers.BotonCambiarAEscenaDeCompra2;
 import fiuba.AlgoChess.Controlador.Handlers.BotonCambiarAEscenaDeLucha;
+import fiuba.AlgoChess.Controlador.Handlers.BotonCambiarDeTurno;
 import fiuba.AlgoChess.Controlador.Handlers.BotonComenzarJuego;
 import fiuba.AlgoChess.Controlador.Handlers.BotonNuevaPartida;
 import fiuba.AlgoChess.Controlador.Handlers.BotonSalirDelJuego;
@@ -35,6 +37,7 @@ public class Main extends Application {
 	private Bando[] bandos = new Bando[2];
 	private Jugador[] jugadores = new Jugador[2];
 	private Tablero tablero;
+	private int numeroJugador;
 
 	public static void main(String[] args) {
 		
@@ -212,11 +215,9 @@ public class Main extends Application {
 		VistaUnidadSeleccionada unidadSeleccionada = new VistaUnidadSeleccionada();
 		CajaDeUnidadesVertical cajaUnidades = new CajaDeUnidadesVertical(this, numeroJugador, unidadSeleccionada);
 		
-		
 		// Tablero
 		VistaTablero tablero = new VistaTablero(this, this.tablero);
 		tablero.compartamientoColocarUnidades(unidadSeleccionada);
-		
 		
 		// Boton para terminar de colocar unidades.
 		Button botonTerminarColocacion = new Button("Termine de Colocar");
@@ -226,7 +227,6 @@ public class Main extends Application {
 		} else {
 			botonTerminarColocacion.setOnAction(new BotonCambiarAEscenaDeLucha(this));
 		}
-		
 		
 		// Creo las cajas.
 		VBox cajaDeUnidades = new VBox(cajaUnidades, unidadSeleccionada, botonTerminarColocacion);
@@ -253,7 +253,38 @@ public class Main extends Application {
 
 	
 	public Scene escenaDeLucha(int numeroJugador) {
-		 return null;
+
+		Jugador jugador = this.getJugador(numeroJugador);
+		this.numeroJugador = numeroJugador;
+
+		
+		// Titulo
+		Label labelTitulo = new Label(jugador.getNombre() + " - Coloca tus unidades");
+		labelTitulo.setFont(Font.font("Times New Roman", 34));
+
+		// Datos unidad seleccionada.
+		VistaDatosUnidad unidadElegida = new VistaDatosUnidad();
+		
+		// Tablero
+		VistaTablero tablero = new VistaTablero(this, this.tablero);
+		tablero.comportamientoSeleccionarUnidad(unidadElegida);
+
+		
+		// Boton para terminar de colocar unidades.
+		Button botonTerminarTurno = new Button("Terminar Turno");
+		botonTerminarTurno.setOnAction(new BotonCambiarDeTurno(this));
+
+		VBox datosUnidad = new VBox (unidadElegida, botonTerminarTurno);
+		datosUnidad.setAlignment(Pos.CENTER);
+		datosUnidad.setSpacing(15);
+		
+		
+		// Creo las XBox
+		HBox contenedorPrincipal = new HBox(datosUnidad, tablero);
+		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo4.png", 800, 600));
+		contenedorPrincipal.setAlignment(Pos.CENTER);
+
+		return new Scene(contenedorPrincipal, 800, 600);
 	}
 	
 	
@@ -267,6 +298,12 @@ public class Main extends Application {
 		return bandos[numeroJugador - 1];
 	}
 
+	public int getNumeroJugador() {
+		
+		return this.numeroJugador;
+	}
+	
+	
 	public void asignarNombreJugadores(String jugador1, String jugador2) {
 		
 		this.jugadores[0].setNombre(jugador1);

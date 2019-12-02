@@ -1,22 +1,22 @@
 package fiuba.AlgoChess.Vista.Tablero;
 
 import fiuba.AlgoChess.Controlador.Handlers.ClickParaColocarUnidad;
+import fiuba.AlgoChess.Controlador.Handlers.ClickParaSeleccionarUnidad;
 import fiuba.AlgoChess.Modelo.Tablero.Tablero;
 import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
+import fiuba.AlgoChess.Modelo.Ubicacion.Direccion;
 import fiuba.AlgoChess.Modelo.Ubicacion.Posicion;
 import fiuba.AlgoChess.Vista.Juego.Main;
 import fiuba.AlgoChess.Vista.Juego.Colocacion.VistaUnidadSeleccionada;
 
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 
 public class VistaTablero extends GridPane{
 	
     private Tablero tablero;
     private Main main;
-    private VistaUnidadSeleccionada unidadElegida;
+    private VistaDatosUnidad unidadElegida;
     
     
     public VistaTablero(Main main, Tablero tablero) {
@@ -59,14 +59,28 @@ public class VistaTablero extends GridPane{
 	
 	public void compartamientoColocarUnidades(VistaUnidadSeleccionada unidad){
 		
-		this.unidadElegida = unidad;
-		
         for(Node nodoCasillero : this.getChildren()){
         	
             VistaCasillero vistaCasillero = (VistaCasillero) nodoCasillero;
-            vistaCasillero.setOnAction(new ClickParaColocarUnidad(this.unidadElegida, this.tablero, vistaCasillero, this));
+            vistaCasillero.setOnAction(new ClickParaColocarUnidad(unidad, this.tablero, vistaCasillero, this));
         }
     }
 
+	
+	public void comportamientoSeleccionarUnidad(VistaDatosUnidad unidadElegida) {
+		
+		this.unidadElegida = unidadElegida;
+		
+		for(Node nodoCasillero : this.getChildren()){
+        	
+            VistaCasillero vistaCasillero = (VistaCasillero) nodoCasillero;
+            vistaCasillero.setOnAction(new ClickParaSeleccionarUnidad(this.unidadElegida, vistaCasillero, this, this.main));
+        }
+	}
+
+
+	public void moverUnidad(Posicion posicion, Direccion direccion) {
+		this.tablero.moverUnidad(posicion, direccion);
+	}
 
 }
