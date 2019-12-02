@@ -78,6 +78,7 @@ public class Casillero {
 	}
 
 
+
 	public boolean quitarUnidadMuerta() {
 
 		try {
@@ -95,6 +96,7 @@ public class Casillero {
 			return false;
 		}
 	}
+
 
 
 	public void recibirDanio(int danio) {

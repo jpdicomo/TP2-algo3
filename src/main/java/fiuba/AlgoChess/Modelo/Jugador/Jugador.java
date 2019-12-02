@@ -2,14 +2,20 @@ package fiuba.AlgoChess.Modelo.Jugador;
 
 import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
 import fiuba.AlgoChess.Modelo.Errores.PuntosInsuficientesException;
+
 import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 import fiuba.AlgoChess.Modelo.Tablero.Tablero;
 import fiuba.AlgoChess.Modelo.Ubicacion.Posicion;
 
-import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import fiuba.AlgoChess.Modelo.Unidad.Unidad;
+
+import java.util.ArrayList;
+
+
 public class Jugador {
 
 	private String nombre;
@@ -39,6 +45,7 @@ public class Jugador {
 			throw new PuntosInsuficientesException();
 		}
 	}
+	
 
 
 	private void quitarUnidadesMuertas() {
@@ -88,17 +95,6 @@ public class Jugador {
 	}
 
 
-//    public Posicion elegirCasillero() {
-//
-//		System.out.print("Ingresa fila: ");
-//		int y = consola.nextInt();
-//
-//		System.out.print("\nIngresa columna: ");
-//		int x = consola.nextInt();
-//
-//		return new Posicion(x,y);
-//    }
-
 
 	public int getPuntos() {
 
@@ -111,13 +107,16 @@ public class Jugador {
 		return this.nombre;
 	}
 
-
 	public void setNombre(String nombre) {
 
 		this.nombre = nombre;
 	}
 
+
+
+	
 	public ArrayList<Unidad> getUnidades() {
+		
 
 		return this.unidades;
 	}
