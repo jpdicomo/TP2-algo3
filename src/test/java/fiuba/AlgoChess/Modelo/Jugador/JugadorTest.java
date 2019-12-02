@@ -1,14 +1,14 @@
 package fiuba.AlgoChess.Modelo.Jugador;
 
 import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
-import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 import fiuba.AlgoChess.Modelo.Tablero.Tablero;
 import fiuba.AlgoChess.Modelo.Ubicacion.Posicion;
+import fiuba.AlgoChess.Modelo.Errores.PuntosInsuficientesException;
+import fiuba.AlgoChess.Modelo.Unidad.Jinete;
+
 import org.junit.Assert;
 import org.junit.Test;
 
-import fiuba.AlgoChess.Modelo.Errores.PuntosInsuficientesException;
-import fiuba.AlgoChess.Modelo.Unidad.Jinete;
 
 public class JugadorTest {
 
@@ -76,12 +76,12 @@ public class JugadorTest {
 
         Jugador jose = new Jugador("Jose", bandoJose);
         Jinete jinete = new Jinete(bandoJuan);
-        Posicion posicionInicial = new Posicion(1,1);
 
-        tablero.agregarNuevaUnidad(jinete, posicionInicial);
+        Posicion posicion = new Posicion(1,1);
+        tablero.agregarNuevaUnidad(jinete, posicion);
 
-        jose.elegirCasillero(tablero);
-
+        // El tablero le da su unidad a el jugador.
+        jose.elegirUnidad(tablero.seleccionarUnidad(posicion));
     }
 
 }

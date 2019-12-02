@@ -67,6 +67,7 @@ public abstract class Unidad {
 		return (this.vida > 0);
 	}
 
+	
 	public int getVida() {
 		
 		return this.vida;
