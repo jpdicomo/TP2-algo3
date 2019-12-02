@@ -1,5 +1,9 @@
 package fiuba.AlgoChess.Modelo.Jugador;
 
+import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
+import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
+import fiuba.AlgoChess.Modelo.Tablero.Tablero;
+import fiuba.AlgoChess.Modelo.Ubicacion.Posicion;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -61,4 +65,23 @@ public class JugadorTest {
     /*
      * Agregar un test de que un jugador no puede seleccionar la ficha de otro.
      */
+
+    @Test (expected = DistintoBandoException.class)
+    public void Test05JugadorNoPuedeSeleccionarUnidadDeDistintoBando(){
+
+
+        Bando bandoJose = new Bando();
+        Bando bandoJuan = new Bando();
+        Tablero tablero = new Tablero(bandoJose, bandoJuan);
+
+        Jugador jose = new Jugador("Jose", bandoJose);
+        Jinete jinete = new Jinete(bandoJuan);
+        Posicion posicionInicial = new Posicion(1,1);
+
+        tablero.agregarNuevaUnidad(jinete, posicionInicial);
+
+        jose.elegirCasillero(tablero);
+
+    }
+
 }
