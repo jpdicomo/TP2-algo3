@@ -14,6 +14,8 @@ public class Ocupado extends Estado {
 		this.unidad = unaUnidad;
 	}
 
+
+
 	
 	@Override
 	public Unidad quitarUnidad() {

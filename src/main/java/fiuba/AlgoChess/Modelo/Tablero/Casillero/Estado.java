@@ -14,7 +14,7 @@ public abstract class Estado {
 		this.agregarUnidad(unaUnidad);
 	}
 
-	
+
 	public void agregarUnidad(Unidad unaUnidad) {
 
 		throw new CasilleroOcupadoException();

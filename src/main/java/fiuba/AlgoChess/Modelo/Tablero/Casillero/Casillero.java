@@ -1,21 +1,20 @@
 package fiuba.AlgoChess.Modelo.Tablero.Casillero;
 
-import fiuba.AlgoChess.Modelo.Errores.CasilleroLibreException;
-import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
+import java.util.ArrayList;
+
+import fiuba.AlgoChess.Modelo.Errores.*;
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
 import fiuba.AlgoChess.Modelo.Ubicacion.Posicion;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 
-import java.util.ArrayList;
-
 
 public class Casillero {
-
+	
 	private Posicion posicion;
 	private Estado estado;
 	private Bando bando;
 	private ArrayList<Casillero> vecinos;
-
+	
 
 	public Casillero(int fila, int columna, Bando bando) {
 
@@ -24,13 +23,13 @@ public class Casillero {
 		this.bando = bando;
 		this.vecinos = new ArrayList<Casillero>();
 	}
-
-
+	
+	
 	public void agregarVecino(Casillero vecino) {
-
+		
 		this.vecinos.add(vecino);
 	}
-
+	
 
 	public void agregarNuevaUnidad(Unidad unaUnidad) {
 
@@ -47,19 +46,19 @@ public class Casillero {
 		this.estado = new Ocupado(unaUnidad);
 	}
 
-
+	
 	public Unidad getUnidad() {
 
 		return this.estado.getUnidad();
 	}
 
-
+	
 	public ArrayList<Casillero> getVecinos() {
 
 		return this.vecinos;
 	}
-
-
+	
+	
 	public Unidad quitarEntidad() {
 
 		Unidad unidad;
@@ -77,74 +76,68 @@ public class Casillero {
 		return unidad;
 	}
 
-
-
-	public boolean quitarUnidadMuerta() {
+	
+	public void quitarUnidadMuerta() {
 
 		try {
-
+			
 			if(this.estado.getUnidad().getVida() <= 0) {
-
+				
 				this.estado.quitarUnidad();
-				return true;
-			}else{
-				return false;
+				estado = new Libre();
 			}
-
-
-		} catch(CasilleroLibreException e ) {
-			return false;
+			
+		} catch(CasilleroLibreException e) {
 		}
 	}
-
-
-
+	
+	
 	public void recibirDanio(int danio) {
-
+		
 		this.estado.recibirDanio(this.bando, danio);
 	}
 
 
 	public boolean hayEnemigosCerca(Bando bando) {
-
+		
 		ArrayList<Unidad> unidadesVecinas = this.getUnidadesVecinas();
-
+		
 		for(Casillero vecino : this.vecinos) {
-
+			
 			unidadesVecinas.addAll(vecino.getUnidadesVecinas());
 		}
-
+		
 		for (Unidad unidad : unidadesVecinas) {
-
+			
 			try {
-
+				
 				unidad.interactuarConUnAliado(bando);
-
+				
 			} catch(DistintoBandoException e) {
-
+				
 				return true;
-			}
+			}	
 		}
-
+		
 		return false;
 	}
 
 
 	private ArrayList<Unidad> getUnidadesVecinas(){
-
+		
 		ArrayList<Unidad> unidadesVecinas = new ArrayList<Unidad>();
-
+		
 		for(Casillero vecino : this.vecinos) {
-
+			
 			try {
-
+				
 				unidadesVecinas.add(vecino.getUnidad());
-
+				
 			} catch(CasilleroLibreException e) {
-
+				
 			}
 		}
-
+		
 		return unidadesVecinas;
 	}
 
