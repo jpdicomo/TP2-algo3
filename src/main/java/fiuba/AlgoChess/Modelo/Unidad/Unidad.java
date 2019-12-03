@@ -61,6 +61,18 @@ public abstract class Unidad {
 		}
 	}
 
+
+	public boolean sigoViva() {
+
+		return (this.vida > 0);
+	}
+
+	
+	public boolean soyUnSoldado() {
+		
+		return false;
+	}
+	
 	
 	public int getVida() {
 		

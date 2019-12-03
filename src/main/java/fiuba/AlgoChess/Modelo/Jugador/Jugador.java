@@ -1,11 +1,9 @@
 package fiuba.AlgoChess.Modelo.Jugador;
 
 import fiuba.AlgoChess.Modelo.Errores.PuntosInsuficientesException;
-import fiuba.AlgoChess.Modelo.Ubicacion.Posicion;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 
 public class Jugador {
@@ -14,9 +12,8 @@ public class Jugador {
 	private int puntos;
 	private ArrayList<Unidad> unidades;
 	private final Bando bando;
-	Scanner consola = new Scanner(System.in);
 
-	
+
 	public Jugador(String nombre, Bando bando) {
 
 		this.nombre = nombre;
@@ -24,13 +21,7 @@ public class Jugador {
 		this.unidades = new ArrayList<Unidad>();
 		this.bando = bando;
 	}
-	
 
-	public String getNombre() {
-
-		return this.nombre;
-	}
-	
 
 	public void agregarUnidad(Unidad unaUnidad) {
 
@@ -45,21 +36,79 @@ public class Jugador {
 		}
 	}
 
-	
-	public boolean sigueJugando() {
 
-		return (!this.unidades.isEmpty());
+	private void quitarUnidadesMuertas() {
+
+		for (Unidad unidad : this.unidades) {
+
+			if(!unidad.sigoViva()) {
+
+				this.unidades.remove(unidad);
+			}
+		}
 	}
 
 
-    public Posicion elegirCasillero() {
+	public boolean sigueJugando() {
 
-		System.out.print("Ingresa fila: ");
-		int y = consola.nextInt();
+		this.quitarUnidadesMuertas();
+		return (!this.unidades.isEmpty());
+	}
+
+	
+	public void elegirUnidad(Unidad unidad) {
+
+		this.bando.interactuarConUnAliado(unidad);
+	}	
+//
+//		Scanner consola = new Scanner(System.in);
+//
+//		try{
+//			System.out.print("Ingresa fila: ");
+//
+//			int y = consola.nextInt();
+//
+//			System.out.print("\nIngresa columna: ");
+//
+//			int x = consola.nextInt();
+//			Posicion pos = new Posicion(x,y);//x,y
+//
+//			Casillero casilleroSeleccionado = tablero.getCasillero(pos);
+//			Unidad unidadSeleccionada = casilleroSeleccionado.getUnidad();
+//
+//			unidadSeleccionada.interactuarConUnAliado(this.bando);
+//
+//			return new Posicion(x,y);//x,y
+//
+//		}catch(DistintoBandoException error) {
+//
+//			return null;
+//		}
+//	}
+
+
+
+	public int getPuntos() {
+
+		return this.puntos;
+	}
+
+
+	public String getNombre() {
+
+		return this.nombre;
+	}
+
+	
+	public void setNombre(String nombre) {
+
+		this.nombre = nombre;
+	}
+
+	
+	public ArrayList<Unidad> getUnidades() {
 		
-		System.out.print("\nIngresa columna: ");
-		int x = consola.nextInt();
-		
-		return new Posicion(x,y);
-    }
+
+		return this.unidades;
+	}
 }

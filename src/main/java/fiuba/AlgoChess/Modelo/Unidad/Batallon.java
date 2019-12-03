@@ -16,13 +16,13 @@ public class Batallon {
 	}
 
 	
-	public Batallon(Posicion posicion1, Posicion posicion2, Posicion posicion3) {
+	public Batallon(Posicion posicion1, Posicion posicion2, Posicion posicion3, boolean hayBatallon) {
 
 		this.posicionIntegrantes = new ArrayList<Posicion>();
 		this.posicionIntegrantes.add(posicion1);
 		this.posicionIntegrantes.add(posicion2);
 		this.posicionIntegrantes.add(posicion3);
-		this.hayBatallon = true;
+		this.hayBatallon = hayBatallon;
 	}
 
 

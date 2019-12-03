@@ -25,4 +25,10 @@ public class Soldado extends Unidad {
 		double distancia = this.casillero.medirDistanciaA(unCasillero);
 		this.habilidad.usarHabilidadCon(unCasillero, distancia);
 	}
+	
+	@Override
+	public boolean soyUnSoldado() {
+	
+		return true;
+	}
 }
