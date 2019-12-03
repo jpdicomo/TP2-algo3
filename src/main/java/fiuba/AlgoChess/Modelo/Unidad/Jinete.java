@@ -22,16 +22,19 @@ public class Jinete extends Unidad {
 		
 		super.interactuarCon(unCasillero);
 		this.bando.interactuarConUnEnemigo(unCasillero.getUnidad());
-		this.hayEnemigosCerca();
+		this.seleccionarAtaque();
 		
 		double distancia = this.casillero.medirDistanciaA(unCasillero);
 		this.habilidad.usarHabilidadCon(unCasillero, distancia);
 	}
 	
 
-	private void hayEnemigosCerca() {
+	private void seleccionarAtaque() {
 		
-		if (this.casillero.hayEnemigosCerca(this.bando)) {
+		boolean hayEnemigosCerca = this.casillero.hayEnemigosCerca(this.bando);
+		boolean haySoldadosAliadosCerca = this.casillero.haySoldadosAliadosCerca(this.bando);
+		
+		if (!haySoldadosAliadosCerca && hayEnemigosCerca) {
 			
 			this.habilidad = new AtaqueCerca(5);
 			

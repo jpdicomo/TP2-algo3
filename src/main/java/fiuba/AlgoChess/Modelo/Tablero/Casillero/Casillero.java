@@ -2,6 +2,7 @@ package fiuba.AlgoChess.Modelo.Tablero.Casillero;
 
 import fiuba.AlgoChess.Modelo.Errores.CasilleroLibreException;
 import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
+import fiuba.AlgoChess.Modelo.Errores.MismoBandoException;
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
 import fiuba.AlgoChess.Modelo.Ubicacion.Posicion;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
@@ -126,6 +127,34 @@ public class Casillero {
 			}
 		}
 
+		return false;
+	}
+	
+	
+	public boolean haySoldadosAliadosCerca(Bando bando) {
+		
+		ArrayList<Unidad> unidadesVecinas = this.getUnidadesVecinas();
+
+		for(Casillero vecino : this.vecinos) {
+
+			unidadesVecinas.addAll(vecino.getUnidadesVecinas());
+		}
+
+		for (Unidad unidad : unidadesVecinas) {
+
+			if(unidad.soyUnSoldado()) {
+			
+				try {
+
+					unidad.interactuarConUnEnemigo(bando);
+
+				} catch(MismoBandoException e) {
+
+					return true;
+				}
+			}
+		}
+		
 		return false;
 	}
 
