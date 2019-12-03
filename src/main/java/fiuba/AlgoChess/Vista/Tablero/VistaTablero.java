@@ -17,7 +17,6 @@ public class VistaTablero extends GridPane{
     private Tablero tablero;
     private Main main;
     private VistaDatosUnidad unidadElegida;
-    private Posicion posicion;
     
     
     public VistaTablero(Main main, Tablero tablero) {

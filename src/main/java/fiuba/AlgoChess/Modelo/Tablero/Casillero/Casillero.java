@@ -153,4 +153,9 @@ public class Casillero {
 
 		return this.posicion.medirDistancia(unCasillero.posicion);
 	}
+	
+	
+	public Bando getBando() {
+		return this.bando;
+	}
 }

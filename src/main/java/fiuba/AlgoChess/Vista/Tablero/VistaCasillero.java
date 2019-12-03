@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import fiuba.AlgoChess.Modelo.Errores.CasilleroLibreException;
+import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
 import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 import fiuba.AlgoChess.Modelo.Ubicacion.Posicion;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
@@ -56,6 +57,16 @@ public class VistaCasillero extends ToggleButton {
 	private void colocarUnidad(Casillero casillero, int numeroJugador) {
 		
 		Unidad unidad = casillero.getUnidad();
+		
+		try {
+			
+			unidad.interactuarConUnAliado(casillero.getBando());
+			
+		} catch (DistintoBandoException e) {
+			
+			numeroJugador = 3 - numeroJugador;
+		}
+		
 		String direccion = "./recursos/unidades/" + unidad.getClass().getSimpleName() + numeroJugador + ".png";
 		
 		Image imagenUnidad = null;

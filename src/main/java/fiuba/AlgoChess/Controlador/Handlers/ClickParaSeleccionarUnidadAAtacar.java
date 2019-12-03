@@ -65,8 +65,6 @@ public class ClickParaSeleccionarUnidadAAtacar implements EventHandler<ActionEve
 		} finally {
 			
 			this.tablero.actualizarTablero();
-//			this.tablero.comportamientoDeAtaque(this.posicionAtacante);
-//			this.tablero.comportamientoSeleccionarUnidad(this.unidadElegida);
 		}
 	}
 }

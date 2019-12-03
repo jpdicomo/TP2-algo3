@@ -2,7 +2,6 @@ package fiuba.AlgoChess.Vista.Tablero;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import fiuba.AlgoChess.Controlador.Handlers.AbrirBotonMover;
@@ -189,11 +188,6 @@ public class VistaDatosUnidad extends VBox {
 			botonAtacar.setOnAction(new BotonAtacar(this.posicion, this.tablero));
 		}
 		
-//		
-//		Button botonAtacar = new Button(textoBotonAtaque);
-//		boton
-//		// Crear Handler para el boton Atacar. y pasarle la unidad y que ella sepa si ya ataco o no.
-//		// y al crear esta vista y pasarle la unidad que ella cambie el estado de la unidad.
 		botones.getChildren().add(botonAtacar);
 	}
 
