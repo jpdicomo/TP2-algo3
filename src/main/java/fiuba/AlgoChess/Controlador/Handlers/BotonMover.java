@@ -1,7 +1,10 @@
 package fiuba.AlgoChess.Controlador.Handlers;
 
 import fiuba.AlgoChess.Controlador.Alertas.AlertaMovimientoACasilleroOcupado;
+import fiuba.AlgoChess.Controlador.Alertas.AlertaMovimientoInvalido;
+import fiuba.AlgoChess.Modelo.Errores.CasilleroOcupadoException;
 import fiuba.AlgoChess.Modelo.Errores.DesplazamientoInvalidoExcepcion;
+import fiuba.AlgoChess.Modelo.Errores.PosicionInvalidaException;
 import fiuba.AlgoChess.Modelo.Ubicacion.Direccion;
 import fiuba.AlgoChess.Modelo.Ubicacion.Posicion;
 import fiuba.AlgoChess.Vista.Tablero.VistaDatosUnidad;
@@ -35,13 +38,15 @@ public class BotonMover implements EventHandler<ActionEvent> {
 			this.tablero.getTablero().moverUnidad(this.posicion, this.direccion);
 			this.unidadElegida.apagarBotonMover();
 		
-		} catch (DesplazamientoInvalidoExcepcion e) {
+		} catch (DesplazamientoInvalidoExcepcion | PosicionInvalidaException e) {
+			
+			Alert alertaMovimientoInvalido = new AlertaMovimientoInvalido();
+			alertaMovimientoInvalido.showAndWait();
+			
+		} catch (CasilleroOcupadoException e) {
 			
 			Alert alertaMovimientoInvalido = new AlertaMovimientoACasilleroOcupado();
 			alertaMovimientoInvalido.showAndWait();
-			
-			
-			// Agregar una excepcion que tiene que saltar si ya se movio alguien antes.
 			
 		} finally {
 			

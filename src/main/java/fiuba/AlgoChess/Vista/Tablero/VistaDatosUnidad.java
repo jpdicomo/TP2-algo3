@@ -4,7 +4,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import fiuba.AlgoChess.Controlador.Handlers.AbrirBotonMover;
-import fiuba.AlgoChess.Controlador.Handlers.BotonAtaqueApagado;
 import fiuba.AlgoChess.Controlador.Handlers.BotonMover;
 import fiuba.AlgoChess.Controlador.Handlers.BotonMoverApagado;
 import fiuba.AlgoChess.Modelo.Ubicacion.*;
