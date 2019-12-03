@@ -63,6 +63,7 @@ public class VistaDatosUnidad extends VBox {
 		this.getChildren().add(this.agregarImagenUnidad());
 		this.getChildren().add(vida);
 		this.setAlignment(Pos.CENTER);
+		this.setSpacing(35);
 	}
 
 
@@ -80,8 +81,8 @@ public class VistaDatosUnidad extends VBox {
 		}
 
 		ImageView imagen = new ImageView();
-		imagen.setFitHeight(80);
-		imagen.setFitWidth(80);
+		imagen.setFitHeight(140);
+		imagen.setFitWidth(140);
 		imagen.setPreserveRatio(true);
 		imagen.setImage(imagenUnidad);
 

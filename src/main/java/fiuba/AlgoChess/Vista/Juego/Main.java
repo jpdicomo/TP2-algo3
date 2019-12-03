@@ -207,12 +207,9 @@ public class Main extends Application {
 		
 		Jugador jugador = this.getJugador(numeroJugador);
 		
-		// Titulo
-		Label labelTitulo = new Label(jugador.getNombre() + " - Coloca tus unidades");
-		labelTitulo.setFont(Font.font("Times New Roman", 34));
-
 		// Caja de unidades
 		VistaUnidadSeleccionada unidadSeleccionada = new VistaUnidadSeleccionada();
+		unidadSeleccionada.setMinSize(200, 85);
 		CajaDeUnidadesVertical cajaUnidades = new CajaDeUnidadesVertical(this, numeroJugador, unidadSeleccionada);
 		
 		// Tablero
@@ -230,19 +227,16 @@ public class Main extends Application {
 		
 		// Creo las cajas.
 		VBox cajaDeUnidades = new VBox(cajaUnidades, unidadSeleccionada, botonTerminarColocacion);
-		cajaDeUnidades.setSpacing(20);
+		cajaDeUnidades.setMinSize(200, 700);
+		cajaDeUnidades.setMaxSize(200, 700);
+		cajaDeUnidades.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png", 800, 600));
+		cajaDeUnidades.setSpacing(50);
 		cajaDeUnidades.setAlignment(Pos.CENTER);
 		
-		HBox unidadesYTablero = new HBox(cajaDeUnidades, tablero);
-		unidadesYTablero.setSpacing(40);
-		unidadesYTablero.setAlignment(Pos.CENTER);
-		
-		VBox contenedorSecundario = new VBox(labelTitulo, unidadesYTablero);
-//		contenedorSecundario.setMaxWidth(515);
-//		contenedorSecundario.setMinHeight(450);
-		contenedorSecundario.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png", 800, 600));
+	
+		HBox contenedorSecundario = new HBox(cajaDeUnidades, tablero);
 		contenedorSecundario.setAlignment(Pos.CENTER);
-		contenedorSecundario.setSpacing(40);
+		contenedorSecundario.setSpacing(20);
 			
 		VBox contenedorPrincipal = new VBox(contenedorSecundario);
 		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo4.png", 800, 600));
@@ -259,8 +253,10 @@ public class Main extends Application {
 
 		
 		// Titulo
-		Label labelTitulo = new Label(jugador.getNombre() + " - Es tu turno");
+		Label labelTitulo = new Label(jugador.getNombre());
+		Label labelSubtitulo = new Label("Es tu turno");
 		labelTitulo.setFont(Font.font("Times New Roman", 34));
+		labelSubtitulo.setFont(Font.font("Times New Roman", 20));
 
 		// Datos unidad seleccionada.
 		VistaDatosUnidad unidadElegida = new VistaDatosUnidad();
@@ -270,22 +266,41 @@ public class Main extends Application {
 		tablero.comportamientoSeleccionarUnidad(unidadElegida);
 
 		
-		// Boton para terminar de colocar unidades.
+		// Boton para terminar partida.
 		Button botonTerminarTurno = new Button("Terminar Turno");
 		botonTerminarTurno.setOnAction(new BotonCambiarDeTurno(this));
 
-		VBox datosUnidad = new VBox (labelTitulo, unidadElegida, botonTerminarTurno);
+		VBox titulares = new VBox(labelTitulo, labelSubtitulo);
+		titulares.setSpacing(10);
+		titulares.setAlignment(Pos.CENTER);
+		
+		VBox datosUnidad = new VBox (titulares, unidadElegida, botonTerminarTurno);
+		datosUnidad.setMinSize(200, 700);
+		datosUnidad.setMaxSize(200, 700);
 		datosUnidad.setAlignment(Pos.CENTER);
-		datosUnidad.setSpacing(15);
+		datosUnidad.setSpacing(90);
+		datosUnidad.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png", 800, 600));
 		
 		
 		// Creo las XBox
 		HBox contenedorPrincipal = new HBox(datosUnidad, tablero);
 		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo4.png", 800, 600));
 		contenedorPrincipal.setAlignment(Pos.CENTER);
+		contenedorPrincipal.setSpacing(20);
 
 		return new Scene(contenedorPrincipal, 800, 600);
 	}
+	
+	
+	public Scene escenaFinal(int numeroJugador) {
+		
+		HBox contenedorPrincipal = new HBox();
+		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/final" + numeroJugador + ".png", 800, 600));
+		contenedorPrincipal.setAlignment(Pos.CENTER);
+
+		return new Scene(contenedorPrincipal, 800, 600);
+	}
+	
 	
 	
 	public Jugador getJugador(int numeroJugador) {
