@@ -1,8 +1,10 @@
 package fiuba.AlgoChess.Controlador.Handlers;
 
+import fiuba.AlgoChess.Controlador.Alertas.AlertaCatapultaNoPuedeMoverse;
 import fiuba.AlgoChess.Controlador.Alertas.AlertaMovimientoACasilleroOcupado;
 import fiuba.AlgoChess.Controlador.Alertas.AlertaMovimientoInvalido;
 import fiuba.AlgoChess.Modelo.Errores.CasilleroOcupadoException;
+import fiuba.AlgoChess.Modelo.Errores.CatapultaNoPuedeSerMovidaException;
 import fiuba.AlgoChess.Modelo.Errores.DesplazamientoInvalidoExcepcion;
 import fiuba.AlgoChess.Modelo.Errores.PosicionInvalidaException;
 import fiuba.AlgoChess.Modelo.Ubicacion.Direccion;
@@ -47,6 +49,11 @@ public class BotonMover implements EventHandler<ActionEvent> {
 			
 			Alert alertaMovimientoInvalido = new AlertaMovimientoACasilleroOcupado();
 			alertaMovimientoInvalido.showAndWait();
+			
+		} catch (CatapultaNoPuedeSerMovidaException e) {
+			
+			Alert alertaCatapultaNoPuedeSerMovida = new AlertaCatapultaNoPuedeMoverse();
+			alertaCatapultaNoPuedeSerMovida.showAndWait();
 			
 		} finally {
 			

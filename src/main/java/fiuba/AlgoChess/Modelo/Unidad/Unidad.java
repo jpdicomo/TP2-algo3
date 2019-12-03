@@ -74,6 +74,11 @@ public abstract class Unidad {
 	}
 	
 	
+	public void serMovida() {
+		
+	}
+	
+	
 	public int getVida() {
 		
 		return this.vida;

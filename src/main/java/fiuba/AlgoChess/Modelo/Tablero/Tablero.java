@@ -149,6 +149,7 @@ public class Tablero {
 		} else {
 		
 			Unidad unidadAMover = this.seleccionarUnidad(posicionInicial);
+			unidadAMover.serMovida();
 			Posicion posicionFinal = posicion.moveteHacia(direccion);
 			
 			this.agregarUnidad(unidadAMover, posicionFinal);
