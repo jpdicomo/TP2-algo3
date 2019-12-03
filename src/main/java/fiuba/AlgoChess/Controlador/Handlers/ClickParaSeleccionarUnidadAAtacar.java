@@ -29,13 +29,15 @@ public class ClickParaSeleccionarUnidadAAtacar implements EventHandler<ActionEve
 
 	@Override
 	public void handle(ActionEvent event) {
+		
+		boolean fallo = true;
 
 		try {
 			
 			Unidad unidadAtacante = this.tablero.getTablero().seleccionarUnidad(this.posicionAtacante);
 			unidadAtacante.interactuarCon(this.casillero.getCasillero());
 			this.unidadElegida.agregarAtacante();
-			this.tablero.comportamientoSeleccionarUnidad();
+			fallo = false;
 			
 		} catch (MismaUnidadException e) {
 
@@ -49,8 +51,8 @@ public class ClickParaSeleccionarUnidadAAtacar implements EventHandler<ActionEve
 			
 		} catch (DistintoBandoException e) {
 			
-			Alert alertaMovimientoInvalido = new AlertaMovimientoACasilleroOcupado();
-			alertaMovimientoInvalido.showAndWait();
+			Alert alertaIntentoCurarAEnemigo = new AlertaCuracionABandoEnemigo();
+			alertaIntentoCurarAEnemigo.showAndWait();
 			
 		} catch (CasilleroLibreException e) {
 			
@@ -65,6 +67,12 @@ public class ClickParaSeleccionarUnidadAAtacar implements EventHandler<ActionEve
 		} finally {
 			
 			this.tablero.actualizarTablero();
+
+			if(fallo) {
+				this.tablero.comportamientoDeAtaque(this.posicionAtacante);
+			} else {
+				this.tablero.comportamientoSeleccionarUnidad();
+			}
 		}
 	}
 }

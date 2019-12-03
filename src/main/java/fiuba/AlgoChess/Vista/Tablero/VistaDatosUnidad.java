@@ -9,11 +9,13 @@ import fiuba.AlgoChess.Controlador.Handlers.BotonAtacar;
 import fiuba.AlgoChess.Controlador.Handlers.BotonAtacarApagado;
 import fiuba.AlgoChess.Controlador.Handlers.BotonMover;
 import fiuba.AlgoChess.Controlador.Handlers.BotonMoverApagado;
+import fiuba.AlgoChess.Controlador.Handlers.CerrarBotonMover;
 import fiuba.AlgoChess.Modelo.Ubicacion.*;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -48,7 +50,7 @@ public class VistaDatosUnidad extends VBox {
 		this.minimizarBotonera();
 	}
 
-	
+
 	private void cargarDatosUnidad() {
 		
 		Label nombre = new Label(unidad.getClass().getSimpleName());
@@ -89,14 +91,13 @@ public class VistaDatosUnidad extends VBox {
 
 	public void maximizarBotonera() {
 
-		
 		this.getChildren().clear();
 		this.cargarDatosUnidad();
 		this.cargarBotonesMaximizados();
 	}
 	
 	
-	private void minimizarBotonera() {
+	public void minimizarBotonera() {
 		
 		this.getChildren().clear();
 		this.cargarDatosUnidad();
@@ -141,12 +142,16 @@ public class VistaDatosUnidad extends VBox {
 		direcciones.setVgap(5);
         direcciones.setHgap(5);
 		direcciones.setAlignment(Pos.CENTER);
+		
+		Button botonAtras = new Button("X");
+		botonAtras.setOnAction(new CerrarBotonMover(this));
         
 		direcciones.add(this.agregarBotonMovimiento("NO", new SurOeste()), 1, 1);
 		direcciones.add(this.agregarBotonMovimiento("N", new Oeste()), 2, 1);
 		direcciones.add(this.agregarBotonMovimiento("NE", new NorOeste()), 3, 1);
 		
 		direcciones.add(this.agregarBotonMovimiento("O", new Sur()), 1, 2);
+		direcciones.add(botonAtras, 2, 2);
 		direcciones.add(this.agregarBotonMovimiento("E", new Norte()), 3, 2);
 		
 		direcciones.add(this.agregarBotonMovimiento("SO", new SurEste()), 1, 3);
@@ -180,7 +185,7 @@ public class VistaDatosUnidad extends VBox {
 			textoBotonAtaque = "Curar";
 		}
 		
-		Button botonAtacar = new Button(textoBotonAtaque);
+		ToggleButton botonAtacar = new ToggleButton(textoBotonAtaque);
 		
 		if(this.unidadesQueAtacaron.contains(this.unidad)) {
 			botonAtacar.setOnAction(new BotonAtacarApagado());

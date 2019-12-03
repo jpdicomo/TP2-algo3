@@ -51,6 +51,7 @@ public class BotonMover implements EventHandler<ActionEvent> {
 		} finally {
 			
 			this.tablero.actualizarTablero();
+			this.tablero.comportamientoSeleccionarUnidad();
 		}
 	}
 	

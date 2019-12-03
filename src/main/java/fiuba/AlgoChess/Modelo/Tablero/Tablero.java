@@ -191,8 +191,8 @@ public class Tablero {
 		Batallon batallon = new Batallon(false);
 		Unidad unidadAMover = this.seleccionarUnidad(posicion);
 		
-		if(unidadAMover instanceof Soldado) {
-		
+		if(unidadAMover.soyUnSoldado()) {
+			
 			batallon = this.hayUnBatallonVerticalEn(posicion);
 			
 			if(!batallon.hayBatallon()) {
@@ -227,15 +227,15 @@ public class Tablero {
 			Casillero casilleroN = this.obtenerCasillero(posicionN);
 			Casillero casilleroS = this.obtenerCasillero(posicionS);
 			
-			hayBatallon = casilleroN.getUnidad() instanceof Soldado;
-			hayBatallon = hayBatallon && casilleroS.getUnidad() instanceof Soldado;
+			hayBatallon = casilleroN.getUnidad().soyUnSoldado();
+			hayBatallon = hayBatallon && (casilleroS.getUnidad().soyUnSoldado());
 			
 		} catch (DesplazamientoInvalidoExcepcion | PosicionInvalidaException | CasilleroLibreException e) {
 			
 			return new Batallon(false);
 		}
 		
-		return new Batallon(posicionN, posicion, posicionS);
+		return new Batallon(posicionN, posicion, posicionS, hayBatallon);
 	}
 
 	
@@ -253,15 +253,15 @@ public class Tablero {
 			Casillero casilleroE = this.obtenerCasillero(posicionE);
 			Casillero casilleroO = this.obtenerCasillero(posicionO);
 			
-			hayBatallon = casilleroE.getUnidad() instanceof Soldado;
-			hayBatallon = hayBatallon && casilleroO.getUnidad() instanceof Soldado;
+			hayBatallon = casilleroE.getUnidad().soyUnSoldado();
+			hayBatallon = hayBatallon && (casilleroO.getUnidad().soyUnSoldado());
 			
 		} catch (DesplazamientoInvalidoExcepcion | PosicionInvalidaException | CasilleroLibreException e) {
 			
 			return new Batallon(false);
 		}
 		
-		return new Batallon(posicionE, posicion, posicionO);
+		return new Batallon(posicionE, posicion, posicionO, hayBatallon);
 	}
 	
 	
@@ -279,15 +279,15 @@ public class Tablero {
 			Casillero casilleroNE = this.obtenerCasillero(posicionNE);
 			Casillero casilleroSO = this.obtenerCasillero(posicionSO);
 			
-			hayBatallon = casilleroNE.getUnidad() instanceof Soldado;
-			hayBatallon = hayBatallon && casilleroSO.getUnidad() instanceof Soldado;
+			hayBatallon = casilleroNE.getUnidad().soyUnSoldado();
+			hayBatallon = hayBatallon && (casilleroSO.getUnidad().soyUnSoldado());
 			
 		} catch (DesplazamientoInvalidoExcepcion | PosicionInvalidaException | CasilleroLibreException e) {
 			
 			return new Batallon(false);
 		}
 		
-		return new Batallon(posicionNE, posicion, posicionSO);
+		return new Batallon(posicionNE, posicion, posicionSO, hayBatallon);
 	}
 	
 	
@@ -305,14 +305,14 @@ public class Tablero {
 			Casillero casilleroNO = this.obtenerCasillero(posicionNO);
 			Casillero casilleroSE = this.obtenerCasillero(posicionSE);
 			
-			hayBatallon = casilleroNO.getUnidad() instanceof Soldado;
-			hayBatallon = hayBatallon && casilleroSE.getUnidad() instanceof Soldado;
+			hayBatallon = casilleroNO.getUnidad().soyUnSoldado();
+			hayBatallon = hayBatallon && (casilleroSE.getUnidad().soyUnSoldado());
 			
 		} catch (DesplazamientoInvalidoExcepcion | PosicionInvalidaException | CasilleroLibreException e) {
 			
 			return new Batallon(false);
 		}
 		
-		return new Batallon(posicionNO, posicion, posicionSE);
+		return new Batallon(posicionNO, posicion, posicionSE, hayBatallon);
 	}
 }

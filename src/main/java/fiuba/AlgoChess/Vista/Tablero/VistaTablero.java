@@ -17,6 +17,7 @@ public class VistaTablero extends GridPane{
     private Tablero tablero;
     private Main main;
     private VistaDatosUnidad unidadElegida;
+	private String comportamiento;
     
     
     public VistaTablero(Main main, Tablero tablero) {
@@ -64,22 +65,18 @@ public class VistaTablero extends GridPane{
             VistaCasillero vistaCasillero = (VistaCasillero) nodoCasillero;
             vistaCasillero.setOnAction(new ClickParaColocarUnidad(unidad, this.tablero, vistaCasillero, this));
         }
-    }
-
-	public void comportamientoSeleccionarUnidad() {
-		
-		for(Node nodoCasillero : this.getChildren()){
-        	
-            VistaCasillero vistaCasillero = (VistaCasillero) nodoCasillero;
-            vistaCasillero.setOnAction(new ClickParaSeleccionarUnidad(this.unidadElegida, vistaCasillero, this, this.main));
-        }
-	}
+    }	
 	
+	
+	public void comportamientoSeleccionarUnidad() {
+		this.comportamientoSeleccionarUnidad(this.unidadElegida);
+	}
 	
 	
 	public void comportamientoSeleccionarUnidad(VistaDatosUnidad unidadElegida) {
 		
 		this.unidadElegida = unidadElegida;
+		this.comportamiento = "Seleccion";
 		
 		for(Node nodoCasillero : this.getChildren()){
         	
@@ -91,11 +88,7 @@ public class VistaTablero extends GridPane{
 
 	public void comportamientoDeAtaque(Posicion posicion) {
 
-		this.seleccionarUnidadParaAtacar(posicion);	
-	}
-
-	
-	private void seleccionarUnidadParaAtacar(Posicion posicion) {
+		this.comportamiento = "Ataque";
 		
 		for(Node nodoCasillero : this.getChildren()){
         	
@@ -108,5 +101,11 @@ public class VistaTablero extends GridPane{
 	public Tablero getTablero() {
 		
 		return this.tablero;
+	}
+	
+	
+	public String consultarEstado() {
+	
+		return this.comportamiento;
 	}
 }

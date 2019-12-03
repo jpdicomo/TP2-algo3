@@ -68,6 +68,12 @@ public abstract class Unidad {
 	}
 
 	
+	public boolean soyUnSoldado() {
+		
+		return false;
+	}
+	
+	
 	public int getVida() {
 		
 		return this.vida;

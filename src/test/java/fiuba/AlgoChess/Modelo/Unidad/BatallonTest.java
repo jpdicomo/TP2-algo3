@@ -29,7 +29,6 @@ public class BatallonTest {
         Posicion posicionInicial2 = new Posicion(0,1);
         
         Posicion posicionFinal1 = new Posicion(1,0);
-        Posicion posicionFinal2 = posicionInicial2;
         
         Direccion direccion = new Norte();
     	
@@ -38,7 +37,7 @@ public class BatallonTest {
         tablero.moverUnidad(posicionInicial1, direccion);
         
         Assert.assertEquals(soldado1, tablero.seleccionarUnidad(posicionFinal1));
-        Assert.assertEquals(soldado2, tablero.seleccionarUnidad(posicionFinal2));
+        Assert.assertEquals(soldado2, tablero.seleccionarUnidad(posicionInicial2));
     }
 
 	

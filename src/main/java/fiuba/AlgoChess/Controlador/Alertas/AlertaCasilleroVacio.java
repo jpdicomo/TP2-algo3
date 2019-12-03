@@ -8,7 +8,7 @@ public class AlertaCasilleroVacio extends Alert {
 
 		super(AlertType.WARNING);
 		this.setTitle("AlgoChess - Error");
-        this.setHeaderText("¡CASILLERO OCUPADO!");
+        this.setHeaderText("¡CASILLERO VACIO!");
         this.setContentText("¡El casillero seleccionado se encuentra vacio, elija otro!");
 	}
 

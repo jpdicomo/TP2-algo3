@@ -6,7 +6,7 @@ public class AlertaCuracionABandoEnemigo extends Alert {
 	
     public AlertaCuracionABandoEnemigo() {
         super(AlertType.INFORMATION);
-        this.setTitle("¡ATAQUE INVALIDO!");
+        this.setTitle("¡ACCIÓN INVALIDA!");
         this.setContentText("No podes curar a un enemigo");
     }
 }
