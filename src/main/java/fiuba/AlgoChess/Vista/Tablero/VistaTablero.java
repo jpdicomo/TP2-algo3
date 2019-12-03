@@ -79,8 +79,9 @@ public class VistaTablero extends GridPane{
 	}
 
 
-	public void moverUnidad(Posicion posicion, Direccion direccion) {
-		this.tablero.moverUnidad(posicion, direccion);
+	public Tablero getTablero() {
+		
+		return this.tablero;
 	}
 
 }

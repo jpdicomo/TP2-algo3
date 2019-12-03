@@ -139,8 +139,8 @@ public class Tablero {
 	public void moverUnidad(Posicion posicion, Direccion direccion) {
 		
 		Posicion posicionInicial = posicion;
-		
 		Batallon batallon = this.hayUnBatallonEn(posicionInicial);
+		
 
 		if(batallon.hayBatallon()) {
 			
