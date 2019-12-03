@@ -2,9 +2,9 @@ package fiuba.AlgoChess.Vista.Tablero;
 
 import fiuba.AlgoChess.Controlador.Handlers.ClickParaColocarUnidad;
 import fiuba.AlgoChess.Controlador.Handlers.ClickParaSeleccionarUnidad;
+import fiuba.AlgoChess.Controlador.Handlers.ClickParaSeleccionarUnidadAAtacar;
 import fiuba.AlgoChess.Modelo.Tablero.Tablero;
 import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
-import fiuba.AlgoChess.Modelo.Ubicacion.Direccion;
 import fiuba.AlgoChess.Modelo.Ubicacion.Posicion;
 import fiuba.AlgoChess.Vista.Juego.Main;
 import fiuba.AlgoChess.Vista.Juego.Colocacion.VistaUnidadSeleccionada;
@@ -17,6 +17,7 @@ public class VistaTablero extends GridPane{
     private Tablero tablero;
     private Main main;
     private VistaDatosUnidad unidadElegida;
+    private Posicion posicion;
     
     
     public VistaTablero(Main main, Tablero tablero) {
@@ -66,6 +67,16 @@ public class VistaTablero extends GridPane{
         }
     }
 
+	public void comportamientoSeleccionarUnidad() {
+		
+		for(Node nodoCasillero : this.getChildren()){
+        	
+            VistaCasillero vistaCasillero = (VistaCasillero) nodoCasillero;
+            vistaCasillero.setOnAction(new ClickParaSeleccionarUnidad(this.unidadElegida, vistaCasillero, this, this.main));
+        }
+	}
+	
+	
 	
 	public void comportamientoSeleccionarUnidad(VistaDatosUnidad unidadElegida) {
 		
@@ -79,9 +90,24 @@ public class VistaTablero extends GridPane{
 	}
 
 
+	public void comportamientoDeAtaque(Posicion posicion) {
+
+		this.seleccionarUnidadParaAtacar(posicion);	
+	}
+
+	
+	private void seleccionarUnidadParaAtacar(Posicion posicion) {
+		
+		for(Node nodoCasillero : this.getChildren()){
+        	
+            VistaCasillero vistaCasillero = (VistaCasillero) nodoCasillero;
+            vistaCasillero.setOnAction(new ClickParaSeleccionarUnidadAAtacar(this.unidadElegida, posicion, this, vistaCasillero));
+        }
+	}
+
+
 	public Tablero getTablero() {
 		
 		return this.tablero;
 	}
-
 }

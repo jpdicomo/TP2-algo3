@@ -2,8 +2,12 @@ package fiuba.AlgoChess.Vista.Tablero;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import fiuba.AlgoChess.Controlador.Handlers.AbrirBotonMover;
+import fiuba.AlgoChess.Controlador.Handlers.BotonAtacar;
+import fiuba.AlgoChess.Controlador.Handlers.BotonAtacarApagado;
 import fiuba.AlgoChess.Controlador.Handlers.BotonMover;
 import fiuba.AlgoChess.Controlador.Handlers.BotonMoverApagado;
 import fiuba.AlgoChess.Modelo.Ubicacion.*;
@@ -24,12 +28,13 @@ public class VistaDatosUnidad extends VBox {
 	private VistaTablero tablero;
 	private int numeroJugador;
 	private Posicion posicion;
-	
+	private ArrayList<Unidad> unidadesQueAtacaron;
 	private boolean seMovioUnaPieza;
 	
 	public VistaDatosUnidad() {
 
 		super();
+		this.unidadesQueAtacaron = new ArrayList<Unidad>();
 		this.seMovioUnaPieza = false;
 	}
 	
@@ -42,7 +47,6 @@ public class VistaDatosUnidad extends VBox {
 		this.posicion = posicion;
 		
 		this.minimizarBotonera();
-		this.setAlignment(Pos.CENTER);
 	}
 
 	
@@ -57,6 +61,7 @@ public class VistaDatosUnidad extends VBox {
 		this.getChildren().add(nombre);
 		this.getChildren().add(this.agregarImagenUnidad());
 		this.getChildren().add(vida);
+		this.setAlignment(Pos.CENTER);
 	}
 
 
@@ -125,7 +130,7 @@ public class VistaDatosUnidad extends VBox {
 		
 		botones.setAlignment(Pos.CENTER);
 		botones.setSpacing(35);
-		botones.setMinSize(200, 200);
+		botones.setMinSize(200, 100);
 		
 		this.getChildren().add(botones);
 	}
@@ -153,7 +158,7 @@ public class VistaDatosUnidad extends VBox {
 		this.agregarBotonAtaque(botones);
 		botones.setAlignment(Pos.CENTER);
 		botones.setSpacing(35);
-		botones.setMinSize(200, 200);
+		botones.setMinSize(200, 100);
 		
 		this.getChildren().add(botones);
 	}
@@ -177,10 +182,25 @@ public class VistaDatosUnidad extends VBox {
 		}
 		
 		Button botonAtacar = new Button(textoBotonAtaque);
-		// Crear Handler para el boton Atacar. y pasarle la unidad y que ella sepa si ya ataco o no.
-		// y al crear esta vista y pasarle la unidad que ella cambie el estado de la unidad.
 		
-
+		if(this.unidadesQueAtacaron.contains(this.unidad)) {
+			botonAtacar.setOnAction(new BotonAtacarApagado());
+		} else {
+			botonAtacar.setOnAction(new BotonAtacar(this.posicion, this.tablero));
+		}
+		
+//		
+//		Button botonAtacar = new Button(textoBotonAtaque);
+//		boton
+//		// Crear Handler para el boton Atacar. y pasarle la unidad y que ella sepa si ya ataco o no.
+//		// y al crear esta vista y pasarle la unidad que ella cambie el estado de la unidad.
 		botones.getChildren().add(botonAtacar);
+	}
+
+
+	public void agregarAtacante() {
+
+		this.unidadesQueAtacaron.add(this.unidad);
+		this.minimizarBotonera();
 	}
 }
