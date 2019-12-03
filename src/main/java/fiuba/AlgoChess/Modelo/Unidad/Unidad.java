@@ -60,13 +60,11 @@ public abstract class Unidad {
 			throw new DistintoBandoException();
 		}
 	}
-
-
-	public boolean sigoViva() {
-
-		return (this.vida > 0);
+	public void interactuarConUnAliado(Unidad aliada){
+		this.bando.interactuarConUnAliado(aliada);
 	}
 
+	
 	public int getVida() {
 		
 		return this.vida;
