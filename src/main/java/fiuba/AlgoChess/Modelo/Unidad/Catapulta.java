@@ -20,7 +20,7 @@ public class Catapulta extends Unidad {
 	
 	
 	@Override
-	public void serCurado(int curacion) {
+	public void serCurado(double curacion) {
 		
 		throw new CatapultaNoPuedeSerCuradaException();
 	}

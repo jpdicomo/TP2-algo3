@@ -33,7 +33,7 @@ public abstract class Estado {
 	}
 
 	
-	public void recibirDanio(Bando bando, int danio) {
+	public void recibirDanio(Bando bando, double danio) {
 		
 		throw new CasilleroLibreException();
 	}

@@ -30,7 +30,7 @@ public class Ocupado extends Estado {
 
 	
 	@Override
-	public void recibirDanio(Bando bando, int danio) {
+	public void recibirDanio(Bando bando, double danio) {
 		
 		try {
 			

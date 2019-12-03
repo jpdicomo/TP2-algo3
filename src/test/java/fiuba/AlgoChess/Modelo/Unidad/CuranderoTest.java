@@ -21,7 +21,7 @@ public class CuranderoTest {
     	
         Curandero curandero = new Curandero(bandoJose);
 
-        Assert.assertEquals(75, curandero.getVida());
+        Assert.assertEquals(75, (int) curandero.getVida());
     }
     
     
@@ -40,7 +40,7 @@ public class CuranderoTest {
         
         curandero1.interactuarCon(casillero2);
 
-        Assert.assertEquals(75 + 15, curandero2.getVida());
+        Assert.assertEquals(75 + 15, (int) curandero2.getVida());
     }
     
     
@@ -60,7 +60,7 @@ public class CuranderoTest {
 		curandero2.recibirDanio(15);
 		curandero1.interactuarCon(casillero2);
 
-		Assert.assertEquals(75, curandero2.getVida());
+		Assert.assertEquals(75, (int) curandero2.getVida());
 	}
 	
 	@Test (expected = DistanciaInvalidaException.class)

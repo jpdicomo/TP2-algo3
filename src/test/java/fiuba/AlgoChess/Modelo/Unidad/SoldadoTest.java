@@ -18,7 +18,7 @@ public class SoldadoTest {
 		Bando bandoJose = new Bando();
 		Soldado soldado = new Soldado(bandoJose);
 
-		Assert.assertEquals(100, soldado.getVida());
+		Assert.assertEquals(100, (int) soldado.getVida());
 	}
 	
 
@@ -38,7 +38,7 @@ public class SoldadoTest {
 		
 		soldado1.interactuarCon(casillero2);
 		
-		Assert.assertEquals(90, soldado2.getVida());
+		Assert.assertEquals(90, (int) soldado2.getVida());
 	}
 	
 	

@@ -22,7 +22,7 @@ public class CatapultaTest {
 
         Catapulta catapulta = new Catapulta(bandoJose);
 
-        Assert.assertEquals(50,catapulta.getVida());
+        Assert.assertEquals(50, (int) catapulta.getVida());
     }
 
     
@@ -42,7 +42,7 @@ public class CatapultaTest {
 		
     	catapulta1.interactuarCon(casillero2);
 		
-        Assert.assertEquals(30, catapulta2.getVida());
+        Assert.assertEquals(30, (int) catapulta2.getVida());
     }
     
     
@@ -62,7 +62,7 @@ public class CatapultaTest {
 		
     	catapulta1.interactuarCon(casillero2);
 		
-        Assert.assertEquals(30, catapulta2.getVida());
+        Assert.assertEquals(30, (int) catapulta2.getVida());
     }
     
     
@@ -116,11 +116,10 @@ public class CatapultaTest {
     	Unidad catapulta = tablero.seleccionarUnidad(new Posicion(4,9));
     	catapulta.interactuarCon(tablero.getCasillero(new Posicion(14,9)));
     	
-    	Assert.assertEquals(100 - 20, tablero.seleccionarUnidad(new Posicion(13,9)).getVida());
-    	Assert.assertEquals(100 - 20, tablero.seleccionarUnidad(new Posicion(14,8)).getVida());
-    	Assert.assertEquals(100 - 20, tablero.seleccionarUnidad(new Posicion(14,9)).getVida());
-    	Assert.assertEquals(100 - 20, tablero.seleccionarUnidad(new Posicion(14,10)).getVida());
-    	Assert.assertEquals(100 - 20, tablero.seleccionarUnidad(new Posicion(15,9)).getVida());
+    	Assert.assertEquals(100 - 20, (int) tablero.seleccionarUnidad(new Posicion(13,9)).getVida());
+    	Assert.assertEquals(100 - 20, (int) tablero.seleccionarUnidad(new Posicion(14,8)).getVida());
+    	Assert.assertEquals(100 - 20, (int) tablero.seleccionarUnidad(new Posicion(14,9)).getVida());
+    	Assert.assertEquals(100 - 20, (int) tablero.seleccionarUnidad(new Posicion(14,10)).getVida());
+    	Assert.assertEquals(100 - 20, (int) tablero.seleccionarUnidad(new Posicion(15,9)).getVida());
 	}
 }
-

@@ -100,7 +100,7 @@ public class Casillero {
 
 
 
-	public void recibirDanio(int danio) {
+	public void recibirDanio(double danio) {
 
 		this.estado.recibirDanio(this.bando, danio);
 	}

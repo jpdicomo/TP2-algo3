@@ -5,11 +5,11 @@ import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 
 public abstract class Habilidad {
 
-	protected int poder;
+	protected double poder;
 	protected Alcance alcance;
 
 	
-	public Habilidad(int poder) {
+	public Habilidad(double poder) {
 
 		this.poder = poder;
 	}

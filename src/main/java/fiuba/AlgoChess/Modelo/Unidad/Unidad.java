@@ -10,7 +10,7 @@ import fiuba.AlgoChess.Modelo.Errores.MismoBandoException;
 
 public abstract class Unidad {
 	
-	protected int vida;
+	protected double vida;
 	protected Bando bando;
 	protected int costo;
 	protected Habilidad habilidad;
@@ -23,13 +23,13 @@ public abstract class Unidad {
 	}
 
 	
-	public void recibirDanio(int danio) {
+	public void recibirDanio(double danio) {
 		
 		this.vida -= danio;
 	}
 
 	
-	public void serCurado(int curacion) {
+	public void serCurado(double curacion) {
 		
 		this.vida += curacion;
 	}
@@ -79,7 +79,7 @@ public abstract class Unidad {
 	}
 	
 	
-	public int getVida() {
+	public double getVida() {
 		
 		return this.vida;
 	}

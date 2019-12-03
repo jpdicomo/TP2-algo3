@@ -10,7 +10,7 @@ import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 public class AtaqueEnArea extends Habilidad {
 	
 	
-	public AtaqueEnArea(int poder) {
+	public AtaqueEnArea(double poder) {
 		
 		super(poder);
 		this.alcance = new Alcance(6, 20);

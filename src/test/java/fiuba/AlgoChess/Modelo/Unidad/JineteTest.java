@@ -20,7 +20,7 @@ public class JineteTest {
 		
 		Jinete jinete = new Jinete(bandoJose);
 
-		Assert.assertEquals(100, jinete.getVida());
+		Assert.assertEquals(100, (int) jinete.getVida());
 	}
 
 	
@@ -42,7 +42,7 @@ public class JineteTest {
 
 		jinete1.interactuarCon(casillero2);
 		
-		Assert.assertEquals(100 - 5, jinete2.getVida());
+		Assert.assertEquals(100 - 5, (int) jinete2.getVida());
 	}
 	
 	
@@ -63,7 +63,7 @@ public class JineteTest {
 
 		jinete1.interactuarCon(casillero2);
 		
-		Assert.assertEquals(100 - 15, jinete2.getVida());
+		Assert.assertEquals(100 - 15, (int) jinete2.getVida());
 	}
 	
 	

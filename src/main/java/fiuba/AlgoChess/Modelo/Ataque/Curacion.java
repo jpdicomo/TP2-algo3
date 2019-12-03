@@ -6,7 +6,7 @@ import fiuba.AlgoChess.Modelo.Tablero.Casillero.Casillero;
 public class Curacion extends Habilidad {
 
 	
-	public Curacion(int poder) {
+	public Curacion(double poder) {
 	
 		super(poder);
 		this.alcance = new Alcance(1, 2);
