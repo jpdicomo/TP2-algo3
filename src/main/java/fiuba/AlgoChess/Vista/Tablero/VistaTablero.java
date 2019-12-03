@@ -103,7 +103,7 @@ public class VistaTablero extends GridPane{
 		return this.tablero;
 	}
 	
-	
+//	
 	public String consultarEstado() {
 	
 		return this.comportamiento;

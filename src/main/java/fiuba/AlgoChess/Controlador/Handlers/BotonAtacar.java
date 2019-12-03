@@ -22,14 +22,15 @@ public class BotonAtacar implements EventHandler<ActionEvent> {
 	
 	@Override
 	public void handle(ActionEvent event) {
-
+		
 		if(this.tablero.consultarEstado().equals("Seleccion")) {
 			
+			this.tablero.actualizarTablero();
 			this.tablero.comportamientoDeAtaque(this.posicion);
 			
 		} else {
 			
-		this.tablero.comportamientoSeleccionarUnidad();
+			this.tablero.comportamientoSeleccionarUnidad();
 		}
 	}
 }

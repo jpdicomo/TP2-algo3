@@ -202,4 +202,10 @@ public class VistaDatosUnidad extends VBox {
 		this.unidadesQueAtacaron.add(this.unidad);
 		this.minimizarBotonera();
 	}
+	
+	
+	public Unidad getUnidad() {
+		
+		return this.unidad;
+	}
 }

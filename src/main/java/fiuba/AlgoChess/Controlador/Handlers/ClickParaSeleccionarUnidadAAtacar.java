@@ -34,7 +34,7 @@ public class ClickParaSeleccionarUnidadAAtacar implements EventHandler<ActionEve
 
 		try {
 			
-			Unidad unidadAtacante = this.tablero.getTablero().seleccionarUnidad(this.posicionAtacante);
+			Unidad unidadAtacante = this.unidadElegida.getUnidad();
 			unidadAtacante.interactuarCon(this.casillero.getCasillero());
 			this.unidadElegida.agregarAtacante();
 			fallo = false;
