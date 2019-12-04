@@ -83,5 +83,16 @@ public class JugadorTest {
         // El tablero le da su unidad a el jugador.
         jose.elegirUnidad(tablero.seleccionarUnidad(posicion));
     }
+    @Test
+    public void Test06JugadorSeleccionaUnidadYSeAgregaCorrectamente(){
+        Bando bandoJuan = new Bando();
+        Jugador juan = new Jugador("Juan", bandoJuan);
+
+        Jinete jinete = new Jinete(bandoJuan);
+
+        juan.agregarUnidad(jinete);
+
+        Assert.assertTrue(juan.getUnidades().contains(jinete));
+    }
 
 }
