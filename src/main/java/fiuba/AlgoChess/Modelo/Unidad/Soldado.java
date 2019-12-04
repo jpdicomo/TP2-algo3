@@ -12,7 +12,7 @@ public class Soldado extends Unidad {
 		super(bando);
 		this.vida = 100;
 		this.costo = 1;
-		this.habilidad = new AtaqueCerca(50);
+		this.habilidad = new AtaqueCerca(10);
 	}
 
 	
