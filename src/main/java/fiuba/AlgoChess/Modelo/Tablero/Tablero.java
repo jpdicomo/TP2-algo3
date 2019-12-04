@@ -91,13 +91,13 @@ public class Tablero {
 	
 	
 	public void agregarNuevaUnidad(Unidad unaUnidad, Posicion posicion){
-		
+
 		Casillero casillero = this.obtenerCasillero(posicion);
 		casillero.agregarNuevaUnidad(unaUnidad);
 	}
 	
 	
-	private void agregarUnidad(Unidad unaUnidad, Posicion posicion){
+	public void agregarUnidad(Unidad unaUnidad, Posicion posicion){//PONGO ESTE METODO COMO PUBLICO
 		
 		Casillero casillero = this.obtenerCasillero(posicion);
 		casillero.agregarUnidad(unaUnidad);

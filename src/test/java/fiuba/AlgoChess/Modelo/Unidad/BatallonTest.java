@@ -339,8 +339,10 @@ public class BatallonTest {
 
         Tablero tablero = new Tablero(bandoJose, bandoJuan);
         Soldado soldado1 = new Soldado(bandoJose);
-        Soldado soldado2 = new Soldado(bandoJuan);
-        Soldado soldado3 = new Soldado(bandoJuan);
+        Soldado soldado2 = new Soldado(bandoJose);
+        Soldado soldado3 = new Soldado(bandoJose);
+        Soldado soldado4 = new Soldado(bandoJuan);
+        Soldado soldado5 = new Soldado(bandoJuan);
 
         Posicion posicion1 = new Posicion(2,0);
         Posicion posicion2 = new Posicion(1,1);
@@ -348,15 +350,21 @@ public class BatallonTest {
 
         Direccion direccion = new Norte();
 
-        tablero.agregarNuevaUnidad(soldado1, posicion1);
+        tablero.agregarUnidad(soldado1, posicion1);
         tablero.agregarNuevaUnidad(soldado2, posicion2);
         tablero.agregarNuevaUnidad(soldado3, posicion3);
 
+        tablero.quitarUnidad(posicion1);
+        tablero.quitarUnidad(posicion3);
+
+        tablero.agregarUnidad(soldado4, posicion1);
+        tablero.agregarUnidad(soldado5, posicion3);
+
         tablero.moverUnidad(posicion2, direccion);
 
-        Assert.assertEquals(soldado1, tablero.seleccionarUnidad(new Posicion(2,0)));
+        Assert.assertEquals(soldado4, tablero.seleccionarUnidad(new Posicion(2,0)));
         Assert.assertEquals(soldado2, tablero.seleccionarUnidad(new Posicion(2,1)));
-        Assert.assertEquals(soldado3, tablero.seleccionarUnidad(new Posicion(0,2)));
+        Assert.assertEquals(soldado5, tablero.seleccionarUnidad(new Posicion(0,2)));
     }
 
     @Test
@@ -376,9 +384,9 @@ public class BatallonTest {
 
         Direccion direccion = new Norte();
 
-        tablero.agregarNuevaUnidad(soldado1, posicion1);
-        tablero.agregarNuevaUnidad(soldado2, posicion2);
-        tablero.agregarNuevaUnidad(soldado3, posicion3);
+        tablero.agregarUnidad(soldado1, posicion1);
+        tablero.agregarUnidad(soldado2, posicion2);
+        tablero.agregarUnidad(soldado3, posicion3);
 
         tablero.moverUnidad(posicion2, direccion);
 

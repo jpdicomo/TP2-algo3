@@ -96,8 +96,8 @@ public class CuranderoTest {
 		Casillero casillero1 = new Casillero(0, 0, bandoJose);
 		Casillero casillero2 = new Casillero(0, 1, bandoJuan);
 
-		casillero1.agregarNuevaUnidad(curandero);
-		casillero2.agregarNuevaUnidad(curandero2);
+		casillero1.agregarUnidad(curandero);
+		casillero2.agregarUnidad(curandero2);
 		casillero2.recibirDanio(75);
 		casillero2.quitarUnidadMuerta();
 		casillero2.agregarUnidad(soldado);
