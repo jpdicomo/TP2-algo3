@@ -57,6 +57,9 @@ public class CajaDeUnidadesVertical extends VBox {
 		
 		this.unidades = new HashMap<String, ArrayList<Unidad>>();
 		this.unidades.put("Soldado", new ArrayList<Unidad>());
+		this.unidades.put("Curandero", new ArrayList<Unidad>());
+		this.unidades.put("Jinete", new ArrayList<Unidad>());
+		this.unidades.put("Catapulta", new ArrayList<Unidad>());
 		
 		for (Unidad unidad : this.jugador.getUnidades()) {
 			
@@ -66,13 +69,13 @@ public class CajaDeUnidadesVertical extends VBox {
 				this.unidades.get("Soldado").add(unidad);
 				break;
 			case "Curandero":
-				this.unidades.get("Soldado").add(unidad);
+				this.unidades.get("Curandero").add(unidad);
 				break;
 			case "Jinete":
-				this.unidades.get("Soldado").add(unidad);
+				this.unidades.get("Jinete").add(unidad);
 				break;
 			case "Catapulta":
-				this.unidades.get("Soldado").add(unidad);
+				this.unidades.get("Catapulta").add(unidad);
 				break;
 			}
 		}

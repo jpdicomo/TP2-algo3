@@ -4,6 +4,7 @@ import fiuba.AlgoChess.Modelo.Errores.PuntosInsuficientesException;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 public class Jugador {
@@ -39,11 +40,15 @@ public class Jugador {
 	
 	private void quitarUnidadesMuertas() {
 
-		for (Unidad unidad : this.unidades) {
+		Iterator<Unidad> i = this.unidades.iterator();
+		
+		while (i.hasNext()) {
+
+			Unidad unidad = i.next();
 
 			if(!unidad.sigoViva()) {
 
-				this.unidades.remove(unidad);
+				i.remove();
 			}
 		}
 	}

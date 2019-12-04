@@ -27,22 +27,6 @@ public class BotonCambiarDeTurno implements EventHandler<ActionEvent> {
 		
 		Scene escena;
 		
-		ArrayList<Unidad> unidades = this.main.getJugador(1).getUnidades();
-		
-		for (Unidad unidad : unidades) {
-			
-			System.out.print("1- " + unidad.getClass().getSimpleName() + " " + unidad.getVida());
-			System.out.println(" " + unidad);
-		}
-		
-		unidades = this.main.getJugador(2).getUnidades();
-		
-		for (Unidad unidad : unidades) {
-			
-			System.out.print("2- " + unidad.getClass().getSimpleName() + " " + unidad.getVida());
-			System.out.println(" " + unidad);
-		}
-		
 		if(!this.main.getJugador(1).sigueJugando()) {
 			
 			escena = this.main.escenaFinal(2);

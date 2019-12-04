@@ -38,6 +38,7 @@ public class Main extends Application {
 	private Jugador[] jugadores = new Jugador[2];
 	private Tablero tablero;
 	private int numeroJugador;
+	private 
 
 	public static void main(String[] args) {
 		
@@ -294,6 +295,8 @@ public class Main extends Application {
 	
 	public Scene escenaFinal(int numeroJugador) {
 		
+		this.cambiarMusica();
+		
 		HBox contenedorPrincipal = new HBox();
 		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/final" + numeroJugador + ".png", 800, 600));
 		contenedorPrincipal.setAlignment(Pos.CENTER);
@@ -301,6 +304,13 @@ public class Main extends Application {
 		return new Scene(contenedorPrincipal, 800, 600);
 	}
 	
+	
+	// ----------- MUSICA ---------------
+	
+	private void cambiarMusica() {
+		
+		this.
+	}
 	
 	
 	public Jugador getJugador(int numeroJugador) {
