@@ -9,6 +9,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -19,6 +21,9 @@ import fiuba.AlgoChess.Vista.Juego.Colocacion.CajaDeUnidadesVertical;
 import fiuba.AlgoChess.Vista.Juego.Colocacion.VistaUnidadSeleccionada;
 import fiuba.AlgoChess.Vista.Tablero.VistaDatosUnidad;
 import fiuba.AlgoChess.Vista.Tablero.VistaTablero;
+
+import java.io.File;
+
 import fiuba.AlgoChess.Controlador.Handlers.BotonCambiarAEscenaColocarUnidades1;
 import fiuba.AlgoChess.Controlador.Handlers.BotonCambiarAEscenaColocarUnidades2;
 import fiuba.AlgoChess.Controlador.Handlers.BotonCambiarAEscenaDeCompra2;
@@ -38,7 +43,8 @@ public class Main extends Application {
 	private Jugador[] jugadores = new Jugador[2];
 	private Tablero tablero;
 	private int numeroJugador;
-	private 
+	private Media sonido;
+	private MediaPlayer reproductor;
 
 	public static void main(String[] args) {
 		
@@ -104,10 +110,11 @@ public class Main extends Application {
 		contenedorPrincipal.setAlignment(Pos.CENTER);
 		
 		
-		Background fondo = new CreadorDeFondos().crearFondo("./recursos/fondos/fondo1.png", 800, 600);
+		Background fondo = new CreadorDeFondos().crearFondo("./recursos/fondos/fondo1.png", 1920, 1080);
 		contenedorPrincipal.setBackground(fondo);
 		
-		return new Scene(contenedorPrincipal, 800, 600);
+		this.cambiarMusica("./recursos/sonidos/intro.wav");
+		return new Scene(contenedorPrincipal, 1920, 1080);
 	}
 
 
@@ -159,10 +166,10 @@ public class Main extends Application {
 		contenedorPrincipal.setSpacing(150);
 
 		// Cargo el fondo.
-		Background fondo = new CreadorDeFondos().crearFondo("./recursos/fondos/fondo2.png", 800, 600);
+		Background fondo = new CreadorDeFondos().crearFondo("./recursos/fondos/fondo2.png", 1920, 1080);
 		contenedorPrincipal.setBackground(fondo);
 
-		return new Scene(contenedorPrincipal, 800, 600);
+		return new Scene(contenedorPrincipal, 1920, 1080);
 	}
 
 	// Listo.
@@ -192,15 +199,15 @@ public class Main extends Application {
 		VBox contenedorSecundario = new VBox(labelTitulo, cajaUnidades, puntosJugador, botonTerminarCompra);
 		contenedorSecundario.setMaxWidth(515);
 		contenedorSecundario.setMinHeight(450);
-		contenedorSecundario.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png", 800, 600));
+		contenedorSecundario.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png", 1920, 1080));
 		contenedorSecundario.setAlignment(Pos.CENTER);
 		contenedorSecundario.setSpacing(20);
 		
 		VBox contenedorPrincipal = new VBox(contenedorSecundario);
-		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo3.png", 800, 600));
+		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo3.png", 1920, 1080));
 		contenedorPrincipal.setAlignment(Pos.CENTER);
 		
-		return new Scene(contenedorPrincipal, 800, 600);
+		return new Scene(contenedorPrincipal, 1920, 1080);
 	}
 	
 	
@@ -230,7 +237,7 @@ public class Main extends Application {
 		VBox cajaDeUnidades = new VBox(cajaUnidades, unidadSeleccionada, botonTerminarColocacion);
 		cajaDeUnidades.setMinSize(200, 700);
 		cajaDeUnidades.setMaxSize(200, 700);
-		cajaDeUnidades.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png", 800, 600));
+		cajaDeUnidades.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png", 1920, 1080));
 		cajaDeUnidades.setSpacing(50);
 		cajaDeUnidades.setAlignment(Pos.CENTER);
 		
@@ -240,10 +247,10 @@ public class Main extends Application {
 		contenedorSecundario.setSpacing(20);
 			
 		VBox contenedorPrincipal = new VBox(contenedorSecundario);
-		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo4.png", 800, 600));
+		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo4.png", 1920, 1080));
 		contenedorPrincipal.setAlignment(Pos.CENTER);
 		
-		return new Scene(contenedorPrincipal, 800, 600);
+		return new Scene(contenedorPrincipal, 1920, 1080);
 	}
 
 	
@@ -280,36 +287,40 @@ public class Main extends Application {
 		datosUnidad.setMaxSize(200, 700);
 		datosUnidad.setAlignment(Pos.CENTER);
 		datosUnidad.setSpacing(90);
-		datosUnidad.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png", 800, 600));
+		datosUnidad.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png", 1920, 1080));
 		
 		
 		// Creo las XBox
 		HBox contenedorPrincipal = new HBox(datosUnidad, tablero);
-		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo4.png", 800, 600));
+		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo4.png", 1920, 1080));
 		contenedorPrincipal.setAlignment(Pos.CENTER);
 		contenedorPrincipal.setSpacing(20);
 
-		return new Scene(contenedorPrincipal, 800, 600);
+		return new Scene(contenedorPrincipal, 1920, 1080);
 	}
 	
 	
 	public Scene escenaFinal(int numeroJugador) {
 		
-		this.cambiarMusica();
+		this.cambiarMusica("");
 		
 		HBox contenedorPrincipal = new HBox();
-		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/final" + numeroJugador + ".png", 800, 600));
+		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/final" + numeroJugador + ".png", 1920, 1080));
 		contenedorPrincipal.setAlignment(Pos.CENTER);
 
-		return new Scene(contenedorPrincipal, 800, 600);
+		return new Scene(contenedorPrincipal, 1920, 1080);
 	}
 	
 	
 	// ----------- MUSICA ---------------
 	
-	private void cambiarMusica() {
+	private void cambiarMusica(String ruta) {
 		
-		this.
+		this.sonido = new Media(new File(ruta).toURI().toString());
+		this.reproductor = new MediaPlayer(sonido);
+		
+		this.reproductor.stop();
+		this.reproductor.play();
 	}
 	
 	
