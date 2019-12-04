@@ -55,9 +55,9 @@ public class Main extends Application {
 	public void start(Stage stage) throws Exception {
 
 		this.iniciarJuego();
-		stage.setFullScreen(true);
 		this.escenario = stage;
 		this.escenario.setTitle("AlgoChess");
+		this.escenario.setMaximized(true);
 		this.cambiarEscenaA(this.escenaBienvenida());
 		this.escenario.show();
 	}
@@ -75,12 +75,12 @@ public class Main extends Application {
 
 		double ancho = this.escenario.getWidth();
 		double alto = this.escenario.getHeight();
-		boolean modo = this.escenario.isFullScreen();
+		boolean modoDePantalla = this.escenario.isMaximized();
 
 		this.escenario.setScene(nuevaEscena);
 		this.escenario.setWidth(ancho);
 		this.escenario.setHeight(alto);
-		this.escenario.setFullScreen(modo);
+		this.escenario.setMaximized(modoDePantalla);
 	}
 
 	/*
