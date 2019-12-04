@@ -68,8 +68,11 @@ public class Main extends Application {
 	}
 
 	public void cambiarEscenaA(Scene nuevaEscena) {
-		
+		double width = this.escenario.getWidth();
+		double height = this.escenario.getHeight();
 		this.escenario.setScene(nuevaEscena);
+		this.escenario.setWidth(width);
+		this.escenario.setHeight(height);
 	}
 
 	
