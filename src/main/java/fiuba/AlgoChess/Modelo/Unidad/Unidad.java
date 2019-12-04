@@ -62,6 +62,12 @@ public abstract class Unidad {
 	}
 
 
+	public void interactuarConUnAliado(Unidad unidadAliada){
+		
+		this.bando.interactuarConUnAliado(unidadAliada);
+	}
+
+
 	public boolean sigoViva() {
 
 		return (this.vida > 0);

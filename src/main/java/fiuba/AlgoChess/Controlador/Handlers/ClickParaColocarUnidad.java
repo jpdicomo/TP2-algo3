@@ -1,5 +1,7 @@
 package fiuba.AlgoChess.Controlador.Handlers;
 
+import java.io.File;
+
 import fiuba.AlgoChess.Controlador.Alertas.AlertaCasilleroOcupado;
 import fiuba.AlgoChess.Controlador.Alertas.AlertaDistintoBandoAlColocarUnidad;
 import fiuba.AlgoChess.Controlador.Alertas.AlertaPiezaNoSeleccionada;
@@ -14,15 +16,20 @@ import fiuba.AlgoChess.Vista.Tablero.VistaCasillero;
 import fiuba.AlgoChess.Vista.Tablero.VistaTablero;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Alert;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class ClickParaColocarUnidad implements EventHandler<ActionEvent> {
 
+	
 	private VistaUnidadSeleccionada unidad;
 	private Tablero tablero;
 	private VistaCasillero vistaCasillero;
 	private VistaTablero vistaTablero;
+	private Media sonido;
+	private MediaPlayer reproductor;
 
+	
 	public ClickParaColocarUnidad(VistaUnidadSeleccionada unidad, Tablero tablero, VistaCasillero vistaCasillero,
 			VistaTablero vistaTablero) {
 
@@ -40,29 +47,40 @@ public class ClickParaColocarUnidad implements EventHandler<ActionEvent> {
 
 			Unidad unidad = this.unidad.getUnidad();
 			Posicion posicion = vistaCasillero.getPosicion();
-			
+
 			this.tablero.agregarNuevaUnidad(unidad, posicion);
 			this.unidad.quitarUnidad();
+			this.reproducirSonido();
 
 		} catch (CasilleroOcupadoException e) {
 
-			Alert alertaCasilleroOcupado = new AlertaCasilleroOcupado();
-			alertaCasilleroOcupado.showAndWait();
+			AlertaCasilleroOcupado alertaCasilleroOcupado = new AlertaCasilleroOcupado();
+			alertaCasilleroOcupado.mostrarAlerta();
 
 		} catch (DistintoBandoException e) {
 
-			Alert alertaDistintoBando = new AlertaDistintoBandoAlColocarUnidad();
-			alertaDistintoBando.showAndWait();
-		
+			AlertaDistintoBandoAlColocarUnidad alertaDistintoBando = new AlertaDistintoBandoAlColocarUnidad();
+			alertaDistintoBando.mostrarAlerta();
+
 		} catch (NoTieneUnaUnidadSeleccionadaException e) {
-			
-			Alert alertaPiezaNoSeleccionada = new AlertaPiezaNoSeleccionada();
-			alertaPiezaNoSeleccionada.showAndWait();
+
+			AlertaPiezaNoSeleccionada alertaPiezaNoSeleccionada = new AlertaPiezaNoSeleccionada();
+			alertaPiezaNoSeleccionada.mostrarAlerta();
 
 		} finally {
 
 			vistaTablero.actualizarTablero();
 			vistaTablero.compartamientoColocarUnidades(unidad);
 		}
+	}
+
+	
+	private void reproducirSonido() {
+
+		this.sonido = new Media(new File("./recursos/sonidos/colocarUnidad.wav").toURI().toString());
+		this.reproductor = new MediaPlayer(sonido);
+
+		this.reproductor.stop();
+		this.reproductor.play();
 	}
 }

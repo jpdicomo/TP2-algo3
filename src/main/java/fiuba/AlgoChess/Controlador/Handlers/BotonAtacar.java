@@ -1,11 +1,9 @@
 package fiuba.AlgoChess.Controlador.Handlers;
 
-import fiuba.AlgoChess.Controlador.Alertas.AlertaAtaqueCancelado;
 import fiuba.AlgoChess.Modelo.Ubicacion.Posicion;
 import fiuba.AlgoChess.Vista.Tablero.VistaTablero;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Alert;
 
 public class BotonAtacar implements EventHandler<ActionEvent> {
 
@@ -22,7 +20,13 @@ public class BotonAtacar implements EventHandler<ActionEvent> {
 	
 	@Override
 	public void handle(ActionEvent event) {
-		
-		this.tablero.comportamientoDeAtaque(this.posicion);
+	
+		if(this.tablero.estadoActual().equals("ataque")) {
+			
+			this.tablero.comportamientoSeleccionarUnidad();
+		} else {
+			
+			this.tablero.comportamientoDeAtaque(this.posicion);
+		}
 	}
 }

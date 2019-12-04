@@ -1,13 +1,21 @@
 package fiuba.AlgoChess.Controlador.Handlers;
 
+import java.io.File;
+import java.util.ArrayList;
+
+import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 import fiuba.AlgoChess.Vista.Juego.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class BotonCambiarDeTurno implements EventHandler<ActionEvent> {
 
 	private Main main;
+	private Media sonido;
+	private MediaPlayer reproductor;
 
 	public BotonCambiarDeTurno(Main main) {
 
@@ -36,7 +44,17 @@ public class BotonCambiarDeTurno implements EventHandler<ActionEvent> {
 			escena = this.main.escenaDeLucha(2);
 		}
 
+		this.reproducirSonido();
 		this.main.cambiarEscenaA(escena);
 	}
 
+	
+	private void reproducirSonido() {
+
+		this.sonido = new Media(new File("./recursos/sonidos/click.wav").toURI().toString());
+		this.reproductor = new MediaPlayer(sonido);
+
+		this.reproductor.stop();
+		this.reproductor.play();
+	}
 }

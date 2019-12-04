@@ -15,6 +15,8 @@ import javafx.scene.text.Font;
 public class CajaDeUnidades extends HBox {
 	
 	private Jugador jugador;
+	private int numeroJugador;
+	private Label puntosJugador;
 	private Bando bando;
 	
 	
@@ -22,28 +24,39 @@ public class CajaDeUnidades extends HBox {
 		
 		super();
 		this.bando = main.getBando(numeroJugador);
+		this.numeroJugador = numeroJugador;
+		this.puntosJugador = puntosJugador;
 		this.jugador = main.getJugador(numeroJugador);
 		
-		this.cargarUnidad(new Soldado(bando), numeroJugador, puntosJugador);
-		this.cargarUnidad(new Curandero(bando), numeroJugador, puntosJugador);
-		this.cargarUnidad(new Jinete(bando), numeroJugador, puntosJugador);
-		this.cargarUnidad(new Catapulta(bando), numeroJugador, puntosJugador);
-		
-		this.setAlignment(Pos.CENTER);
-		this.setSpacing(30);
+		this.recargarVista();
 	}
 
 	
-	private void cargarUnidad(Unidad unidad, int numeroJugador, Label puntosJugador) {
+	private void cargarUnidad(Unidad unidad) {
 		
 		VistaUnidad vistaUnidad = new VistaUnidad(unidad, numeroJugador);
 		
 		Button botonDeCompra = new Button("Comprar");
 		botonDeCompra.setFont(Font.font("Verdana", 16));
-		botonDeCompra.setOnAction(new BotonComprarUnidad(this.jugador, unidad, puntosJugador));
+		botonDeCompra.setOnAction(new BotonComprarUnidad(this.jugador, unidad, puntosJugador, this));
 				
 		vistaUnidad.agregarBoton(botonDeCompra);
 		
 		this.getChildren().add(vistaUnidad);
 	}
+	
+	
+	public void recargarVista() {
+
+		this.getChildren().clear();
+
+		this.cargarUnidad(new Soldado(bando));
+		this.cargarUnidad(new Curandero(bando));
+		this.cargarUnidad(new Jinete(bando));
+		this.cargarUnidad(new Catapulta(bando));
+		
+		this.setAlignment(Pos.CENTER);
+		this.setSpacing(30);
+	}
+
 }

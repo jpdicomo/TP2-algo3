@@ -4,7 +4,6 @@ import fiuba.AlgoChess.Controlador.Alertas.AlertaCasilleroVacio;
 import fiuba.AlgoChess.Controlador.Alertas.AlertaDistintoBandoAlElegirUnidad;
 import fiuba.AlgoChess.Modelo.Errores.CasilleroLibreException;
 import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
-import fiuba.AlgoChess.Modelo.Tablero.Tablero;
 import fiuba.AlgoChess.Modelo.Ubicacion.Posicion;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 import fiuba.AlgoChess.Vista.Juego.Main;
@@ -46,13 +45,13 @@ public class ClickParaSeleccionarUnidad implements EventHandler<ActionEvent> {
 
 		} catch (CasilleroLibreException e) {
 
-			Alert alertaCasilleroVacio = new AlertaCasilleroVacio();
-			alertaCasilleroVacio.showAndWait();
+			AlertaCasilleroVacio alertaCasilleroVacio = new AlertaCasilleroVacio();
+			alertaCasilleroVacio.mostrarAlerta();
 			
 		} catch (DistintoBandoException e) {
 			
-			Alert alertaUnidadInvalida = new AlertaDistintoBandoAlElegirUnidad();
-			alertaUnidadInvalida.showAndWait();
+			AlertaDistintoBandoAlElegirUnidad alertaUnidadInvalida = new AlertaDistintoBandoAlElegirUnidad();
+			alertaUnidadInvalida.mostrarAlerta();
 		}
 	}
 }

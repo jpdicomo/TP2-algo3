@@ -79,7 +79,6 @@ public class Casillero {
 	}
 
 
-
 	public boolean quitarUnidadMuerta() {
 
 		try {
@@ -87,17 +86,20 @@ public class Casillero {
 			if(this.estado.getUnidad().getVida() <= 0) {
 
 				this.estado.quitarUnidad();
+				this.estado = new Libre();
+				
 				return true;
+				
 			}else{
+				
 				return false;
 			}
 
-
 		} catch(CasilleroLibreException e ) {
+			
 			return false;
 		}
 	}
-
 
 
 	public void recibirDanio(double danio) {

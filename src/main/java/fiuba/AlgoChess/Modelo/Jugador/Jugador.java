@@ -4,6 +4,7 @@ import fiuba.AlgoChess.Modelo.Errores.PuntosInsuficientesException;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 public class Jugador {
@@ -36,14 +37,18 @@ public class Jugador {
 		}
 	}
 
-
+	
 	private void quitarUnidadesMuertas() {
 
-		for (Unidad unidad : this.unidades) {
+		Iterator<Unidad> i = this.unidades.iterator();
+		
+		while (i.hasNext()) {
+
+			Unidad unidad = i.next();
 
 			if(!unidad.sigoViva()) {
 
-				this.unidades.remove(unidad);
+				i.remove();
 			}
 		}
 	}
@@ -59,33 +64,7 @@ public class Jugador {
 	public void elegirUnidad(Unidad unidad) {
 
 		this.bando.interactuarConUnAliado(unidad);
-	}	
-//
-//		Scanner consola = new Scanner(System.in);
-//
-//		try{
-//			System.out.print("Ingresa fila: ");
-//
-//			int y = consola.nextInt();
-//
-//			System.out.print("\nIngresa columna: ");
-//
-//			int x = consola.nextInt();
-//			Posicion pos = new Posicion(x,y);//x,y
-//
-//			Casillero casilleroSeleccionado = tablero.getCasillero(pos);
-//			Unidad unidadSeleccionada = casilleroSeleccionado.getUnidad();
-//
-//			unidadSeleccionada.interactuarConUnAliado(this.bando);
-//
-//			return new Posicion(x,y);//x,y
-//
-//		}catch(DistintoBandoException error) {
-//
-//			return null;
-//		}
-//	}
-
+	}
 
 
 	public int getPuntos() {

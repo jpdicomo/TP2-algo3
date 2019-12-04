@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import fiuba.AlgoChess.Controlador.Handlers.ClickParaSeleccionarUnidadAColocar;
-import fiuba.AlgoChess.Modelo.Jugador.Jugador;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 import fiuba.AlgoChess.Vista.Errores.NoTieneMasUnidadesParaColocarException;
 import javafx.geometry.Pos;
@@ -19,21 +18,19 @@ import javafx.scene.text.Font;
 
 public class VistaUnidadParaSeleccion extends HBox {
 
-	private Jugador jugador;
-	private Unidad unidad;
+	private CajaDeUnidadesVertical cajaDeUnidades;
+	private ArrayList<Unidad> unidades;
 	private int numeroJugador;
 	private String nombreClase;
 	private Label labelCantidad;
-	private int cantidad = 0;
 	private VistaUnidadSeleccionada unidadSeleccionada;
 
-	public VistaUnidadParaSeleccion(Unidad unidad, int numeroJugador, Jugador jugador,
+	public VistaUnidadParaSeleccion(Unidad unidad, int numeroJugador, CajaDeUnidadesVertical cajaDeUnidades,
 			VistaUnidadSeleccionada unidadSeleccionada) {
 
 		super();
-		this.jugador = jugador;
+		this.cajaDeUnidades = cajaDeUnidades;
 		this.numeroJugador = numeroJugador;
-		this.unidad = unidad;
 		this.nombreClase = unidad.getClass().getSimpleName();
 		this.unidadSeleccionada = unidadSeleccionada;
 
@@ -90,37 +87,30 @@ public class VistaUnidadParaSeleccion extends HBox {
 
 	private void cargarCantidadUnidades() {
 
-		ArrayList<Unidad> unidades = this.jugador.getUnidades();
-
-		for (Unidad unidad : unidades) {
-
-			String claseUnidad = unidad.getClass().getSimpleName();
-			if (this.nombreClase == claseUnidad) {
-
-				this.cantidad++;
-			}
-		}
-
-		this.labelCantidad = new Label("Cantidad: " + this.cantidad);
+		this.unidades = this.cajaDeUnidades.getUnidades(this.nombreClase);
+		
+		this.labelCantidad = new Label("Cantidad: " + this.unidades.size());
 	}
 
 	public Unidad quitarUnidad() {
 
-		if (this.cantidad > 0) {
-			this.cantidad--;
+		Unidad unidad;
+		
+		if(!this.unidades.isEmpty()) {
+			unidad = this.unidades.remove(0);
 		} else {
 			throw new NoTieneMasUnidadesParaColocarException();
 		}
 
-		this.labelCantidad.setText("Cantidad: " + this.cantidad);
+		this.labelCantidad.setText("Cantidad: " + this.unidades.size());
 		
-		return this.unidad;
+		return unidad;
 	}
 
-	public void agregarUnidad() {
+	public void agregarUnidad(Unidad unidad) {
 
-		this.cantidad++;
-		this.labelCantidad.setText("Cantidad: " + this.cantidad);
+		this.unidades.add(unidad);
+		this.labelCantidad.setText("Cantidad: " + this.unidades.size());
 	}
 
 	public ImageView getImagen(int alto, int ancho) {
