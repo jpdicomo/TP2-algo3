@@ -1,6 +1,5 @@
 package fiuba.AlgoChess.Modelo.Unidad;
 
-import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
 import fiuba.AlgoChess.Modelo.Ubicacion.*;
 import org.junit.Assert;
 import org.junit.Test;
@@ -9,6 +8,7 @@ import fiuba.AlgoChess.Modelo.Errores.CasilleroOcupadoException;
 import fiuba.AlgoChess.Modelo.Errores.DesplazamientoInvalidoExcepcion;
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
 import fiuba.AlgoChess.Modelo.Tablero.Tablero;
+
 
 public class BatallonTest {
 
@@ -37,7 +37,6 @@ public class BatallonTest {
         Assert.assertEquals(soldado1, tablero.seleccionarUnidad(posicionFinal1));
         Assert.assertEquals(soldado2, tablero.seleccionarUnidad(posicionFinal2));
     }
-
 
 
     @Test
@@ -161,6 +160,9 @@ public class BatallonTest {
     }
 
 
+    /*
+     * Nota: este test es muy parecido (capz igual al test 02)
+     */
     @Test
     public void Test05SeMueveUnBatallonYUnSoldadoDelMismoQuedaBloqueado(){
 
@@ -194,7 +196,7 @@ public class BatallonTest {
 
 
     @Test (expected = CasilleroOcupadoException.class)
-    public void Test05NoSeMueveUnBatallonDondeUnSoldadoDelMismoQuedaBloqueadoYElBatallonSeDesarma(){
+    public void Test05SeMueveUnBatallonDondeUnSoldadoDelMismoQuedaBloqueadoYElBatallonSeDesarma(){
 
         Bando bandoJose = new Bando();
         Bando bandoJuan = new Bando();
@@ -338,33 +340,29 @@ public class BatallonTest {
         Bando bandoJuan = new Bando();
 
         Tablero tablero = new Tablero(bandoJose, bandoJuan);
-        Soldado soldado1 = new Soldado(bandoJose);
+        Soldado soldado1 = new Soldado(bandoJuan);
         Soldado soldado2 = new Soldado(bandoJose);
-        Soldado soldado3 = new Soldado(bandoJose);
-        Soldado soldado4 = new Soldado(bandoJuan);
-        Soldado soldado5 = new Soldado(bandoJuan);
+        Soldado soldado3 = new Soldado(bandoJuan);
 
-        Posicion posicion1 = new Posicion(2,0);
-        Posicion posicion2 = new Posicion(1,1);
-        Posicion posicion3 = new Posicion(0,2);
+        Posicion posicion1 = new Posicion(10,0);
+        Posicion posicion2 = new Posicion(9,1);
+        Posicion posicion3 = new Posicion(10,2);
 
         Direccion direccion = new Norte();
 
-        tablero.agregarUnidad(soldado1, posicion1);
+        tablero.agregarNuevaUnidad(soldado1, posicion1);
         tablero.agregarNuevaUnidad(soldado2, posicion2);
         tablero.agregarNuevaUnidad(soldado3, posicion3);
 
-        tablero.quitarUnidad(posicion1);
-        tablero.quitarUnidad(posicion3);
-
-        tablero.agregarUnidad(soldado4, posicion1);
-        tablero.agregarUnidad(soldado5, posicion3);
-
+        // Hago que se paren todos juntos
         tablero.moverUnidad(posicion2, direccion);
+ 
+        // Se mueve solo el soldado2 porque no hay batallon
+        tablero.moverUnidad(new Posicion(10, 1), direccion);
 
-        Assert.assertEquals(soldado4, tablero.seleccionarUnidad(new Posicion(2,0)));
-        Assert.assertEquals(soldado2, tablero.seleccionarUnidad(new Posicion(2,1)));
-        Assert.assertEquals(soldado5, tablero.seleccionarUnidad(new Posicion(0,2)));
+        Assert.assertEquals(soldado1, tablero.seleccionarUnidad(new Posicion(10,0)));
+        Assert.assertEquals(soldado2, tablero.seleccionarUnidad(new Posicion(11,1)));
+        Assert.assertEquals(soldado3, tablero.seleccionarUnidad(new Posicion(10,2)));
     }
 
     @Test
@@ -378,21 +376,26 @@ public class BatallonTest {
         Soldado soldado2 = new Soldado(bandoJose);
         Soldado soldado3 = new Soldado(bandoJuan);
 
-        Posicion posicion1 = new Posicion(2,0);
-        Posicion posicion2 = new Posicion(1,1);
-        Posicion posicion3 = new Posicion(0,2);
+        Posicion posicion1 = new Posicion(9,0);
+        Posicion posicion2 = new Posicion(9,1);
+        Posicion posicion3 = new Posicion(10,2);
 
         Direccion direccion = new Norte();
 
-        tablero.agregarUnidad(soldado1, posicion1);
-        tablero.agregarUnidad(soldado2, posicion2);
-        tablero.agregarUnidad(soldado3, posicion3);
+        tablero.agregarNuevaUnidad(soldado1, posicion1);
+        tablero.agregarNuevaUnidad(soldado2, posicion2);
+        tablero.agregarNuevaUnidad(soldado3, posicion3);
 
+        // Ubico los soldados de Jose junto al de Juan
+        tablero.moverUnidad(posicion1, direccion);
         tablero.moverUnidad(posicion2, direccion);
 
-        Assert.assertEquals(soldado1, tablero.seleccionarUnidad(new Posicion(2,0)));
-        Assert.assertEquals(soldado2, tablero.seleccionarUnidad(new Posicion(2,1)));
-        Assert.assertEquals(soldado3, tablero.seleccionarUnidad(new Posicion(0,2)));
+        // Se mueve solo el soldado del medio porque no hay batallon
+        tablero.moverUnidad(new Posicion(10, 1), direccion);
+        
+        Assert.assertEquals(soldado1, tablero.seleccionarUnidad(new Posicion(10,0)));
+        Assert.assertEquals(soldado2, tablero.seleccionarUnidad(new Posicion(11,1)));
+        Assert.assertEquals(soldado3, tablero.seleccionarUnidad(new Posicion(10,2)));
     }
 
 
@@ -454,8 +457,11 @@ public class BatallonTest {
     }
 
 
+    /*
+     * Este test es IDENTICO al test 05 (el primero) arreglar numeracion.
+     */
     @Test (expected = CasilleroOcupadoException.class)
-    public void Test14NoSeMueveUnBatallonDondeUnSoldadoDelMismoQuedaBloqueadoYElBatallonSeDesarma(){
+    public void Test14SeMueveUnBatallonDondeUnSoldadoDelMismoQuedaBloqueadoYElBatallonSeDesarma(){
 
         Bando bandoJose = new Bando();
         Bando bandoJuan = new Bando();
@@ -466,9 +472,10 @@ public class BatallonTest {
         Soldado soldado3 = new Soldado(bandoJose);
         Soldado soldado4 = new Soldado(bandoJose);
 
-        Posicion posicion1 = new Posicion(0,0);
-        Posicion posicion2 = new Posicion(1,0);
-        Posicion posicion3 = new Posicion(2,0);
+        Posicion posicion1 = new Posicion(0, 0);
+        Posicion posicion2 = new Posicion(1, 0);
+        Posicion posicion3 = new Posicion(2, 0);
+        Posicion posicion4 = new Posicion(1, 1);
 
 
         Direccion direccion = new Norte();
@@ -476,6 +483,7 @@ public class BatallonTest {
         tablero.agregarNuevaUnidad(soldado1, posicion1);
         tablero.agregarNuevaUnidad(soldado2, posicion2);
         tablero.agregarNuevaUnidad(soldado3, posicion3);
+        tablero.agregarNuevaUnidad(soldado4, posicion4);
 
 
         tablero.moverUnidad(posicion2, direccion);

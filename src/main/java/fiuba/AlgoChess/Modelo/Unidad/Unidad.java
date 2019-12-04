@@ -62,8 +62,9 @@ public abstract class Unidad {
 	}
 
 
-	public void interactuarConUnAliado(Unidad aliada){
-		this.bando.interactuarConUnAliado(aliada);
+	public void interactuarConUnAliado(Unidad unidadAliada){
+		
+		this.bando.interactuarConUnAliado(unidadAliada);
 	}
 
 

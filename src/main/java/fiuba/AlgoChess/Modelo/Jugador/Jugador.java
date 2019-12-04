@@ -59,33 +59,7 @@ public class Jugador {
 	public void elegirUnidad(Unidad unidad) {
 
 		this.bando.interactuarConUnAliado(unidad);
-	}	
-//
-//		Scanner consola = new Scanner(System.in);
-//
-//		try{
-//			System.out.print("Ingresa fila: ");
-//
-//			int y = consola.nextInt();
-//
-//			System.out.print("\nIngresa columna: ");
-//
-//			int x = consola.nextInt();
-//			Posicion pos = new Posicion(x,y);//x,y
-//
-//			Casillero casilleroSeleccionado = tablero.getCasillero(pos);
-//			Unidad unidadSeleccionada = casilleroSeleccionado.getUnidad();
-//
-//			unidadSeleccionada.interactuarConUnAliado(this.bando);
-//
-//			return new Posicion(x,y);//x,y
-//
-//		}catch(DistintoBandoException error) {
-//
-//			return null;
-//		}
-//	}
-
+	}
 
 
 	public int getPuntos() {

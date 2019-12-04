@@ -97,7 +97,7 @@ public class Tablero {
 	}
 	
 	
-	public void agregarUnidad(Unidad unaUnidad, Posicion posicion){//PONGO ESTE METODO COMO PUBLICO
+	private void agregarUnidad(Unidad unaUnidad, Posicion posicion) {
 		
 		Casillero casillero = this.obtenerCasillero(posicion);
 		casillero.agregarUnidad(unaUnidad);

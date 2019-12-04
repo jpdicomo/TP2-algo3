@@ -90,24 +90,26 @@ public class CuranderoTest {
 		Bando bandoJose = new Bando();
 		Bando bandoJuan = new Bando();
 
-		Curandero curandero = new Curandero(bandoJose);
+		Curandero curandero1 = new Curandero(bandoJose);
 		Curandero curandero2 = new Curandero(bandoJose);
 		Soldado soldado = new Soldado(bandoJose);
+		
 		Casillero casillero1 = new Casillero(0, 0, bandoJose);
 		Casillero casillero2 = new Casillero(0, 1, bandoJuan);
 
-		casillero1.agregarUnidad(curandero);
+		casillero1.agregarUnidad(curandero1);
 		casillero2.agregarUnidad(curandero2);
+		
 		casillero2.recibirDanio(75);
-		casillero2.quitarUnidadMuerta();
+		System.out.println(curandero2.getVida() <= 0);
+		System.out.println(casillero2.quitarUnidadMuerta());
+		
 		casillero2.agregarUnidad(soldado);
-
-
 		soldado.recibirDanio(40);
 
-		curandero.interactuarCon(casillero2);
+		curandero1.interactuarCon(casillero2);
 
-		Assert.assertEquals(75,  (int)soldado.getVida());
+		Assert.assertEquals(75, (int) soldado.getVida());
 	}
 
 	@Test

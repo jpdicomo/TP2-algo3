@@ -6,12 +6,12 @@ import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 
 public class Libre extends Estado {
 
-	/*
+	
 	@Override
 	public void agregarUnidad(Unidad unaUnidad, Bando bando) {
 		
 		bando.interactuarConUnAliado(unaUnidad);
-	}*/
+	}
 
 	
 	@Override
