@@ -14,25 +14,21 @@ public class BotonSoltarUnidad implements EventHandler<ActionEvent> {
 	private Media sonido;
 	private MediaPlayer reproductor;
 
-
 	public BotonSoltarUnidad(VistaUnidadSeleccionada unidadSeleccionada) {
 
 		this.unidadSeleccionada = unidadSeleccionada;
 	}
-	
-	
+
 	@Override
 	public void handle(ActionEvent event) {
-		
+
 		this.unidadSeleccionada.soltarUnidad();
 		this.reproducirSonido();
 	}
-	
-	
+
 	private void reproducirSonido() {
 
-		this.sonido = new Media(new File("./recursos/sonidos/soltarUnidad.wav")
-				.toURI().toString());
+		this.sonido = new Media(new File("./recursos/sonidos/soltarUnidad.wav").toURI().toString());
 		this.reproductor = new MediaPlayer(sonido);
 
 		this.reproductor.stop();
