@@ -50,8 +50,8 @@ public class ClickParaSeleccionarUnidad implements EventHandler<ActionEvent> {
 			
 		} catch (DistintoBandoException e) {
 			
-			Alert alertaUnidadInvalida = new AlertaDistintoBandoAlElegirUnidad();
-			alertaUnidadInvalida.showAndWait();
+			AlertaDistintoBandoAlElegirUnidad alertaUnidadInvalida = new AlertaDistintoBandoAlElegirUnidad();
+			alertaUnidadInvalida.mostrarAlerta();
 		}
 	}
 }

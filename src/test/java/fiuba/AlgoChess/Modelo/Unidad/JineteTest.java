@@ -148,7 +148,6 @@ public class JineteTest {
 		Jinete jinete1 = new Jinete(bandoJose);
 		Jinete jinete2 = new Jinete(bandoJuan);
 		Jinete jinete3 = new Jinete(bandoJose);
-		Jinete jinete4 = new Jinete(bandoJose);
 
 		Casillero casillero1 = new Casillero(0, 0, bandoJose);
 		Casillero casillero3 = new Casillero(1, 0, bandoJose);
@@ -161,7 +160,7 @@ public class JineteTest {
 
 		jinete1.interactuarCon(casillero2);
 
-		Assert.assertEquals(100 - 5, (int)jinete2.getVida());
+		Assert.assertEquals(100 - 5, (int) jinete2.getVida());
 	}
 
 
