@@ -59,7 +59,7 @@ public class TableroTest {
     
 
     @Test (expected = DistintoBandoException.class)
-    public void Test02SeColocaUnaUnidadEnElTableroEnElLadoEnemigoYTiraError(){
+    public void Test02SeColocaUnaUnidadEnElTableroEnElLadoEnemigoAlInicioDelJuegoYTiraError(){
     	
     	Bando bandoJose = new Bando();
     	Bando bandoJuan = new Bando();
