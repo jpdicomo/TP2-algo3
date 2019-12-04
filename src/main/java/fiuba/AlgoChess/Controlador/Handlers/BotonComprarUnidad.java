@@ -6,9 +6,10 @@ import fiuba.AlgoChess.Modelo.Jugador.Jugador;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.media.*;
 import java.io.File;
 import javafx.scene.control.Label;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class BotonComprarUnidad implements EventHandler<ActionEvent> {
 

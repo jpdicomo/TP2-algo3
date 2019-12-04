@@ -1,5 +1,7 @@
 package fiuba.AlgoChess.Controlador.Handlers;
 
+import java.io.File;
+
 import fiuba.AlgoChess.Controlador.Alertas.*;
 import fiuba.AlgoChess.Modelo.Errores.*;
 import fiuba.AlgoChess.Modelo.Ubicacion.Posicion;
@@ -9,7 +11,8 @@ import fiuba.AlgoChess.Vista.Tablero.VistaDatosUnidad;
 import fiuba.AlgoChess.Vista.Tablero.VistaTablero;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Alert;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class ClickParaSeleccionarUnidadAAtacar implements EventHandler<ActionEvent> {
 
@@ -17,6 +20,8 @@ public class ClickParaSeleccionarUnidadAAtacar implements EventHandler<ActionEve
 	private Posicion posicionAtacante;
 	private VistaTablero tablero;
 	private VistaCasillero casillero;
+	private Media sonido;
+	private MediaPlayer reproductor;
 
 	public ClickParaSeleccionarUnidadAAtacar(VistaDatosUnidad unidadElegida, Posicion posicion, VistaTablero tablero,
 			VistaCasillero casillero) {
@@ -29,50 +34,61 @@ public class ClickParaSeleccionarUnidadAAtacar implements EventHandler<ActionEve
 
 	@Override
 	public void handle(ActionEvent event) {
-		
+
 		boolean fallo = true;
 
 		try {
-			
+
 			Unidad unidadAtacante = this.unidadElegida.getUnidad();
 			unidadAtacante.interactuarCon(this.casillero.getCasillero());
 			this.unidadElegida.agregarAtacante();
+			this.reproducirSonido(unidadAtacante);
 			fallo = false;
-			
+
 		} catch (MismaUnidadException e) {
 
-			Alert alertaNoPoderUsarTuPoderConVos = new AlertaNoPoderUsarTuPoderConVos();
-			alertaNoPoderUsarTuPoderConVos.showAndWait();
-			
+			AlertaNoPoderUsarTuPoderConVos alertaNoPoderUsarTuPoderConVos = new AlertaNoPoderUsarTuPoderConVos();
+			alertaNoPoderUsarTuPoderConVos.mostrarAlerta();
+
 		} catch (MismoBandoException e) {
-			
-			Alert alertaAtaqueAAliado = new AlertaAtaqueAMismoBando();
-			alertaAtaqueAAliado.showAndWait();
-			
+
+			AlertaAtaqueAMismoBando alertaAtaqueAAliado = new AlertaAtaqueAMismoBando();
+			alertaAtaqueAAliado.mostrarAlerta();
+
 		} catch (DistintoBandoException e) {
-			
-			Alert alertaIntentoCurarAEnemigo = new AlertaCuracionABandoEnemigo();
-			alertaIntentoCurarAEnemigo.showAndWait();
-			
+
+			AlertaCuracionABandoEnemigo alertaIntentoCurarAEnemigo = new AlertaCuracionABandoEnemigo();
+			alertaIntentoCurarAEnemigo.mostrarAlerta();
+
 		} catch (CasilleroLibreException e) {
-			
-			Alert alertaCasilleroLibre = new AlertaCasilleroVacio();
-			alertaCasilleroLibre.showAndWait();
-			
+
+			AlertaCasilleroVacio alertaCasilleroLibre = new AlertaCasilleroVacio();
+			alertaCasilleroLibre.mostrarAlerta();
+
 		} catch (DistanciaInvalidaException e) {
-			
-			Alert alertaDistanciaInvalida = new AlertaDistanciaInvalida();
-			alertaDistanciaInvalida.showAndWait();
-			
+
+			AlertaDistanciaInvalida alertaDistanciaInvalida = new AlertaDistanciaInvalida();
+			alertaDistanciaInvalida.mostrarAlerta();
+
 		} finally {
-			
+
 			this.tablero.actualizarTablero();
 
-			if(fallo) {
+			if (fallo) {
 				this.tablero.comportamientoDeAtaque(this.posicionAtacante);
 			} else {
 				this.tablero.comportamientoSeleccionarUnidad();
 			}
 		}
+	}
+
+	private void reproducirSonido(Unidad unidadAtacante) {
+
+		this.sonido = new Media(new File("./recursos/sonidos/" + unidadAtacante.getClass().getSimpleName() + ".wav")
+				.toURI().toString());
+		this.reproductor = new MediaPlayer(sonido);
+
+		this.reproductor.stop();
+		this.reproductor.play();
 	}
 }

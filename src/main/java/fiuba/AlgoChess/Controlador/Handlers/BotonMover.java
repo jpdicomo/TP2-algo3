@@ -1,5 +1,7 @@
 package fiuba.AlgoChess.Controlador.Handlers;
 
+import java.io.File;
+
 import fiuba.AlgoChess.Controlador.Alertas.AlertaCatapultaNoPuedeMoverse;
 import fiuba.AlgoChess.Controlador.Alertas.AlertaMovimientoACasilleroOcupado;
 import fiuba.AlgoChess.Controlador.Alertas.AlertaMovimientoInvalido;
@@ -13,7 +15,8 @@ import fiuba.AlgoChess.Vista.Tablero.VistaDatosUnidad;
 import fiuba.AlgoChess.Vista.Tablero.VistaTablero;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Alert;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class BotonMover implements EventHandler<ActionEvent> {
 
@@ -21,17 +24,17 @@ public class BotonMover implements EventHandler<ActionEvent> {
 	private Direccion direccion;
 	private VistaTablero tablero;
 	private VistaDatosUnidad unidadElegida;
-	
-	
+	private Media sonido;
+	private MediaPlayer reproductor;
+
 	public BotonMover(Posicion posicion, Direccion direccion, VistaTablero tablero, VistaDatosUnidad unidadElegida) {
-		
+
 		this.posicion = posicion;
 		this.direccion = direccion;
 		this.tablero = tablero;
 		this.unidadElegida = unidadElegida;
 	}
-	
-	
+
 	@Override
 	public void handle(ActionEvent event) {
 
@@ -39,29 +42,38 @@ public class BotonMover implements EventHandler<ActionEvent> {
 
 			this.tablero.getTablero().moverUnidad(this.posicion, this.direccion);
 			this.unidadElegida.apagarBotonMover();
-		
+			this.reproducirSonido();
+
 		} catch (DesplazamientoInvalidoExcepcion | PosicionInvalidaException e) {
-			
-			Alert alertaMovimientoInvalido = new AlertaMovimientoInvalido();
-			alertaMovimientoInvalido.showAndWait();
-			
+
+			AlertaMovimientoInvalido alertaMovimientoInvalido = new AlertaMovimientoInvalido();
+			alertaMovimientoInvalido.mostrarAlerta();
+
 		} catch (CasilleroOcupadoException e) {
-			
-			Alert alertaMovimientoInvalido = new AlertaMovimientoACasilleroOcupado();
-			alertaMovimientoInvalido.showAndWait();
-			
+
+			AlertaMovimientoACasilleroOcupado alertaMovimientoInvalido = new AlertaMovimientoACasilleroOcupado();
+			alertaMovimientoInvalido.mostrarAlerta();
+
 		} catch (CatapultaNoPuedeSerMovidaException e) {
-			
-			Alert alertaCatapultaNoPuedeSerMovida = new AlertaCatapultaNoPuedeMoverse();
-			alertaCatapultaNoPuedeSerMovida.showAndWait();
-			
+
+			AlertaCatapultaNoPuedeMoverse alertaCatapultaNoPuedeSerMovida = new AlertaCatapultaNoPuedeMoverse();
+			alertaCatapultaNoPuedeSerMovida.mostrarAlerta();
+
 		} finally {
-			
+
 			this.tablero.actualizarTablero();
 			this.tablero.comportamientoSeleccionarUnidad();
 		}
 	}
 	
 	
+	private void reproducirSonido() {
 
+		this.sonido = new Media(new File("./recursos/sonidos/moverUnidad.wav")
+				.toURI().toString());
+		this.reproductor = new MediaPlayer(sonido);
+
+		this.reproductor.stop();
+		this.reproductor.play();
+	}
 }

@@ -1,11 +1,9 @@
 package fiuba.AlgoChess.Controlador.Handlers;
 
-import fiuba.AlgoChess.Controlador.Alertas.AlertaAtaqueCancelado;
 import fiuba.AlgoChess.Modelo.Ubicacion.Posicion;
 import fiuba.AlgoChess.Vista.Tablero.VistaTablero;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Alert;
 
 public class BotonAtacar implements EventHandler<ActionEvent> {
 

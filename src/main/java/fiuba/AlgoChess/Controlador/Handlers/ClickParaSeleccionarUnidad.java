@@ -4,7 +4,6 @@ import fiuba.AlgoChess.Controlador.Alertas.AlertaCasilleroVacio;
 import fiuba.AlgoChess.Controlador.Alertas.AlertaDistintoBandoAlElegirUnidad;
 import fiuba.AlgoChess.Modelo.Errores.CasilleroLibreException;
 import fiuba.AlgoChess.Modelo.Errores.DistintoBandoException;
-import fiuba.AlgoChess.Modelo.Tablero.Tablero;
 import fiuba.AlgoChess.Modelo.Ubicacion.Posicion;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 import fiuba.AlgoChess.Vista.Juego.Main;

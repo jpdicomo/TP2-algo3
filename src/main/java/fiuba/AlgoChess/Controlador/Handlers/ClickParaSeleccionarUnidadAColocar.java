@@ -29,15 +29,15 @@ public class ClickParaSeleccionarUnidadAColocar implements EventHandler<ActionEv
 			this.vistaSeleccionada.agregarUnidad(this.vistaUnidad);
 
 		} catch (NoTieneMasUnidadesParaColocarException e) {
-			
+
 			AlertaNoTieneMasUnidades alertaNoTieneMasUnidades = new AlertaNoTieneMasUnidades();
-			alertaNoTieneMasUnidades.showAndWait();
+			alertaNoTieneMasUnidades.mostrarAlerta();
 			return;
-			
+
 		} catch (YaTieneUnaUnidadSeleccionadaException e) {
-			
+
 			AlertaYaTieneUnaUnidadSeleccionada alertaTieneUnaUnidadSeleccionada = new AlertaYaTieneUnaUnidadSeleccionada();
-			alertaTieneUnaUnidadSeleccionada.showAndWait();
+			alertaTieneUnaUnidadSeleccionada.mostrarAlerta();
 			return;
 		}
 	}
