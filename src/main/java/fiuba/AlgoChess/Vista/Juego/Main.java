@@ -119,49 +119,49 @@ public class Main extends Application {
 
 		// Titulo
 		Label labelTitulo = new Label("Ingresen sus nombres");
-		labelTitulo.setFont(Font.font("Times New Roman", 48));
+		labelTitulo.setFont(Font.font("Times New Roman", 72)); //48
 		labelTitulo.setTextFill(Color.rgb(255, 255, 255));
 
 		// Jugador 1
 		Label labelJugador1 = new Label("Jugador 1");
-		labelJugador1.setFont(Font.font("TimesNewRoman", 20));
+		labelJugador1.setFont(Font.font("Times New Roman", 30));
 		labelJugador1.setTextFill(Color.rgb(255, 255, 255));
 		TextField nombreJugador1 = new TextField();
 		nombreJugador1.setPromptText("Ingresa tu nombre");
-		nombreJugador1.setFont(Font.font("TimesNewRoman", 20));
+		nombreJugador1.setFont(Font.font("Times New Roman", 20));
 
 		// Jugador 2
 		Label labelJugador2 = new Label("Jugador 2");
-		labelJugador2.setFont(Font.font("TimesNewRoman", 20));
+		labelJugador2.setFont(Font.font("Times New Roman", 30));
 		labelJugador2.setTextFill(Color.rgb(255, 255, 255));
 		TextField nombreJugador2 = new TextField();
 		nombreJugador2.setPromptText("Ingresa tu nombre");
-		nombreJugador2.setFont(Font.font("TimesNewRoman", 20));
+		nombreJugador2.setFont(Font.font("Times New Roman", 20));
 
-		Button botonComenzar = new Button("¡Comenzar Juego!");
+		Button botonComenzar = new Button("Comenzar Juego");
 		botonComenzar.setFont(Font.font("Verdana", 20));
 		botonComenzar.setOnAction(new BotonComenzarJuego(nombreJugador1, nombreJugador2, this));
 
 		// Creacion de las XBox
 		HBox labelJugadores = new HBox(labelJugador1, labelJugador2);
 		labelJugadores.setAlignment(Pos.CENTER);
-		labelJugadores.setSpacing(1000);
+		labelJugadores.setSpacing(450);
 
 		HBox cuadrosDeTexto = new HBox(nombreJugador1, nombreJugador2);
 		cuadrosDeTexto.setAlignment(Pos.CENTER);
-		cuadrosDeTexto.setSpacing(760);
+		cuadrosDeTexto.setSpacing(200);
 
 		VBox contenedorJugadores = new VBox(labelJugadores, cuadrosDeTexto);
 		contenedorJugadores.setAlignment(Pos.CENTER);
-		contenedorJugadores.setSpacing(15);
+		contenedorJugadores.setSpacing(20);
 
 		VBox contenedorConBoton = new VBox(contenedorJugadores, botonComenzar);
 		contenedorConBoton.setAlignment(Pos.CENTER);
-		contenedorConBoton.setSpacing(100);
+		contenedorConBoton.setSpacing(150);
 
 		VBox contenedorPrincipal = new VBox(labelTitulo, contenedorConBoton);
 		contenedorPrincipal.setAlignment(Pos.CENTER);
-		contenedorPrincipal.setSpacing(500);
+		contenedorPrincipal.setSpacing(450);
 		
 		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo2.png", 1920, 1080));
 		// Poner musica
