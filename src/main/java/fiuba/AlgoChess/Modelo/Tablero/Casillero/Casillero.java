@@ -87,6 +87,7 @@ public class Casillero {
 			if(this.estado.getUnidad().getVida() <= 0) {
 
 				this.estado.quitarUnidad();
+				estado = new Libre();
 				return true;
 			}else{
 				return false;

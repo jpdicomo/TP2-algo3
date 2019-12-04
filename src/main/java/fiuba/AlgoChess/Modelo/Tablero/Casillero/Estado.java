@@ -10,7 +10,7 @@ public abstract class Estado {
 
 	
 	public void agregarUnidad(Unidad unaUnidad, Bando bando) {
-
+		bando.interactuarConUnAliado(unaUnidad);
 		this.agregarUnidad(unaUnidad);
 	}
 

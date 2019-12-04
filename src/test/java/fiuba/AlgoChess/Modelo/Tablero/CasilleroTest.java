@@ -12,7 +12,7 @@ import org.junit.Test;
 public class CasilleroTest {
 
 	@Test
-	public void Test00SeColocaEntidadEnCasilleroLibre() {
+	public void Test00SeColocaEntidadEnCasilleroDeMismoBandoQueEstaLibre() {
 
 		Bando bandoJose = new Bando();
 		Casillero casillero = new Casillero(1, 1, bandoJose);
@@ -33,11 +33,13 @@ public class CasilleroTest {
 		casillero.agregarNuevaUnidad(jinete);
 
 		Jinete otroJinete = new Jinete(bandoJose);
-		casillero.agregarNuevaUnidad(otroJinete);
+		casillero.agregarUnidad(otroJinete);
+
+
 	}
 
 	@Test(expected = DistintoBandoException.class)
-	public void Test02NoSeColocaEntidadAliadaEnCasilleroEnemigo() {
+	public void Test02NoSeColocaEntidadAliadaEnCasilleroEnemigoDesocupadoEnElComienzoDelJuego() {
 
 		Bando bandoJose = new Bando();
 		Bando bandoJuan = new Bando();
@@ -88,7 +90,7 @@ public class CasilleroTest {
 		Assert.assertEquals(true, casillero2.quitarUnidadMuerta());
 	}
 	@Test
-	public void Test05NoSeQuitaUnidadQueMuertaDeSuCasillero() {
+	public void Test05NoSeQuitaUnidadQueNoEstanMuertasDeSuCasillero() {
 
 
 		Bando bandoJose = new Bando();
@@ -109,6 +111,28 @@ public class CasilleroTest {
 		Assert.assertEquals(false, casillero2.quitarUnidadMuerta());
 	}
 
+	@Test
+	public void Test06SeColocaEntidadEnCasilleroDeDistintoBandoLuegoDeComenzadoElJuego() {
+
+		Bando bandoJose = new Bando();
+		Bando bandoJuan = new Bando();
+
+		Jinete jinete1 = new Jinete(bandoJose);
+		Jinete jinete2 = new Jinete(bandoJuan);
+
+		Casillero casillero1 = new Casillero(0, 0, bandoJose);
+		Casillero casillero2 = new Casillero(0, 4, bandoJuan);
+
+		casillero1.agregarNuevaUnidad(jinete1);
+		casillero2.agregarNuevaUnidad(jinete2);
+
+		for(int i= 0; i < 10; i++){ jinete1.interactuarCon(casillero2);}
+
+		casillero2.quitarUnidadMuerta();
+		casillero2.agregarUnidad(jinete1);
+		Assert.assertEquals(jinete1, casillero1.getUnidad());
+
+	}
 
 
 
