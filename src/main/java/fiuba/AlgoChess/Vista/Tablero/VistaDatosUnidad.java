@@ -59,14 +59,9 @@ public class VistaDatosUnidad extends VBox {
 		Label vida = new Label("Vida: " + unidad.getVida());
 		vida.setFont(Font.font("Times New Roman", 16));
 		
-		Label posicion = new Label(this.posicion.convertirATexto());
-		posicion.setFont(Font.font("Times New Roman", 11));
-		
-		
 		this.getChildren().add(nombre);
 		this.getChildren().add(this.agregarImagenUnidad());
 		this.getChildren().add(vida);
-		this.getChildren().add(posicion);
 		this.setAlignment(Pos.CENTER);
 		this.setSpacing(35);
 	}

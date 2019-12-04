@@ -2,10 +2,8 @@ package fiuba.AlgoChess.Vista.Juego.Colocacion;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
 import fiuba.AlgoChess.Controlador.Handlers.ClickParaSeleccionarUnidadAColocar;
-import fiuba.AlgoChess.Modelo.Jugador.Jugador;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 import fiuba.AlgoChess.Vista.Errores.NoTieneMasUnidadesParaColocarException;
 import javafx.geometry.Pos;
@@ -19,19 +17,18 @@ import javafx.scene.text.Font;
 
 public class VistaUnidadParaSeleccion extends HBox {
 
-	private Jugador jugador;
+	private CajaDeUnidadesVertical cajaDeUnidades;
 	private Unidad unidad;
 	private int numeroJugador;
 	private String nombreClase;
 	private Label labelCantidad;
-	private int cantidad = 0;
 	private VistaUnidadSeleccionada unidadSeleccionada;
 
-	public VistaUnidadParaSeleccion(Unidad unidad, int numeroJugador, Jugador jugador,
+	public VistaUnidadParaSeleccion(Unidad unidad, int numeroJugador, CajaDeUnidadesVertical cajaDeUnidades,
 			VistaUnidadSeleccionada unidadSeleccionada) {
 
 		super();
-		this.jugador = jugador;
+		this.cajaDeUnidades = cajaDeUnidades;
 		this.numeroJugador = numeroJugador;
 		this.unidad = unidad;
 		this.nombreClase = unidad.getClass().getSimpleName();
@@ -90,42 +87,44 @@ public class VistaUnidadParaSeleccion extends HBox {
 
 	private void cargarCantidadUnidades() {
 
-		ArrayList<Unidad> unidades = this.jugador.getUnidades();
+		int cantidad = this.cajaDeUnidades.getUnidadesDisponibles(this.nombreClase);
 
-		for (Unidad unidad : unidades) {
-
-			String claseUnidad = unidad.getClass().getSimpleName();
-			if (this.nombreClase == claseUnidad) {
-
-				this.cantidad++;
-			}
-		}
-
-		this.labelCantidad = new Label("Cantidad: " + this.cantidad);
+		this.labelCantidad = new Label("Cantidad: " + cantidad);
 	}
 
 	public Unidad quitarUnidad() {
 
-		if (this.cantidad > 0) {
-			this.cantidad--;
+		int cantidad = this.cajaDeUnidades.getUnidadesDisponibles(this.nombreClase);
+		
+		if (cantidad > 0) {
+			this.cajaDeUnidades.actualizarUnidadesDisponibles(this.nombreClase, -1);
+			cantidad = this.cajaDeUnidades.getUnidadesDisponibles(this.nombreClase);
 		} else {
 			throw new NoTieneMasUnidadesParaColocarException();
 		}
 
-		this.labelCantidad.setText("Cantidad: " + this.cantidad);
+		this.labelCantidad.setText("Cantidad: " + cantidad);
 		
 		return this.unidad;
 	}
 
 	public void agregarUnidad() {
 
-		this.cantidad++;
-		this.labelCantidad.setText("Cantidad: " + this.cantidad);
+		this.cajaDeUnidades.actualizarUnidadesDisponibles(this.nombreClase, 1);
+		int cantidad = this.cajaDeUnidades.getUnidadesDisponibles(this.nombreClase);
+		
+		this.labelCantidad.setText("Cantidad: " + cantidad);
 	}
 
 	public ImageView getImagen(int alto, int ancho) {
 		
 		return this.generarImagenUnidad(alto, ancho);
+	}
+
+	public void actualizarVista() {
+
+
+		this.cajaDeUnidades.recargarVista();
 	}
 
 }

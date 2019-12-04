@@ -27,7 +27,7 @@ public class ClickParaSeleccionarUnidadAColocar implements EventHandler<ActionEv
 		try {
 
 			this.vistaSeleccionada.agregarUnidad(this.vistaUnidad);
-
+			
 		} catch (NoTieneMasUnidadesParaColocarException e) {
 
 			AlertaNoTieneMasUnidades alertaNoTieneMasUnidades = new AlertaNoTieneMasUnidades();

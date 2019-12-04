@@ -54,6 +54,7 @@ public class VistaUnidadSeleccionada extends HBox {
     		throw new NoTieneUnaUnidadSeleccionadaException();
     	}
 		
+		this.vistaUnidad.actualizarVista();
 		this.unidad = null;
 		this.getChildren().clear();
 	}
