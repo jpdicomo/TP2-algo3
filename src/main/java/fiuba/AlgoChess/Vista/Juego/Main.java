@@ -305,12 +305,14 @@ public class Main extends Application {
 	
 	public Scene escenaFinal(int numeroJugador) {
 		
-		this.cambiarMusica("");
-		
-		HBox contenedorPrincipal = new HBox();
+		this.cambiarMusica("./recursos/sonidos/finDelJuego.wav");
+
+		Button botonJugarDenuevo = new Button("Jugar denuevo");
+		botonJugarDenuevo.setOnAction(e -> cambiarEscenaA(escenaBienvenida()));
+
+		HBox contenedorPrincipal = new HBox(botonJugarDenuevo);
 		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/final" + numeroJugador + ".png", 1920, 1080));
 		contenedorPrincipal.setAlignment(Pos.CENTER);
-
 		return new Scene(contenedorPrincipal, 1920, 1080);
 	}
 	
