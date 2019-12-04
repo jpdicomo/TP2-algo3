@@ -79,7 +79,6 @@ public class Casillero {
 	}
 
 
-
 	public boolean quitarUnidadMuerta() {
 
 		try {
@@ -96,12 +95,11 @@ public class Casillero {
 				return false;
 			}
 
-
 		} catch(CasilleroLibreException e ) {
+			
 			return false;
 		}
 	}
-
 
 
 	public void recibirDanio(double danio) {

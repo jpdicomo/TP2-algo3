@@ -120,11 +120,4 @@ public class Posicion {
 		
 		return Math.hypot(x, y);
 	}
-	
-	// para debug
-	public String convertirATexto() {
-		
-		return "fila: " + this.fila + " col: " + this.columna;
-	}
-	
 }

@@ -36,7 +36,7 @@ public class Jugador {
 		}
 	}
 
-
+	
 	private void quitarUnidadesMuertas() {
 
 		for (Unidad unidad : this.unidades) {

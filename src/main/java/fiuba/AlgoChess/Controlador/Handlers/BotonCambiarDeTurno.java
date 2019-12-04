@@ -1,7 +1,9 @@
 package fiuba.AlgoChess.Controlador.Handlers;
 
 import java.io.File;
+import java.util.ArrayList;
 
+import fiuba.AlgoChess.Modelo.Unidad.Unidad;
 import fiuba.AlgoChess.Vista.Juego.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -24,6 +26,22 @@ public class BotonCambiarDeTurno implements EventHandler<ActionEvent> {
 	public void handle(ActionEvent event) {
 		
 		Scene escena;
+		
+		ArrayList<Unidad> unidades = this.main.getJugador(1).getUnidades();
+		
+		for (Unidad unidad : unidades) {
+			
+			System.out.print("1- " + unidad.getClass().getSimpleName() + " " + unidad.getVida());
+			System.out.println(" " + unidad);
+		}
+		
+		unidades = this.main.getJugador(2).getUnidades();
+		
+		for (Unidad unidad : unidades) {
+			
+			System.out.print("2- " + unidad.getClass().getSimpleName() + " " + unidad.getVida());
+			System.out.println(" " + unidad);
+		}
 		
 		if(!this.main.getJugador(1).sigueJugando()) {
 			

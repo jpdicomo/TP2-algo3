@@ -45,8 +45,8 @@ public class ClickParaSeleccionarUnidad implements EventHandler<ActionEvent> {
 
 		} catch (CasilleroLibreException e) {
 
-			Alert alertaCasilleroVacio = new AlertaCasilleroVacio();
-			alertaCasilleroVacio.showAndWait();
+			AlertaCasilleroVacio alertaCasilleroVacio = new AlertaCasilleroVacio();
+			alertaCasilleroVacio.mostrarAlerta();
 			
 		} catch (DistintoBandoException e) {
 			

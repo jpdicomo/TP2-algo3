@@ -315,7 +315,6 @@ public class Tablero {
 			posicionNO = posicion.moveteHaciaElNorOeste();
 			posicionSE = posicion.moveteHaciaElSurEste();
 
-
 			Casillero casilleroNO = this.obtenerCasillero(posicionNO);
 			Casillero casilleroSE = this.obtenerCasillero(posicionSE);
 

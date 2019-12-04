@@ -2,6 +2,7 @@ package fiuba.AlgoChess.Vista.Juego.Colocacion;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 import fiuba.AlgoChess.Controlador.Handlers.ClickParaSeleccionarUnidadAColocar;
 import fiuba.AlgoChess.Modelo.Unidad.Unidad;
@@ -18,7 +19,7 @@ import javafx.scene.text.Font;
 public class VistaUnidadParaSeleccion extends HBox {
 
 	private CajaDeUnidadesVertical cajaDeUnidades;
-	private Unidad unidad;
+	private ArrayList<Unidad> unidades;
 	private int numeroJugador;
 	private String nombreClase;
 	private Label labelCantidad;
@@ -30,7 +31,6 @@ public class VistaUnidadParaSeleccion extends HBox {
 		super();
 		this.cajaDeUnidades = cajaDeUnidades;
 		this.numeroJugador = numeroJugador;
-		this.unidad = unidad;
 		this.nombreClase = unidad.getClass().getSimpleName();
 		this.unidadSeleccionada = unidadSeleccionada;
 
@@ -87,44 +87,35 @@ public class VistaUnidadParaSeleccion extends HBox {
 
 	private void cargarCantidadUnidades() {
 
-		int cantidad = this.cajaDeUnidades.getUnidadesDisponibles(this.nombreClase);
-
-		this.labelCantidad = new Label("Cantidad: " + cantidad);
+		this.unidades = this.cajaDeUnidades.getUnidades(this.nombreClase);
+		
+		this.labelCantidad = new Label("Cantidad: " + this.unidades.size());
 	}
 
 	public Unidad quitarUnidad() {
 
-		int cantidad = this.cajaDeUnidades.getUnidadesDisponibles(this.nombreClase);
+		Unidad unidad;
 		
-		if (cantidad > 0) {
-			this.cajaDeUnidades.actualizarUnidadesDisponibles(this.nombreClase, -1);
-			cantidad = this.cajaDeUnidades.getUnidadesDisponibles(this.nombreClase);
+		if(!this.unidades.isEmpty()) {
+			unidad = this.unidades.remove(0);
 		} else {
 			throw new NoTieneMasUnidadesParaColocarException();
 		}
 
-		this.labelCantidad.setText("Cantidad: " + cantidad);
+		this.labelCantidad.setText("Cantidad: " + this.unidades.size());
 		
-		return this.unidad;
+		return unidad;
 	}
 
-	public void agregarUnidad() {
+	public void agregarUnidad(Unidad unidad) {
 
-		this.cajaDeUnidades.actualizarUnidadesDisponibles(this.nombreClase, 1);
-		int cantidad = this.cajaDeUnidades.getUnidadesDisponibles(this.nombreClase);
-		
-		this.labelCantidad.setText("Cantidad: " + cantidad);
+		this.unidades.add(unidad);
+		this.labelCantidad.setText("Cantidad: " + this.unidades.size());
 	}
 
 	public ImageView getImagen(int alto, int ancho) {
 		
 		return this.generarImagenUnidad(alto, ancho);
-	}
-
-	public void actualizarVista() {
-
-
-		this.cajaDeUnidades.recargarVista();
 	}
 
 }
