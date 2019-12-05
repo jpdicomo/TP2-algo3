@@ -37,17 +37,17 @@ public class VistaUnidadParaSeleccion extends HBox {
 		this.cargarCantidadUnidades();
 		Label nombre = new Label(this.nombreClase);
 
-		nombre.setFont(Font.font("Times New Roman", 20));
-		labelCantidad.setFont(Font.font("Times New Roman", 16));
+		nombre.setFont(Font.font("Times New Roman", 30)); //20
+		labelCantidad.setFont(Font.font("Times New Roman", 24)); //16
 
 		VBox datosUnidad = new VBox(nombre, labelCantidad);
 		datosUnidad.setAlignment(Pos.CENTER_LEFT);
-		datosUnidad.setSpacing(10);
+		datosUnidad.setSpacing(20);
 
 		this.getChildren().add(this.cargarImagenUnidad());
 		this.getChildren().add(datosUnidad);
 		this.setAlignment(Pos.CENTER);
-		this.setSpacing(15);
+		this.setSpacing(20);
 	}
 
 	private ToggleButton cargarImagenUnidad() {
@@ -60,7 +60,7 @@ public class VistaUnidadParaSeleccion extends HBox {
 	
 	private ImageView generarImagenUnidad() {
 		
-		return this.generarImagenUnidad(80, 80);
+		return this.generarImagenUnidad(110, 110);  //80,80
 	}
 	
 	private ImageView generarImagenUnidad(int alto, int ancho) {

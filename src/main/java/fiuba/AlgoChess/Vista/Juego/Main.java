@@ -217,11 +217,16 @@ public class Main extends Application {
 		return new Scene(contenedorPrincipal, 1920, 1080);
 	}
 
+	
+	// Lista.
 	public Scene escenaColocarUnidades(int numeroJugador) {
 
+		// Titulo
+		Label titulo = new Label("Coloca tus unidades");
+		titulo.setFont(Font.font("Times New Roman", 40));
+		
 		// Caja de unidades
 		VistaUnidadSeleccionada unidadSeleccionada = new VistaUnidadSeleccionada();
-		unidadSeleccionada.setMinSize(200, 85);
 		CajaDeUnidadesVertical cajaUnidades = new CajaDeUnidadesVertical(this, numeroJugador, unidadSeleccionada);
 
 		// Tablero
@@ -229,7 +234,8 @@ public class Main extends Application {
 		tablero.compartamientoColocarUnidades(unidadSeleccionada);
 
 		// Boton para terminar de colocar unidades.
-		Button botonTerminarColocacion = new Button("Termine de Colocar");
+		Button botonTerminarColocacion = new Button("Termine");
+		botonTerminarColocacion.setFont(Font.font("Verdana", 20));
 
 		if (numeroJugador != 2) {
 			botonTerminarColocacion.setOnAction(new BotonCambiarAEscenaColocarUnidades2(this));
@@ -238,23 +244,24 @@ public class Main extends Application {
 		}
 
 		// Creo las cajas.
-		VBox cajaDeUnidades = new VBox(cajaUnidades, unidadSeleccionada, botonTerminarColocacion);
-		cajaDeUnidades.setMinSize(200, 700);
-		cajaDeUnidades.setMaxSize(200, 700);
+		VBox cajaDeUnidades = new VBox(titulo, cajaUnidades, unidadSeleccionada, botonTerminarColocacion);
+		cajaDeUnidades.setMinSize(370, 957);
+		cajaDeUnidades.setMaxSize(370, 957);
 		cajaDeUnidades.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png", 1920, 1080));
-		cajaDeUnidades.setSpacing(50);
+		cajaDeUnidades.setSpacing(60);
 		cajaDeUnidades.setAlignment(Pos.CENTER);
 
 		HBox contenedorSecundario = new HBox(cajaDeUnidades, tablero);
 		contenedorSecundario.setAlignment(Pos.CENTER);
-		contenedorSecundario.setSpacing(20);
+		contenedorSecundario.setSpacing(150);
 
 		VBox contenedorPrincipal = new VBox(contenedorSecundario);
 		contenedorPrincipal.setAlignment(Pos.CENTER);
 		
 		// Fondo y musica.
 		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo4.png", 1920, 1080));
-
+		this.cambiarMusica("./recursos/sonidos/escenas/cargaUnidades.wav");
+		
 		return new Scene(contenedorPrincipal, 1920, 1080);
 	}
 

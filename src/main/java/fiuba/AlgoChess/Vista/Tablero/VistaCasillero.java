@@ -49,8 +49,8 @@ public class VistaCasillero extends ToggleButton {
 			
 			this.setBackground(new CreadorDeFondos().crearFondo(direccion, 40, 40));
 		}
-		this.setPrefSize(40, 40);
-		this.setMaxSize(40, 40);
+		this.setPrefSize(45, 45);
+		this.setMaxSize(45, 45);
 	}
 	
 	
@@ -79,8 +79,8 @@ public class VistaCasillero extends ToggleButton {
 		}
 		
 		ImageView imagen = new ImageView();
-        imagen.setFitHeight(25);
-        imagen.setFitWidth(25);
+        imagen.setFitHeight(29);
+        imagen.setFitWidth(29);
         imagen.setPreserveRatio(true);
         imagen.setImage(imagenUnidad);
         

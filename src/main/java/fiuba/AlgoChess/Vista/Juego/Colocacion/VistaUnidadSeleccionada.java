@@ -8,6 +8,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
 
 public class VistaUnidadSeleccionada extends HBox {
 	
@@ -23,7 +24,10 @@ public class VistaUnidadSeleccionada extends HBox {
         this.unidad = null;
         this.imagen = new Label();
         this.boton = new Button("Soltar Unidad");
+        this.boton.setFont(Font.font("Verdana", 16));
         this.boton.setOnAction(new BotonSoltarUnidad(this));
+        this.setMinHeight(110);
+        this.setMaxHeight(110);
     }
     
     public void agregarUnidad(VistaUnidadParaSeleccion unidad) {
@@ -36,9 +40,7 @@ public class VistaUnidadSeleccionada extends HBox {
     	this.vistaUnidad = unidad;
     	
     	this.unidad = this.vistaUnidad.quitarUnidad();
-    	this.imagen.setGraphic(unidad.getImagen(80,80));
-    	this.imagen.setPrefHeight(80);
-    	this.imagen.setPrefHeight(80);
+    	this.imagen.setGraphic(unidad.getImagen(110,110));
     	
     	this.getChildren().add(this.imagen);
     	this.getChildren().add(this.boton);
