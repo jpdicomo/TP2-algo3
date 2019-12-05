@@ -223,7 +223,7 @@ public class Main extends Application {
 
 		// Titulo
 		Label titulo = new Label("Coloca tus unidades");
-		titulo.setFont(Font.font("Times New Roman", 40));
+		titulo.setFont(Font.font("Times New Roman", 28));
 
 		// Caja de unidades
 		VistaUnidadSeleccionada unidadSeleccionada = new VistaUnidadSeleccionada();
