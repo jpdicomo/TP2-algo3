@@ -3,8 +3,10 @@ package fiuba.AlgoChess.Controlador.Handlers;
 import java.io.File;
 
 import fiuba.AlgoChess.Controlador.Alertas.AlertaHayUnidadesSinColocar;
+import fiuba.AlgoChess.Vista.Errores.NoTieneUnaUnidadSeleccionadaException;
 import fiuba.AlgoChess.Vista.Juego.Main;
 import fiuba.AlgoChess.Vista.Juego.Colocacion.CajaDeUnidadesVertical;
+import fiuba.AlgoChess.Vista.Juego.Colocacion.VistaUnidadSeleccionada;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.media.Media;
@@ -16,11 +18,14 @@ public class BotonCambiarAEscenaColocarUnidades2 implements EventHandler<ActionE
 	private Media sonido;
 	private MediaPlayer reproductor;
 	private CajaDeUnidadesVertical cajaUnidades;
+	private VistaUnidadSeleccionada unidadSeleccionada;
 
-	public BotonCambiarAEscenaColocarUnidades2(Main main, CajaDeUnidadesVertical cajaUnidades) {
+	public BotonCambiarAEscenaColocarUnidades2(Main main, CajaDeUnidadesVertical cajaUnidades,
+			VistaUnidadSeleccionada unidadSeleccionada) {
 
 		this.main = main;
 		this.cajaUnidades = cajaUnidades;
+		this.unidadSeleccionada = unidadSeleccionada;
 	}
 
 	@Override
@@ -40,12 +45,28 @@ public class BotonCambiarAEscenaColocarUnidades2 implements EventHandler<ActionE
 
 	private boolean hayUnidadesSinColocar() {
 
-		boolean haySoldadosSinColocar = this.cajaUnidades.getUnidades("Soldado").isEmpty();
-		boolean hayCuranderosSinColocar = this.cajaUnidades.getUnidades("Curandero").isEmpty();
-		boolean hayJinetesSinColocar = this.cajaUnidades.getUnidades("Jinete").isEmpty();
-		boolean hayCatapultasSinColocar = this.cajaUnidades.getUnidades("Catapulta").isEmpty();
+		String[] clasesUnidades = { "Soldado", "Curandero", "Jinete", "Catapulta" };
 
-		return (haySoldadosSinColocar && hayCuranderosSinColocar && hayJinetesSinColocar && hayCatapultasSinColocar);
+		for (int i = 0; i < 4; i++) {
+
+			if (!(this.cajaUnidades.getUnidades(clasesUnidades[i]).isEmpty())) {
+
+				return true;
+			}
+		}
+
+		return this.hayUnidadSeleccionadaSinColocar();
+	}
+
+	private boolean hayUnidadSeleccionadaSinColocar() {
+
+		try {
+			this.unidadSeleccionada.getUnidad();
+		} catch (NoTieneUnaUnidadSeleccionadaException e) {
+			return false;
+		}
+
+		return true;
 	}
 
 	private void reproducirSonido() {

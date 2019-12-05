@@ -32,6 +32,7 @@ import fiuba.AlgoChess.Controlador.Handlers.BotonCambiarDeTurno;
 import fiuba.AlgoChess.Controlador.Handlers.BotonComenzarJuego;
 import fiuba.AlgoChess.Controlador.Handlers.BotonNuevaPartida;
 import fiuba.AlgoChess.Controlador.Handlers.BotonSalirDelJuego;
+import fiuba.AlgoChess.Controlador.Handlers.BotonVolverAJugar;
 import fiuba.AlgoChess.Modelo.Jugador.Bando;
 import fiuba.AlgoChess.Modelo.Jugador.Jugador;
 
@@ -68,6 +69,12 @@ public class Main extends Application {
 		this.jugadores[0] = new Jugador("", this.bandos[0]);
 		this.jugadores[1] = new Jugador("", this.bandos[1]);
 		this.tablero = new Tablero(this.bandos[0], this.bandos[1]);
+	}
+	
+	public void reiniciarJuego() {
+		
+		this.iniciarJuego();
+		this.cambiarEscenaA(this.escenaBienvenida());
 	}
 
 	public void cambiarEscenaA(Scene nuevaEscena) {
@@ -231,9 +238,9 @@ public class Main extends Application {
 		botonTerminarColocacion.setFont(Font.font("Verdana", 20));
 
 		if (numeroJugador != 2) {
-			botonTerminarColocacion.setOnAction(new BotonCambiarAEscenaColocarUnidades2(this, cajaUnidades));
+			botonTerminarColocacion.setOnAction(new BotonCambiarAEscenaColocarUnidades2(this, cajaUnidades, unidadSeleccionada));
 		} else {
-			botonTerminarColocacion.setOnAction(new BotonCambiarAEscenaDeLucha(this, cajaUnidades));
+			botonTerminarColocacion.setOnAction(new BotonCambiarAEscenaDeLucha(this, cajaUnidades, unidadSeleccionada));
 		}
 
 		// Creo las cajas.
@@ -309,24 +316,16 @@ public class Main extends Application {
 
 	public Scene escenaFinal(int numeroJugador) {
 
-		Label labelTitulo = new Label("");
-		labelTitulo.setFont(Font.font("Verdana", 48));
-		labelTitulo.setTextFill(Color.rgb(255, 255, 255));
-
 		Button botonNuevaPartida = new Button("Volver a Jugar");
 		botonNuevaPartida.setFont(Font.font("Verdana", 20));
-		botonNuevaPartida.setOnAction(new BotonNuevaPartida(this));
+		botonNuevaPartida.setOnAction(new BotonVolverAJugar(this));
 
 		Button botonSalir = new Button("Salir");
 		botonSalir.setFont(Font.font("Verdana", 20));
 		botonSalir.setOnAction(new BotonSalirDelJuego());
 
-		VBox botones = new VBox(botonNuevaPartida, botonSalir);
-		botones.setAlignment(Pos.BOTTOM_CENTER);
-		botones.setSpacing(20);
-
-		VBox contenedorPrincipal = new VBox(labelTitulo, botones);
-		contenedorPrincipal.setSpacing(270);
+		VBox contenedorPrincipal = new VBox(botonNuevaPartida, botonSalir);
+		contenedorPrincipal.setSpacing(20);
 		contenedorPrincipal.setAlignment(Pos.CENTER);
 
 		// Fondo y musica.
