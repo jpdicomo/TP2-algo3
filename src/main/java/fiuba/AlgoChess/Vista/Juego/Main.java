@@ -88,10 +88,12 @@ public class Main extends Application {
 	// Listo.
 	public Scene escenaBienvenida() {
 
+		// Titulo.
 		Label labelTitulo = new Label("");
 		labelTitulo.setFont(Font.font("Verdana", 48));
 		labelTitulo.setTextFill(Color.rgb(255, 255, 255));
 
+		// Botones.
 		Button botonNuevaPartida = new Button("Nueva Partida");
 		botonNuevaPartida.setFont(Font.font("Verdana", 20));
 		botonNuevaPartida.setOnAction(new BotonNuevaPartida(this));
@@ -100,6 +102,7 @@ public class Main extends Application {
 		botonSalir.setFont(Font.font("Verdana", 20));
 		botonSalir.setOnAction(new BotonSalirDelJuego());
 
+		// XBox
 		VBox botones = new VBox(botonNuevaPartida, botonSalir);
 		botones.setAlignment(Pos.BOTTOM_CENTER);
 		botones.setSpacing(20);
@@ -108,15 +111,16 @@ public class Main extends Application {
 		contenedorPrincipal.setSpacing(270);
 		contenedorPrincipal.setAlignment(Pos.CENTER);
 
+		// Fondo y musica.
 		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo1.png", 1920, 1080));
-		this.cambiarMusica("./recursos/sonidos/intro.wav");
-
+		this.cambiarMusica("./recursos/sonidos/escenas/intro.wav");
+		
 		return new Scene(contenedorPrincipal, 1920, 1080);
 	}
 
 	// Listo. PONER MUSICA
 	public Scene escenaCargaDeJugadores() {
-
+		
 		// Titulo
 		Label labelTitulo = new Label("Ingresen sus nombres");
 		labelTitulo.setFont(Font.font("Times New Roman", 72)); //48
@@ -163,8 +167,9 @@ public class Main extends Application {
 		contenedorPrincipal.setAlignment(Pos.CENTER);
 		contenedorPrincipal.setSpacing(450);
 		
+		// Fondo y musica
 		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo2.png", 1920, 1080));
-		// Poner musica
+		this.cambiarMusica("./recursos/sonidos/escenas/cargaJugadores.wav");
 		
 		return new Scene(contenedorPrincipal, 1920, 1080);
 	}
@@ -176,15 +181,16 @@ public class Main extends Application {
 
 		// Titulo
 		Label labelTitulo = new Label(jugador.getNombre() + " - Elegi tus unidades");
-		labelTitulo.setFont(Font.font("Times New Roman", 28));
+		labelTitulo.setFont(Font.font("Times New Roman", 48)); //28
 
 		// Puntos restantes
 		Label puntosJugador = new Label("Puntos restantes: " + jugador.getPuntos());
-		puntosJugador.setFont(Font.font("Times New Roman", 20));
+		puntosJugador.setFont(Font.font("Times New Roman", 26));
 
 		// Caja de unidades
 		CajaDeUnidades cajaUnidades = new CajaDeUnidades(this, numeroJugador, puntosJugador);
 		Button botonTerminarCompra = new Button("Terminar Compra");
+		botonTerminarCompra.setFont(Font.font("Verdana", 26));
 
 		if (numeroJugador != 2) {
 			botonTerminarCompra.setOnAction(new BotonCambiarAEscenaDeCompra2(this));
@@ -194,16 +200,19 @@ public class Main extends Application {
 
 		// Creo las cajas.
 		VBox contenedorSecundario = new VBox(labelTitulo, cajaUnidades, puntosJugador, botonTerminarCompra);
-		contenedorSecundario.setMaxWidth(515);
-		contenedorSecundario.setMinHeight(450);
-		contenedorSecundario.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png", 1920, 1080));
+//		contenedorSecundario.setMaxWidth(515);
+//		contenedorSecundario.setMinHeight(720);
 		contenedorSecundario.setAlignment(Pos.CENTER);
-		contenedorSecundario.setSpacing(20);
+		contenedorSecundario.setSpacing(50);
+		contenedorSecundario.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png", 1920, 1080));
 
 		VBox contenedorPrincipal = new VBox(contenedorSecundario);
-		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo3.png", 1920, 1080));
 		contenedorPrincipal.setAlignment(Pos.CENTER);
 
+		// Fondo y musica.
+		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo3.png", 1920, 1080));
+		this.cambiarMusica("./recursos/sonidos/escenas/mercado.wav");
+		
 		return new Scene(contenedorPrincipal, 1920, 1080);
 	}
 
@@ -240,8 +249,10 @@ public class Main extends Application {
 		contenedorSecundario.setSpacing(20);
 
 		VBox contenedorPrincipal = new VBox(contenedorSecundario);
-		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo4.png", 1920, 1080));
 		contenedorPrincipal.setAlignment(Pos.CENTER);
+		
+		// Fondo y musica.
+		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo4.png", 1920, 1080));
 
 		return new Scene(contenedorPrincipal, 1920, 1080);
 	}
@@ -281,16 +292,17 @@ public class Main extends Application {
 
 		// Creo las XBox
 		HBox contenedorPrincipal = new HBox(datosUnidad, tablero);
-		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo4.png", 1920, 1080));
 		contenedorPrincipal.setAlignment(Pos.CENTER);
 		contenedorPrincipal.setSpacing(20);
 
+		// Fondo y musica.
+		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo4.png", 1920, 1080));
+		this.cambiarMusica("./recursos/sonidos/escenas/lucha.wav");
+		
 		return new Scene(contenedorPrincipal, 1920, 1080);
 	}
 
 	public Scene escenaFinal(int numeroJugador) {
-
-		this.cambiarMusica("./recursos/sonidos/finDelJuego.wav");
 
 		Label labelTitulo = new Label("");
 		labelTitulo.setFont(Font.font("Verdana", 48));
@@ -311,18 +323,23 @@ public class Main extends Application {
 		VBox contenedorPrincipal = new VBox(labelTitulo, botones);
 		contenedorPrincipal.setSpacing(200);
 		contenedorPrincipal.setAlignment(Pos.CENTER);
-		contenedorPrincipal.setBackground(
-				new CreadorDeFondos().crearFondo("./recursos/fondos/final" + numeroJugador + ".png", 1920, 1080));
-
+		
+		// Fondo y musica.
+		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/final" + numeroJugador + ".png", 1920, 1080));
+		this.cambiarMusica("./recursos/sonidos/finDelJuego.wav");
+		
 		return new Scene(contenedorPrincipal, 1920, 1080);
 	}
 
 	private void cambiarMusica(String ruta) {
 
+		if(this.reproductor != null) {
+			this.reproductor.stop();
+		}
+
 		this.sonido = new Media(new File(ruta).toURI().toString());
 		this.reproductor = new MediaPlayer(sonido);
 
-		this.reproductor.stop();
 		this.reproductor.play();
 	}
 
