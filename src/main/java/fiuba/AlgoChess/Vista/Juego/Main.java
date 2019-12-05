@@ -14,6 +14,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import fiuba.AlgoChess.Modelo.Tablero.Tablero;
 import fiuba.AlgoChess.Vista.Compra.CajaDeUnidades;
@@ -185,12 +186,12 @@ public class Main extends Application {
 
 		// Puntos restantes
 		Label puntosJugador = new Label("Puntos restantes: " + jugador.getPuntos());
-		puntosJugador.setFont(Font.font("Times New Roman", 26));
+		puntosJugador.setFont(Font.font("Times New Roman", 30));
 
 		// Caja de unidades
 		CajaDeUnidades cajaUnidades = new CajaDeUnidades(this, numeroJugador, puntosJugador);
 		Button botonTerminarCompra = new Button("Terminar Compra");
-		botonTerminarCompra.setFont(Font.font("Verdana", 26));
+		botonTerminarCompra.setFont(Font.font("Verdana", 20));
 
 		if (numeroJugador != 2) {
 			botonTerminarCompra.setOnAction(new BotonCambiarAEscenaDeCompra2(this));
@@ -200,8 +201,8 @@ public class Main extends Application {
 
 		// Creo las cajas.
 		VBox contenedorSecundario = new VBox(labelTitulo, cajaUnidades, puntosJugador, botonTerminarCompra);
-//		contenedorSecundario.setMaxWidth(515);
-//		contenedorSecundario.setMinHeight(720);
+		contenedorSecundario.setMaxWidth(1150);
+		contenedorSecundario.setMinHeight(800);
 		contenedorSecundario.setAlignment(Pos.CENTER);
 		contenedorSecundario.setSpacing(50);
 		contenedorSecundario.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png", 1920, 1080));
@@ -340,6 +341,11 @@ public class Main extends Application {
 		this.sonido = new Media(new File(ruta).toURI().toString());
 		this.reproductor = new MediaPlayer(sonido);
 
+		this.reproductor.setOnEndOfMedia(new Runnable() {
+	       public void run() {
+	    	   reproductor.seek(Duration.ZERO);
+	         }
+	     });
 		this.reproductor.play();
 	}
 
