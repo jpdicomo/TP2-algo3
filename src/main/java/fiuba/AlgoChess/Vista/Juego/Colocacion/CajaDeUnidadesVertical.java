@@ -35,7 +35,7 @@ public class CajaDeUnidadesVertical extends VBox {
 		this.cargarUnidad(new Catapulta(bando), numeroJugador);
 
 		this.setAlignment(Pos.CENTER);
-		this.setSpacing(20);
+		this.setSpacing(30);
 	}
 
 	private void cargarUnidad(Unidad unidad, int numeroJugador) {

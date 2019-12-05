@@ -100,60 +100,60 @@ public class Main extends Application {
 
 		// Botones.
 		Button botonNuevaPartida = new Button("Nueva Partida");
-		botonNuevaPartida.setFont(Font.font("Verdana", 20));
+		botonNuevaPartida.setFont(Font.font("Verdana", 16));
 		botonNuevaPartida.setOnAction(new BotonNuevaPartida(this));
 
 		Button botonSalir = new Button("Salir");
-		botonSalir.setFont(Font.font("Verdana", 20));
+		botonSalir.setFont(Font.font("Verdana", 16));
 		botonSalir.setOnAction(new BotonSalirDelJuego());
 
 		// XBox
 		VBox botones = new VBox(botonNuevaPartida, botonSalir);
 		botones.setAlignment(Pos.BOTTOM_CENTER);
-		botones.setSpacing(20);
+		botones.setSpacing(10);
 
 		VBox contenedorPrincipal = new VBox(labelTitulo, botones);
-		contenedorPrincipal.setSpacing(270);
+		contenedorPrincipal.setSpacing(200);
 		contenedorPrincipal.setAlignment(Pos.CENTER);
 
 		// Fondo y musica.
-		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo1.png", 1920, 1080));
+		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo1.png", 1366, 768));
 		this.cambiarMusica("./recursos/sonidos/escenas/intro.wav");
 
-		return new Scene(contenedorPrincipal, 1920, 1080);
+		return new Scene(contenedorPrincipal, 1366, 768);
 	}
 
 	public Scene escenaCargaDeJugadores() {
 
 		// Titulo
 		Label labelTitulo = new Label("Ingresen sus nombres");
-		labelTitulo.setFont(Font.font("Times New Roman", 72));
+		labelTitulo.setFont(Font.font("Times New Roman", 48));
 		labelTitulo.setTextFill(Color.rgb(255, 255, 255));
 
 		// Jugador 1
 		Label labelJugador1 = new Label("Jugador 1");
-		labelJugador1.setFont(Font.font("Times New Roman", 30));
+		labelJugador1.setFont(Font.font("Times New Roman", 26));
 		labelJugador1.setTextFill(Color.rgb(255, 255, 255));
 		TextField nombreJugador1 = new TextField();
 		nombreJugador1.setPromptText("Ingresa tu nombre");
-		nombreJugador1.setFont(Font.font("Times New Roman", 20));
+		nombreJugador1.setFont(Font.font("Times New Roman", 16));
 
 		// Jugador 2
 		Label labelJugador2 = new Label("Jugador 2");
-		labelJugador2.setFont(Font.font("Times New Roman", 30));
+		labelJugador2.setFont(Font.font("Times New Roman", 26));
 		labelJugador2.setTextFill(Color.rgb(255, 255, 255));
 		TextField nombreJugador2 = new TextField();
 		nombreJugador2.setPromptText("Ingresa tu nombre");
-		nombreJugador2.setFont(Font.font("Times New Roman", 20));
+		nombreJugador2.setFont(Font.font("Times New Roman", 16));
 
 		Button botonComenzar = new Button("Comenzar Juego");
-		botonComenzar.setFont(Font.font("Verdana", 20));
+		botonComenzar.setFont(Font.font("Verdana", 16));
 		botonComenzar.setOnAction(new BotonComenzarJuego(nombreJugador1, nombreJugador2, this));
 
 		// Creacion de las XBox
 		HBox labelJugadores = new HBox(labelJugador1, labelJugador2);
 		labelJugadores.setAlignment(Pos.CENTER);
-		labelJugadores.setSpacing(450);
+		labelJugadores.setSpacing(400);
 
 		HBox cuadrosDeTexto = new HBox(nombreJugador1, nombreJugador2);
 		cuadrosDeTexto.setAlignment(Pos.CENTER);
@@ -161,21 +161,21 @@ public class Main extends Application {
 
 		VBox contenedorJugadores = new VBox(labelJugadores, cuadrosDeTexto);
 		contenedorJugadores.setAlignment(Pos.CENTER);
-		contenedorJugadores.setSpacing(20);
+		contenedorJugadores.setSpacing(15);
 
 		VBox contenedorConBoton = new VBox(contenedorJugadores, botonComenzar);
 		contenedorConBoton.setAlignment(Pos.CENTER);
-		contenedorConBoton.setSpacing(150);
+		contenedorConBoton.setSpacing(100);
 
 		VBox contenedorPrincipal = new VBox(labelTitulo, contenedorConBoton);
 		contenedorPrincipal.setAlignment(Pos.CENTER);
-		contenedorPrincipal.setSpacing(450);
+		contenedorPrincipal.setSpacing(300);
 
 		// Fondo y musica
-		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo2.png", 1920, 1080));
+		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo2.png", 1366, 768));
 		this.cambiarMusica("./recursos/sonidos/escenas/cargaJugadores.wav");
 
-		return new Scene(contenedorPrincipal, 1920, 1080);
+		return new Scene(contenedorPrincipal, 1366, 768);
 	}
 
 	public Scene escenaCompraDeUnidades(int numeroJugador) {
@@ -184,16 +184,16 @@ public class Main extends Application {
 
 		// Titulo
 		Label labelTitulo = new Label(jugador.getNombre() + " - Elegi tus unidades");
-		labelTitulo.setFont(Font.font("Times New Roman", 48));
+		labelTitulo.setFont(Font.font("Times New Roman", 32));
 
 		// Puntos restantes
 		Label puntosJugador = new Label("Puntos restantes: " + jugador.getPuntos());
-		puntosJugador.setFont(Font.font("Times New Roman", 30));
+		puntosJugador.setFont(Font.font("Times New Roman", 20));
 
 		// Caja de unidades
 		CajaDeUnidades cajaUnidades = new CajaDeUnidades(this, numeroJugador, puntosJugador);
 		Button botonTerminarCompra = new Button("Terminar Compra");
-		botonTerminarCompra.setFont(Font.font("Verdana", 20));
+		botonTerminarCompra.setFont(Font.font("Verdana", 16));
 
 		if (numeroJugador != 2) {
 			botonTerminarCompra.setOnAction(new BotonCambiarAEscenaDeCompra2(this));
@@ -203,28 +203,25 @@ public class Main extends Application {
 
 		// Creo las cajas.
 		VBox contenedorSecundario = new VBox(labelTitulo, cajaUnidades, puntosJugador, botonTerminarCompra);
-		contenedorSecundario.setMaxWidth(1150);
-		contenedorSecundario.setMinHeight(800);
+		contenedorSecundario.setMaxWidth(670);
+		contenedorSecundario.setMinHeight(520);
 		contenedorSecundario.setAlignment(Pos.CENTER);
-		contenedorSecundario.setSpacing(50);
-		contenedorSecundario.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png", 1920, 1080));
+		contenedorSecundario.setSpacing(30);
+		contenedorSecundario.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png", 1366, 768));
 
 		VBox contenedorPrincipal = new VBox(contenedorSecundario);
 		contenedorPrincipal.setAlignment(Pos.CENTER);
 
 		// Fondo y musica.
-		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo3.png", 1920, 1080));
+		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo3.png", 1366, 768));
 		this.cambiarMusica("./recursos/sonidos/escenas/mercado.wav");
 
-		return new Scene(contenedorPrincipal, 1920, 1080);
+		return new Scene(contenedorPrincipal, 1366, 768);
 	}
 
 	public Scene escenaColocarUnidades(int numeroJugador) {
 
-		// Titulo
-		Label titulo = new Label("Coloca tus unidades");
-		titulo.setFont(Font.font("Times New Roman", 40));
-
+		
 		// Caja de unidades
 		VistaUnidadSeleccionada unidadSeleccionada = new VistaUnidadSeleccionada();
 		CajaDeUnidadesVertical cajaUnidades = new CajaDeUnidadesVertical(this, numeroJugador, unidadSeleccionada);
@@ -235,7 +232,7 @@ public class Main extends Application {
 
 		// Boton para terminar de colocar unidades.
 		Button botonTerminarColocacion = new Button("Termine");
-		botonTerminarColocacion.setFont(Font.font("Verdana", 20));
+		botonTerminarColocacion.setFont(Font.font("Verdana", 16));
 
 		if (numeroJugador != 2) {
 			botonTerminarColocacion.setOnAction(new BotonCambiarAEscenaColocarUnidades2(this, cajaUnidades, unidadSeleccionada));
@@ -244,25 +241,25 @@ public class Main extends Application {
 		}
 
 		// Creo las cajas.
-		VBox cajaDeUnidades = new VBox(titulo, cajaUnidades, unidadSeleccionada, botonTerminarColocacion);
-		cajaDeUnidades.setMinSize(370, 957);
-		cajaDeUnidades.setMaxSize(370, 957);
-		cajaDeUnidades.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png", 1920, 1080));
-		cajaDeUnidades.setSpacing(60);
+		VBox cajaDeUnidades = new VBox(cajaUnidades, unidadSeleccionada, botonTerminarColocacion);
+		cajaDeUnidades.setMinSize(250, 700);
+		cajaDeUnidades.setMaxSize(250, 700);
+		cajaDeUnidades.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png", 1366, 768));
+		cajaDeUnidades.setSpacing(40);
 		cajaDeUnidades.setAlignment(Pos.CENTER);
 
 		HBox contenedorSecundario = new HBox(cajaDeUnidades, tablero);
 		contenedorSecundario.setAlignment(Pos.CENTER);
-		contenedorSecundario.setSpacing(150);
+		contenedorSecundario.setSpacing(20);
 
 		VBox contenedorPrincipal = new VBox(contenedorSecundario);
 		contenedorPrincipal.setAlignment(Pos.CENTER);
 
 		// Fondo y musica.
-		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo4.png", 1920, 1080));
+		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo4.png", 1366, 768));
 		this.cambiarMusica("./recursos/sonidos/escenas/cargaUnidades.wav");
 
-		return new Scene(contenedorPrincipal, 1920, 1080);
+		return new Scene(contenedorPrincipal, 1366, 768);
 	}
 
 	public Scene escenaDeLucha(int numeroJugador) {
@@ -273,8 +270,8 @@ public class Main extends Application {
 		// Titulo
 		Label labelTitulo = new Label(jugador.getNombre());
 		Label labelSubtitulo = new Label("Es tu turno");
-		labelTitulo.setFont(Font.font("Times New Roman", 40));
-		labelSubtitulo.setFont(Font.font("Times New Roman", 34));
+		labelTitulo.setFont(Font.font("Times New Roman", 32));
+		labelSubtitulo.setFont(Font.font("Times New Roman", 20));
 
 		// Datos unidad seleccionada.
 		VistaDatosUnidad unidadElegida = new VistaDatosUnidad();
@@ -286,7 +283,7 @@ public class Main extends Application {
 		// Boton para terminar turno.
 		Button botonTerminarTurno = new Button("Terminar Turno");
 		botonTerminarTurno.setOnAction(new BotonCambiarDeTurno(this));
-		botonTerminarTurno.setFont(Font.font("Verdana", 20));
+		botonTerminarTurno.setFont(Font.font("Verdana", 16));
 
 		// Creo las XBox
 		VBox titulares = new VBox(labelTitulo, labelSubtitulo);
@@ -294,46 +291,46 @@ public class Main extends Application {
 		titulares.setAlignment(Pos.CENTER);
 
 		VBox datosUnidad = new VBox(titulares, unidadElegida, botonTerminarTurno);
-		datosUnidad.setMinSize(370, 957);
-		datosUnidad.setMaxSize(370, 957);
-		datosUnidad.setSpacing(70);
+		datosUnidad.setMinSize(350, 700);
+		datosUnidad.setMaxSize(350, 700);
+		datosUnidad.setSpacing(40);
 		datosUnidad.setAlignment(Pos.CENTER);
-		datosUnidad.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png", 1920, 1080));
+		datosUnidad.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png", 1366, 768));
 
 		HBox contenedorSecundario = new HBox(datosUnidad, tablero);
 		contenedorSecundario.setAlignment(Pos.CENTER);
-		contenedorSecundario.setSpacing(150);
+		contenedorSecundario.setSpacing(20);
 
 		VBox contenedorPrincipal = new VBox(contenedorSecundario);
 		contenedorPrincipal.setAlignment(Pos.CENTER);
 
 		// Fondo y musica.
-		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo4.png", 1920, 1080));
+		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo4.png", 1366, 768));
 		this.cambiarMusica("./recursos/sonidos/escenas/lucha.wav");
 
-		return new Scene(contenedorPrincipal, 1920, 1080);
+		return new Scene(contenedorPrincipal, 1366, 768);
 	}
 
 	public Scene escenaFinal(int numeroJugador) {
 
 		Button botonNuevaPartida = new Button("Volver a Jugar");
-		botonNuevaPartida.setFont(Font.font("Verdana", 20));
+		botonNuevaPartida.setFont(Font.font("Verdana", 16));
 		botonNuevaPartida.setOnAction(new BotonVolverAJugar(this));
 
 		Button botonSalir = new Button("Salir");
-		botonSalir.setFont(Font.font("Verdana", 20));
+		botonSalir.setFont(Font.font("Verdana", 16));
 		botonSalir.setOnAction(new BotonSalirDelJuego());
 
 		VBox contenedorPrincipal = new VBox(botonNuevaPartida, botonSalir);
-		contenedorPrincipal.setSpacing(20);
+		contenedorPrincipal.setSpacing(10);
 		contenedorPrincipal.setAlignment(Pos.CENTER);
 
 		// Fondo y musica.
 		contenedorPrincipal.setBackground(
-				new CreadorDeFondos().crearFondo("./recursos/fondos/final" + numeroJugador + ".png", 1920, 1080));
+				new CreadorDeFondos().crearFondo("./recursos/fondos/final" + numeroJugador + ".png", 1366, 768));
 		this.cambiarMusica("./recursos/sonidos/escenas/finDelJuego.wav");
 
-		return new Scene(contenedorPrincipal, 1920, 1080);
+		return new Scene(contenedorPrincipal, 1366, 768);
 	}
 
 	private void cambiarMusica(String ruta) {

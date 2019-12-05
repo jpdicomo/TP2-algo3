@@ -30,9 +30,9 @@ public class VistaUnidad extends VBox {
         Label vida = new Label("Vida: " + unidad.getVida());
         Label costo = new Label("Precio: " + unidad.getCosto());
         
-        nombre.setFont(Font.font("Times New Roman", 30)); //24
-        vida.setFont(Font.font("Times New Roman", 22)); //16
-        costo.setFont(Font.font("Times New Roman", 22)); //16
+        nombre.setFont(Font.font("Times New Roman", 24));
+        vida.setFont(Font.font("Times New Roman", 16));
+        costo.setFont(Font.font("Times New Roman", 16));
 
         VBox datosUnidad = new VBox(vida, costo);
         datosUnidad.setAlignment(Pos.CENTER);
@@ -42,7 +42,7 @@ public class VistaUnidad extends VBox {
         this.getChildren().add(this.cargarImagenUnidad(unidad));
         this.getChildren().add(datosUnidad);
         this.setAlignment(Pos.CENTER);
-        this.setSpacing(25); //15
+        this.setSpacing(15);
 	}
 	
 	
@@ -65,8 +65,8 @@ public class VistaUnidad extends VBox {
 		}
 		
 		ImageView imagen = new ImageView();
-        imagen.setFitHeight(250); //110
-        imagen.setFitWidth(250); //110
+        imagen.setFitHeight(130); //110
+        imagen.setFitWidth(130); //110
         imagen.setPreserveRatio(true);
         imagen.setImage(imagenUnidad);
 		

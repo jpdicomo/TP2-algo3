@@ -26,8 +26,8 @@ public class VistaUnidadSeleccionada extends HBox {
         this.boton = new Button("Soltar Unidad");
         this.boton.setFont(Font.font("Verdana", 16));
         this.boton.setOnAction(new BotonSoltarUnidad(this));
-        this.setMinHeight(110);
-        this.setMaxHeight(110);
+        this.setMinHeight(85);
+        this.setMaxHeight(85);
     }
     
     public void agregarUnidad(VistaUnidadParaSeleccion unidad) {
@@ -40,7 +40,7 @@ public class VistaUnidadSeleccionada extends HBox {
     	this.vistaUnidad = unidad;
     	
     	this.unidad = this.vistaUnidad.quitarUnidad();
-    	this.imagen.setGraphic(unidad.getImagen(110,110));
+    	this.imagen.setGraphic(unidad.getImagen(80,80));
     	
     	this.getChildren().add(this.imagen);
     	this.getChildren().add(this.boton);

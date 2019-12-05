@@ -37,7 +37,7 @@ public class CajaDeUnidades extends HBox {
 		VistaUnidad vistaUnidad = new VistaUnidad(unidad, numeroJugador);
 		
 		Button botonDeCompra = new Button("Comprar");
-		botonDeCompra.setFont(Font.font("Verdana", 20)); //16
+		botonDeCompra.setFont(Font.font("Verdana", 16));
 		botonDeCompra.setOnAction(new BotonComprarUnidad(this.jugador, unidad, puntosJugador, this));
 				
 		vistaUnidad.agregarBoton(botonDeCompra);
