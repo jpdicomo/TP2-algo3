@@ -37,6 +37,8 @@ public class VistaDatosUnidad extends VBox {
 		super();
 		this.unidadesQueAtacaron = new ArrayList<Unidad>();
 		this.seMovioUnaPieza = false;
+		
+		this.setMinHeight(618);
 	}
 	
 	
@@ -54,10 +56,10 @@ public class VistaDatosUnidad extends VBox {
 	private void cargarDatosUnidad() {
 		
 		Label nombre = new Label(unidad.getClass().getSimpleName());
-		nombre.setFont(Font.font("Times New Roman", 28));
+		nombre.setFont(Font.font("Times New Roman", 34));
 		
 		Label vida = new Label("Vida: " + unidad.getVida());
-		vida.setFont(Font.font("Times New Roman", 16));
+		vida.setFont(Font.font("Times New Roman", 28));
 		
 		this.getChildren().add(nombre);
 		this.getChildren().add(this.agregarImagenUnidad());
@@ -81,8 +83,8 @@ public class VistaDatosUnidad extends VBox {
 		}
 
 		ImageView imagen = new ImageView();
-		imagen.setFitHeight(140);
-		imagen.setFitWidth(140);
+		imagen.setFitHeight(300);
+		imagen.setFitWidth(300);
 		imagen.setPreserveRatio(true);
 		imagen.setImage(imagenUnidad);
 
@@ -116,6 +118,7 @@ public class VistaDatosUnidad extends VBox {
 	private void cargarBotonesMinimizados() {
 
 		Button mover = new Button("Mover");
+		mover.setFont(Font.font("Verdana", 20));
 		
 		if(this.seMovioUnaPieza) {
 			
@@ -131,7 +134,7 @@ public class VistaDatosUnidad extends VBox {
 		
 		botones.setAlignment(Pos.CENTER);
 		botones.setSpacing(35);
-		botones.setMinSize(200, 100);
+		botones.setMinSize(330, 135);
 		
 		this.getChildren().add(botones);
 	}
@@ -146,6 +149,8 @@ public class VistaDatosUnidad extends VBox {
 		
 		Button botonAtras = new Button("X");
 		botonAtras.setOnAction(new CerrarBotonMover(this));
+		botonAtras.setFont(Font.font("Verdana", 20));
+		botonAtras.setMinWidth(59);
         
 		direcciones.add(this.agregarBotonMovimiento("NO", new SurOeste()), 1, 1);
 		direcciones.add(this.agregarBotonMovimiento("N", new Oeste()), 2, 1);
@@ -163,7 +168,7 @@ public class VistaDatosUnidad extends VBox {
 		this.agregarBotonAtaque(botones);
 		botones.setAlignment(Pos.CENTER);
 		botones.setSpacing(35);
-		botones.setMinSize(200, 100);
+		botones.setMinSize(330, 135);
 		
 		this.getChildren().add(botones);
 	}
@@ -173,6 +178,8 @@ public class VistaDatosUnidad extends VBox {
 		
 		Button nuevoBoton = new Button(texto);
 		nuevoBoton.setOnAction(new BotonMover(posicion, direccion, tablero, this));
+		nuevoBoton.setFont(Font.font("Verdana", 20));
+		nuevoBoton.setMinWidth(59);
 		
 		return nuevoBoton;
 	}
@@ -187,6 +194,7 @@ public class VistaDatosUnidad extends VBox {
 		}
 		
 		ToggleButton botonAtacar = new ToggleButton(textoBotonAtaque);
+		botonAtacar.setFont(Font.font("Verdana", 20));
 		
 		if(this.unidadesQueAtacaron.contains(this.unidad)) {
 			botonAtacar.setOnAction(new BotonAtacarApagado());

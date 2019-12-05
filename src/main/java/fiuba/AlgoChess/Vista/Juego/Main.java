@@ -273,8 +273,8 @@ public class Main extends Application {
 		// Titulo
 		Label labelTitulo = new Label(jugador.getNombre());
 		Label labelSubtitulo = new Label("Es tu turno");
-		labelTitulo.setFont(Font.font("Times New Roman", 34));
-		labelSubtitulo.setFont(Font.font("Times New Roman", 20));
+		labelTitulo.setFont(Font.font("Times New Roman", 40));
+		labelSubtitulo.setFont(Font.font("Times New Roman", 34));
 
 		// Datos unidad seleccionada.
 		VistaDatosUnidad unidadElegida = new VistaDatosUnidad();
@@ -283,25 +283,30 @@ public class Main extends Application {
 		VistaTablero tablero = new VistaTablero(this, this.tablero);
 		tablero.comportamientoSeleccionarUnidad(unidadElegida);
 
-		// Boton para terminar partida.
+		// Boton para terminar turno.
 		Button botonTerminarTurno = new Button("Terminar Turno");
 		botonTerminarTurno.setOnAction(new BotonCambiarDeTurno(this));
+		botonTerminarTurno.setFont(Font.font("Verdana", 20));
 
+		// Creo las XBox
 		VBox titulares = new VBox(labelTitulo, labelSubtitulo);
 		titulares.setSpacing(10);
 		titulares.setAlignment(Pos.CENTER);
 
 		VBox datosUnidad = new VBox(titulares, unidadElegida, botonTerminarTurno);
-		datosUnidad.setMinSize(200, 700);
-		datosUnidad.setMaxSize(200, 700);
+		datosUnidad.setMinSize(370, 957);
+		datosUnidad.setMaxSize(370, 957);
+		datosUnidad.setSpacing(70);
 		datosUnidad.setAlignment(Pos.CENTER);
-		datosUnidad.setSpacing(90);
 		datosUnidad.setBackground(new CreadorDeFondos().crearFondo("./recursos/compra/fondo.png", 1920, 1080));
 
-		// Creo las XBox
-		HBox contenedorPrincipal = new HBox(datosUnidad, tablero);
+		
+		HBox contenedorSecundario = new HBox(datosUnidad, tablero);
+		contenedorSecundario.setAlignment(Pos.CENTER);
+		contenedorSecundario.setSpacing(150);
+		
+		VBox contenedorPrincipal = new VBox(contenedorSecundario);
 		contenedorPrincipal.setAlignment(Pos.CENTER);
-		contenedorPrincipal.setSpacing(20);
 
 		// Fondo y musica.
 		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/fondo4.png", 1920, 1080));
@@ -334,7 +339,7 @@ public class Main extends Application {
 		
 		// Fondo y musica.
 		contenedorPrincipal.setBackground(new CreadorDeFondos().crearFondo("./recursos/fondos/final" + numeroJugador + ".png", 1920, 1080));
-		this.cambiarMusica("./recursos/sonidos/finDelJuego.wav");
+		this.cambiarMusica("./recursos/sonidos/escenas/finDelJuego.wav");
 		
 		return new Scene(contenedorPrincipal, 1920, 1080);
 	}
